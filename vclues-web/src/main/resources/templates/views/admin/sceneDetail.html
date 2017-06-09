@@ -1,0 +1,70 @@
+
+            <div th:fragment="sceneDetail" class="container-fluid">
+                <div class="row">
+					<div class="col-md-8 col-md-offset-2">
+                        <div class="card">
+                            <div class="header text-center">
+                                <h4 class="title">Scene  <span th:text="${scene.position}"></span></h4>
+                                <p class="category"></p>
+								<br/>
+                            </div>
+                            <div class="content table-responsive table-full-width table-upgrade">
+                                <table class="table">
+                                    <tbody>                          
+                                        <tr><td th:text="${scene.text}"></td></tr>         
+                                        <tr>
+                                        	<td>
+												<h5>Scripts</h5>
+												<table id="script-table" class="table table-striped">
+									              <thead>
+												      <tr>
+														<th>Image</th>
+														<th>Dialog</th>
+												        <th>Secret</th>
+												        <th></th>
+												      </tr>
+									              </thead>
+									              <tbody>
+														<tr th:each="script,iterStat : ${scene?.scripts}" th:class="${iterStat.odd}? 'odd'">
+														    <td th:text="${script.image}"></td>
+														    <td th:text="${script.text}" />
+														    <td th:text="${script.secret}" />
+															<!-- <td><a th:href="@{/admin/script/edit/{id}/{storyId}(id=${script.id}, storyId=${scene.story.id})}" class="btn btn-default">Edit</a></td> -->
+														</tr>  
+									              </tbody>
+									            </table>
+											</td>
+										</tr>  
+										<tr>
+											<td>
+												<h5>Hints</h5>
+												<table id="hints-table" class="table table-striped">
+									              <tbody>
+														<tr th:each="hint,iterStat : ${scene?.hints}" th:class="${iterStat.odd}? 'odd'">
+															<td th:text="${iterStat.count}"></td>
+														    <td th:text="${hint.text}"></td>
+															<!-- <td><a th:href="@{/admin/hint/edit/{id}/{storyId}(id=${hint.id}, storyId=${hint.story.id})}" class="btn btn-default">Edit</a></td> -->
+														</tr>  
+									              </tbody>
+									            </table>
+											</td>
+										</tr>										         
+										<tr>
+											<td>
+												
+												
+											</td>
+										</tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div><hr/></div>
+                            <div>
+                            	<a th:href="@{/admin/story/{id}(id=${scene.story.id})}" class="btn btn-default">Back</a>
+                            	<a th:href="@{/admin/script/{id}(id=${scene.story.id})}" class="btn btn-default">Add Scripts</a>
+                            	<a th:href="@{/admin/hint/{id}(id=${scene.story.id})}" class="btn btn-default">Add Hints</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

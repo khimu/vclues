@@ -1,0 +1,131 @@
+package com.vclues.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import com.vclues.core.entity.User;
+import com.vclues.core.repository.StoryRepository;
+import com.vclues.core.security.SecurityService;
+import com.vclues.core.service.IUserService;
+import com.vclues.core.validator.DescriptorValidator;
+import com.vclues.core.validator.UserValidator;
+
+@Controller
+public class RegistrationController {
+	private final static Logger logger = LoggerFactory.getLogger(RegistrationController.class);
+	
+    @Autowired
+    private IUserService userService;
+
+    @Autowired
+    private SecurityService securityService;
+
+    @Autowired
+    private UserValidator userValidator;
+
+    @Autowired
+    private DescriptorValidator descriptorValidator;
+    
+    @Autowired
+    private StoryRepository businessRepository;
+    
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String registration(Model model) {
+    	User user = new User();
+    	
+        model.addAttribute("userForm", user);
+        model.addAttribute("content", "signup"); 
+        return "index";
+    }
+
+    /**
+     * Account registration
+     * 
+     * @param userForm
+     * @param bindingResult
+     * @param model
+     * @return
+     */
+    @PostMapping("/signup")
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
+        userValidator.validate(userForm, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+        	logger.info("Binding error.  Saved user " + userForm.getEmail());
+        	for(ObjectError error: bindingResult.getAllErrors()) {
+        		logger.info("code " + error.getCode() + " " + error.getObjectName());
+        	}
+        	
+        	model.addAttribute("content", "signup"); 
+        	return "index";
+        }
+
+        userService.registerNewUser(userForm);
+        
+        model.addAttribute("content", "signup"); 
+        model.addAttribute("message", "Thank you for registering.  Please check your email for the confirmation link.");
+
+        return "index";
+    }
+    
+    /*
+     * confirm email registration
+     */
+    @GetMapping("/confirm/{email}/{activationKey}")
+    public String confirm(@PathVariable("email") String email, @PathVariable("activationKey") String activationKey, Model model) {
+        
+    	logger.info("Confirm user " + email + " " + activationKey);
+
+        userService.confirmEmail(email, activationKey);
+
+        model.addAttribute("message", "Thank you for confirming your email.  Please try logging in");
+        model.addAttribute("content", "confirm"); 
+    	
+        return "index";
+    }   
+    
+    // example usage
+    public static HttpSession session() {
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        return attr.getRequest().getSession(true); // true == allow create
+    }   
+    
+    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+    public String login(@RequestParam(value="message", required = false) String message, Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", "Your username and password is invalid.");
+
+        if (message != null) {
+        	logger.info("message " + message);
+            model.addAttribute("message", "You have been logged out successfully.");
+
+        	session().setAttribute("users", null);
+        }
+    	
+    	model.addAttribute("content", "login"); 
+        return "index";
+    }
+    
+    @GetMapping("/forgotpassword")
+    public String forgotpassword(Model model) {
+        model.addAttribute("content", "forgotpassword"); 
+        return "index";
+    }
+
+}

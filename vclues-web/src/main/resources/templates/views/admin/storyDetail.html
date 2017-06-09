@@ -1,0 +1,109 @@
+
+            <div th:fragment="storyDetail" class="container-fluid">
+                <div class="row">
+					<div class="col-md-8 col-md-offset-2">
+                        <div class="card">
+                            <div class="header text-center">
+                                <h4 class="title" th:text="${story.title}"></h4>
+                                <p class="category"></p>
+								<br/>
+                            </div>
+                            <div class="content table-responsive table-full-width table-upgrade">
+                            	<div th:text="${story.video}"></div>
+                            	<div> <img th:src="${story.image}"/></div>
+                            	<div>
+                            	<iframe width="560" height="315" th:src="@{{url}(url=${story.video}}" frameborder="1" alt="no video attached" allowfullscreen="0"></iframe>
+                            	</div>
+                            	<div style="padding:10px;">
+	                            	<div>
+		                            	<h5>Synapsis</h5>
+		                            	<p th:utext="${story.synapsis}"></p>
+	                            	</div>
+	                            	<div>
+	                            		<h5>Answer</h5>
+		                            	<p th:utext="${story.answer}"></p>
+	                            	</div>
+	                            	<div>
+	                            		<h5>Game Size</h5>
+		                            	<p th:utext="${story.size}"></p>
+	                            	</div>
+                            	</div>
+                            	<div><hr/></div>
+                            	<div>
+                            		<h3>Characters</h3>
+						            <table id="casts-table" class="table table-striped">
+						              <thead>
+									      <tr>
+											<th>Name</th>
+											<th>Character</th>
+									        <th>Gender</th>
+									        <th>Description</th>
+									      </tr>
+						              </thead>
+						              <tbody>
+											<tr th:each="c,iterStat : ${story?.casts}" th:class="${iterStat.odd}? 'odd'">
+											    <td th:text="${c.name}"></td>
+											    <td th:text="${c.role}" />
+											    <td th:text="${c.gender}" />
+											    <td th:text="${c.description}" />
+												<!-- <td><a th:href="@{/admin/cast/edit/{id}(id=${c.id})}" class="btn btn-default">Edit</a></td> -->
+											</tr>    
+						              </tbody>
+						            </table>          	
+                            	</div>
+                            	<div><hr/></div>
+                            	<div>
+                            		<h3>Scenes</h3>
+						            <table id="scene-table" class="table table-striped">
+						              <thead>
+									      <tr>
+											<th>Scene Number</th>
+											<th>Synapsis</th>
+									        <th>image</th>
+									        <th></th>
+									      </tr>
+						              </thead>
+						              <tbody>
+											<tr th:each="s,iterStat : ${story?.scenes}" th:class="${iterStat.odd}? 'odd'">
+											    <td th:text="${s.position}"></td>
+											    <td th:text="${s.text}" />
+											    <td th:text="${s.image}" />
+												<!-- <td><a th:href="@{/admin/scene/edit/{id}(id=${s.id})}" class="btn btn-default">Edit</a></td> -->
+												<td><a th:href="@{/admin/scene/{id}/{storyId}(id=${s.id},storyId=${story.id})}" class="btn btn-default">More</a></td>
+											</tr>  	
+											<tr><td colspan="5"><hr/></td></tr>									
+						              </tbody>
+						            </table>   
+						                  	
+                            	</div>
+                            </div>
+                            <div><hr/></div>
+                            <div>
+                            	<a href="/admin/welcome" class="btn btn-default">Back</a>
+                            	<a th:href="@{/admin/cast/{id}(id=${story.id})}" class="btn btn-default">Add Cast</a>
+                            	<a th:href="@{/admin/scene/add/{id}(id=${story.id})}" class="btn btn-default">Add Scene</a>	
+                            	
+                            	<div>
+									<form class="text-left" th:action="@{/admin/assets}" method="POST" enctype="multipart/form-data">
+
+<!-- 
+										<input type="hidden" name="domain" value="story"/>
+										<input type="hidden" name="id" value="${story.id}"/>
+										 -->
+										<table>
+											<tr>
+												<td>Upload Story Video:</td>
+												<td><input type="file"  name="file" /></td>
+											</tr>
+											<tr>
+												<td></td>
+												<td><button type="submit" class="btn btn-info">Submit</button></td>
+											</tr>
+										</table>
+									</form>
+                            	</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

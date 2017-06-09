@@ -1,0 +1,32 @@
+<div th:fragment="addAnnouncement" class="container-fluid">
+  <div class="row">
+
+    <div class="main">
+
+			<!-- Main Form -->
+			<div class="login-form-1">		
+				<form class="text-left" th:action="@{/announcement}" th:object="${announcement}" th:method="POST">
+
+					<ul>
+					    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
+					</ul>					
+					<!-- <input type="hidden" th:field="*{accountId}"/>  -->
+
+					<div class="login-form-main-message"></div>
+					<div class="main-login-form">
+						<div class="login-group">
+							<div class="form-group">
+								<label for="message" class="sr-only" required="true">Message</label>
+								<input type="text" class="form-control" id="message" th:field="*{message}" placeholder="message" th:errorclass="fieldError"/>
+							</div>
+						</div>	
+						<button type="submit" class="btn btn-info">Submit</button>
+						<a href="/welcome" class="btn btn-default">Cancel</a>
+					</div>
+				</form>
+			</div>
+			<!-- end:Main Form -->
+		</div>
+  </div>
+
+</div>

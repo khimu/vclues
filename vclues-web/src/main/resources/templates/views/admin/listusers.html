@@ -1,0 +1,45 @@
+
+
+<div th:fragment="listusers" class="container-fluid">
+      <div class="row">
+        <div class="main">
+
+          <div class="table-responsive">
+            <table id="report-table" class="table table-striped">
+              <thead>
+			      <tr>
+			      	<th></th>
+					<th>First Name</th>
+					<th>Last Name</th>
+			        <th>Email</th>
+			        <th>Account Type</th>
+			        <th>Dispute Access</th>
+			        <th>Account Access</th>
+			        <th>Descriptor Access</th>
+			        <th>Active</th>
+			        <th></th>
+			      </tr>
+              </thead>
+              <tbody>
+					<tr th:each="user,iterStat : ${users}" th:class="${iterStat.odd}? 'odd'">
+						<td th:text="${iterStat.count}"></td>
+					    <td th:text="${user.firstName}"></td>
+					    <td th:text="${user.lastName}" />
+					    <td th:text="${user.email}" />
+					    <td th:text="${user.accountType}" />
+						<td th:text="${user.getDisputesAccess()}"></td>
+						<td th:text="${user.getAccountAccess()}"></td>
+						<td th:text="${user.getDescriptorAccess()}"></td>
+					    <td>
+					    	<button th:onclick="'javascript:toggleEntity(\'/users\', \''+ ${user.id} +'\');'" class="btn btn-info"><span th:attr="id=${user.id}" th:text="(${user.activated}? 'Disable' : 'Enable')"></span></button>
+						</td>
+						<td><a th:href="@{/admin/users/edit/{id}(id=${user.id})}" class="btn btn-default">Edit</a></td>
+					</tr>    
+              </tbody>
+            </table>
+          </div>
+          <a href="/admin/users" class="btn btn-info" role="button">ADD</a>
+        </div>
+      </div>
+</div>
+

@@ -1,0 +1,49 @@
+<div th:fragment="addGame" class="container-fluid">
+  <div class="row">
+
+    <div class="main">
+
+			<!-- Main Form -->
+			<div class="login-form-1">
+				<form class="text-left" th:action="@{|/game/select/${storyId}|}" th:object="${game}" th:method="POST">
+
+					<ul>
+					    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
+					</ul>					
+
+					<div class="login-form-main-message"></div>
+					<div class="main-login-form">
+						<div class="login-group">
+							<div class="form-group">
+								<label for="name" required="true">Group Name</label>
+								<input type="text" class="form-control" id="order" th:field="*{name}" placeholder="name" th:errorclass="fieldError"/>
+							</div>
+							<div class="form-group">
+								<label for="frequency" required="true">Frequency of New Scripts</label>
+								<br/>
+								<select th:field="*{frequency}">
+								  <option th:each="frequency : ${T(com.vclues.core.enums.Frequency).values()}" th:value="${frequency.bit}" th:text="${frequency.displayName}"></option>
+								</select>							
+							</div>
+							<div class="form-group">
+								<label for="invites">Invite Emails</label>
+								
+								<textarea  rows="3" cols="5" class="form-control" id="invites" th:field="*{invites}">
+								Invite Emails
+								</textarea>
+							</div>
+							<div class="form-group">
+								<label for="count" required="true">Number of Players</label>
+								<input type="text" class="form-control" id="count" th:field="*{count}" placeholder="Players"/>
+							</div>
+						</div>	
+						<button type="submit" class="btn btn-info">Submit</button>
+						<a href="/welcome" class="btn btn-default">Cancel</a>
+					</div>
+				</form>
+			</div>
+			<!-- end:Main Form -->
+		</div>
+  </div>
+
+</div>

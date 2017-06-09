@@ -1,0 +1,36 @@
+<div th:fragment="addGame" class="container-fluid">
+  <div class="row">
+
+    <div class="main">
+
+			<!-- Main Form -->
+			<div class="login-form-1">		
+				<form class="text-left" th:action="@{/admin/game}" th:object="${game}" th:method="POST">
+
+					<ul>
+					    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
+					</ul>					
+					<!-- <input type="hidden" th:field="*{accountId}"/>  -->
+
+					<div class="login-form-main-message"></div>
+					<div class="main-login-form">
+						<div class="login-group">
+							<div class="form-group">
+								<label for="name" class="sr-only" required="true">Group Name</label>
+								<input type="text" class="form-control" id="order" th:field="*{name}" placeholder="name" th:errorclass="fieldError"/>
+							</div>
+							<div class="form-group">
+								<label for="emails" class="sr-only" required="true">Emails</label>
+								<input type="text" class="form-control" id="text" th:field="*{emails}" placeholder="emails" th:errorclass="fieldError"/>
+							</div>
+						</div>	
+						<button type="submit" class="btn btn-info">Submit</button>
+						<a href="/admin/welcome" class="btn btn-default">Cancel</a>
+					</div>
+				</form>
+			</div>
+			<!-- end:Main Form -->
+		</div>
+  </div>
+
+</div>

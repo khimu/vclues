@@ -1,0 +1,35 @@
+
+        <div th:fragment="welcome"  class="content">
+            <div class="container-fluid">
+		        <div class="main">
+		
+		          <div class="table-responsive">
+		            <table id="report-table" class="table table-striped">
+		              <thead>
+					      <tr>
+					      	<th></th>
+							<th>Title</th>
+							<th>Synapsis</th>
+					        <th>Answer</th>
+					        <th>Size</th>
+					        <th></th>
+					      </tr>
+		              </thead>
+		              <tbody>
+							<tr th:each="story,iterStat : ${stories}" th:class="${iterStat.odd}? 'odd'">
+								<td th:text="${iterStat.count}"></td>
+							    <td th:text="${story.title}"></td>
+							    <td th:text="${story.synapsis}" />
+							    <td th:text="${story.answer}" />
+							    <td th:text="${story.size}" />
+								<!-- <td><a th:href="@{/admin/story/edit/{id}(id=${story.id})}" class="btn btn-default">Edit</a></td>  -->
+								<td><a th:href="@{/admin/story/{id}(id=${story.id})}" class="btn btn-default">Details</a></td>
+							</tr>    
+		              </tbody>
+		            </table>
+		          </div>
+		          <a href="/admin/story" class="btn btn-info" role="button">ADD</a>
+		        </div>
+            </div>           
+        </div>
+

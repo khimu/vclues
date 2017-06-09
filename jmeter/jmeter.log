@@ -1,0 +1,881 @@
+2017/03/25 12:03:36 INFO  - jmeter.util.JMeterUtils: Setting Locale to en_US 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: Loading user properties from: /Users/khimung/Documents/apache-jmeter-3.1/bin/user.properties 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: Loading system properties from: /Users/khimung/Documents/apache-jmeter-3.1/bin/system.properties 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: Copyright (c) 1998-2016 The Apache Software Foundation 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: Version 3.1 r1770033 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: java.version=1.8.0_20 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: os.name=Mac OS X 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: os.arch=x86_64 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: os.version=10.11.6 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: file.encoding=UTF-8 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: Max memory     =514850816 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: Available Processors =8 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: Default Locale=English (United States) 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: JMeter  Locale=English (United States) 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: JMeterHome=/Users/khimung/Documents/apache-jmeter-3.1 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: user.dir  =/Users/khimung/Documents/nordic/jmeter 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: PWD       =/Users/khimung/Documents/nordic/jmeter 
+2017/03/25 12:03:36 INFO  - jmeter.JMeter: IP: 192.168.0.21 Name: khims-MacBook-Pro.local FullName: 192.168.0.21 
+2017/03/25 12:03:37 INFO  - jmeter.gui.action.LookAndFeelCommand: Using look and feel: com.apple.laf.AquaLookAndFeel [Mac OS X, System] 
+2017/03/25 12:03:37 INFO  - jmeter.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties 
+2017/03/25 12:03:38 INFO  - jmeter.engine.util.CompoundVariable: Note: Function class names must contain the string: '.functions.' 
+2017/03/25 12:03:38 INFO  - jmeter.engine.util.CompoundVariable: Note: Function class names must not contain the string: '.gui.' 
+2017/03/25 12:03:38 INFO  - jmeter.gui.util.MenuFactory: Skipping org.apache.jmeter.assertions.BSFAssertion 
+2017/03/25 12:03:39 INFO  - jmeter.gui.util.MenuFactory: Skipping org.apache.jmeter.extractor.BSFPostProcessor 
+2017/03/25 12:03:39 INFO  - jmeter.gui.util.MenuFactory: Skipping org.apache.jmeter.modifiers.BSFPreProcessor 
+2017/03/25 12:03:39 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser 
+2017/03/25 12:03:39 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser 
+2017/03/25 12:03:39 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser 
+2017/03/25 12:03:39 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser 
+2017/03/25 12:03:39 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser 
+2017/03/25 12:03:39 INFO  - jmeter.protocol.http.sampler.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser 
+2017/03/25 12:03:39 INFO  - jorphan.exec.KeyToolUtils: keytool found at 'keytool' 
+2017/03/25 12:03:39 INFO  - jmeter.protocol.http.proxy.ProxyControl: HTTP(S) Test Script Recorder SSL Proxy will use keys that support embedded 3rd party resources in file /Users/khimung/Documents/apache-jmeter-3.1/bin/proxyserver.jks 
+2017/03/25 12:03:39 INFO  - jmeter.gui.util.MenuFactory: Skipping org.apache.jmeter.protocol.java.sampler.BSFSampler 
+2017/03/25 12:03:40 INFO  - jmeter.gui.util.MenuFactory: Skipping org.apache.jmeter.protocol.mongodb.config.MongoSourceElement 
+2017/03/25 12:03:40 INFO  - jmeter.gui.util.MenuFactory: Skipping org.apache.jmeter.protocol.mongodb.sampler.MongoScriptSampler 
+2017/03/25 12:03:40 INFO  - jmeter.gui.util.MenuFactory: Skipping org.apache.jmeter.timers.BSFTimer 
+2017/03/25 12:03:40 INFO  - jmeter.gui.util.MenuFactory: Skipping org.apache.jmeter.visualizers.BSFListener 
+2017/03/25 12:03:40 INFO  - jmeter.gui.util.MenuFactory: Skipping org.apache.jmeter.visualizers.MonitorHealthVisualizer 
+2017/03/25 12:03:40 INFO  - jmeter.samplers.SampleResult: Note: Sample TimeStamps are START times 
+2017/03/25 12:03:40 INFO  - jmeter.samplers.SampleResult: sampleresult.default.encoding is set to ISO-8859-1 
+2017/03/25 12:03:40 INFO  - jmeter.samplers.SampleResult: sampleresult.useNanoTime=true 
+2017/03/25 12:03:40 INFO  - jmeter.samplers.SampleResult: sampleresult.nanoThreadSleep=5000 
+2017/03/25 12:03:45 INFO  - jmeter.services.FileServer: Default base='/Users/khimung/Documents/nordic/jmeter' 
+2017/03/25 12:03:45 INFO  - jmeter.gui.action.Load: Loading file: /Users/khimung/Documents/nordic/jmeter/yelpComparison.jmx 
+2017/03/25 12:03:45 INFO  - jmeter.services.FileServer: Set new base='/Users/khimung/Documents/nordic/jmeter' 
+2017/03/25 12:03:45 INFO  - jmeter.save.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2 
+2017/03/25 12:03:45 INFO  - jmeter.save.SaveService: Using SaveService properties file encoding UTF-8 
+2017/03/25 12:03:45 INFO  - jmeter.save.SaveService: Using SaveService properties version 3.1 
+2017/03/25 12:03:45 INFO  - jmeter.save.SaveService: All converter versions present and correct 
+2017/03/25 12:03:45 INFO  - jmeter.save.SaveService: Loading file: /Users/khimung/Documents/nordic/jmeter/yelpComparison.jmx 
+2017/03/25 12:03:45 INFO  - jmeter.services.FileServer: Set new base='/Users/khimung/Documents/nordic/jmeter' 
+2017/03/25 12:03:53 INFO  - jmeter.gui.action.Load: Loading file: /Users/khimung/Documents/nordic/jmeter/portalPerformanceTest.jmx 
+2017/03/25 12:03:53 INFO  - jmeter.services.FileServer: Set new base='/Users/khimung/Documents/nordic/jmeter' 
+2017/03/25 12:03:53 INFO  - jmeter.save.SaveService: Loading file: /Users/khimung/Documents/nordic/jmeter/portalPerformanceTest.jmx 
+2017/03/25 12:03:53 INFO  - jmeter.protocol.http.control.CookieManager: Settings: Delete null: true Check: false Allow variable: true Save: true Prefix: mycookie_ 
+2017/03/25 12:03:53 INFO  - jmeter.protocol.http.control.CacheManager: Will only cache the following methods: [GET] 
+2017/03/25 12:03:53 INFO  - jmeter.services.FileServer: Set new base='/Users/khimung/Documents/nordic/jmeter' 
+2017/03/25 12:17:11 INFO  - jmeter.engine.StandardJMeterEngine: Running the test! 
+2017/03/25 12:17:11 INFO  - jmeter.samplers.SampleEvent: List of sample_variables: [] 
+2017/03/25 12:17:11 INFO  - jmeter.samplers.SampleEvent: List of sample_variables: [] 
+2017/03/25 12:17:11 INFO  - jmeter.gui.util.JMeterMenuBar: setRunning(true,*local*) 
+2017/03/25 12:17:11 INFO  - jmeter.engine.StandardJMeterEngine: Starting ThreadGroup: 1 : LoadTest 
+2017/03/25 12:17:11 INFO  - jmeter.engine.StandardJMeterEngine: Starting 50 threads for group LoadTest. 
+2017/03/25 12:17:11 INFO  - jmeter.engine.StandardJMeterEngine: Thread will continue on error 
+2017/03/25 12:17:11 INFO  - jmeter.threads.ThreadGroup: Starting thread group number 1 threads 50 ramp-up 1 perThread 20.0 delayedStart=false 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-1 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-2 
+2017/03/25 12:17:11 INFO  - jmeter.protocol.http.sampler.HTTPHCAbstractImpl: Local host = khims-MacBook-Pro.local 
+2017/03/25 12:17:11 INFO  - jmeter.protocol.http.sampler.HTTPHC4Impl: HTTP request retry count = 0 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-3 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-4 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-5 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-6 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-7 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-8 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-9 
+2017/03/25 12:17:11 INFO  - jmeter.protocol.http.sampler.LazySchemeSocketFactory: Setting up HTTPS TrustAll Socket Factory 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-10 
+2017/03/25 12:17:11 INFO  - jmeter.util.JsseSSLManager: Using default SSL protocol: TLS 
+2017/03/25 12:17:11 INFO  - jmeter.util.JsseSSLManager: SSL session context: per-thread 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-11 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-12 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-13 
+2017/03/25 12:17:11 INFO  - jmeter.util.SSLManager: JmeterKeyStore Location:  type JKS 
+2017/03/25 12:17:11 INFO  - jmeter.util.SSLManager: KeyStore created OK 
+2017/03/25 12:17:11 WARN  - jmeter.util.SSLManager: Keystore file not found, loading empty keystore 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-14 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-15 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-16 
+2017/03/25 12:17:11 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-17 
+2017/03/25 12:17:12 INFO  - jmeter.threads.ThreadGroup: Started thread group number 1 
+2017/03/25 12:17:12 INFO  - jmeter.engine.StandardJMeterEngine: All thread groups have been started 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-18 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-19 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-20 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-21 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-22 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-23 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-24 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-25 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-26 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-27 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-28 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-29 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-30 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-31 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-32 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-33 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-34 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-35 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-36 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-37 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-38 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-39 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-40 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-41 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-42 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-43 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-44 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-45 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-46 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-47 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-48 
+2017/03/25 12:17:12 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-49 
+2017/03/25 12:17:13 INFO  - jmeter.threads.JMeterThread: Thread started: LoadTest 1-50 
+2017/03/25 12:17:13 INFO  - jmeter.protocol.http.parser.BaseParser: Created org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser 
+2017/03/25 12:17:13 INFO  - jmeter.protocol.http.parser.BaseParser: Created org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser 
+2017/03/25 12:17:13 INFO  - jmeter.protocol.http.parser.BaseParser: Created org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser 
+2017/03/25 12:17:13 INFO  - jmeter.protocol.http.sampler.ResourcesDownloader: Creating ResourcesDownloader with keepalive_inseconds:60 
+2017/03/25 12:17:14 INFO  - jmeter.protocol.http.parser.BaseParser: Created org.apache.jmeter.protocol.http.parser.CssParser 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:   
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ^ 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: & 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ! 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ` 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ` 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ? 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:   
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: < 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ? 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: % 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ^ 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: < 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ? 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ? 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: & 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ` 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:   
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:   
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ! 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: # 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:   
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: $ 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: # 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: # 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:   
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: % 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ^ 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: < 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: $ 
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:17:27 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character: ^ 
+2017/03/25 12:19:09 ERROR - com.helger.css.parser.ParserCSS30TokenManager: Illegal character:  
+2017/03/25 12:19:45 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-36 
+2017/03/25 12:19:45 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-36 
+2017/03/25 12:19:46 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-5 
+2017/03/25 12:19:46 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-5 
+2017/03/25 12:19:49 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-43 
+2017/03/25 12:19:49 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-43 
+2017/03/25 12:19:50 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-29 
+2017/03/25 12:19:50 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-29 
+2017/03/25 12:19:52 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-20 
+2017/03/25 12:19:52 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-20 
+2017/03/25 12:19:52 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-4 
+2017/03/25 12:19:52 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-4 
+2017/03/25 12:19:52 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-24 
+2017/03/25 12:19:52 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-24 
+2017/03/25 12:19:54 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-50 
+2017/03/25 12:19:54 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-50 
+2017/03/25 12:19:54 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-34 
+2017/03/25 12:19:54 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-34 
+2017/03/25 12:19:55 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-38 
+2017/03/25 12:19:55 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-38 
+2017/03/25 12:19:56 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-22 
+2017/03/25 12:19:56 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-22 
+2017/03/25 12:19:58 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-33 
+2017/03/25 12:19:58 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-33 
+2017/03/25 12:26:55 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-40 
+2017/03/25 12:26:55 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-40 
+2017/03/25 12:27:01 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-17 
+2017/03/25 12:27:01 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-17 
+2017/03/25 12:27:10 INFO  - jmeter.threads.JMeterThread: Thread is done: LoadTest 1-44 
+2017/03/25 12:27:10 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-44 
+2017/03/25 12:36:51 INFO  - jmeter.gui.action.Start: Stopping test 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-12 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-12 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-1 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-1 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-19 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-19 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-46 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-19 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-1 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-46 sampler: https://portal.nordicspay.com/users/all 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-12 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-49 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-49 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-14 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-14 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-16 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-16 sampler: https://portal.nordicspay.com/descriptors 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-49 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-14 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-46 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-10 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-10 sampler: https://portal.nordicspay.com/disputes/all 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-16 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-37 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-37 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-41 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-41 sampler: https://portal.nordicspay.com/users 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-6 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-6 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-23 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-23 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-37 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-32 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-41 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-10 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-23 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-6 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-32 sampler: https://portal.nordicspay.com/users/all 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-48 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-48 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-30 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-30 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-18 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-18 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-30 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-25 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-25 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-48 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-32 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-31 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-31 sampler: https://portal.nordicspay.com/disputes 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-25 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-18 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-8 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-8 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-15 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-15 sampler: https://portal.nordicspay.com/disputes/all 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-31 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-9 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-8 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-9 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-42 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-42 sampler: https://portal.nordicspay.com/disputes/all 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-9 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-13 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-13 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-28 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-15 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-28 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-39 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-39 sampler: https://portal.nordicspay.com/disputes/all 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-13 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-28 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-42 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-27 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-27 sampler: https://portal.nordicspay.com/disputes/all 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-21 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-21 sampler: https://portal.nordicspay.com/disputes/edit/763ed553-431c-48c8-bfb7-41225efd723d 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-3 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-3 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-2 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-2 sampler: https://portal.nordicspay.com/disputes/all 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-7 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-3 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-39 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-7 sampler: https://portal.nordicspay.com/users/all 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-27 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-11 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-11 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-2 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-26 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-26 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-35 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-35 sampler: https://portal.nordicspay.com/disputes 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-45 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Stopping: LoadTest 1-47 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: Interrupting: LoadTest 1-47 sampler: http://portal.nordicspay.com/ 
+2017/03/25 12:36:51 WARN  - jmeter.threads.JMeterThread: No operation pending 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-21 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-11 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-7 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-45 
+2017/03/25 12:36:51 WARN  - jmeter.protocol.http.sampler.HTTPSamplerBase: Interrupted fetching embedded resources java.lang.InterruptedException
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.reportInterruptAfterWait(AbstractQueuedSynchronizer.java:2014)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2048)
+	at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+	at java.util.concurrent.ExecutorCompletionService.take(ExecutorCompletionService.java:193)
+	at org.apache.jmeter.protocol.http.sampler.ResourcesDownloader.invokeAllAndAwaitTermination(ResourcesDownloader.java:191)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.downloadPageResources(HTTPSamplerBase.java:1318)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1638)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.followRedirects(HTTPSamplerBase.java:1524)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.resultProcessing(HTTPSamplerBase.java:1617)
+	at org.apache.jmeter.protocol.http.sampler.HTTPAbstractImpl.resultProcessing(HTTPAbstractImpl.java:517)
+	at org.apache.jmeter.protocol.http.sampler.HTTPHC4Impl.sample(HTTPHC4Impl.java:494)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy.sample(HTTPSamplerProxy.java:74)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1166)
+	at org.apache.jmeter.protocol.http.sampler.HTTPSamplerBase.sample(HTTPSamplerBase.java:1155)
+	at org.apache.jmeter.threads.JMeterThread.executeSamplePackage(JMeterThread.java:475)
+	at org.apache.jmeter.threads.JMeterThread.processSampler(JMeterThread.java:418)
+	at org.apache.jmeter.threads.JMeterThread.run(JMeterThread.java:249)
+	at java.lang.Thread.run(Thread.java:745)
+
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-47 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-35 
+2017/03/25 12:36:51 INFO  - jmeter.threads.JMeterThread: Thread finished: LoadTest 1-26 
+2017/03/25 12:36:51 INFO  - jmeter.engine.StandardJMeterEngine: Notifying test listeners of end of test 
+2017/03/25 12:36:51 INFO  - jmeter.gui.util.JMeterMenuBar: setRunning(false,*local*) 

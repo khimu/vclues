@@ -1,0 +1,60 @@
+
+            <div th:fragment="sceneDetail" class="container-fluid">
+                <div class="row">
+					<div class="col-md-8 col-md-offset-2">
+                        <div class="card">
+                            <div class="header text-center">
+                                <h4 class="title" th:text="${scene.position}"></h4>
+                                <p class="category"></p>
+								<br/>
+                            </div>
+                            <div class="content table-responsive table-full-width table-upgrade">
+                                <table class="table">
+                                    <tbody>                          
+                                        <tr><td th:text="${scene.text}"></td></tr>         
+                                        <tr>
+                                        	<td>
+												<h5>Scripts</h5>
+												<table id="script-table" class="table table-striped">
+									              <thead>
+												      <tr>
+														<th>Image</th>
+														<th>Dialog</th>
+												        <th>Secret</th>
+												      </tr>
+									              </thead>
+									              <tbody>
+														<tr th:each="script,iterStat : ${scene?.scripts}" th:class="${iterStat.odd}? 'odd'">
+														    <td th:text="${script.image}"></td>
+														    <td th:text="${script.text}" />
+														    <td th:text="${script.secret}" />
+														</tr>  
+									              </tbody>
+									            </table>
+											</td>
+										</tr>  
+										<tr>
+											<td>
+												<h5>Hints</h5>
+												<table id="hints-table" class="table table-striped">
+									              <tbody>
+														<tr th:each="hint,iterStat : ${scene?.hints}" th:class="${iterStat.odd}? 'odd'">
+															<td th:text="${iterStat.count}"></td>
+														    <td th:text="${hint.text}"></td>
+														</tr>  
+									              </tbody>
+									            </table>
+											</td>
+										</tr>										         
+										<tr>
+											<td>
+												<a th:href="@{/story/{id}(id=${storyId})}" class="btn btn-default">Back</a>
+											</td>
+										</tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

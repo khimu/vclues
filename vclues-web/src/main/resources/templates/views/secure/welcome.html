@@ -1,0 +1,110 @@
+
+        <div th:fragment="welcome"  class="content">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Current Game</h4>
+                                <p class="category"></p>
+                            </div>
+                            <div class="content">
+                                <div class="clearfix"></div>
+                                <div class="footer">
+						            <table id="current-games" class="table table-striped">
+						              <thead>
+									      <tr>
+									      	<th></th>
+											<th>Name</th>
+											<th>Members</th>
+											<th>Started</th>
+											<th>Story</th>
+											<th></th>
+									      </tr>
+						              </thead>
+						              <tbody>
+										<tr th:each="d,iterStat : ${current}" th:class="${iterStat.odd}? 'odd'">
+											<td th:text="${iterStat.count}"></td>
+										    <td th:text="${d.name}" />
+										    <td th:text="${d.count}" />
+										    <td th:text="${#dates.format(d.started, 'MM/dd/yyyy HH:mm')}" />
+										    <td><a th:href="@{/story/{id}(id=${d.storyId})}" class="btn btn-default">Story Detail</a></td>		
+										    <td><a th:href="@{/game/{id}(id=${d.id})}" class="btn btn-default">Detail</a></td>    
+										</tr>    
+						              </tbody>
+						            </table>                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Past Games</h4>
+                                <p class="category"></p>
+                            </div>
+                            <div class="content">
+                                <div class="clearfix"></div>
+                                <div class="footer">
+						            <table id="past-games" class="table table-striped">
+						              <thead>
+									      <tr>
+									      	<th></th>
+											<th>Name</th>
+											<th>Members</th>
+											<th>Started</th>
+											<th>Story</th>
+											<th></th>
+									      </tr>
+						              </thead>
+						              <tbody>
+										<tr th:each="d,iterStat : ${past}" th:class="${iterStat.odd}? 'odd'">
+											<td th:text="${iterStat.count}"></td>
+										    <td th:text="${d.name}" />
+										    <td th:text="${d.count}" />
+										    <td th:text="${d.started}" />
+										    <td><a th:href="@{/story/{id}(id=${d.storyId})}"><span th:text="${d.storyId}"></span></a></td>		    
+											<td><a th:href="@{/game/{id}(id=${d.id})}" class="btn btn-default">Detail</a></td>  
+										</tr>    
+						              </tbody>
+						            </table>   
+                                </div>
+                            </div>
+                        </div>
+                	</div>
+                </div>
+				<div class="row">
+	            	<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">Stories</div>
+							<div class="panel-body">
+						            <table id="stories" class="table table-striped">
+						              <thead>
+									      <tr>
+									      	<th></th>
+											<th>Title</th>
+											<th>Synapsis</th>
+											<th>Character Size</th>
+											<th></th>
+									      </tr>
+						              </thead>
+						              <tbody>
+										<tr th:each="d,iterStat : ${stories}" th:class="${iterStat.odd}? 'odd'">
+											<td th:text="${iterStat.count}"></td>
+										    <td><a th:href="@{/game/select/{id}(id=${d.id})}">Start -> <span th:text="${d.title}"></span></a></td>
+										    <td th:text="${d.synapsis}" />
+										    <td th:text="${d.size}" />
+										    <td><a th:href="@{/story/{id}(id=${d.id})}" class="btn btn-default">Detail</a></td>
+										</tr>    
+						              </tbody>
+						            </table> 
+	                        </div>
+	    				</div>  
+	                </div>
+                </div>
+            </div>           
+        </div>
+

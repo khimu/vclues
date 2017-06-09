@@ -1,0 +1,339 @@
+package com.vclues.core.service;
+
+import it.ozimov.springboot.templating.mail.model.Email;
+import it.ozimov.springboot.templating.mail.model.defaultimpl.DefaultEmail;
+import it.ozimov.springboot.templating.mail.service.EmailService;
+
+import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.TimeZone;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import javax.mail.internet.InternetAddress;
+
+import org.apache.commons.lang.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.google.common.collect.Lists;
+import com.vclues.core.app.Constant;
+import com.vclues.core.data.Announcement;
+import com.vclues.core.data.Game;
+import com.vclues.core.data.Player;
+import com.vclues.core.entity.Hint;
+import com.vclues.core.entity.Scene;
+import com.vclues.core.entity.Script;
+import com.vclues.core.entity.User;
+import com.vclues.core.mongo.repository.AnnouncementRepository;
+import com.vclues.core.mongo.repository.GameRepository;
+import com.vclues.core.mongo.repository.PlayerRepository;
+import com.vclues.core.repository.CastRepository;
+import com.vclues.core.repository.HintRepository;
+import com.vclues.core.repository.SceneRepository;
+import com.vclues.core.repository.ScriptRepository;
+import com.vclues.core.repository.StoryRepository;
+
+@Service
+public class GameService implements IGameService {
+	
+	private final Logger logger = LoggerFactory.getLogger(GameService.class);
+	
+	@Autowired
+	private IUserService userService;
+	
+	@Autowired
+	private SceneRepository sceneRepository;
+	
+	@Autowired
+	private StoryRepository storyRepository;
+	
+	@Autowired
+	private CastRepository castRepository;
+
+	@Autowired
+	private GameRepository gameRepository;
+	
+	@Autowired
+	private HintRepository hintRepository;
+	
+	@Autowired
+	private ScriptRepository scriptRepository;
+	
+	@Autowired
+	private AnnouncementRepository announcementRepository;
+	
+	@Autowired
+	private PlayerRepository playerRepository;
+	
+    @Autowired
+    public EmailService emailService;
+    
+    @Value("${spring.mail.username}")
+    private String myEmail;
+    
+    @Value("${server.base.url}")
+    private String baseUrl;
+    
+	@Override
+	public List<Player> findAllCurrentGames(Long userId) {
+		// find all games that the user is involved in
+		List<Player> players = playerRepository.findAllPlayersByUserId(userId);
+		List<Game> currentGames = new ArrayList<Game>();
+	
+		for(Player p : players) {
+			
+			if(!p.isDone()) {
+				Scene scene = sceneRepository.findOne(p.getGame().getSceneId());
+				List<Announcement> announcements = announcementRepository.findAllByGame(p.getGame());
+				
+				if(scene != null) {
+					List<Hint> hints = hintRepository.getAllHintBySceneIdAndPositionLessThan(p.getGame().getSceneId(), scene.getPosition());
+					List<Script> scripts = scriptRepository.getAllScriptsBySceneIdAndPositionLessThan(p.getGame().getSceneId(), scene.getPosition());					
+					p.setHints(hints);
+					p.setScripts(scripts);
+				}
+				
+				p.setAnnouncements(announcements);
+			}// end p is done
+		}//end p for loop
+		
+    	return players;
+	}
+	
+	@Override
+	public Map<Integer, List<Game>> findAllUserGames(Long userId) {
+		List<Player> players = playerRepository.findAllPlayersByUserId(userId);
+		List<Game> currentGames = new ArrayList<Game>();
+		List<Game> pastGames = new ArrayList<Game>();
+		
+		for(Player p : players) {
+			List<Player> ps = playerRepository.findAllPlayersByGame(p.getGame());
+			if(p.isDone()) {
+				Game game = p.getGame();
+				game.setPlayers(ps);
+				pastGames.add(game);
+			}
+			else {
+				Game game = p.getGame();
+				game.setPlayers(ps);
+				
+				/*
+				 * Update scene by frequency
+				 */
+				Calendar minusOneDay = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+				// mm/dd/yyyy hh:mm:ss
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constant.DATE_FORMAT, Locale.US);
+				simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));	
+				
+				// show the script once a day
+				minusOneDay.add(game.getFrequency(), -1);
+				
+				Calendar updateGameDate = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+				updateGameDate.setTime(game.getLastShown());
+
+				Scene scene = sceneRepository.findOne(game.getSceneId());
+				
+				// it has passed the wait time, update the scene to show new script on next login
+				// or send an email
+				if(updateGameDate.after(minusOneDay.getTime())) {
+					// get new scene 
+					
+					scene = sceneRepository.getNextSceneByStoryIdAndPosition(game.getStoryId(), scene.getPosition() + 1);
+					if(scene != null) {
+						logger.info("Game is updating scene to " + scene.getPosition());
+						
+						// update everything
+						game.setSceneId(scene.getId());
+						updateGameDate.setTime(new Date());
+						game.setLastShown(updateGameDate.getTime());
+					}
+					else {
+						logger.info("Game finished");
+						game.setDone(true);
+						p.setDone(true);
+						playerRepository.save(p);
+					}
+					
+					gameRepository.save(game);
+				}
+
+				currentGames.add(game);
+			}
+		}
+		
+    	Map<Integer, List<Game>> games = new HashMap<Integer, List<Game>>();
+    	games.put(Constant.CURRENT, currentGames);
+    	games.put(Constant.PAST, pastGames);
+        return games; 
+	}
+	
+	@Override
+	public Game saveGame(Game game, String storyId, Long userId, String username) {
+		TimeZone timeZone = TimeZone.getTimeZone("UTC");
+		Calendar calendar = Calendar.getInstance(timeZone);
+		// mm/dd/yyyy hh:mm:ss
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constant.DATE_FORMAT, Locale.US);
+		simpleDateFormat.setTimeZone(timeZone);	
+
+		//Story story = storyRepository.findOne(Long.parseLong(storyId));
+		Scene scene = sceneRepository.getNextSceneByStoryIdAndPosition(Long.parseLong(storyId), 1);
+		
+		Date today = calendar.getTime();
+
+		Player player = new Player();
+		player.setUserId(userId);
+		player.setName(username);
+
+		game.setSceneId(scene.getId());
+		
+		//game.setFrequency(Calendar.DATE);
+		//game.setName(story.getTitle());
+		game.setStarted(today);
+		game.setLastShown(today);
+		game.setStoryId(Long.parseLong(storyId));
+		game.setUserId(userId);
+		
+		game.setEmails(sendInviteEmail(username, game.getInvites()));
+		
+		Game savedGame = gameRepository.save(game);
+		
+		player.setGame(savedGame);
+		
+		playerRepository.save(player);
+
+		return savedGame;
+	}
+	
+	@Override
+	public Game findOne(String id) {
+		return gameRepository.findOne(id);
+	}
+	
+	@Override
+	public void saveCastForGame(String gameId, String castId, Long userId, String castName, String name) {
+		Player player = playerRepository.findPlayerByUserIdAndGameId(userId, gameId);
+		if(player == null) {
+			player = new Player();
+		}
+		
+		Player taken = playerRepository.findPlayerByCastIdAndGameId(Long.parseLong(castId), gameId);
+		
+		if(taken != null && !taken.getUserId().equals(userId)) {
+			logger.info("No Update due to character already taken by " + taken.getUserId());
+			return;
+		}
+		
+		if(player != null && player.getCastId() != null && !player.getCastId().equals(Long.parseLong(castId))) {
+			logger.info("User already choose a different character " + player.getUserId() + ".  Allowing user to choose a new character");
+		}
+		
+		player.setCastId(Long.parseLong(castId));
+		player.setName(name);
+		player.setCastName(castName);
+		player.setUserId(userId);
+		
+		Game game = gameRepository.findOne(gameId);
+		
+		player.setGame(game);
+		
+		playerRepository.save(player);
+	}
+	
+	@Override
+	public void deleteAnnouncement(Long announcementId) {
+	}
+
+	@Override
+	public void deleteGame(Long gameId) {
+	}
+
+	@Override
+	public void saveAnnouncement(Announcement announcement) {
+		announcementRepository.save(announcement);
+	}
+
+	@Override
+	public void saveGame(Game game) {
+		gameRepository.save(game);
+	}
+
+	@Override
+	public Game getGame(String gameId) {
+		Game game = gameRepository.findOne(gameId);
+		List<Player> players = playerRepository.findAllPlayersByGame(game);
+		game.setPlayers(players);
+		return game;
+	}
+	
+	@Override
+    public Map<Integer, List<Game>> getUserGames(Long userId) {
+    	Map<Integer, List<Game>> games = new HashMap<Integer, List<Game>>();
+    	games.put(1, gameRepository.findGamesByUserId(userId, true));
+    	games.put(2, gameRepository.findGamesByUserId(userId, false));
+        return games;        
+    }
+    
+	@Override
+    public List<Announcement> getAllGameAnnouncements(Game game) {
+    	return announcementRepository.findAllByGame(game);
+    }
+	
+	private final static ExecutorService executor = Executors.newCachedThreadPool();
+	
+	@Override
+	public List<String> sendInviteEmail(String email, String emails) {
+		List<String> results = new ArrayList<String>();
+		String[] tmp = emails.split(",");
+		
+		for(String em : tmp) {
+			final String invitee = em.trim();
+			results.add(invitee);
+			// create a user with password
+			String activationKey = RandomStringUtils.randomAlphabetic(20);
+			
+			String password = RandomStringUtils.randomAlphabetic(5);
+			
+			User user = userService.findByEmail(invitee);
+			if(user == null) {
+				user = new User();
+				user.setEmail(invitee);
+				user.setPassword(password);
+			    userService.registerNewUser(user);
+			}
+
+			executor.submit(() -> { 
+				try {
+					// This needs to be asynchronous
+			        final Email invite = DefaultEmail.builder()
+			                .from(new InternetAddress(myEmail, "VClues"))
+			                .to(Lists.newArrayList(new InternetAddress(invitee)))
+			                .subject("VClues Registration")
+			                .body(email + " has invited you to join a new murder mystery game online.  Come join your friends.\nYou can sign in with your email and password: " + password + " after confirming your email")//Empty body
+			                .encoding(Charset.forName("UTF-8").name()).build();
+			            
+			        final Map<String, Object> modelObject = new HashMap<>();
+			            
+			        modelObject.put("url", baseUrl + "/confirm/" + activationKey);
+
+			        emailService.send(invite, "emails/confirm.ftl", modelObject);  
+				}catch(Exception e) {
+					logger.error("Unable to email registration confirmation link for /confirm/" +e + "/" + activationKey);
+					e.printStackTrace();
+				}		
+			});
+
+		}
+		return results;
+	}
+}

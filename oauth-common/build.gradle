@@ -1,0 +1,15 @@
+bootRepackage {
+    enabled = false
+}
+
+dependencies {
+    compile("org.springframework.data:spring-data-jpa") {
+        exclude group: 'org.aspectj'
+        exclude group: 'org.springframework'
+    }
+    compile("org.springframework.security:spring-security-core") {
+        exclude group: 'org.springframework'
+    }
+    compile("org.hibernate:hibernate-entitymanager")
+    compile("org.hibernate:hibernate-validator")
+}

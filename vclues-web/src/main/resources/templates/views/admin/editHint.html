@@ -1,0 +1,40 @@
+<div th:fragment="editHint" class="container-fluid">
+  <div class="row">
+
+    <div class="main">
+
+			<!-- Main Form -->
+			<div class="login-form-1">		
+				<form class="text-left" th:action="@{/admin/hint}" th:object="${hint}" th:method="POST">
+
+					<ul>
+					    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
+					</ul>					
+				
+					<input type="hidden" th:field="*{id}"/>
+					<input type="hidden" th:field="*{scene}"/>
+					
+					<div class="login-form-main-message"></div>
+					<div class="main-login-form">
+						<div class="login-group">
+							<div class="form-group">
+								<label for="scenes" class="sr-only" required="true">Scenes</label>
+								<select th:field="*{scene.id}" th:remove="all-but-first">
+				                	<option th:each="s : ${scenes}" th:value="${s.id}" th:text="Scene ${s.position}"></option>
+								</select>							
+							</div>
+							<div class="form-group">
+								<label for="text" class="sr-only" required="true">Text</label>
+								<input type="text" class="form-control" id="text" th:field="*{text}" placeholder="text" th:errorclass="fieldError"/>
+							</div>
+						</div>	
+						<button type="submit" class="btn btn-info">Submit</button>
+						<a th:href="@{/admin/scene/{id}/{storyId}(id=${hint.scene.id},storyId=${storyId})}" class="btn btn-default">Cancel</a>
+					</div>
+				</form>
+			</div>
+			<!-- end:Main Form -->
+		</div>
+  </div>
+
+</div>

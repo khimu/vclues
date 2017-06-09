@@ -1,0 +1,46 @@
+
+            <div th:fragment="chooseCast" class="container-fluid">
+                <div class="row">
+					<div class="col-md-8 col-md-offset-2">
+                        <div class="card">
+                            <div class="header text-center">
+                                <h4 class="title">Choose Character</h4>
+                                <p class="category"></p>
+								<br/>
+                            </div>
+                            <div class="content table-responsive table-full-width table-upgrade">
+                            	<div>
+                            		<h3>Characters</h3>
+						            <table id="casts-table" class="table table-striped">
+						              <thead>
+									      <tr>
+											<th>Name</th>
+											<th>Character</th>
+									        <th>Gender</th>
+									        <th>Description</th>
+									        <th></th>
+									      </tr>
+						              </thead>
+						              <tbody>
+											<tr th:each="c,iterStat : ${story?.casts}" th:class="${iterStat.odd}? 'odd'">
+											    <td th:text="${c.name}"></td>
+											    <td th:text="${c.role}" />
+											    <td th:text="${c.gender}" />
+											    <td th:text="${c.description}" />
+												<td><a th:href="@{/game/cast/{gameId}/{id}(id=${c.id},gameId=${gameId})}" class="btn btn-default">Select</a></td>
+											</tr>    
+						              </tbody>
+						            </table>          	
+                            	</div>
+                            </div>
+                            <div>
+                            	<a href="/story/all" class="btn btn-default">Back</a>
+                            	<a th:href="@{/game/{id}(id=${game.id})}" class="btn btn-default">Add Cast</a>
+                            	<a th:href="@{/scene/add/{id}(id=${story.id})}" class="btn btn-default">Add Scene</a>	
+                            	<a th:href="@{/script/{id}(id=${story.id})}" class="btn btn-default">Add Scripts</a>
+                            	<a th:href="@{/hint/{id}(id=${story.id})}" class="btn btn-default">Add Hints</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

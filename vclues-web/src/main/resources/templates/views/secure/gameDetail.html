@@ -1,0 +1,95 @@
+
+            <div th:fragment="gameDetail" class="container-fluid">
+                <div class="row">
+					<div class="col-md-8 col-md-offset-2">
+                        <div class="card">
+                            <div class="header text-center">
+                                <h4 class="title" th:text="${story.title}"> <span th:text="${game.name}"></span></h4>
+                                <p class="category"></p>
+								<br/>
+                            </div>
+                            <div class="content table-responsive table-full-width table-upgrade">
+                            	<div style="padding:10px;">
+	                            	<div>
+		                            	<h5>Synapsis</h5>
+		                            	<p th:utext="${story.synapsis}"></p>
+	                            	</div>
+	                            	<div>
+	                            		<h5>Game Size</h5>
+		                            	<p th:utext="${story.size}"></p>
+	                            	</div>
+                            	</div>
+								<div>
+                            		<h3>Players</h3>
+						            <table id="players-table" class="table table-striped">
+						              <thead>
+									      <tr>
+											<th>Name</th>
+											<th>Character</th>
+									      </tr>
+						              </thead>
+						              <tbody>
+											<tr th:each="c,iterStat : ${game?.players}" th:class="${iterStat.odd}? 'odd'">
+											    <td th:text="${c?.name}"></td>
+											    <td th:text="${c?.castName}" />
+											</tr>    
+						              </tbody>
+						            </table>          	
+                            	</div>
+                            	<div><hr/></div>   
+                            	<div>
+                            		<h3>Characters</h3>
+						            <table id="casts-table" class="table table-striped">
+						              <thead>
+									      <tr>
+											<th>Name</th>
+											<th>Character</th>
+									        <th>Gender</th>
+									        <th>Description</th>
+									        <th></th>
+									      </tr>
+						              </thead>
+						              <tbody>
+											<tr th:each="c,iterStat : ${story?.casts}" th:class="${iterStat.odd}? 'odd'">
+											    <td th:text="${c.name}"></td>
+											    <td th:text="${c.role}" />
+											    <td th:text="${c.gender}" />
+											    <td th:text="${c.description}" />
+											    <td><a th:href="@{/game/cast/{gameId}/{id}/{castName}(gameId=${game.id},id=${c.id},castName=${c.name})}" class="btn btn-default">Select Character</a></td>
+											</tr>    
+						              </tbody>
+						            </table>          	
+                            	</div>
+                            	<div><hr/></div>
+                            	<div>
+                            		<h3>Scenes</h3>
+						            <table id="scene-table" class="table table-striped">
+						              <thead>
+									      <tr>
+											<th>Scene Number</th>
+											<th>Synapsis</th>
+									        <th>image</th>
+									      </tr>
+						              </thead>
+						              <tbody>
+											<tr th:each="s,iterStat : ${story?.scenes}" th:class="${iterStat.odd}? 'odd'">
+											    <td th:text="${s.position}"></td>
+											    <td th:text="${s.text}" />
+											    <td th:text="${s.image}" />
+											</tr>  	
+											<tr><td colspan="5"><hr/></td></tr>									
+						              </tbody>
+						            </table>   
+						                  	
+                            	</div>
+                            </div>
+                            <div><hr/></div>
+                            <div>
+                            	<a href="/welcome" class="btn btn-default">Back</a>
+                            	<a th:href="@{/invite/{id}(id=${game.id})}" class="btn btn-default">Invite Friends</a>
+                            	<a href="">Add Announcements</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

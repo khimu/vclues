@@ -1,0 +1,93 @@
+
+<div th:fragment="signup" class="text-center" style="padding:50px 0">
+
+<script>
+
+$(document).ready(function() {	
+	$("#register-form-account").on('submit', function() {
+		if($('#reg_agree').is(':checked')) {
+			return true;
+		}
+		
+		$('#reg_agree_error').html('Please agree to our terms');
+		return false;
+	});
+	
+/*
+ * Not working
+ */
+ /*
+	$("#register-form").validate({
+	    rules: {
+	    	email: {
+	          required: true,
+	          // Specify that email should be validated
+	          // by the built-in "email" rule
+	          email: true
+	        },
+	        password: {
+	          required: true,
+	          minlength: 8
+	        },
+	        reg_agree: {
+	        	required: true
+	        }
+	      }
+	});
+*/
+
+$("#register-form").validate();
+	
+});
+
+</script>
+	<div class="logo">Signup</div>
+
+	<!-- Main Form -->
+	<div class="login-form-1">
+		<ul>
+		    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
+		</ul>		
+		<form id="register-form-account" class="text-left" th:action="@{/signup}" th:object="${userForm}" method="post">
+
+			<div class="login-form-main-message">
+				<div th:if="${message}" class="alert alert-info">
+		  			<p th:text="${message}"></p>
+				</div>	
+			</div>
+			
+			<div class="main-login-form">
+				<div class="login-group">
+					<div class="form-group">
+						<label for="reg_password" class="sr-only">Password</label>
+						<input type="password" required="true" class="form-control" id="reg_password" name="password" placeholder="password"  autocomplete="off" th:errorclass="fieldError"/>
+						<p th:if="${#fields.hasErrors('*{password}')}" th:errors="*{password}" class="error"></p>
+					</div>
+					<div class="form-group">
+						<label for="reg_password_confirm" class="sr-only">Password Confirm</label>
+						<input type="password" required="true"  class="form-control" id="reg_password_confirm" name="passwordConfirm" placeholder="confirm password"  autocomplete="off" th:errorclass="fieldError"/>
+						<p th:if="${#fields.hasErrors('*{passwordConfirm}')}" th:errors="*{passwordConfirm}" class="error"></p>
+					</div>
+					
+					<div class="form-group">
+						<label for="reg_email" class="sr-only">Email</label>
+						<input type="text" required="true"   minlength="8" maxlength="32" class="form-control" id="reg_email" name="email" placeholder="email" th:errorclass="fieldError"/>
+						<p th:if="${#fields.hasErrors('*{email}')}" th:errors="*{email}" class="error"></p>
+					</div>
+								
+
+					<div class="form-group login-group-checkbox">
+						<input type="checkbox" required="true" class="" id="reg_agree" name="reg_agree" />
+						<label for="reg_agree">i agree with <a href="#">terms</a></label>
+						<p id="reg_agree_error" class="error"></p>
+					</div>
+				</div>
+				<button type="submit" class="login-button">Submit</button>
+			</div>
+			<div class="etc-login-form">
+				<p>already have an account? <a href="/login">login here</a></p>
+			</div>
+		</form>
+	</div>
+	<!-- end:Main Form -->
+</div>

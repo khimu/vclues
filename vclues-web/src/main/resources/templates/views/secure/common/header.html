@@ -1,0 +1,49 @@
+
+		<nav th:fragment="header" class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <p class="navbar-brand" th:text="${title}"></p>
+                </div>
+                <div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav navbar-left">
+                        <li>
+                        </li>
+                    </ul>                
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                           <a href="/profile">
+                               <p>Account</p>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <p>
+										Dropdown
+										<b class="caret"></b>
+									</p>
+
+                              </a>
+                              <ul class="dropdown-menu">
+                              	<li><a href="/settings">Permissions</a></li>
+                              	<li class="divider"></li>
+                                <li><a href="#">Help</a></li>
+                              </ul>
+                        </li>
+                        <li>
+							<form method="post" th:action="@{/logout}">
+								<button type="submit" class="btn btn-default navbar-btn">
+									<span class="glyphicon glyphicon-log-out">Logout</span>
+								</button>
+							</form>
+                        </li>
+						<li class="separator hidden-lg hidden-md"></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>

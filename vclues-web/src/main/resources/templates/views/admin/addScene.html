@@ -1,0 +1,45 @@
+<div th:fragment="addScene" class="container-fluid">
+  <div class="row">
+
+    <div class="main">
+
+			<!-- Main Form -->
+			<div class="login-form-1">		
+				<form class="text-left" th:action="@{/admin/scene}" th:object="${scene}" th:method="POST">
+
+					<ul>
+					    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
+					</ul>					
+					<!-- <input type="hidden" th:field="*{accountId}"/>  -->
+					<input type="hidden" th:field="*{story.id}"/>
+
+					<div class="login-form-main-message"></div>
+					<div class="main-login-form">
+						<div class="login-group">
+							<div class="form-group">
+								<label for="text" class="sr-only" required="true">Text</label>
+								<input type="text" class="form-control" id="text" th:field="*{text}" placeholder="text" th:errorclass="fieldError"/>
+							</div>
+							<div class="form-group">
+								<label for="video" class="sr-only" required="true">Video Link</label>
+								<input type="text" class="form-control" id="video" th:field="*{video}" placeholder="video link" th:errorclass="fieldError"/>
+							</div>	
+							<div class="form-group">
+								<label for="image" class="sr-only" required="true">Image Link</label>
+								<input type="text" class="form-control" id="image" th:field="*{image}" placeholder="image link" th:errorclass="fieldError"/>
+							</div>
+							<div class="form-group">
+								<label for="audio" class="sr-only" required="true">Audio Link</label>
+								<input type="text" class="form-control" id="audio" th:field="*{audio}" placeholder="audio link" th:errorclass="fieldError"/>
+							</div>
+						</div>	
+						<button type="submit" class="btn btn-info">Submit</button>
+						<a th:href="@{/admin/story/{id}(id=${storyId})}" class="btn btn-default">Cancel</a>
+					</div>
+				</form>
+			</div>
+			<!-- end:Main Form -->
+		</div>
+  </div>
+
+</div>

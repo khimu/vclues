@@ -1,0 +1,36 @@
+<div th:fragment="invitePlayers" class="container-fluid">
+  <div class="row">
+
+    <div class="main">
+
+			<!-- Main Form -->
+			<div class="login-form-1">		    
+				<form class="text-left" th:action="@{/admin/invite}" method="POST">
+
+					<input class="form-control" type="hidden" th:value="${gameId}" id="gameId" name="gameId" />
+					
+					<div class="login-form-main-message"></div>
+					<div class="main-login-form">
+						<div class="login-group">
+							<div class="form-group">
+								<div class="clearfix">
+									<label for="emails">Emails</label>
+								</div>
+								<div class="clearfix">
+									<textarea  rows="3" cols="5" class="form-control" id="emails" name="emails">
+									</textarea>
+								</div>
+							</div>
+						</div>	
+						<div class="clearfix">
+							<button type="submit" class="btn btn-info">Submit</button>
+							<a th:href="@{/admin/game/{id}(id=${gameId})}" class="btn btn-default">Cancel</a>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- end:Main Form -->
+		</div>
+  </div>
+
+</div>

@@ -1,0 +1,82 @@
+
+
+                                
+<div th:fragment="notifications" class="container-fluid">
+	<tbody>
+		<tr th:each="player,iterStat : ${players}" th:class="${iterStat.odd}? 'odd'">
+			<td>
+                       <div class="card">
+                           <div class="header text-center">
+                               <h4 class="title"> <span th:text="${player.game.name}"></span></h4>
+                           </div>
+                           <div class="content table-responsive table-full-width table-upgrade">
+							<div>
+                           		<h3>Player</h3>
+					            <table id="players-table" class="table table-striped">
+					              <thead>
+								      <tr>
+										<th>Name</th>
+										<th>Character</th>
+								      </tr>
+								      <tr>
+								      	<td th:text="${player?.name}"></td>
+								      	<td th:text="${player?.castName}"></td>
+								      </tr>
+					              </thead>
+					              <tbody>
+										<tr th:each="script,iterStat : ${player?.scripts}" th:class="${iterStat.odd}? 'odd'">
+										    <td th:text="${c?.name}"></td>
+										    <td th:text="${c?.castName}" />
+										</tr>    
+					              </tbody>
+					            </table>          	
+                           	</div>
+                           	<div><hr/></div>   
+                           	<div>
+                           		<h3>Script</h3>
+					            <table id="script-table" class="table table-striped">
+					              <thead>
+								      <tr>
+										<th>Position</th>
+										<th>Text</th>
+								        <th>Secret</th>
+								      </tr>
+					              </thead>
+					              <tbody>
+										<tr th:each="s,iterStat : ${player?.scripts}" th:class="${iterStat.odd}? 'odd'">
+										    <td th:text="${s.position}"></td>
+										    <td th:text="${s.text}" />
+										    <td th:text="${s.secret}" />
+										</tr>    
+					              </tbody>
+					            </table>          	
+                           	</div>
+                           	<div><hr/></div>                            	
+                           	<div>
+                           		<h3>Clues</h3>
+					            <table id="hints-table" class="table table-striped">
+					              <thead>
+								      <tr>
+										<th>Scene</th>
+										<th>Clue</th>
+								        <th></th>
+								      </tr>
+					              </thead>
+					              <tbody>
+										<tr th:each="hint,iterStat : ${player?.hints}" th:class="${iterStat.odd}? 'odd'">
+										    <td th:text="${hint.position}"></td>
+										    <td th:text="${hint.text}" />
+										</tr>    
+					              </tbody>
+					            </table>          	
+                           	</div>
+                           </div>
+                           <div><hr/></div>
+                           <div>
+                           	<a href="/welcome" class="btn btn-default">Back</a>
+                           </div>
+                       </div>
+			</td>
+		</tr>
+	</tbody>
+</div>

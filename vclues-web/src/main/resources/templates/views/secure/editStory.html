@@ -1,0 +1,43 @@
+<div th:fragment="editStory" class="container-fluid">
+  <div class="row">
+    <div class="main">
+
+			<!-- Main Form -->
+			<div class="login-form-1">
+	
+				<form class="text-left" th:action="@{/story}" th:object="${story}" th:method="PUT">
+					<ul>
+					    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
+					</ul>					
+					<input type="hidden" th:field="*{id}"/>
+					
+					<div class="login-form-main-message"></div>
+					<div class="main-login-form">
+						<div class="login-group">
+							<div class="form-group">
+								<label for="title" class="sr-only" required="true">Title</label>
+								<input type="text" class="form-control" id="title" th:field="*{title}" placeholder="title" th:errorclass="fieldError"/>
+							</div>
+							<div class="form-group">
+								<label for="synapsis" class="sr-only" required="true">Synapsis</label>
+								<input type="text" class="form-control" id="synapsis" th:field="*{synapsis}" placeholder="synapsis" th:errorclass="fieldError"/>
+							</div>
+							<div class="form-group">
+								<label for="answer" class="sr-only">Answer</label>
+								<input type="text" class="form-control" id="answer" th:field="*{answer}" placeholder="answer" th:errorclass="fieldError"/>
+							</div>
+							<div class="form-group">
+								<label for="size" class="sr-only">Cast Size</label>
+								<input type="text" class="form-control" id="size" th:field="*{size}" placeholder="size" th:errorclass="fieldError"/>
+							</div>	
+						</div>
+						<button type="submit" class="btn btn-info">Submit</button>
+						<a href="/story/all" class="btn btn-default">Cancel</a>
+					</div>
+				</form>
+			</div>
+			<!-- end:Main Form -->
+		</div>
+  </div>
+
+</div>
