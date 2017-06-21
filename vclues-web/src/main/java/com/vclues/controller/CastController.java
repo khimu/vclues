@@ -1,23 +1,21 @@
 package com.vclues.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vclues.core.entity.Cast;
-import com.vclues.core.entity.Story;
 import com.vclues.core.entity.User;
 import com.vclues.core.service.IStoryService;
 import com.vclues.core.service.IUserService;
@@ -28,6 +26,21 @@ import com.vclues.core.service.IUserService;
 public class CastController extends BaseController {
 
 	private final static Logger logger = LoggerFactory.getLogger(CastController.class);
+	
+	private final static String LEFT = "0";
+	private final static String RIGHT = "1";
+	private final static String TOP = "2";
+	private final static String BOTTOM = "3";
+	
+	private static Map<String, String> VIEW = new HashMap<String, String>();
+	
+	static {
+		VIEW.put(LEFT, "scrollinleft");
+		VIEW.put(RIGHT, "scrollinright");
+		VIEW.put(TOP, "scrollintop");
+		VIEW.put(BOTTOM, "scrollinbottom");
+	}
+	
 
 	@Autowired
 	private IUserService userService;
@@ -35,7 +48,7 @@ public class CastController extends BaseController {
 	@Autowired
 	private IStoryService storyService;
 
-	/*
+	
     @GetMapping("/all/{id}")
     public String list(@PathVariable("id") String storyId, Model model) {
 		User user = getLoggedInUser();
@@ -48,15 +61,15 @@ public class CastController extends BaseController {
 		
 		model.addAttribute("casts", casts);
 		
-		model.addAttribute("content", "listCasts"); 
+		//model.addAttribute("content", "listCasts"); 
 		model.addAttribute("title", "All Casts");
 		
-        return "internal";
+        return "allcharacters";
     }
 
     
-    @GetMapping("{id}")
-    public String view(@PathVariable("id") String castId, Model model) {
+    @GetMapping("/detail/{id}")
+    public String view(@PathVariable("id") String castId, @RequestParam("index") String idx, Model model) {
     	logger.info("View cast " + castId);
     	
 		User user = getLoggedInUser();
@@ -74,12 +87,16 @@ public class CastController extends BaseController {
 		
 		model.addAttribute("cast", cast);
 		
-		model.addAttribute("content", "castDetail"); 
+		//model.addAttribute("content", "castDetail"); 
 		model.addAttribute("title", "Cast Detail");
+		model.addAttribute("SUSPECT-001", "suspect");
         
-		return "internal";
+		
+		String view = VIEW.get(idx);
+		
+		return view;
     }
-    */
+    
 
 	/*  
     @GetMapping("/edit/{id}")

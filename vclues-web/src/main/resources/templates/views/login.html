@@ -4,43 +4,71 @@
 
 <!-- Where all the magic happens -->
 <!-- LOGIN FORM -->
-<div th:fragment="login" class="text-center" style="padding:50px 0">
-	<div class="logo">Login</div>
-
-     <div th:if="${param.error}">
-         Invalid username and password.
-     </div>	
-      <div th:if="${param.logout}">
-          You have been logged out.
-      </div>     
-	<!-- Main Form -->
-	<div class="login-form-1">
-	    <form th:action="@{/login}" method="post" id="login-form" class="text-left">
-			<div class="login-form-main-message"></div>
-			<div class="main-login-form">
-				<div class="login-group">
-					<div class="form-group">
-						<label for="lg_username" class="sr-only">Username</label>
-						<input type="text" class="form-control" id="lg_username" name="email" placeholder="username"/>
+<div th:fragment="login">
+	<div style="position: relative;height:300px;">
+		<div style="float: left;">
+			<img src="/assets/images/images/sm-blood-table.gif"/>
+		</div>	
+		<div class="text-center" style="float:left; padding-left: 100px;">
+		     <div th:if="${param.error}">
+		         Invalid username and password.
+			</div>	
+			<div th:if="${param.logout}">
+		          You have been logged out.
+			</div>    
+			 
+			<!-- Main Form -->
+			<div class="login-form-1">
+			    <form th:action="@{/login}" method="post" id="login-form" class="text-left">
+					<div class="login-form-main-message"></div>
+					<div class="main-login-form">
+						<div class="login-group">
+							<div class="form-group">
+								<label for="lg_username" class="sr-only">Username</label>
+								<input type="text" class="form-control" id="lg_username" name="email" placeholder="username"/>
+							</div>
+							<div class="form-group">
+								<label for="lg_password" class="sr-only">Password</label>
+								<input type="password" class="form-control" id="lg_password" name="password" placeholder="password"/>
+							</div><!-- 
+							<div class="form-group login-group-checkbox">
+								<input type="checkbox" id="lg_remember" name="lg_remember"/>
+								<label for="lg_remember">remember</label>
+							</div> -->
+						</div>
+						<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
 					</div>
-					<div class="form-group">
-						<label for="lg_password" class="sr-only">Password</label>
-						<input type="password" class="form-control" id="lg_password" name="password" placeholder="password"/>
-					</div><!-- 
-					<div class="form-group login-group-checkbox">
-						<input type="checkbox" id="lg_remember" name="lg_remember"/>
-						<label for="lg_remember">remember</label>
-					</div> -->
-				</div>
-				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+					<div class="etc-login-form">
+						<!-- <p>forgot your password? <a href="/forgotpassword">click here</a></p> -->
+						<p style="color:black;">new user? <a href="/signup">create new account</a></p>
+					</div>
+				</form>
 			</div>
-			<div class="etc-login-form">
-				<!-- <p>forgot your password? <a href="/forgotpassword">click here</a></p> -->
-				<p>new user? <a href="/signup">create new account</a></p>
-			</div>
-		</form>
+		</div>
+		<div style="float: right;">
+			<img src="/assets/images/corner-blood_13.gif"/>
+		</div>		
 	</div>
+	<div class="text-center" >
+			<img src="/assets/images/images/everything.gif"/>
+	</div>	
 	<!-- end:Main Form -->
-
 	
+	<!-- 
+	<div style="margin-top:50px;">
+		<div id="logged-in" class="profileFBpic"><img src="/assets/images/fb_login.png" width="72" height="72" alt="dynamicContent" title="dynamicContent" /><div id="my-account" class="mask"></div><p id="fbname">Login Here</p></div>  
+		<div id="logged-out" style="display:none;" class="profileFBpic"><img src="/assets/images/fb_login.png" width="72" height="72" alt="dynamicContent" title="dynamicContent" /><div id='fb-auth' class="mask"></div><p id="fbname"></p></div> 
+		
+		<div class="googlePlus"></div>
+		<div class="tweet"></div>
+		
+		<div class="fbComments"></div>
+		
+		<hr/>
+		<div class="fbRecommend"></div>
+		<div class="fbLike"></div>
+		<div class="fbSend"></div>		
+	</div>
+ -->
+
 </div>

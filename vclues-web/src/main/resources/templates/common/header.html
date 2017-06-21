@@ -1,10 +1,9 @@
 
-<nav th:fragment="header" class="navbar navbar-inverse">
+<nav th:fragment="header" >
+	<div class="container-fluid" style="height: 80px; ">
+		<div><img src="/assets/images/images/vclues-logo.gif"/></div>
+	</div>
 	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Video Clues LLC</a>
-		</div>
-
 		<ul class="nav navbar-nav navbar-right" sec:authorize="isAuthenticated()">
 			<li>
 				<form method="post" th:action="@{/logout}">
@@ -21,5 +20,6 @@
 			<li><a href="/login"><span
 					class="glyphicon glyphicon-log-in"></span> Login</a></li>
 		</ul>
-	</div>
+		
+	</div>	
 </nav>
