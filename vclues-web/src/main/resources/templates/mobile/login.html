@@ -1,0 +1,382 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+    	<title>Vega Clues LLC</title>
+    	
+    	<meta charset="utf-8" />
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1" />    	
+        	
+        <link href='/assets/css/mobile/main.css' rel='stylesheet' type='text/css' />
+        
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+        
+        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css' />
+        <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet"/>
+
+		<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+
+		<script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script src="/assets/js/typed.js" type="text/javascript"></script>
+        
+        <!-- 
+        <script src="/assets/js/jquery-ui.js" type="text/javascript"></script>
+ -->
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-93565766-1', 'auto');
+		  ga('send', 'pageview');
+		
+		</script> 
+		
+		<script>
+		
+			console.log('javascript working');
+		
+			var bgImg = "/assets/images/LANDING/LANDING_828x628.png";
+			var bgLeft= "/assets/images/SUSPECT-008.gif";
+			var bgRight= "/assets/images/SUSPECT-011.gif";
+			
+			//console.log('variable good');
+		
+		      function content_type_short()
+		      {
+		    	  console.log('short typed string content_type_short');
+		    	  
+		        Typed.new(".typed", 
+		        {
+		            stringsElement: document.getElementById('describe_site_short_typed_strings'),
+		            typeSpeed: 30,
+		            backDelay: 2000,
+		            loop: false,
+		            contentType: 'html', // or text
+		            // defaults to null for infinite loop
+		            loopCount: null
+		        });
+		      }
+		      function story_phrase()
+		      {
+		    	  console.log('short typed string story_phrase');
+		    	  
+		        Typed.new(".typed_phrase", 
+		        {
+		            stringsElement: document.getElementById('describe_site_phrase_typed_strings'),
+		            typeSpeed: 70,
+		            backDelay: 2000,
+		            loop: false,
+		            contentType: 'html', // or text
+		            // defaults to null for infinite loop
+		            loopCount: null,
+		            callback: function(){ foo(); }
+		            //resetCallback: function() { newTyped(); }
+		        });
+		    }
+		      
+		    function foo()
+		    {
+		    	//console.log('foo is called');
+		        jQuery("#describe_about_site_startup").css("top",'550%');
+		        jQuery("#describe_about_site_startup").css("left","-100%");
+		        
+		        //console.log(jQuery("#describe_about_site-left").html());
+		        jQuery(".login_register_button_outer-left").fadeIn(1000);
+		        jQuery(".login_register_button_outer-right").fadeIn(1000);
+		        
+		        jQuery("#describe_about_site-left").fadeIn(1000);
+		        //jQuery("#describe_about_site-right").fadeIn(1000);
+		    }
+		    
+		    jQuery(document).ready(function()
+		    {
+		    	
+		    	//console.log('document ready');
+		    	
+	    	    $(".prev").click(function() {
+	    			$('.container-left').show();
+	    			$('.container-right').hide();
+	    	    });
+
+	    	    $(".next").click(function() {
+	    			$('.container-left').hide();
+	    			$('.container-right').show();
+	    	    });
+
+		    	
+		        //Code for align div at center of the screen
+		    	jQuery.fn.center = function(parent) 
+		    	{
+		    		if (parent) 
+		    		{
+		    			parent = this.parent();
+		    		} 
+		    		else 
+		    		{
+		    			parent = window;
+		    		}
+		    		this.css({
+		    			"position": "fixed",
+		    			"display": "block",
+		    			"top": (((jQuery(parent).height() - this.outerHeight()) / 2) + jQuery(parent).scrollTop() + "px"),
+		    			"left": (((jQuery(parent).width() - this.outerWidth()) / 2) + jQuery(parent).scrollLeft() + "px")
+		    		});
+		    		left=((jQuery(parent).width() - this.outerWidth()) / 2) + jQuery(parent).scrollLeft() + "px";
+		    		//return this;
+		    		return left;
+		    	}
+		        
+		    	
+		    	
+		        //jQuery('<img/>').attr('src', bgImg).on('load', function() 
+		        //{
+		        	//console.log('image loaded ' + bgImg);
+		        	
+		            //load bg images of login and register
+		            jQuery('<img/>').attr('src', '/assets/images/bubbles_login.png').on('load', function() 
+		            {
+		            	//console.log('login loaded');
+		                jQuery(this).remove();
+		                
+		                imageUrl='/assets/images/bubbles_login.png';
+		                jQuery(".login_register_button_outer-left li:nth-child(1) .describe_site").css('background-image', 'url(' + imageUrl + ')');
+		            });
+		            
+		            jQuery('<img/>').attr('src', '/assets/images/bubbles_register.png').on('load', function() 
+		            {
+		            	//console.log('register loaded');
+		                jQuery(this).remove();
+		                imageUrl='/assets/images/bubbles_register.png';
+		                jQuery(".login_register_button_outer-right li:nth-child(1) .describe_site").css('background-image', 'url(' + imageUrl + ')');
+		            });
+		            
+		            jQuery('<img/>').attr('src', '/assets/images/posty_note_bg.png').on('load', function() 
+		            {
+		            	console.log('posty loaded');
+		                jQuery(this).remove();
+		                imageUrl='/assets/images/posty_note_bg.png';
+		                
+		                jQuery("#register_outer .model-content").css('background-image', 'url(' + imageUrl + ')');
+		                
+		                jQuery("#login_outer .model-content").css('background-image', 'url(' + imageUrl + ')');
+		                
+		                jQuery('<img/>').attr('src', '/assets/images/knife_submit.gif').on('load', function() 
+		                {
+		                	console.log('knife submitted');
+		                    jQuery(this).remove();
+		                    imageUrl='/assets/images/knife_submit.gif';
+		                    jQuery("#register_outer button").css('background-image', 'url(' + imageUrl + ')');
+		                    
+		                    jQuery('<img/>').attr('src', '/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif').on('load', function() 
+		                    {
+		                    	console.log('knife submitted');
+		                        jQuery(this).remove();
+		                        imageUrl='/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif';
+		                        jQuery("#logo_outer .logo").css('background-image', 'url(' + imageUrl + ')');
+		                        jQuery("#register_outer .logo").css('background-image', 'url(' + imageUrl + ')');
+		                        
+		                        	console.log('phrase bg submitted');
+		                        	
+		                            jQuery(this).remove();
+		                            
+		                            imageUrl='/assets/images/phrase_bg.png';
+
+		                            /* girl */
+		                            jQuery('<img/>').attr('src', bgLeft).on('load', function() 
+		                            {
+		                            	console.log('bg left');
+		                            	
+		                            	/* other girl */
+		                                jQuery('<img/>').attr('src', bgRight).on('load', function() 
+		                                {
+		                                	console.log('bg right');
+		                                	
+		                                    jQuery(this).remove();
+		                                    jQuery("#bg_left_character img").attr('src', bgLeft);
+		                                    jQuery("#bg_right_character img").attr('src', bgRight);
+		                                    jQuery("#bg_left_character").addClass('bg_left_character_after_load');
+		                                    jQuery("#bg_right_character").addClass('bg_right_character_after_load');
+		                                    
+		                                    
+		                                    jQuery("#loader").hide();
+		                                    
+		                                    setTimeout(
+		                                    function() 
+		                                    {
+		                                        cal_left=jQuery("#describe_about_site_startup").center(true);
+		                                        jQuery("#describe_about_site_startup").css("top",'70%');
+		                                        jQuery("#describe_about_site_startup").css("left",cal_left); 
+		                                        story_phrase(); 
+		                                      }, 400);
+		                                });
+		                            });
+
+		                    });
+		                });
+		            });
+		        //});
+		        
+		        console.log('login stuff');
+		        
+		        jQuery(".login_register_button_outer-left li:nth-child(1)").hover(function () 
+		        {
+		        	console.log('login child 1');
+		        	
+		            jQuery(this).find(".describe_site").fadeIn(2000);
+		            jQuery(this).find(".describe_site").addClass('left_bubble_hover');
+		            content_type_short();
+		            
+		            jQuery(this).rotate({ animateTo:30});
+		            
+		            jQuery(this).find(".describe_site").rotate({ animateTo:-30});
+		        },function () 
+		        {
+		            jQuery(this).find(".describe_site").hide();
+		            jQuery(this).find(".describe_site").css("left",'30%');
+		            jQuery(this).rotate({ animateTo:0});
+		            jQuery(this).find(".describe_site").rotate({ animateTo:-30});
+		        });
+
+		        
+        		jQuery(".login_register_button_outer-right li:nth-child(1)").hover(function () 
+		        {
+		        	console.log('login child 1');
+		        	
+		            jQuery(this).find(".describe_site").fadeIn(2000);
+		            jQuery(this).find(".describe_site").addClass('right_bubble_hover');
+		            content_type_short();
+		            
+		            jQuery(this).rotate({ animateTo:30});
+		            
+		            jQuery(this).find(".describe_site").rotate({ animateTo:-30});
+		        },function () 
+		        {
+		            jQuery(this).find(".describe_site").hide();
+		            jQuery(this).find(".describe_site").css("right",'30%');
+		            jQuery(this).rotate({ animateTo:0});
+		            jQuery(this).find(".describe_site").rotate({ animateTo:-30});
+		        });
+        		
+        		
+            	$("#register-form-account").on('submit', function() {
+            		if($('#reg_agree').is(':checked')) {
+            			return true;
+            		}
+            		
+            		$('#reg_agree_error').html('Please agree to our terms');
+            		return false;
+            	});        		
+        		
+		      });
+		    
+		    
+		  </script>
+	</head>
+	
+    <body class='lang-en page_image'>
+	        <div id='loader'>
+	            <img src="/assets/images/loader.gif" class="page_image"/>
+	        </div>    
+	        
+		<div class="container">
+			<div class="container-left">
+
+	        <div id="bg_left_character"><img src=""/><div class="content"></div></div>
+	        <button class="next"><img src="/assets/images/to-the-right.gif"/></button>
+	        
+	        <div style="display:none;" id="describe_site_short_typed_strings"><span>Luxury cruise turn deadly</span></div>
+	        
+	        <ul class="login_register_button_outer-left">
+	            <li class="working page_image">
+	                <div data-toggle="modal" data-target="#login_outer" class="title">Login</div>
+	                <div class="describe_site page_image">
+	                    <span class="typed"></span>
+	                </div>
+	            </li>
+	        </ul>
+	        <div class="clear"></div>
+	        <div id="describe_about_site_startup" class="">
+	            <div style="display:none;" id="describe_site_phrase_typed_strings"><span><p>Welcome to the game where you are the character</p></span></div>
+	           <ul>
+	               <li>
+	                   <span class="typed_phrase"></span>
+	               </li>
+	           </ul> 
+	        </div>
+	        <div id="describe_about_site-left" class="">
+	           <ul>
+	               <li>
+	                   <span><p>Welcome to the game where you are the character</p></span>
+	               </li>
+	           </ul> 
+	        </div>
+
+		</div>
+		<div class="container-right">
+	        
+	        <div id="bg_right_character"><img src=""/><div class="content"></div></div>
+	        
+	        <button class="prev"><img src="/assets/images/to-the-left.gif"/></button>
+
+	        <ul class="login_register_button_outer-right">
+	            <li class="working page_image">
+	                <div data-toggle="modal" data-target="#register_outer" class="title">Regist<span style=''>er</span></div>
+	                <div class="describe_site page_image">
+	                    <span class="typed"></span>
+	                </div>
+	            </li>
+	        </ul>
+	        <div class="clear"></div>
+
+
+		</div>
+	</div>
+
+	        <div id="login_outer" class="modal fade" role="dialog">
+	            <div class="modal-dialog">
+	                <!-- Modal content-->
+	                <div class="modal-content">
+	                    <div class="logo"></div>
+	                    <div class="login-block">
+	                        <h1>Login</h1>
+	                        <div class="error"></div>
+						    <form th:action="@{/login}" method="post" id="user_login_form">
+								<input type="email" class="form-control" id="lg_username" name="email" placeholder="username"  required="required"/>
+								<input type="password" class="form-control" id="lg_password" name="password" placeholder="password"  required="required"/>
+								<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+							</form>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+
+
+	        <div id="register_outer" class="modal fade" role="dialog">
+	            <div class="modal-dialog">
+	                <!-- Modal content-->
+	                <div class="modal-content">
+	                    <div class="logo"></div>
+	                    <div class="login-block">
+	                        <h1>New User</h1>
+	                        <div class="error"></div>
+							<form id="new_user_form" th:action="@{/signup}" th:object="${userForm}" method="post">
+								<input type="password" required="true" class="form-control" id="reg_password" name="password" placeholder="password"  autocomplete="off" th:errorclass="fieldError"/>
+								<input type="password" required="true"  class="form-control" id="reg_password_confirm" name="passwordConfirm" placeholder="confirm password"  autocomplete="off" th:errorclass="fieldError"/>
+								<input type="text" required="true"   minlength="8" maxlength="32" class="form-control" id="reg_email" name="email" placeholder="email" th:errorclass="fieldError"/>
+								<input type="checkbox" required="true" class="" id="reg_agree" name="reg_agree" />
+								<label for="reg_agree">i agree with <a href="#">terms</a></label>
+								<p id="reg_agree_error" class="error"></p>
+								<button type="submit" style="background-image: url('/assets/images/knife_submit.gif');">&nbsp;</button>
+							</form>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+    </body>
+  </html>
+  
+ 

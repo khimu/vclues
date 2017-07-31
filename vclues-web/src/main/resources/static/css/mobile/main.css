@@ -1,0 +1,208 @@
+/* background images not getting imported properly */
+@import "ipad-plus.css";
+@import "iphone-landscape.css";
+@import "iphone-portrait.css";
+@import "iphone5-portrait.css";
+
+@font-face {
+	font-family: awesome;
+	src: url(/assets/fonts/fontawesome-webfont.eot);
+	src: url(/assets/fonts/fontawesome-webfont.eot?#iefix)
+		format("embedded-opentype"),
+		url(/assets/fonts/fontawesome-webfont.woff) format("woff"),
+		url(/assets/fonts/fontawesome-webfont.ttf) format("truetype") src: url("/assets/fonts/FontAwesome.otf")
+		format("opentype");
+}
+
+@font-face {
+	font-family: icomoon;
+	src: url("/assets/fonts/IntrudingCat.otf") format("opentype");
+	src: url(/assets/fonts/icomoon.eot);
+	src: url(/assets/fonts/icomoon.eot?#iefix) format("embedded-opentype"),
+		url(/assets/fonts/icomoon.woff) format("woff"),
+		url(/assets/fonts/icomoon.ttf) format("truetype")
+}
+
+.body_class {
+	background-color: #ffffff;
+	background: url('/assets/images/background.png') no-repeat;
+	background-size: 100%;
+	background-position: center top;
+}
+
+.container {
+	position: relative;
+}
+
+/* COMMON */
+#loader {
+	width: 100%;
+	text-align: center;
+}
+
+#loader img {
+	width: 25%;
+	margin: 50% auto;
+}
+
+
+#login_outer
+{
+    display:none;
+}
+#register_outer
+{
+    display:none;
+}
+#register_outer .error,#login_outer .error
+{
+    color:red;
+    font-size:20px;
+    width:100%;
+    text-align:center;
+}
+.border
+{
+    border:1px red solid;
+}
+.clear
+{
+    clear:both;
+}
+
+	
+	#login_outer .modal-content
+	{
+	    background: url('/assets/images/posty_note_bg.png') no-repeat;
+	    background-size: 100% 100%;
+	    webkit-box-shadow: 0 5px 15px rgb(208, 206, 206);
+	    box-shadow: 0 5px 15px rgb(208, 206, 206);
+	    font-family: 'Gloria Hallelujah', cursive;
+	}
+	#register_outer .modal-content
+	{
+	    background: url('/assets/images/posty_note_bg.png') no-repeat;
+	    background-size: 100% 100%;
+	    webkit-box-shadow: 0 5px 15px rgb(208, 206, 206);
+	    box-shadow: 0 5px 15px rgb(208, 206, 206);
+	    font-family: 'Gloria Hallelujah', cursive;
+	}	
+	
+        
+.modal-content
+{
+    /*background-color: rgba(0,0,0,.7) !important;*/
+}
+input[type=checkbox], input[type=radio]
+{
+    vertical-align: top;
+}
+.modal-backdrop
+{
+    opacity:0.8 !important;
+}
+
+	#login_outer .logo {
+		width: 213px;
+		height: 80px;
+		background: url('/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif')
+			no-repeat;
+		margin: 40px 0px 0px 40px;
+		background-size: 100%;
+	}
+	
+	/* COMMON */
+	#register_outer .logo {
+		width: 213px;
+		height: 80px;
+		background: url('/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif')
+			no-repeat;
+		margin: 40px 0px 0px 40px;
+		background-size: 100%;
+	}
+	
+	.login-block {
+		width: 320px;
+		margin: 30px auto 90px auto;
+		padding: 0px 20px;
+	}
+	
+	/* COMMON */
+	.login-block h1 {
+		text-align: center;
+		color: #333333;
+		font-size: 30px;
+		text-transform: uppercase;
+		margin-top: 0;
+		font-weight: bolder;
+	}
+	
+	.login-block input[type="text"], .login-block input[type="password"],
+		.login-block input[type="email"] {
+		width: 100%;
+		height: 42px;
+		box-sizing: border-box;
+		border-radius: 5px;
+		border: 1px solid #ccc;
+		margin-bottom: 20px;
+		font-size: 14px;
+		font-family: Montserrat;
+		padding: 0 20px 0 50px;
+		outline: none;
+	}
+	
+	/* COMMON */
+	.login-block input#username, .login-block input#firstname, .login-block input#lastname
+		{
+		background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px top no-repeat;
+		background-size: 16px 80px;
+	}
+	
+	.login-block input#username:focus, .login-block input#firstname:focus,
+		.login-block input#lastname:focus {
+		background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px bottom no-repeat;
+		background-size: 16px 80px;
+	}
+	
+	.login-block input#password {
+		background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px top no-repeat;
+		background-size: 16px 80px;
+	}
+	
+	/* COMMON */
+	.login-block input#password:focus {
+		background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px bottom no-repeat;
+		background-size: 16px 80px;
+	}
+	
+	.login-block input:active, .login-block input:focus {
+		border: 1px solid #ff656c;
+	}
+	
+	.login-block button {
+		width: 100%;
+		height: 40px;
+		background: url(/assets/images/knife_submit.gif) no-repeat center;
+		box-sizing: border-box;
+		border-radius: 5px;
+		color: #fff;
+		font-weight: bold;
+		text-transform: uppercase;
+		font-size: 14px;
+		font-family: Montserrat;
+		outline: none;
+		cursor: pointer;
+		border: none;
+	}
+	
+
+		
+
+	
+	/* Fixes character positioning on page */
+	#bg_right_character {
+		position: absolute;
+		transform: perspective(800px) rotate(0deg) scale(1, 1) skew(0deg, 0deg) rotateX(0deg) rotateY(0deg);
+		transition: left 0.8s ease 0s, top 0.8s ease 0s, opacity 0.8s ease 0s, -webkit-transform 0.8s ease 0s, transition 0.8s ease 0s;
+	}	
+	
