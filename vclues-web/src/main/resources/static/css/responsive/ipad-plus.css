@@ -9,7 +9,7 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: url(/assets/images/bg/MASTER_OF_FIRST_PAGE_FACE_IPAD_LANDSCAPE_1536x1024.png) no-repeat left top fixed;
+		background: url(/assets/images/stories/story1/bg/MASTER_OF_FIRST_PAGE_FACE_IPAD_LANDSCAPE_1536x1024.png) no-repeat left top fixed;
 		background-color: #FFFFFF !important;
 		display: block;
 		width: 100%;
@@ -23,7 +23,7 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: url(/assets/images/bg/MASTER_OF_FIRST_PAGE_FACE_IPAD_LANDSCAPE_1536x1024.png) no-repeat right top fixed;
+		background: url(/assets/images/stories/story1/bg/MASTER_OF_FIRST_PAGE_FACE_IPAD_LANDSCAPE_1536x1024.png) no-repeat right top fixed;
 		background-color: #FFFFFF !important;
 		width: 100%;
 		height: 100%;
@@ -31,37 +31,31 @@
 		z-index: -1;
 	}
 	
-	.next {
-		position: absolute;
-		right: 0px;
-		top: 50%;
-		transform: translate(0%, -50%);
-		z-index: 1;
-	}
-	
-	.next img {
-		position: absolute;
-		right: 30px;
-		height: 80px;
-		width: 30px;
-		z-index: 1;
-	}	
-	
-	.prev {
-		position: absolute;
-		left: 0px;
-		top: 50%;
-		transform: translate(0%, -50%);
-		z-index: 1;
-	}
+            .prev {
+                z-index:1;
+            }
+                        
+            .next {
+                z-index:1;
+            }
 
-	.prev img {
-		position: absolute;
-		left: 30px;
-		height: 80px;
-		width: 30px;
-		z-index: 1;
-	}
+            .next img {
+                position: absolute;
+                top: 50%;
+                right: 5px;
+                height: 80px;
+                width: 30px;
+                z-index:1;
+            }            
+
+            .prev img {
+                position: absolute;
+                top: 50%;
+                left: 5px;
+                height: 80px;
+                width: 30px;
+                z-index:1;
+            }     
 
 	/* iphone portrait */
 	.login_register_button_outer-left {

@@ -1,8 +1,10 @@
-/* iphone 6/6+ portrait */
+/* iphone 5 portrait
 @media only screen 
-and (min-device-width: 330px) 
-and (max-device-width : 680px) 
-and (orientation : portrait) { 
+  and (max-device-width: 320px) 
+  and (orientation: portrait) {
+  */
+@media screen and (device-aspect-ratio: 40/71) {
+	
 
 	.container-left {
 		position: fixed;
@@ -10,7 +12,7 @@ and (orientation : portrait) {
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: url(/assets/images/bg/MASTER_OF_FIRST_PAGE_FACE_PORTRAIT_828_736.png) no-repeat left top fixed;
+		background: url(/assets/images/stories/story1/bg/MASTER_OF_FIRST_PAGE_FACE_PORTRAIT_IPHONE5_640X568.png) no-repeat left top fixed;
 		background-color: #FFFFFF !important;
 		display: block;
 		width: 100%;
@@ -24,7 +26,7 @@ and (orientation : portrait) {
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: url(/assets/images/bg/MASTER_OF_FIRST_PAGE_FACE_PORTRAIT_828_736.png) no-repeat right top fixed;
+		background: url(/assets/images/stories/story1/bg/MASTER_OF_FIRST_PAGE_FACE_PORTRAIT_IPHONE5_640X568.png) no-repeat right top fixed;
 		background-color: #FFFFFF !important;
 		width: 100%;
 		height: 100%;
@@ -32,37 +34,31 @@ and (orientation : portrait) {
 		z-index: -1;
 	}
 	
-	.next {
-		position: absolute;
-		right: 0px;
-		top: 50%;
-		transform: translate(0%, -50%);
-		z-index: 1;
-	}
-	
-	.next img {
-		position: absolute;
-		right: 30px;
-		height: 80px;
-		width: 30px;
-		z-index: 1;
-	}	
-	
-	.prev {
-		position: absolute;
-		left: 0px;
-		top: 50%;
-		transform: translate(0%, -50%);
-		z-index: 1;
-	}
+            .prev {
+                z-index:1;
+            }
+                        
+            .next {
+                z-index:1;
+            }
 
-	.prev img {
-		position: absolute;
-		left: 30px;
-		height: 80px;
-		width: 30px;
-		z-index: 1;
-	}
+            .next img {
+                position: absolute;
+                top: 50%;
+                right: 5px;
+                height: 80px;
+                width: 30px;
+                z-index:1;
+            }            
+
+            .prev img {
+                position: absolute;
+                top: 50%;
+                left: 5px;
+                height: 80px;
+                width: 30px;
+                z-index:1;
+            }     
 
 	/* iphone portrait */
 	.login_register_button_outer-left {
@@ -105,7 +101,7 @@ and (orientation : portrait) {
 		font-size: 24px;
 		position: absolute;
 		top: -194px;
-		left: 30%;
+		left: 20%;
 		padding: 65px 30px;
 		height: 240px;
 		text-align: center;
@@ -177,10 +173,15 @@ and (orientation : portrait) {
 		padding: 0px;
 	}
 	#describe_about_site-left ul li {
+		//opacity: 0.6;
 		font-size: 20px;
 		background-size: 100%;
 		font-weight: bold;
-		//padding: 15px 10px;
+		//background: url('/assets/images/phrase_bg.png') no-repeat top;
+		//height: 100px;
+		padding: 15px 10px;
+		//margin-bottom: 10px;
+		//border-radius: 4px;
 		text-align: center;
 		color: yellow;
 	}
@@ -189,7 +190,7 @@ and (orientation : portrait) {
 		list-style: none;
 		padding: 0px;
 	}
-
+	
 	/* Animates the character up to position */
 	#bg_left_character {
 		position: absolute;
@@ -198,7 +199,6 @@ and (orientation : portrait) {
 		transform: perspective(800px) rotate(0deg) scale(1, 1) skew(0deg, 0deg) rotateX(0deg) rotateY(0deg);
 		transition: left 0.8s ease 0s, top 0.8s ease 0s, opacity 0.8s ease 0s, -webkit-transform 0.8s ease 0s, transition 0.8s ease 0s;
 	}
-	
 	
 	/* Adds fading below both characters */
 	.content {
@@ -216,18 +216,18 @@ and (orientation : portrait) {
 	}
 	
 	#bg_left_character img, #bg_right_character img {
-		width: 200px;
+		width: 150px;
 	}
 	
 	/* iphone portrait */
 	.bg_left_character_after_load {
 		top: 20% !important;
-		left: 10% !important;
+		left: 5% !important;
 	}
 	
 	.bg_right_character_after_load {
-		top: 15% !important;
-		right: 10% !important;
+		top: 20% !important;
+		right: 0% !important;
 	}
 	
 	#describe_about_site-left, #describe_about_site-right,
@@ -244,21 +244,21 @@ and (orientation : portrait) {
 	/* On click of gun, shows bubble */
 	.login_register_button_outer-left li:nth-child(1) .describe_site {
 		font-size: 16px;
-		padding: 39px 20px 0px 20px;
+		padding: 50px 20px 20px 20px;
 	}
 	.login_register_button_outer-right li:nth-child(1) .describe_site {
 		font-size: 16px;
-		padding: 39px 20px 0px 20px;
+		padding: 50px 20px 20px 20px;
 	}
 	
 	.left_bubble_hover {
-		left: 150px !important;
-		top: 0px !important;
+		left: 50px !important;
+		top: 100px !important;
 	}
 	
 	.right_bubble_hover {
-		right: 150px !important;
-		top: 0px !important;
+		right: 50px !important;
+		top: 100px !important;
 	}
 
 	/* Displays the "Welcome to the game where you are the character" animation */

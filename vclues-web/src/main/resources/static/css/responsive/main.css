@@ -25,7 +25,7 @@
 
 .body_class {
 	background-color: #ffffff;
-	background: url('/assets/images/background.png') no-repeat;
+	background: url('/assets/images/stories/story1/bg/background.png') no-repeat;
 	background-size: 100%;
 	background-position: center top;
 }
