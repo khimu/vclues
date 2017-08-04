@@ -140,4 +140,9 @@ public class DashboardController extends BaseController {
     public String suspect(Model model) {
     	return "suspect";
     }
+    
+    @RequestMapping(value = {"/detail"}, method = RequestMethod.GET)
+    public String detail(Model model) {
+    	return "castdetails";
+    }    
 }

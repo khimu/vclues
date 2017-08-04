@@ -70,6 +70,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/scripts").anonymous();
         http.authorizeRequests().antMatchers("/clues").anonymous();
         http.authorizeRequests().antMatchers("/history").anonymous();
+        http.authorizeRequests().antMatchers("/detail").anonymous();
         
         http.authorizeRequests().antMatchers("/mobile/login").anonymous();
         http.authorizeRequests().antMatchers("/mobile/home").anonymous();
