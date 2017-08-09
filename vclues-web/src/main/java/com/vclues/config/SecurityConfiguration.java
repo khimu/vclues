@@ -61,23 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //http.authorizeRequests().antMatchers("/registerStep2").anonymous();
         //http.authorizeRequests().antMatchers("/registerStep3").anonymous();
         //http.authorizeRequests().antMatchers("/index.html").anonymous();
-        
-        http.authorizeRequests().antMatchers("/home").anonymous();
-        http.authorizeRequests().antMatchers("/cast").anonymous();
-        http.authorizeRequests().antMatchers("/players").anonymous();
-        http.authorizeRequests().antMatchers("/videos").anonymous();
-        http.authorizeRequests().antMatchers("/test").anonymous();
-        http.authorizeRequests().antMatchers("/scripts").anonymous();
-        http.authorizeRequests().antMatchers("/clues").anonymous();
-        http.authorizeRequests().antMatchers("/history").anonymous();
-        http.authorizeRequests().antMatchers("/detail").anonymous();
-        
-        http.authorizeRequests().antMatchers("/mobile/login").anonymous();
-        http.authorizeRequests().antMatchers("/mobile/home").anonymous();
-        http.authorizeRequests().antMatchers("/mobile/cast").anonymous();
-        http.authorizeRequests().antMatchers("/mobile/players").anonymous();
-        http.authorizeRequests().antMatchers("/mobile/videos").anonymous();        
-        
+
         http.authorizeRequests().antMatchers("/contact.html").anonymous();
         http.authorizeRequests().antMatchers("/privacy.html").anonymous();
         http.authorizeRequests().antMatchers("/terms.html").anonymous();

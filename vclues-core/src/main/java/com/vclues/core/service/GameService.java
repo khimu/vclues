@@ -30,12 +30,15 @@ import com.google.common.collect.Lists;
 import com.vclues.core.app.Constant;
 import com.vclues.core.data.Announcement;
 import com.vclues.core.data.Game;
+import com.vclues.core.data.GameCast;
 import com.vclues.core.data.Player;
+import com.vclues.core.entity.Cast;
 import com.vclues.core.entity.Hint;
 import com.vclues.core.entity.Scene;
 import com.vclues.core.entity.Script;
 import com.vclues.core.entity.User;
 import com.vclues.core.mongo.repository.AnnouncementRepository;
+import com.vclues.core.mongo.repository.GameCastRepository;
 import com.vclues.core.mongo.repository.GameRepository;
 import com.vclues.core.mongo.repository.PlayerRepository;
 import com.vclues.core.repository.CastRepository;
@@ -60,6 +63,9 @@ public class GameService implements IGameService {
 	
 	@Autowired
 	private CastRepository castRepository;
+	
+	@Autowired
+	private GameCastRepository gameCastRepository;
 
 	@Autowired
 	private GameRepository gameRepository;
@@ -204,13 +210,26 @@ public class GameService implements IGameService {
 		game.setStoryId(Long.parseLong(storyId));
 		game.setUserId(userId);
 		
-		game.setEmails(sendInviteEmail(username, game.getInvites()));
-		
 		Game savedGame = gameRepository.save(game);
+
+		List<Cast> casts = castRepository.getAllCastByStoryId(Long.parseLong(storyId));
 		
+		for(Cast cast : casts) {
+			GameCast gameCast = new GameCast();
+			gameCast.setCastId(cast.getId());
+			gameCast.setGame(savedGame);
+			gameCastRepository.save(gameCast);
+			savedGame.getGameCast().add(gameCast);
+		}
+		
+		savedGame.setEmails(sendInviteEmail(username, game.getInvites(), savedGame.getId()));
+
 		player.setGame(savedGame);
-		
 		playerRepository.save(player);
+		
+		savedGame.getPlayers().add(player);
+		
+		gameRepository.save(savedGame);
 
 		return savedGame;
 	}
@@ -245,9 +264,32 @@ public class GameService implements IGameService {
 		
 		Game game = gameRepository.findOne(gameId);
 		
+		/*
+		 * remove self from previous character selection
+		 */
+		for(GameCast cast : game.getGameCast()) {
+			if(cast.getUsername() != null && cast.getUsername().equals(player.getName())) {
+				cast.setUsername(null);
+				gameCastRepository.save(cast);
+				break;
+			}
+		}
+		
+		/*
+		 * assign to new character selection
+		 */
+		for(GameCast cast : game.getGameCast()) {
+			if(cast.getCastId().toString().equals(castId)) {
+				cast.setUsername(player.getName());
+				gameCastRepository.save(cast);
+				break;
+			}
+		}
+		
 		player.setGame(game);
 		
 		playerRepository.save(player);
+		gameRepository.save(game);
 	}
 	
 	@Override
@@ -279,8 +321,8 @@ public class GameService implements IGameService {
 	@Override
     public Map<Integer, List<Game>> getUserGames(Long userId) {
     	Map<Integer, List<Game>> games = new HashMap<Integer, List<Game>>();
-    	games.put(1, gameRepository.findGamesByUserId(userId, true));
-    	games.put(2, gameRepository.findGamesByUserId(userId, false));
+    	games.put(1, gameRepository.findGamesByUserIdAndDone(userId, true));
+    	games.put(2, gameRepository.findGamesByUserIdAndDone(userId, false));
         return games;        
     }
     
@@ -292,9 +334,11 @@ public class GameService implements IGameService {
 	private final static ExecutorService executor = Executors.newCachedThreadPool();
 	
 	@Override
-	public List<String> sendInviteEmail(String email, String emails) {
+	public List<String> sendInviteEmail(String email, String emails, String gameId) {
 		List<String> results = new ArrayList<String>();
 		String[] tmp = emails.split(",");
+		
+		Game game = gameRepository.findOne(gameId);
 		
 		for(String em : tmp) {
 			final String invitee = em.trim();
@@ -309,7 +353,15 @@ public class GameService implements IGameService {
 				user = new User();
 				user.setEmail(invitee);
 				user.setPassword(password);
-			    userService.registerNewUser(user);
+			    user = userService.registerNewUser(user);
+			    
+				Player player = new Player();
+				player.setUserId(user.getId());
+				player.setName(invitee);
+				player.setGame(game);
+				
+				playerRepository.save(player);
+				game.getPlayers().add(player);
 			}
 
 			executor.submit(() -> { 
@@ -334,6 +386,40 @@ public class GameService implements IGameService {
 			});
 
 		}
+		
+		gameRepository.save(game);
+		
 		return results;
+	}
+
+	@Override
+	public Game getGameCast(String gameId) {
+		Game game = gameRepository.findOne(gameId);
+		List<Cast> casts = castRepository.getAllCastByStoryId(game.getStoryId());
+		
+		Map<Long, Cast> ids = new HashMap<Long, Cast>();
+		
+		for(Cast cast : casts) {
+			ids.put(cast.getId(), cast);
+		}
+		
+		for(GameCast cg : game.getGameCast()) {
+			Cast cast = ids.get(cg.getCastId());
+			cg.setCast(cast);
+		}
+		
+		return game;
+	}
+
+	@Override
+	public Game getCurrentGame(Long userId) {
+		List<Game> games = gameRepository.findGamesByUserIdAndDone(userId, false);
+		if(games != null && games.size() > 0) {
+			List<Player> players = playerRepository.findAllPlayersByGame(games.get(0));
+			games.get(0).setPlayers(players);
+			return games.get(0);
+		}
+
+		return null;
 	}
 }

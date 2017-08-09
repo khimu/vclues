@@ -1,5 +1,8 @@
 package com.vclues.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -19,15 +22,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.vclues.core.data.Game;
 import com.vclues.core.entity.User;
 import com.vclues.core.repository.StoryRepository;
 import com.vclues.core.security.SecurityService;
+import com.vclues.core.service.IGameService;
 import com.vclues.core.service.IUserService;
 import com.vclues.core.validator.DescriptorValidator;
 import com.vclues.core.validator.UserValidator;
 
 @Controller
-public class RegistrationController {
+public class RegistrationController extends BaseController {
 	private final static Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 	
     @Autowired
@@ -44,6 +49,9 @@ public class RegistrationController {
     
     @Autowired
     private StoryRepository businessRepository;
+
+    @Autowired
+    private IGameService gameService;
     
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -72,8 +80,8 @@ public class RegistrationController {
         		logger.info("code " + error.getCode() + " " + error.getObjectName());
         	}
         	
-        	model.addAttribute("content", "signup"); 
-        	return "index";
+        	//model.addAttribute("content", "signup"); 
+        	return "login";
         }
 
         userService.registerNewUser(userForm);
@@ -81,7 +89,16 @@ public class RegistrationController {
         model.addAttribute("content", "signup"); 
         model.addAttribute("message", "Thank you for registering.  Please check your email for the confirmation link.");
 
-        return "index";
+		Map<Integer, List<Game>> games = gameService.getUserGames(getLoggedInUser().getId());
+		//List<Player> players = gameService.findAllCurrentGames(getLoggedInUser().getId());
+		
+		List<Game> currentGame = games.get(1);
+		
+		if(currentGame != null) {
+			model.addAttribute("game", currentGame.get(0));
+		}
+
+        return "menu";
     }
     
     /*
@@ -100,12 +117,6 @@ public class RegistrationController {
         return "index";
     }   
     
-    // example usage
-    public static HttpSession session() {
-        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        return attr.getRequest().getSession(true); // true == allow create
-    }   
-    
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String login(@RequestParam(value="message", required = false) String message, Model model, String error, String logout) {
         if (error != null)
@@ -118,8 +129,10 @@ public class RegistrationController {
         	session().setAttribute("users", null);
         }
     	
-    	model.addAttribute("content", "login"); 
-        return "index";
+        User user = new User();
+        model.addAttribute("userForm", user);
+    	//model.addAttribute("content", "login"); 
+        return "login";
     }
     
     @GetMapping("/forgotpassword")

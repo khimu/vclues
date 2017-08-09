@@ -6,9 +6,13 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@XmlRootElement
+@Document(collection = "cast")
 @Entity
 @Table(name = "cast")
 public class Cast extends AbstractEntity implements Order {
@@ -26,6 +30,9 @@ public class Cast extends AbstractEntity implements Order {
 
 	private Integer position;
 
+	/* 
+	 * Probably unnecessary since description will describe character
+	 */
 	private String role;
 
 	private String name;

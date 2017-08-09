@@ -44,8 +44,14 @@ public class Game extends Base {
 	/*
 	 * players of game
 	 */
-	@DBRef
+	@Transient
 	private List<Player> players;
+	
+	/*
+	 * Cast assignment
+	 */
+	@DBRef
+	private List<GameCast> gameCast;
 
 	/*
 	 * Game name
@@ -123,6 +129,18 @@ public class Game extends Base {
 
 	public void setPlayers(List<Player> players) {
 		this.players = players;
+	}
+	
+	public List<GameCast> getGameCast() {
+		if(gameCast == null) {
+			gameCast = new ArrayList<GameCast>();
+		}
+		
+		return gameCast;
+	}
+
+	public void setGameCast(List<GameCast> gameCast) {
+		this.gameCast = gameCast;
 	}
 
 	public String getName() {

@@ -24,6 +24,8 @@ public interface IGameService {
 	 */
 	public Map<Integer, List<Game>> getUserGames(Long userId);
 	
+	public Game getCurrentGame(Long userId);
+	
 	public List<Player> findAllCurrentGames(Long userId);
 	
 	/*
@@ -39,5 +41,7 @@ public interface IGameService {
 	
 	public Game getGame(String gameId);
 	
-	public List<String> sendInviteEmail(String email, String emails);
+	public Game getGameCast(String gameId);
+	
+	public List<String> sendInviteEmail(String email, String emails, String gameId);
 }

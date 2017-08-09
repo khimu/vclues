@@ -26,7 +26,7 @@ import com.vclues.core.service.IUserService;
 import com.vclues.core.validator.DescriptorValidator;
 
 @Controller
-@RequestMapping(value = "/story")
+//@RequestMapping(value = "/")
 public class StoryController extends BaseController {
 
 	private final static Logger logger = LoggerFactory.getLogger(StoryController.class);
@@ -43,7 +43,7 @@ public class StoryController extends BaseController {
 	@Autowired
 	private DescriptorValidator descriptorValidator;
 
-    @GetMapping("/all")
+    @GetMapping("/videos")
     public String list(Model model) {
 		User user = getLoggedInUser();
 		if(user == null) {
@@ -58,10 +58,11 @@ public class StoryController extends BaseController {
 		model.addAttribute("content", "listStory"); 
 		model.addAttribute("title", "Stories");
 		
-        return "internal";
+        return "videos";
     }
 
-    @GetMapping("{id}")
+    /*
+    @GetMapping("/cast/{id}")
     public String view(@PathVariable("id") String storyId, Model model) {
     	logger.info("View story " + storyId);
     	
@@ -85,8 +86,9 @@ public class StoryController extends BaseController {
 		model.addAttribute("content", "storyDetail"); 
 		model.addAttribute("title", "Story Detail");
         
-		return "internal";
+		return "cast";
     }
+    */
 
     /*
     @GetMapping("/edit/{id}")

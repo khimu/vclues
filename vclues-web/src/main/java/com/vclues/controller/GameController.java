@@ -85,32 +85,33 @@ public class GameController extends BaseController {
 		model.addAttribute("content", "gameDetail"); 
 		model.addAttribute("title", "Game Detail");
         
-		return "internal";
+		return "menu";
     }
     
     /*
-     * show the cast selection page
+     * Display cast selection and description when game has been chosen
      */
-    /*
-    @GetMapping("/cast/{gameId}/{storyId}")
-    public String showCast(@PathVariable("gameId") String gameId, @PathVariable("storyId") String storyId, Model model) {
-    	logger.info("In add game");
+    @GetMapping("/cast/{id}")
+    public String cast(@PathVariable("id") String gameId, Model model) {
+    	logger.info("View game " + gameId);
+    	
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
 			return "redirect:/login";
 		}
+		
+		if(gameId == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/welcome";
+		}
+		
+		Game game = gameService.getGameCast(gameId);
 
-		Story story = storyService.getStory(Long.parseLong(storyId));
-
-		model.addAttribute("gameId", gameId);
-		model.addAttribute("casts", story.getCasts());
-        model.addAttribute("content", "chooseCast");
-        model.addAttribute("title", "Choose Character");
+		model.addAttribute("casts", game.getGameCast());
         
-        return "internal";
+		return "cast";
     }
-    */
     
     /*
      * user has chosen a character and now we're saving the player information
@@ -126,8 +127,11 @@ public class GameController extends BaseController {
 
 		gameService.saveCastForGame(gameId, castId, user.getId(), castName, user.getEmail());
 		
-		// go back to the game detail page
-		return "redirect:/game/" + gameId;
+		Game game = gameService.getGameCast(gameId);
+
+		model.addAttribute("casts", game.getGameCast());
+        
+		return "cast";
     }    
     
     /*
@@ -156,7 +160,7 @@ public class GameController extends BaseController {
         model.addAttribute("content", "addGame");
         model.addAttribute("title", "Add Game");
         
-        return "internal";
+        return "addGame";
 	
 		// display the game gameDetail page
 		//return "redirect:/game/" + game.getId();
@@ -175,10 +179,9 @@ public class GameController extends BaseController {
 		}
 
 		// display the game gameDetail page
-		return "redirect:/game/" + gameService.saveGame(game, storyId, user.getId(), user.getEmail()).getId();
+		return "redirect:/game/cast/" + gameService.saveGame(game, storyId, user.getId(), user.getEmail()).getId();
     } 
     
-
     /*
      * Ajax call
      * Edit descriptor detail

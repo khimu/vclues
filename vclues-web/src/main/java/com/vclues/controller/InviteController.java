@@ -75,7 +75,7 @@ public class InviteController extends BaseController {
 		// create user with password
 		// send email for each invite
 		
-		gameService.sendInviteEmail(user.getEmail(), emails);
+		gameService.sendInviteEmail(user.getEmail(), emails, gameId);
 
 		// display the game gameDetail page
 		return "redirect:/game/" + gameId;
