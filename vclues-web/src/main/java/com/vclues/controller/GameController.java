@@ -1,8 +1,5 @@
 package com.vclues.controller;
 
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.vclues.core.data.Announcement;
 import com.vclues.core.data.Game;
-import com.vclues.core.entity.Cast;
+import com.vclues.core.data.Player;
 import com.vclues.core.entity.Story;
 import com.vclues.core.entity.User;
 import com.vclues.core.enums.Frequency;
@@ -71,13 +66,9 @@ public class GameController extends BaseController {
 		}
 		
 		Game game = gameService.getGame(gameId);
-		
-		//al_students.sort(Comparator.comparingInt(Student::getScore).reversed());
-		
+
 		Story story = storyService.getStory(game.getStoryId());
 
-		//List<Announcement> announcements = gameService.getAllGameAnnouncements(game);
-		
 		model.addAttribute("story", story);
 		model.addAttribute("game", game);
 		//model.addAttribute("announcements", announcements);
@@ -129,13 +120,14 @@ public class GameController extends BaseController {
 		
 		Game game = gameService.getGameCast(gameId);
 
-		model.addAttribute("casts", game.getGameCast());
+		model.addAttribute("game", game);
         
-		return "cast";
+		return "menu";
     }    
     
     /*
      * User has selected a story to play
+     * show form for game information
      */
     @GetMapping("/select/{storyId}")
     public String showForm(@PathVariable("storyId") String storyId, Model model) {
@@ -146,28 +138,20 @@ public class GameController extends BaseController {
 			return "redirect:/login";
 		}
 
-		//Game game = gameService.saveGame(storyId, user.getId(), user.getEmail());
-		
-		//Story story = storyService.getStory(Long.parseLong(storyId));
-
 		Game game = new Game();
 		
 		model.addAttribute("game", game);
 		
-		//model.addAttribute("casts", story.getCasts());
 		model.addAttribute("storyId", storyId);
 		model.addAttribute("frequency", Frequency.values());
         model.addAttribute("content", "addGame");
         model.addAttribute("title", "Add Game");
         
         return "addGame";
-	
-		// display the game gameDetail page
-		//return "redirect:/game/" + game.getId();
     } 
     
     /*
-     * User has selected a story to play
+     * Game selection form submit
      */
     @PostMapping("/select/{storyId}")
     public String submitForm(@PathVariable("storyId") String storyId, @ModelAttribute("Game") Game game, BindingResult bindingResult, Model model) {
@@ -178,14 +162,72 @@ public class GameController extends BaseController {
 			return "redirect:/login";
 		}
 
-		// display the game gameDetail page
+		// go back to the game cast view
 		return "redirect:/game/cast/" + gameService.saveGame(game, storyId, user.getId(), user.getEmail()).getId();
     } 
+    
+    /*
+     * Show the script for the player
+     */
+    @GetMapping("/script/{gameId}")
+    public String script(@PathVariable("gameId") String gameId, Model model) {
+    	logger.info("In add game");
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+
+		Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
+
+		model.addAttribute("player", player);
+        
+        return "scripts";
+    } 
+    
+    /*
+     * Show the script for the player
+     */
+    @GetMapping("/clue/{gameId}")
+    public String clue(@PathVariable("gameId") String gameId, Model model) {
+    	logger.info("In add game");
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+
+		Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
+
+		model.addAttribute("player", player);
+        
+        return "clues";
+    }     
+    
+    /*
+     * Game selection form submit
+     */
+    @GetMapping("/done/{gameId}")
+    public String done(@PathVariable("gameId") String gameId, Model model) {
+    	logger.info("In submit add game");
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+		
+		Player player = gameService.done(user.getId(), gameId);
+		
+		model.addAttribute("player", player);
+        
+        return "scripts";
+    }     
     
     /*
      * Ajax call
      * Edit descriptor detail
      */
+    /*
     @DeleteMapping(headers = IS_AJAX_HEADER)
     public void delete(@RequestHeader("id") String gameId) {
     	logger.info("In delete game " + gameId);
@@ -202,5 +244,6 @@ public class GameController extends BaseController {
 		
 		gameService.deleteGame(Long.parseLong(gameId));
     }
+    */
 
 }

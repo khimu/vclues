@@ -45,9 +45,20 @@ public class Player extends Base {
 
 	@Field(value = "cast_name")
 	private String castName;
+	
+	@Indexed(unique = false)
+	@Field(value = "script_id")
+	private Long scriptId;
+	
+	@Indexed(unique = false)
+	@Field(value = "hint_id")
+	private Long hintId;
 
 	@Transient
 	private Script script;
+	
+	@Transient 
+	private Hint hint;
 
 	@Transient
 	private List<Script> scripts;
@@ -152,4 +163,35 @@ public class Player extends Base {
 		this.announcements = announcements;
 	}
 
+	public Guess getGuess() {
+		return guess;
+	}
+
+	public void setGuess(Guess guess) {
+		this.guess = guess;
+	}
+
+	public Long getScriptId() {
+		return scriptId;
+	}
+
+	public void setScriptId(Long scriptId) {
+		this.scriptId = scriptId;
+	}
+
+	public Long getHintId() {
+		return hintId;
+	}
+
+	public void setHintId(Long hintId) {
+		this.hintId = hintId;
+	}
+
+	public Hint getHint() {
+		return hint;
+	}
+
+	public void setHint(Hint hint) {
+		this.hint = hint;
+	}
 }

@@ -35,49 +35,31 @@
 		</script> 
 		
 		<style>
-			#postit_outer {
-			    background: url('/assets/images/posty_note_bg.png') no-repeat;
-			    background-size: 100% 100%;
-			    webkit-box-shadow: 0 5px 15px rgb(208, 206, 206);
-			    box-shadow: 0 5px 15px rgb(208, 206, 206);
-			    font-family: 'Gloria Hallelujah', cursive;
-			}
-			
-			#postit_outer .logo {
-				width: 213px;
-				height: 80px;
-				background: url('/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif')
-					no-repeat;
-				margin: 40px 0px 0px 40px;
-				background-size: 100%;
-			}
-								
-			.modal-content
-			{
-			    /*background-color: rgba(0,0,0,.7) !important;*/
-			}
-			input[type=checkbox], input[type=radio]
-			{
-			    vertical-align: top;
-			}
-			.modal-backdrop
-			{
-			    opacity:0.8 !important;
-			}
-				
+
+		/* iphone 5 portrait 320x568 */
+		@media screen and (device-aspect-ratio: 40/71) {
+            body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-color:black; 
+			padding-top:60px;            
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 320px 568px;
+                width: 320px;
+                height: 568px;
+            }
+
 			.postit-block {
-				width: 320px;
-				margin: 30px auto 90px auto;
-				padding: 0px 20px;
+				width: 220px;
+				margin: 5px auto 10px auto;
 			}
-			
-			/* COMMON */
+			            
 			.postit-block h1 {
 				text-align: center;
-				color: #333333;
 				font-size: 30px;
 				text-transform: uppercase;
-				margin-top: 0;
+				padding-top: 35px;
+				margin-bottom: 30px;
 				font-weight: bolder;
 			}
 			
@@ -93,7 +75,343 @@
 				font-family: Montserrat;
 				padding: 0 20px 0 50px;
 				outline: none;
+			}	        
+			
+			#postit_outer .logo {
+				width: 200px;
+				height: 80px;
+				background: url('/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif') no-repeat;
+				background-size: 100%;
+				position: absolute;
+				bottom: 0px;
+			}			
+		}
+
+
+		/* iphone 6/6+ portrait 375x667 and 414x736*/
+		@media only screen 
+		and (min-device-width: 340px) 
+		and (max-device-width : 400px) 
+		and (orientation : portrait) { 
+            
+            body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-color:black; 
+			padding-top:60px;            
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 375px 667px;
+                width: 375px;
+                height: 667px;
+            }
+        }		
+
+		/* iphone 6/6+ portrait 375x667 and 414x736*/
+		@media only screen 
+		and (min-device-width: 400px) 
+		and (max-device-width : 420px) 
+		and (orientation : portrait) { 
+            
+            body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-color:black; 
+			padding-top:60px;            
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 414px 736px;
+                width: 414px;
+                height: 736px;
+            }
+        }	
+
+		/* iphone 6/6+ portrait 375x667 and 414x736*/
+		@media only screen 
+		and (min-device-width: 330px) 
+		and (max-device-width : 680px) 
+		and (orientation : portrait) { 
+          
+			.postit-block {
+				width: 250px;
+				margin: 5px auto 10px auto;
 			}
+			            
+			.postit-block h1 {
+				text-align: center;
+				font-size: 30px;
+				text-transform: uppercase;
+				padding-top: 50px;
+				margin-bottom: 30px;
+				font-weight: bolder;
+			}
+			
+			.postit-block input[type="text"], .postit-block input[type="password"],
+				.postit-block input[type="email"] {
+				width: 100%;
+				height: 42px;
+				box-sizing: border-box;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+				margin-bottom: 10px;
+				font-size: 14px;
+				font-family: Montserrat;
+				outline: none;
+			}
+			
+			
+			#postit_outer .logo {
+				width: 200px;
+				height: 80px;
+				background: url('/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif') no-repeat;
+				background-size: 100%;
+				position: absolute;
+				bottom: 0px;
+			}			
+		}
+		
+        /* iphone 5 /nexus/galaxy landscape */
+		@media only screen 
+		and (min-device-width: 550px) 
+		and (max-device-width : 570px) 
+		and (orientation : landscape) { 
+            body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-color:black; 
+			padding-top:60px;            
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 568px 320px;
+                width:568px;
+                height:320px;
+            }
+        }
+
+        /* iphone 6 /nexus/galaxy landscape */
+		@media only screen 
+		and (min-device-width: 650px) 
+		and (max-device-width : 670px) 
+		and (orientation : landscape) { 
+            body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-color:black; 
+			padding-top:60px;            
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 667px 375px;
+                width: 667px;
+                height:375px;
+            }
+       
+        }
+
+        /* iphone 6+/nexus/galaxy landscape */
+		@media only screen 
+		and (min-device-width: 720px) 
+		and (max-device-width : 740px) 
+		and (orientation : landscape) { 
+            body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-color:black; 
+			padding-top:60px;            
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 736px 414px;
+                width:736px;
+                height:414px;
+            }
+        }
+
+        /* iphone 6/6+/nexus/galaxy landscape */
+		@media only screen 
+		and (min-device-width: 321px) 
+		and (max-device-width : 780px) 
+		and (orientation : landscape) { 
+			
+			.postit-block {
+				width: 350px;
+				margin: 0 0 0 25%;
+			}
+			            
+			.postit-block h1 {
+				text-align: center;
+				font-size: 30px;
+				text-transform: uppercase;
+				font-weight: bolder;
+			}
+			
+			
+			.postit-block input[type="text"], .postit-block input[type="password"],
+				.postit-block input[type="email"] {
+				width: 100%;
+				height: 42px;
+				box-sizing: border-box;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+				margin-bottom: 10px;
+				font-size: 14px;
+				font-family: Montserrat;
+				outline: none;
+			}     
+			
+			#postit_outer .logo {
+			    width: 150px;
+			    height: 50px;
+			    background: url(/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif) no-repeat;
+			    background-size: 100%;
+			    position: absolute;
+			    bottom: 5px;
+			}			
+					
+		}		
+
+        /* i-pad, desktop, bigscreen 768x1024 */
+		@media only screen 
+  		and (device-width: 768px) 
+  		and (orientation : portrait) { 
+		
+	         body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-color:black; 
+			padding-top:60px;	         
+	             background-repeat: no-repeat;
+	             background-position: center;
+	             background-size: 768px 1024px;
+	             width: 768px;
+	             height: 1024px;
+	         }
+		}
+
+        /* i-pad, desktop, bigscreen 768x1024 */
+		@media only screen 
+  		and (device-width: 1024px) 
+  		and (orientation : portrait) { 
+		
+	         body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-color:black; 
+			padding-top:60px;	         
+	             background-repeat: no-repeat;
+	             background-position: center;
+	             background-size: 1024px 1366px;
+	             width: 1024px;
+	             height: 1366px;
+	         }
+		}
+
+        /* i-pad, desktop, bigscreen 768x1024 */
+		@media only screen 
+  		and (min-device-width: 768px) 
+  		and (max-device-width: 1050px) 
+  		and (orientation : portrait) { 
+  		
+			.postit-block {
+				width: 350px;
+				margin: 0 0 0 25%;
+			}
+			            
+			.postit-block h1 {
+				text-align: center;
+				font-size: 30px;
+				padding-top: 100px;
+				margin-bottom: 30px;
+				text-transform: uppercase;
+				font-weight: bolder;
+			}
+			
+			
+			.postit-block input[type="text"], .postit-block input[type="password"],
+				.postit-block input[type="email"] {
+				width: 100%;
+				height: 42px;
+				box-sizing: border-box;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+				margin-bottom: 10px;
+				font-size: 14px;
+				font-family: Montserrat;
+				outline: none;
+			}     
+			
+			#postit_outer .logo {
+			    width: 200px;
+			    height: 50px;
+			    background: url(/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif) no-repeat;
+			    background-size: 100%;
+			    position: absolute;
+			    bottom: 5px;
+			}			        
+		}
+
+        /* Desktop 1440x950 */
+        @media  only screen and (min-width:1125px), only screen and (min-width:1281px) {
+		
+	         body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-color:black; 
+			padding-top:60px;	         
+	             background-repeat: no-repeat;
+	             background-position: center;
+	             background-size: 1440px 700px;
+	             width: 1440px;
+	             height: 700px;
+	         }
+
+			.postit-block {
+				width: 350px;
+				margin: 0 0 0 37%;
+			}
+			            
+			.postit-block h1 {
+				text-align: center;
+				font-size: 30px;
+				padding-top: 100px;
+				margin-bottom: 30px;
+				text-transform: uppercase;
+				font-weight: bolder;
+			}
+			
+			
+			.postit-block input[type="text"], .postit-block input[type="password"],
+				.postit-block input[type="email"] {
+				width: 100%;
+				height: 42px;
+				box-sizing: border-box;
+				border-radius: 5px;
+				border: 1px solid #ccc;
+				margin-bottom: 10px;
+				font-size: 14px;
+				font-family: Montserrat;
+				outline: none;
+			}     
+			
+			#postit_outer .logo {
+			    width: 200px;
+			    height: 50px;
+			    background: url(/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif) no-repeat;
+			    background-size: 100%;
+			    position: absolute;
+			    bottom: 5px;
+			}		
+		}
+	        		
+
+			#postit_outer {
+			    font-family: 'Gloria Hallelujah', cursive;
+			    color: white;
+			  
+			}
+								
+			input[type=checkbox], input[type=radio]
+			{
+			    vertical-align: top;
+			}
+			.modal-backdrop
+			{
+			    opacity:0.8 !important;
+			}
+				
+
+			/* COMMON */
+
 			
 			/* COMMON */
 			.postit-block input#username, .postit-block input#firstname, .postit-block input#lastname
@@ -128,12 +446,9 @@
 	</head>
 	
     <body class='lang-en page_image'>
-	        
+
 		<div id="postit_outer">
-            <div class="modal-dialog" style="height: 100%;">
-                    <div class="logo"></div>
-                    
-					<div class="postit-block">
+				<div class="postit-block">
 			        	<h1>Add Game</h1>
 			            <div class="error"></div>
 			            
@@ -151,8 +466,8 @@
 									<div class="form-group">
 										<label for="invites">Invite Emails</label>
 										
-										<textarea  rows="3" cols="5" class="form-control" id="invites" th:field="*{invites}">
-										Invite Emails
+										<textarea  rows="3" cols="5" class="form-control" id="invites" th:field="*{invites}" placeholder="player1@gmail.com, player2@gmail.com">
+										
 										</textarea>
 									</div>
 								</div>	
@@ -160,9 +475,10 @@
 								<a href="/videos" class="btn btn-default">Cancel</a>
 							</div>
 						</form>		
-					</div>		
-				</div>
+				</div>		
+				<div class="logo"></div>
 		</div>
+		
     </body>
 </html>
   

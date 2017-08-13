@@ -18,8 +18,9 @@ public interface HintRepository extends JpaRepository<Hint, Long> {
 	@Query("update Hint u set u.active = 0 where id = ?1")
 	public void deleteHint(Long hintId);
 	
-	public List<Hint> getAllHintBySceneId(Long sceneId);
+	public Hint getAllHintBySceneId(Long sceneId);
 	
 	public List<Hint> getAllHintBySceneIdAndPositionLessThan(Long sceneId, Integer position);
 
+	public Hint findHintBySceneId(Long sceneId);
 }

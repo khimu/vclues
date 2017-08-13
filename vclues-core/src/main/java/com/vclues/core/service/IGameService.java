@@ -8,6 +8,10 @@ import com.vclues.core.data.Game;
 import com.vclues.core.data.Player;
 
 public interface IGameService {
+	
+	public Player findPlayerByUserIdAndGameId(Long userId, String gameId);
+	
+	public Player done(Long userId, String gameId);
 
 	public Game saveGame(Game game, String storyId, Long userId, String username);
 	
@@ -24,8 +28,14 @@ public interface IGameService {
 	 */
 	public Map<Integer, List<Game>> getUserGames(Long userId);
 	
+	/*
+	 * used
+	 */
 	public Game getCurrentGame(Long userId);
 	
+	/*
+	 * not used
+	 */
 	public List<Player> findAllCurrentGames(Long userId);
 	
 	/*
@@ -41,6 +51,9 @@ public interface IGameService {
 	
 	public Game getGame(String gameId);
 	
+	/*
+	 * used
+	 */
 	public Game getGameCast(String gameId);
 	
 	public List<String> sendInviteEmail(String email, String emails, String gameId);

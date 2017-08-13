@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import com.vclues.core.entity.Hint;
 import com.vclues.core.entity.Script;
 
 @Transactional
@@ -20,4 +21,6 @@ public interface ScriptRepository extends JpaRepository<Script, Long> {
 	public List<Script> getAllScriptsBySceneId(Long sceneId);
 	
 	public List<Script> getAllScriptsBySceneIdAndPositionLessThan(Long sceneId, Integer position);
+	
+	public Script findScriptBySceneIdAndCastId(Long sceneId, Long castId);
 }

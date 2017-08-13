@@ -45,11 +45,6 @@ public class DashboardController extends BaseController {
 			return "redirect:/login";
 		}		
 
-    	//Map<Integer, List<Game>> games = gameService.findAllUserGames(user.getId());
-
-    	//model.addAttribute("current", games.get(Constant.CURRENT));
-    	//model.addAttribute("past", games.get(Constant.PAST));
-    	
     	model.addAttribute("stories", storyService.getAllStories());
     	model.addAttribute("content", "welcome"); 
     	model.addAttribute("title", "Dashboard");

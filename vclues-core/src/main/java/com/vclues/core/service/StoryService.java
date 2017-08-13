@@ -1,5 +1,6 @@
 package com.vclues.core.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -93,7 +94,9 @@ public class StoryService implements IStoryService {
 	}
 	
 	public List<Hint> getAllHintBySceneId(Long sceneId) {
-		return hintRepository.getAllHintBySceneId(sceneId);
+		List<Hint> hints = new ArrayList<Hint>();
+		hints.add(hintRepository.getAllHintBySceneId(sceneId));
+		return hints;
 	}
 	
 	public void deleteHint(Long hintId) {

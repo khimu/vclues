@@ -26,11 +26,24 @@
 		
 <style>
 
-	/* iphone 5 portrait 320x568 */
-	@media screen and (device-aspect-ratio: 40/71) {
-	
-		body {
-			background: url(/assets/images/stories/story1/bg/MASTER_OF_FIRST_PAGE_FACE_PORTRAIT_IPHONE5_640X568.png) no-repeat left top fixed;
+		/* Common */
+		.menu, .game {
+			position: absolute;
+			top: 50%;
+            left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+			background:transparent;
+		}	
+		
+
+		.menu ul, .game ul{
+			list-style-type: none;
+		}
+		
+		
+		.game {
+			display: none;
 		}
 	
 		.corner-logo {
@@ -39,764 +52,329 @@
 			width: 200px;
 			height: 100px;
 			bottom: 0px;
-			left: 0px;
-		}
-	
-		.menu, .game {
-			position: absolute;
-			width: 400px;
-			top: 60px;
-			display: none;
-			background:transparent;
 		}
 		
-		.menu  {
-			background: url(/assets/images/mainmenu.png) no-repeat;
-			background-size: 300px 300px;
-			height: 300px;
-		}
-	
-		.game {
-			background: url(/assets/images/submenu.png) no-repeat; 
-			background-size: 300px 600px;
-			height: 600px;
-		}
-	
-		.menu ul, .game ul{
-			list-style-type: none;
-		}
-	
-		.game ul {
-			margin-top: 60px;
-			width: 150px;
-		}
-	
-		.menu img, .game img {
-			width: 200px;
-			height 30px;
-		}
-	
-		.game li {
-			text-align: center;
-			vertical-align: middle;
-			width: 150px;
-			height: 80px;
-			margin-left: 40px;
-			color: white;
-			font-size: 35px;
-			font-family: 'Gloria Hallelujah', cursive;
-		}
-	
-		.menu li {
-			vertical-align: middle;
-			width: 150px;
-			height: 60px;
-			font-style: bold;
-			margin-top: 30px;
-			margin-left: 60px;
-			color: white;
-			font-size: 35px;
-			font-family: 'Gloria Hallelujah', cursive;
-		}
 	
 		.container {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			z-index: 1;
 			width: 100%;
 	        height: 100%;
-	        margin: 0px;
-	        padding: 0px;
-		}
-	
+	        text-align: center;
+		}	
+
 		.back-button, .menu-button {
-		    /* background: url(/assets/images/VEGA-BACK-KNIFE-GOLD-200-X-40.gif) no-repeat; */
-		    background-image: url(/assets/images/back3.png);
-		    //background-size: 100px 60px;
-		    background-repeat: no-repeat;
-		    background-position: center;
 		    font-size: 30px;
 		    color: #FFF;
 		    font-family: 'Gloria Hallelujah', cursive;
 		    padding: 20px;
-		
 		    text-decoration: none;
-		
 		    width: 100px;
 		    height: 60px;
 		    border: none;
 		    outline:none;
 		    cursor: pointer;     
-		    vertical-align: middle; /* align the text vertically centered */
-		    //background-color:transparent;
-		}
-	
-		.menu-button {
-			width: 200px;
-			height: 100px;
-	       	border: none;
-			outline:none;
-	    	cursor: pointer;
-	    	vertical-align: middle;
-			background-color:transparent;
-		}
-	
-		.back-button {
-	        background-image: url(/assets/images/back3.png);
-	        background-repeat: no-repeat;
-	        background-position: center;
-			font-size: 30px;
-			color: #FFF;
-	        font-family: 'Gloria Hallelujah', cursive;
-			padding: 20px;
-	
-			text-decoration: none;
-	
-			width: 100px;
-			height: 60px;
-	        border: none;
-			outline:none;
-	  		cursor: pointer;
-	  		vertical-align: middle;
-			//background-color:transparent;
-			display: none;
+		    vertical-align: middle;
 		}
 	
 		.back-button a {
 			text-decoration: none;
+		}
+		/* End Common */	
+		
+	/* iphone 5 portrait 320x568 */
+	@media screen and (device-aspect-ratio: 40/71) {
+	
+		body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-size: 320px 568px;
+		}
+		
+		.container {
+			margin-top: 8%;
+		}
+		
+		.corner-logo {
+			left: 20%;
+		}
+		
+		.menu, .game {
+            left: 40%;
+        }
+	
+		.menu li, .game li {
+			vertical-align: middle;
+			width: 150px;
+			height: 60px;
+			font-style: bold;
+			margin-top: 30px;
+			color: white;
+			font-size: 35px;
+			font-family: 'Gloria Hallelujah', cursive;
 		}
 		
 	}
 
 	/* iphone 6/6+ portrait 375x667 and 414x736*/
 	@media only screen 
-	and (min-device-width: 330px) 
-	and (max-device-width : 680px) 
+	and (min-device-width: 350px) 
+	and (max-device-width : 400px) 
 	and (orientation : portrait) { 
-	
-		body {
-			background: url(/assets/images/stories/story1/bg/MASTER_OF_FIRST_PAGE_FACE_PORTRAIT_828_736.png) no-repeat left top fixed;
-		}
-
-		.corner-logo {
-			position: absolute;
-			background: url(/assets/images/logo.png) no-repeat;
-			width: 200px;
-			height: 100px;
-			bottom: 15px;
-			left: 15px;
-		}
-	
-		.menu, .game {
-			position: absolute;
-			width: 360px;
-			top: 70px;
-			display: none;
-			background:transparent;
+		
+		.container {
+			margin-top: 8%;
 		}
 		
-		.menu  {
-			background: url(/assets/images/mainmenu.png) no-repeat;
-			background-size: 360px 400px;
-			height: 400px;
+		.corner-logo {
+			left: 25%;
 		}
-	
-		.game {
-			background: url(/assets/images/submenu.png) no-repeat; 
-			background-size: 360px 600px;
-			height: 600px;
-		}
-	
-		.menu ul, .game ul{
-			list-style-type: none;
-		}
-	
-		.game ul {
-			margin-top: 60px;
-			width: 150px;
-		}
-	
-		.menu img, .game img {
-			width: 200px;
-			height 30px;
-		}
-	
-		.game li {
-			text-align: center;
-			vertical-align: middle;
-			width: 150px;
-			height: 80px;
-			margin-left: 40px;
-			color: white;
-			font-size: 35px;
-			font-family: 'Gloria Hallelujah', cursive;
-		}
-	
-		.menu li {
+		
+		.menu, .game {
+            left: 50%;
+        }
+
+		.menu li, .game li {
 			padding: 5px;
 			vertical-align: middle;
 			width: 150px;
 			height: 80px;
 			font-style: bold;
-			margin-top: 30px;
-			margin-left: 60px;
 			color: white;
 			font-size: 35px;
 			font-family: 'Gloria Hallelujah', cursive;
-		}
-	
-		.container {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			z-index: 1;
-			width: 100%;
-	        height: 100%;
-	        margin: 0px;
-	        padding: 0px;
-		}
-	
-		.back-button, .menu-button {
-		    /* background: url(/assets/images/VEGA-BACK-KNIFE-GOLD-200-X-40.gif) no-repeat; */
-		    background-image: url(/assets/images/back3.png);
-		    //background-size: 100px 60px;
-		    background-repeat: no-repeat;
-		    background-position: center;
-		    font-size: 30px;
-		    color: #FFF;
-		    font-family: 'Gloria Hallelujah', cursive;
-		    padding: 20px;
-		    text-decoration: none;
-		    width: 100px;
-		    height: 60px;
-		    border: none;
-		    outline:none;
-		    cursor: pointer;     
-		    vertical-align: middle; /* align the text vertically centered */
-		    //background-color:transparent;
-		}
-	
-		.menu-button {
-			width: 200px;
-			height: 100px;
-	       	border: none;
-			outline:none;
-	    	cursor: pointer;
-	    	vertical-align: middle;
-			background-color:transparent;
-		}
-	
-		.back-button {
-	        background-image: url(/assets/images/back3.png);
-	        background-repeat: no-repeat;
-	        background-position: center;
-			font-size: 30px;
-			color: #FFF;
-	        font-family: 'Gloria Hallelujah', cursive;
-			padding: 20px;
-	
-			text-decoration: none;
-	
-			width: 100px;
-			height: 60px;
-	        border: none;
-			outline:none;
-	  		cursor: pointer;
-	  		vertical-align: middle;
-			//background-color:transparent;
-			display: none;
-		}
-	
-		.back-button a {
-			text-decoration: none;
 		}
 		
 	}		
 	
-       /* iphone 6/6+/nexus/galaxy landscape */
+	/* iphone 6/6+ portrait 375x667 and 414x736*/
 	@media only screen 
-	and (min-device-width: 321px) 
-	and (max-device-width : 780px) 
-	and (orientation : landscape) { 
+	and (min-device-width: 375px) 
+	and (max-device-width : 375px) 
+	and (orientation : portrait) { 
 	
 		body {
-			background: url(/assets/images/stories/story1/bg/MASTER_OF_FIRST_PAGE_FACE_LANDSCAPE_736x414.png) no-repeat left top fixed;
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-size: 414px 736px;
 		}
-
-		.corner-logo {
-			position: absolute;
-			background: url(/assets/images/logo.png) no-repeat;
-			width: 200px;
-			height: 100px;
-			bottom: 15px;
-			left: 15px;
-		}
+	}
 	
-		.menu, .game {
-			position: absolute;
-			width: 300px;
-			top: 20px;
-			right: 10px;
-			display: none;
-			background:transparent;
+	/* iphone 6/6+ portrait 375x667 and 414x736*/
+	@media only screen 
+	and (min-device-width: 414px) 
+	and (max-device-width : 414px) 
+	and (orientation : portrait) { 
+	
+		body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-size: 414px 736px;
+		}
+	}
+			
+
+	/* iphone 6/6+ portrait 375x667 and 414x736*/
+	@media only screen 
+	and (min-device-width: 375px) 
+	and (max-device-width : 450px) 
+	and (orientation : portrait) { 
+
+		.container {
+			margin-top: 8%;
 		}
 		
-		.menu  {
-			background: url(/assets/images/mainmenu.png) no-repeat;
-			background-size: 300px 400px;
-			height: 400px;
+		.corner-logo {
+			left: 25%;
 		}
-	
-		.game {
-			background: url(/assets/images/submenu.png) no-repeat; 
-			background-size: 300px 400px;
-			height: 600px;
-		}
-	
-		.menu ul, .game ul{
-			list-style-type: none;
-		}
-	
-		.game ul {
-			margin-top: 30px;
-			width: 150px;
-		}
-	
-		.menu img, .game img {
-			width: 200px;
-			height 30px;
-		}
-	
-		.game li {
-			text-align: center;
-			vertical-align: middle;
-			width: 150px;
-			height: 54px;
-			margin-left: 40px;
-			color: white;
-			font-size: 35px;
-			font-family: 'Gloria Hallelujah', cursive;
-		}
-	
-		.menu li {
+		
+		.menu, .game {
+            left: 50%;
+        }
+
+		.menu li, .game li {
 			padding: 5px;
 			vertical-align: middle;
 			width: 150px;
-			height: 70px;
+			height: 80px;
 			font-style: bold;
-			margin-top: 30px;
-			margin-left: 60px;
 			color: white;
 			font-size: 35px;
 			font-family: 'Gloria Hallelujah', cursive;
 		}
+		
+	}
+
+       /* iphone 5 landscape */
+	@media only screen 
+	and (max-device-width : 567px) 
+	and (orientation : landscape) { 
 	
-		.container1 {
-			background-image: url(/assets/images/stories/story1/bg/background.png);
-			background-repeat: no-repeat;
-	   		//background-attachment: fixed;
-	   		background-position: center; 
-			position: absolute;
-			opacity: 0.5;
-			top: 0px;
-			left: 0px;
-			width: 100%;
-			height: 100%;
-			margin: 0px;
-			padding: 0px;
+		body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-size: 568px 321px;
 		}
-	
+		
 		.container {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			z-index: 1;
-			width: 100%;
-	        height: 100%;
-	        margin: 0px;
-	        padding: 0px;
+			margin-top: 4%;
 		}
-	
-		.back-button, .menu-button {
-		    /* background: url(/assets/images/VEGA-BACK-KNIFE-GOLD-200-X-40.gif) no-repeat; */
-		    background-image: url(/assets/images/back3.png);
-		    //background-size: 100px 60px;
-		    background-repeat: no-repeat;
-		    background-position: center;
-		    font-size: 30px;
-		    color: #FFF;
-		    font-family: 'Gloria Hallelujah', cursive;
-		    padding: 20px;
 		
-		    text-decoration: none;
-		
-		    width: 100px;
-		    height: 60px;
-		    border: none;
-		    outline:none;
-		    cursor: pointer;     
-		    vertical-align: middle; /* align the text vertically centered */
-		    //background-color:transparent;
-		}
-	
-		.menu-button {
-			width: 200px;
-			height: 100px;
-	       	border: none;
-			outline:none;
-	    	cursor: pointer;
-	    	vertical-align: middle;
-			background-color:transparent;
-		}
-	
-		.back-button {
-	        background-image: url(/assets/images/back3.png);
-	        background-repeat: no-repeat;
-	        background-position: center;
-			font-size: 30px;
-			color: #FFF;
-	        font-family: 'Gloria Hallelujah', cursive;
-			padding: 20px;
-	
-			text-decoration: none;
-	
-			width: 100px;
-			height: 60px;
-	        border: none;
-			outline:none;
-	  		cursor: pointer;
-	  		vertical-align: middle;
-			//background-color:transparent;
-			display: none;
-		}
-	
-		.back-button a {
-			text-decoration: none;
+		.corner-logo {
+			left: 0%;
 		}
 
+		.menu, .game {
+            left: 50%;
+        }
+
+		.menu li, .game li {
+			padding: 5px;
+			vertical-align: middle;
+			width: 150px;
+			height: 50px;
+			font-style: bold;
+			color: white;
+			font-size: 35px;
+			font-family: 'Gloria Hallelujah', cursive;
+		}
+
+	}	
+
+       /* iphone 6/6+/nexus/galaxy landscape */
+	@media only screen 
+	and (max-device-width : 667px) 
+	and (orientation : landscape) { 
+	
+		body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-size: 667px 375px;
+		}
+	}	
+	
+       /* iphone 6/6+/nexus/galaxy landscape */
+	@media only screen 
+	and (max-device-width : 736px) 
+	and (orientation : landscape) { 
+	
+		body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-size: 736px 414px;
+		}
+	}	
+	
+       /* iphone 6/6+/nexus/galaxy landscape */
+	@media only screen 
+	and (min-device-width: 570px) 
+	and (max-device-width : 740px) 
+	and (orientation : landscape) { 
+		
+		.corner-logo {
+			left: 0%;
+		}
+
+		.menu li, .game li {
+			padding: 5px;
+			vertical-align: middle;
+			width: 150px;
+			height: 50px;
+			font-style: bold;
+			color: white;
+			font-size: 35px;
+			font-family: 'Gloria Hallelujah', cursive;
+		}
 
 	}	
 		
        /* i-pad, desktop, bigscreen 768x1024 */
 	@media only screen 
  		and (min-device-width: 768px) 
- 		and (max-device-width: 1024px) 
+ 		and (max-device-width: 768px) 
  		and (-webkit-min-device-pixel-ratio: 1) {
  		
- 		body {
- 			background: url(/assets/images/stories/story1/bg/MASTER_OF_FIRST_PAGE_FACE_IPAD_LANDSCAPE_1536x1024.png) no-repeat left top fixed;
- 		}
-
-		.corner-logo {
-			position: absolute;
-			background: url(/assets/images/logo.png) no-repeat;
-			width: 200px;
-			height: 100px;
-			bottom: 15px;
-			left: 15px;
-		}
-	
-		.menu, .game {
-			position: absolute;
-			width: 400px;
-			top: 20px;
-			right: 10px;
-			display: none;
-			background:transparent;
+		body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-size: 768px 1024px;
 		}
 		
-		.menu  {
-			background: url(/assets/images/mainmenu.png) no-repeat;
-			background-size: 400px 400px;
-			height: 400px;
+		.container {
+			margin-top: 8%;
 		}
-	
-		.game {
-			background: url(/assets/images/submenu.png) no-repeat; 
-			background-size: 400px 600px;
-			height: 600px;
+
+		.corner-logo {
+			left: 35%;
 		}
-	
-		.menu ul, .game ul{
-			list-style-type: none;
-		}
-	
-		.game ul {
-			margin-top: 60px;
-			width: 150px;
-		}
-	
-		.menu img, .game img {
-			width: 200px;
-			height 30px;
-		}
-	
-		.game li {
-			text-align: center;
-			vertical-align: middle;
-			width: 150px;
-			height: 80px;
-			margin-left: 40px;
-			color: white;
-			font-size: 35px;
-			font-family: 'Gloria Hallelujah', cursive;
-		}
-	
-		.menu li {
+		
+		.menu li, .game li {
 			padding: 5px;
 			vertical-align: middle;
 			width: 150px;
 			height: 80px;
 			font-style: bold;
 			margin-top: 30px;
-			margin-left: 60px;
 			color: white;
 			font-size: 35px;
 			font-family: 'Gloria Hallelujah', cursive;
 		}
-	
-		.container1 {
-			background-image: url(/assets/images/stories/story1/bg/background.png);
-			background-repeat: no-repeat;
-	   		//background-attachment: fixed;
-	   		background-position: center; 
-			position: absolute;
-			opacity: 0.5;
-			top: 0px;
-			left: 0px;
-			width: 100%;
-			height: 100%;
-			margin: 0px;
-			padding: 0px;
-		}
-	
-		.container {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			z-index: 1;
-			width: 100%;
-	        height: 100%;
-	        margin: 0px;
-	        padding: 0px;
-		}
-	
-		.back-button, .menu-button {
-		    /* background: url(/assets/images/VEGA-BACK-KNIFE-GOLD-200-X-40.gif) no-repeat; */
-		    background-image: url(/assets/images/back3.png);
-		    //background-size: 100px 60px;
-		    background-repeat: no-repeat;
-		    background-position: center;
-		    font-size: 30px;
-		    color: #FFF;
-		    font-family: 'Gloria Hallelujah', cursive;
-		    padding: 20px;
-		
-		    text-decoration: none;
-		
-		    width: 100px;
-		    height: 60px;
-		    border: none;
-		    outline:none;
-		    cursor: pointer;     
-		    vertical-align: middle; /* align the text vertically centered */
-		    //background-color:transparent;
-		}
-	
-		.menu-button {
-			width: 200px;
-			height: 100px;
-	       	border: none;
-			outline:none;
-	    	cursor: pointer;
-	    	vertical-align: middle;
-			background-color:transparent;
-		}
-	
-		.back-button {
-	        background-image: url(/assets/images/back3.png);
-	        background-repeat: no-repeat;
-	        background-position: center;
-			font-size: 30px;
-			color: #FFF;
-	        font-family: 'Gloria Hallelujah', cursive;
-			padding: 20px;
-	
-			text-decoration: none;
-	
-			width: 100px;
-			height: 60px;
-	        border: none;
-			outline:none;
-	  		cursor: pointer;
-	  		vertical-align: middle;
-			//background-color:transparent;
-			display: none;
-		}
-	
-		.back-button a {
-			text-decoration: none;
-		}
+
 	}
+	
+       /* i-pad, desktop, bigscreen 768x1024 */
+	@media only screen 
+ 		and (min-device-width: 1024px) 
+ 		and (max-device-width: 1024px) 
+ 		and (-webkit-min-device-pixel-ratio: 1) {
+ 		
+		body {
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-size: 1024px 1366px;
+		}
+
+		.container {
+			margin-top: 8%;
+		}
+
+		.corner-logo {
+			left: 40%;
+		}
+		
+		.menu li, .game li {
+			padding: 5px;
+			vertical-align: middle;
+			width: 150px;
+			height: 80px;
+			font-style: bold;
+			margin-top: 30px;
+			color: white;
+			font-size: 35px;
+			font-family: 'Gloria Hallelujah', cursive;
+		}
+
+	}	
 	
 	/* Desktop 1440x950 */
 	@media  only screen and (min-width:1025px),  only screen and (min-width:1281px) {
 	
 		body {
-			background: url('/assets/images/stories/story1/bg/background.png') no-repeat;
+			background: url('/assets/images/redbg.png') no-repeat;
+			background-size: 100% 700px;
+			background-color: black;
+		}
+		
+		.container {
+			margin-top: 2%;
 		}
 	
 		.corner-logo {
-			position: absolute;
-			background: url(/assets/images/logo.png) no-repeat;
-			width: 200px;
-			height: 100px;
-			bottom: 15px;
-			left: 15px;
+			left: 40%;
 		}
 	
-		.menu, .game {
-			position: absolute;
-			width: 400px;
-			top: 20px;
-			right: 10px;
-			display: none;
-			background:transparent;
-		}
-		
-		.menu  {
-			background: url(/assets/images/mainmenu.png) no-repeat;
-			background-size: 400px 400px;
-			height: 400px;
-		}
-	
-		.game {
-			background: url(/assets/images/submenu.png) no-repeat; 
-			background-size: 400px 600px;
-			height: 600px;
-		}
-	
-		.menu ul, .game ul{
-			list-style-type: none;
-		}
-	
-		.game ul {
-			margin-top: 60px;
-			width: 150px;
-		}
-	
-		.menu img, .game img {
-			width: 200px;
-			height 30px;
-		}
-	
-		.game li {
-			text-align: center;
-			vertical-align: middle;
-			width: 150px;
-			height: 80px;
-			margin-left: 40px;
-			color: white;
-			font-size: 35px;
-			font-family: 'Gloria Hallelujah', cursive;
-		}
-	
-		.menu li {
+		.menu li, .game li{
 			padding: 5px;
 			vertical-align: middle;
 			width: 150px;
 			height: 80px;
 			font-style: bold;
 			margin-top: 30px;
-			margin-left: 60px;
 			color: white;
 			font-size: 35px;
 			font-family: 'Gloria Hallelujah', cursive;
 		}
-	
-		.container1 {
-			background-image: url(/assets/images/stories/story1/bg/background.png);
-			background-repeat: no-repeat;
-	   		//background-attachment: fixed;
-	   		background-position: center; 
-			position: absolute;
-			opacity: 0.5;
-			top: 0px;
-			left: 0px;
-			width: 100%;
-			height: 100%;
-			margin: 0px;
-			padding: 0px;
-		}
-	
-		.container {
-			position: absolute;
-			top: 0px;
-			left: 0px;
-			z-index: 1;
-			width: 100%;
-	        height: 100%;
-	        margin: 0px;
-	        padding: 0px;
-		}
-	
-		.back-button, .menu-button {
-		    /* background: url(/assets/images/VEGA-BACK-KNIFE-GOLD-200-X-40.gif) no-repeat; */
-		    background-image: url(/assets/images/back3.png);
-		    //background-size: 100px 60px;
-		    background-repeat: no-repeat;
-		    background-position: center;
-		    font-size: 30px;
-		    color: #FFF;
-		    font-family: 'Gloria Hallelujah', cursive;
-		    padding: 20px;
-		
-		    text-decoration: none;
-		
-		    width: 100px;
-		    height: 60px;
-		    border: none;
-		    outline:none;
-		    cursor: pointer;     
-		    vertical-align: middle; /* align the text vertically centered */
-		    //background-color:transparent;
-		}
-	
-		.menu-button {
-			width: 200px;
-			height: 100px;
-	       	border: none;
-			outline:none;
-	    	cursor: pointer;
-	    	vertical-align: middle;
-			background-color:transparent;
-		}
-	
-		.back-button {
-	        background-image: url(/assets/images/back3.png);
-	        background-repeat: no-repeat;
-	        background-position: center;
-			font-size: 30px;
-			color: #FFF;
-	        font-family: 'Gloria Hallelujah', cursive;
-			padding: 20px;
-	
-			text-decoration: none;
-	
-			width: 100px;
-			height: 60px;
-	        border: none;
-			outline:none;
-	  		cursor: pointer;
-	  		vertical-align: middle;
-			//background-color:transparent;
-			display: none;
-		}
-	
-		.back-button a {
-			text-decoration: none;
-		}
+
 	}	
 </style>
 
@@ -808,17 +386,17 @@
     if(!isEmpty(gameId)) {
     	storyId = [[${game == null ? '' : game.storyId}]];
     	console.log('storyId ' + storyId);
+    	
+        var players = [[${game == null || game.players == null ? 0 : #lists.size(game.players)}]];
+        
+        console.log('players ' + players);
+        
+        var gameCast = [[${game == null || game.players == null ? 0 : #lists.size(game.gameCast)}]];
+        
+        console.log('gameCast ' + gameCast);    	
     }
 
     console.log('gameId ' + gameId);
-    
-    var players = [[${#lists.size(game.players)}]];
-    
-    console.log('players ' + players);
-    
-    var gameCast = [[${#lists.size(game.gameCast)}]];
-    
-    console.log('gameCast ' + gameCast);
 
     /*]]>*/
 
@@ -837,6 +415,8 @@ $( document ).ready(function() {
 	  		$(".menu li:first()").on("click",function() {
 	    			console.log( "clicked!" );
 	    			
+	    			$('.menu-button').hide();
+	    			$('.back-button').show();
 	   				$('.menu').hide();
 					$('.game').show();
 	  		});
@@ -865,24 +445,44 @@ $( document ).ready(function() {
 			/*<![CDATA[*/if(players < gameCast) {/*]]>*/
 				window.location = "/game/cast/" + gameId;
 			}
+			
+			window.location = "/game/cast/" + gameId;
 		});
 
+		$(".game li:nth(1)").on("click",function() {
+			/*<![CDATA[*/if(players == gameCast) {/*]]>*/
+				console.log('show scripts');
+				window.location = "/game/script/" + gameId;
+			}
+			
+			window.location = "/game/script/" + gameId;
+		});
+		
+		$(".game li:nth(2)").on("click",function() {
+			/*<![CDATA[*/if(players == gameCast) {/*]]>*/
+				console.log('show scripts');
+				window.location = "/game/clue/" + gameId;
+			}
+			
+			window.location = "/game/clue/" + gameId;
+		});
+		
 	});
 
 	$('.menu-button').on('click', function() {
 		console.log("menu-button");
 		
 		if(gameId != null) {
-			$('.menu-button').hide();
+			//$('.menu-button').hide();
 			$('.menu').show();
-			$('.back-button').show();
+			//$('.back-button').show();
 		}
 	});
 
 	$('.back-button').on('click', function() {
 		console.log("back-button");
 		$('.menu-button').show();
-		$('.menu').hide();
+		$('.menu').show();
 		$('.game').hide();
 		$('.back-button').hide();
 	});
@@ -913,9 +513,11 @@ $( document ).ready(function() {
 				<li>Clues</li>
 			</ul>
 		</div> <!-- end menu -->
+		
+		<div class="corner-logo"><div></div></div>
 	</div><!-- end container -->
 
-	<div class="corner-logo"><div></div></div>
+	
 
 </body>
 

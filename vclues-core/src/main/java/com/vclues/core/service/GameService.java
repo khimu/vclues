@@ -36,6 +36,7 @@ import com.vclues.core.entity.Cast;
 import com.vclues.core.entity.Hint;
 import com.vclues.core.entity.Scene;
 import com.vclues.core.entity.Script;
+import com.vclues.core.entity.Story;
 import com.vclues.core.entity.User;
 import com.vclues.core.mongo.repository.AnnouncementRepository;
 import com.vclues.core.mongo.repository.GameCastRepository;
@@ -192,7 +193,11 @@ public class GameService implements IGameService {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constant.DATE_FORMAT, Locale.US);
 		simpleDateFormat.setTimeZone(timeZone);	
 
-		//Story story = storyRepository.findOne(Long.parseLong(storyId));
+		Story story = storyRepository.findOne(Long.parseLong(storyId));
+		
+		/*
+		 * Get scene 1
+		 */
 		Scene scene = sceneRepository.getNextSceneByStoryIdAndPosition(Long.parseLong(storyId), 1);
 		
 		Date today = calendar.getTime();
@@ -201,10 +206,11 @@ public class GameService implements IGameService {
 		player.setUserId(userId);
 		player.setName(username);
 
+		/*
+		 * start at scene 1
+		 */
 		game.setSceneId(scene.getId());
-		
-		//game.setFrequency(Calendar.DATE);
-		//game.setName(story.getTitle());
+
 		game.setStarted(today);
 		game.setLastShown(today);
 		game.setStoryId(Long.parseLong(storyId));
@@ -257,13 +263,19 @@ public class GameService implements IGameService {
 			logger.info("User already choose a different character " + player.getUserId() + ".  Allowing user to choose a new character");
 		}
 		
+		Game game = gameRepository.findOne(gameId);
+		
+		Script script = scriptRepository.findScriptBySceneIdAndCastId(game.getSceneId(), Long.parseLong(castId));
+		Hint hint = hintRepository.getAllHintBySceneId(game.getSceneId());
+		
 		player.setCastId(Long.parseLong(castId));
 		player.setName(name);
 		player.setCastName(castName);
 		player.setUserId(userId);
-		
-		Game game = gameRepository.findOne(gameId);
-		
+		player.setScript(script);
+		player.setScriptId(script.getId());
+		player.setHintId(hint.getId());
+
 		/*
 		 * remove self from previous character selection
 		 */
@@ -421,5 +433,68 @@ public class GameService implements IGameService {
 		}
 
 		return null;
+	}
+	
+	public Player findPlayerByUserIdAndGameId(Long userId, String gameId) {
+		Player player = playerRepository.findPlayerByUserIdAndGameId(userId, gameId);
+		player.setScript(scriptRepository.findOne(player.getScriptId()));
+		player.setHint(hintRepository.findOne(player.getHintId()));
+		return player;
+	}
+	
+	public Player done(Long userId, String gameId) {
+		Game game = gameRepository.findOne(gameId);
+
+		Long count = playerRepository.countByGameIdAndDone(gameId, true);
+		
+		/*
+		 * all players are done with scene
+		 */
+		if(game.getGameCast().size() == count.intValue()) {
+			Scene currentScene = sceneRepository.findOne(game.getSceneId());
+			Scene nextScene = sceneRepository.getNextSceneByStoryIdAndPosition(game.getStoryId(), currentScene.getPosition() + 1);
+			
+			/*
+			 * set next scene (script/clues) for all players
+			 */
+			if(nextScene != null) {
+				Hint hint = hintRepository.findHintBySceneId(nextScene.getId());
+				List<Script> scripts = scriptRepository.getAllScriptsBySceneId(nextScene.getId());
+				
+				Map<Long, Script> castToScript = new HashMap<Long, Script>();
+				
+				for(Script s : scripts) {
+					castToScript.put(s.getCast().getId(), s);
+				}
+				
+				List<Player> players = playerRepository.findAllPlayersByGame(game);
+				
+				for(Player p : players) {
+					p.setHintId(hint.getId());
+					p.setScriptId(castToScript.get(p.getCastId()).getId());
+					p.setDone(false);
+					playerRepository.save(p);
+				}
+				
+				game.setSceneId(nextScene.getId());
+				
+			}
+			else {
+				game.setDone(true);
+			}
+			
+			gameRepository.save(game);
+			
+			return this.findPlayerByUserIdAndGameId(userId, gameId);
+		}
+
+		/*
+		 * not all players are done
+		 */
+		Player player = playerRepository.findPlayerByUserIdAndGameId(userId, gameId);
+		player.setDone(true);
+		playerRepository.save(player);
+		
+		return this.findPlayerByUserIdAndGameId(userId, gameId);
 	}
 }
