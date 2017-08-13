@@ -11,7 +11,7 @@ and (orientation : landscape) {
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: url(/assets/images/stories/story1/bg/MASTER_OF_FIRST_PAGE_FACE_LANDSCAPE_736x414.png) no-repeat left top fixed;
+		background: url(/assets/images/stories/story1/bg/MASTER_OF_FIRST_PAGE_FACE_LANDSCAPE_736x414_2.png) no-repeat left top fixed;
 		background-color: #FFFFFF !important;
 		display: block;
 		width: 100%;
@@ -25,7 +25,7 @@ and (orientation : landscape) {
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: url(/assets/images/stories/story1/bg/MASTER_OF_FIRST_PAGE_FACE_LANDSCAPE_736x414.png) no-repeat right top fixed;
+		background: url(/assets/images/stories/story1/bg/MASTER_OF_FIRST_PAGE_FACE_LANDSCAPE_736x414_2.png) no-repeat right top fixed;
 		background-color: #FFFFFF !important;
 		width: 100%;
 		height: 100%;
