@@ -1,14 +1,8 @@
--- CREATE DATABASE pleiadian;
-
--- CREATE USER 'pleiadianuser'@'localhost' IDENTIFIED BY 'pleiadianuserH1Li8';
--- GRANT ALL PRIVILEGES ON *.* TO 'pleiadianuser'@'localhost';
-
-
--- MySQL dump 10.13  Distrib 5.5.49, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.25, for osx10.6 (i386)
 --
--- Host: localhost    Database: vcluess
+-- Host: localhost    Database: vclues
 -- ------------------------------------------------------
--- Server version	5.5.49-0ubuntu0.14.04.1
+-- Server version	5.5.25-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -20,6 +14,14 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `vclues`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `vclues` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `vclues`;
 
 --
 -- Table structure for table `account_type`
@@ -119,37 +121,41 @@ INSERT INTO `business` VALUES (1,'RVGzILeTOQyQdFxTRqDr',NULL,NULL,NULL,NULL,NULL
 UNLOCK TABLES;
 
 --
--- Table structure for table `story`
+-- Table structure for table `cast`
 --
 
-DROP TABLE IF EXISTS `story`;
+DROP TABLE IF EXISTS `cast`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `story` (
+CREATE TABLE `cast` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  
-  `title` varchar(100) DEFAULT NULL,
-  `synapsis` varchar(250) DEFAULT NULL,
-  `answer` varchar(250) DEFAULT NULL,
-  `video` varchar(250),
-  `audio` varchar(250),
-  `image` varchar(250) DEFAULT NULL,
-  `size` int(11) DEFAULT '0',
-  `active` smallint(1) DEFAULT '1',
+  `story_id` bigint(11) NOT NULL,
+  `role` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `gender` varchar(50) NOT NULL,
+  `description` varchar(250) NOT NULL,
   `version` smallint(1) DEFAULT '0',
+  `active` smallint(1) DEFAULT '1',
   `updated` datetime DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `position` int(11) DEFAULT NULL,
+  `video` varchar(250) DEFAULT NULL,
+  `audio` varchar(250) DEFAULT NULL,
+  `image` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKh304bcalk1knemawxkrwjvvs0` (`story_id`),
+  CONSTRAINT `FKh304bcalk1knemawxkrwjvvs0` FOREIGN KEY (`story_id`) REFERENCES `story` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `story`
+-- Dumping data for table `cast`
 --
 
-LOCK TABLES `story` WRITE;
-/*!40000 ALTER TABLE `story` DISABLE KEYS */;
-/*!40000 ALTER TABLE `story` ENABLE KEYS */;
+LOCK TABLES `cast` WRITE;
+/*!40000 ALTER TABLE `cast` DISABLE KEYS */;
+INSERT INTO `cast` VALUES (92,19,'Model','Holly Harrison','Female','Tyler\'s girl friend.  A fashion model who wants to unseat kim kardashian',0,0,NULL,'2017-08-08 08:57:22',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_001_FADED.png'),(93,19,'Victim','Boris Polenko','Male','The victim.  A russian billionaire olygarch who financed arms and movies',0,0,NULL,'2017-08-08 08:59:30',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_004_FADED.png'),(94,19,'Captain','AnneBelle Hodges','Female','The stern but an accomplished ships captain.  also Boris\' ex-lover',0,0,NULL,'2017-08-08 09:01:13',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_011_FADED.png'),(95,19,'Therapist','Abbie Greene','Female','Says she is a therapist but is actually a very high-priced hooker',0,0,NULL,'2017-08-08 09:02:21',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_002_FADED.png'),(96,19,'','Bill Swinson','Male','The ship\'s purser who has been quietly embezzling the guests\' funds',0,0,NULL,'2017-08-08 09:04:16',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_003_FADED.png'),(97,19,'','Yuri','Female','Polenko\'s bodyguard who says he was sleeping during the murder but with who?',0,0,NULL,'2017-08-08 09:05:52',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_006_FADED.png'),(98,19,'Star','Amber Storm','Female','Movie star.  Face of revlon.  Body by gunther.  claws by henckel',0,0,NULL,'2017-08-08 09:06:52',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_002_FADED.png'),(99,19,'Friend','Eve Harrison','Female','Amber\'s friend from Australia who wants to live her life',0,0,NULL,'2017-08-08 09:08:21',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_002_FADED.png'),(100,19,'Nerd','Tyler Creed','Male','Internet visionary who has lost the vision.  Sold company for 6 billion.  Bored',0,0,NULL,'2017-08-08 09:09:26',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_004_FADED.png'),(101,19,'Powerful','Maurice Laturre','Male','One of the most powerful and successful film producers.  impotent',0,0,NULL,'2017-08-08 09:12:10',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_003_FADED.png'),(102,19,'Lottery Winner','Angus Coldwater','Male','Winner of the irish sweepstakes.  Soccer lover',0,0,NULL,'2017-08-08 09:13:53',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_009_FADED.png'),(103,19,'Fitness Coach','Gunther Voss','Male','The fitness coach.  Austrain.  Polenko promised to finance his girl',0,0,NULL,'2017-08-08 09:15:45',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_010_FADED.png'),(104,19,'','Miranda Gold','Female','Billionaire widdow.  A black wider.  She mates and kills',0,0,NULL,'2017-08-08 09:16:46',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_001_FADED.png'),(105,19,'','Marty Wemple','Male','The ships entertainment',0,0,NULL,'2017-08-08 09:17:44',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_001_FADED.png'),(106,19,'','Mandy Monarch','Female','A stow-away party girl',0,0,NULL,'2017-08-08 09:19:36',NULL,'','','/assets/images/stories/story1/cast/SUSPECT_012_FADED.png');
+/*!40000 ALTER TABLE `cast` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -170,12 +176,47 @@ CREATE TABLE `hibernate_sequence` (
 
 LOCK TABLES `hibernate_sequence` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (13),(13),(13),(13),(13),(13);
+INSERT INTO `hibernate_sequence` VALUES (115),(115),(115),(115),(115),(115);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `permission`
+-- Table structure for table `hint`
+--
+
+DROP TABLE IF EXISTS `hint`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hint` (
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `scene_id` bigint(11) NOT NULL,
+  `text` varchar(250) DEFAULT NULL,
+  `active` smallint(1) DEFAULT '1',
+  `version` smallint(1) DEFAULT '0',
+  `updated` datetime DEFAULT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `position` int(11) DEFAULT NULL,
+  `video` varchar(250) DEFAULT NULL,
+  `audio` varchar(250) DEFAULT NULL,
+  `image` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKm4t639fom1es38fcy2404v04y` (`scene_id`),
+  CONSTRAINT `FKm4t639fom1es38fcy2404v04y` FOREIGN KEY (`scene_id`) REFERENCES `scene` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hint`
+--
+
+LOCK TABLES `hint` WRITE;
+/*!40000 ALTER TABLE `hint` DISABLE KEYS */;
+INSERT INTO `hint` VALUES (108,37,'lipstick stain on champaign class',0,0,NULL,'2017-08-13 00:01:07',1,'','','');
+/*!40000 ALTER TABLE `hint` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `scene`
 --
 
 DROP TABLE IF EXISTS `scene`;
@@ -184,31 +225,34 @@ DROP TABLE IF EXISTS `scene`;
 CREATE TABLE `scene` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `story_id` bigint(11) NOT NULL,
-  `image` varchar(250) NULL,
-  `text` varchar(250) NULL,
-  `sound` varchar(250) NULL,
-  `position` int(11) DEFAULT '0',
-  `video` varchar(100),
-  `audio` varchar(100),
-  `image` varchar(100) DEFAULT NULL,  
+  `image` varchar(250) DEFAULT NULL,
+  `text` varchar(250) DEFAULT NULL,
+  `sound` varchar(100) DEFAULT NULL,
   `active` smallint(1) DEFAULT '1',
   `version` smallint(1) DEFAULT '0',
   `updated` datetime DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `position` int(11) DEFAULT NULL,
+  `video` varchar(250) DEFAULT NULL,
+  `audio` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK5wgvktdlgqbhklchxxvyknriu` (`story_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-	
 --
 -- Dumping data for table `scene`
 --
 
 LOCK TABLES `scene` WRITE;
 /*!40000 ALTER TABLE `scene` DISABLE KEYS */;
+INSERT INTO `scene` VALUES (36,20,NULL,'All about the girl',NULL,0,0,NULL,'2017-06-03 07:45:58',1,NULL,NULL),(37,19,NULL,'Bad boy scene',NULL,0,0,NULL,'2017-06-03 07:50:24',1,NULL,NULL),(38,19,NULL,'Bad girl scene',NULL,0,0,NULL,'2017-06-03 07:50:36',2,NULL,NULL),(39,19,NULL,'Blood everywhere',NULL,0,0,NULL,'2017-06-03 07:50:49',3,NULL,NULL),(43,19,NULL,'All about the suspects',NULL,0,0,NULL,'2017-06-03 09:09:37',4,NULL,NULL),(66,63,NULL,'Takes place at Poke Time',NULL,0,0,NULL,'2017-06-05 03:50:00',0,NULL,NULL),(67,63,NULL,'Takes place in Vancouver next door Pho Restaurant.',NULL,0,1,NULL,'2017-06-05 04:26:51',1,NULL,NULL),(76,74,NULL,'Cinai Medical',NULL,0,0,NULL,'2017-06-05 06:04:41',1,NULL,NULL);
 /*!40000 ALTER TABLE `scene` ENABLE KEYS */;
 UNLOCK TABLES;
 
+--
+-- Table structure for table `script`
+--
 
 DROP TABLE IF EXISTS `script`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -216,78 +260,68 @@ DROP TABLE IF EXISTS `script`;
 CREATE TABLE `script` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `scene_id` bigint(11) NOT NULL,
-  `cast_id` bigint(11) NOT NULL,\
-  `text` varchar(250) NULL,
-  `sound` varchar(100) NULL,
-  `secret` varchar(250) NULL,
-  `video` varchar(250),
-  `audio` varchar(250),
-  `image` varchar(250) DEFAULT NULL,  
-  `position` int(11) DEFAULT '0',
+  `cast_id` bigint(11) NOT NULL,
+  `image` varchar(250) DEFAULT NULL,
+  `text` varchar(250) DEFAULT NULL,
+  `sound` varchar(100) DEFAULT NULL,
+  `secret` varchar(250) DEFAULT NULL,
   `active` smallint(1) DEFAULT '1',
   `version` smallint(1) DEFAULT '0',
   `updated` datetime DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `position` int(11) DEFAULT NULL,
+  `video` varchar(250) DEFAULT NULL,
+  `audio` varchar(250) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKhextbx8tumb6vm80pjh4m47fv` (`cast_id`),
+  KEY `FKl9tlxsl8ra8aj4oif37ruhdxm` (`scene_id`),
+  CONSTRAINT `FKhextbx8tumb6vm80pjh4m47fv` FOREIGN KEY (`cast_id`) REFERENCES `cast` (`id`),
+  CONSTRAINT `FKl9tlxsl8ra8aj4oif37ruhdxm` FOREIGN KEY (`scene_id`) REFERENCES `scene` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `script`
+--
 
-DROP TABLE IF EXISTS `hint`;
+LOCK TABLES `script` WRITE;
+/*!40000 ALTER TABLE `script` DISABLE KEYS */;
+INSERT INTO `script` VALUES (107,37,92,'','show me the money',NULL,'mistress to someone',0,0,NULL,'2017-08-13 00:00:41',1,'',''),(109,37,93,'','duh duh duh',NULL,'lalalala',0,0,NULL,'2017-08-13 00:01:25',1,'',''),(110,37,94,'','You are hungry for attention.  Let other\'s know',NULL,'blond hair is dye',0,0,NULL,'2017-08-13 00:02:36',1,'',''),(111,37,95,'','Find a way to make some money',NULL,'Had her vision corrected but still wears glasses',0,0,NULL,'2017-08-13 00:03:25',1,'',''),(112,37,96,'','look for someone to sleep with',NULL,'gender confused',0,0,NULL,'2017-08-13 00:04:00',1,'',''),(113,37,97,'','is grouchy',NULL,'wouldn\'t hurt a fly',0,0,NULL,'2017-08-13 00:04:26',1,'',''),(114,37,98,'','try to be the center of attention',NULL,'is really insecure',0,0,NULL,'2017-08-13 00:04:55',1,'','');
+/*!40000 ALTER TABLE `script` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `story`
+--
+
+DROP TABLE IF EXISTS `story`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `hint` (
+CREATE TABLE `story` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `scene_id` bigint(11) NOT NULL,
-  `text` varchar(250) NULL,
-  `position` int(11) DEFAULT '0',
-  `video` varchar(250),
-  `audio` varchar(250),
-  `image` varchar(250) DEFAULT NULL,  
+  `image` varchar(250) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `synapsis` varchar(250) DEFAULT NULL,
+  `answer` varchar(250) DEFAULT NULL,
+  `size` int(11) DEFAULT '0',
   `active` smallint(1) DEFAULT '1',
   `version` smallint(1) DEFAULT '0',
   `updated` datetime DEFAULT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `video` varchar(250) DEFAULT NULL,
+  `audio` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
 --
--- Table structure for table `cast`
---
-
-DROP TABLE IF EXISTS `cast`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cast` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `story_id` bigint(11) NOT NULL,
-  `role` varchar(50) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `gender` varchar(50) NOT NULL,
-  `description` varchar(250) NOT NULL,
-  `video` varchar(250),
-  `audio` varchar(250),
-  `image` varchar(250) DEFAULT NULL,  
-  `position` int(11) default '0',
-  `version` smallint(1) DEFAULT '0',
-  `active` smallint(1) DEFAULT '1',
-  `updated` datetime DEFAULT NULL,
-  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
-	
---
--- Dumping data for table `cast`
+-- Dumping data for table `story`
 --
 
-LOCK TABLES `cast` WRITE;
-/*!40000 ALTER TABLE `cast` DISABLE KEYS */;
--- INSERT INTO `cast` VALUES (1,'OPEN',0,1,NULL,'2017-02-24 08:43:57'),(2,'PENDING',0,1,NULL,'2017-02-24 08:43:57'),(3,'IN_PROGRESS',0,1,NULL,'2017-02-24 08:43:57'),(4,'RESOLVED',0,1,NULL,'2017-02-24 08:43:57'),(5,'DECLINED',0,1,NULL,'2017-02-24 08:43:57'),(6,'COMPLETED',0,1,NULL,'2017-02-24 08:43:57');
-/*!40000 ALTER TABLE `cast` ENABLE KEYS */;
+LOCK TABLES `story` WRITE;
+/*!40000 ALTER TABLE `story` DISABLE KEYS */;
+INSERT INTO `story` VALUES (19,NULL,'Murder She Wrote','mysterious hands','my hands',1,0,0,NULL,'2017-06-02 08:11:15',NULL,NULL),(20,NULL,'Sherlock Holmes','detective','the nurse',20,0,0,NULL,'2017-06-02 08:11:48',NULL,NULL),(63,NULL,'Rock The Craddle','Baby mysterious disappears.  Where did she go.','Grandmother had the baby all this time.lalala',5,0,1,NULL,'2017-06-05 05:49:06',NULL,NULL),(74,NULL,'Missing Girl','Not sure what to share here','No one did it.',33,0,0,NULL,'2017-06-05 06:03:45',NULL,NULL),(88,NULL,'Silk Road','No Where land','Los Angeles',3,0,0,NULL,'2017-06-06 07:32:57',NULL,NULL),(90,'https://www.google.com/search?q=models&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjNwb-Li6vUAhVXzGMKHWDWA6UQ_AUIBigB&biw=1117&bih=765#imgrc=weokerLhrW77HM:','Example','eee','aaa',5,0,0,NULL,'2017-06-07 06:43:32','https://www.youtube.com/watch?v=RsWCFGmpJHw','');
+/*!40000 ALTER TABLE `story` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -317,7 +351,7 @@ CREATE TABLE `user` (
   `parent_id` bigint(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -326,7 +360,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (2,1,4095,NULL,'khim','ung','kim2kim@gmail.com','$2a$10$gySpXxWzGqdgVD08v0IRSOCY9GdJKnrbbtLAOMIx0.sp3GOKOImCu',1,'oAuPjfdhJlHnTNfKSZkB',NULL,NULL,0,1,NULL,'2017-02-24 08:59:58','Partner',NULL),(3,1,292,NULL,NULL,NULL,'khim.ung@yahoo.com','$2a$10$AP3Wa0dLoDpgYE.3Lc5DA.sHwZyn7PEUogepXFx4j.l36.EU95eBG',0,NULL,NULL,NULL,0,0,NULL,'2017-02-26 12:45:28','User',NULL),(4,1,292,NULL,NULL,NULL,'khimung.collabtive@gmail.com','$2a$10$/iIWFc9Dlyu33B7ELzJbG.2qGRVdieKUE.bZg8T2qb4L6j4irBM5O',1,NULL,NULL,NULL,1,0,NULL,'2017-02-26 12:45:38','User',NULL),(6,5,4095,NULL,NULL,NULL,'genieloungecafe@gmail.com','$2a$10$fxmSmPDAW05Zq1dp2inv0uHPHgpP6PV5NEMcjth3ZduSR8x3OZwsW',1,'mSOoGEQKbPDpFpziDKHS',NULL,NULL,1,0,NULL,'2017-02-27 03:15:09','Partner',NULL),(8,7,4095,NULL,NULL,NULL,'guptamanav@gmail.com','$2a$10$p73EzT2hmIyRIqZolcoOlupD0TcVM.xPeeohFZW7xx2n8hHAt95N2',1,'pwdqOCDEOoXaOahxkCSf',NULL,NULL,1,0,NULL,'2017-02-27 03:23:04','User',NULL),(10,9,4095,NULL,NULL,NULL,'mgupta249@gmail.com','$2a$10$TG1fPWDLZa3anWMDgf.pbuS3HC4i1RIkcCw.X7WPFfVeKfCQOPa02',1,'daMIshdCIRRgsjJZSjxC',NULL,NULL,1,0,NULL,'2017-02-27 03:25:16','Partner',NULL),(12,11,4095,NULL,NULL,NULL,'Roberteng.sn@gmail.com','$2a$10$CnYjDRTvIUhi2Dw9zOz3/undqpuOxQLZTcXgPI7FdvJne8wKB9TDy',0,'JWTRtNbFXaSXMmqaArqL',NULL,NULL,0,0,NULL,'2017-02-27 03:32:30','Merchant',NULL);
+INSERT INTO `user` VALUES (17,0,NULL,NULL,NULL,'kim2kim@gmail.com','$2a$10$30SI8wXQUQivoDcNOAu5peAwixlj4Hr4s3RXFfizoFb4gujXl0di.',1,'hpwcayYsIQBeoNRcaVtn',NULL,NULL,1,0,NULL,'2017-06-02 05:46:08',NULL,17),(84,0,NULL,NULL,NULL,'khimung@gmail.com','$2a$10$30SI8wXQUQivoDcNOAu5peAwixlj4Hr4s3RXFfizoFb4gujXl0di.',1,'GlNKVwWxdagzZPfdVWMl',NULL,NULL,0,0,NULL,'2017-06-06 06:44:30',NULL,84),(85,0,NULL,NULL,NULL,'imurdermystery@gmail.com','$2a$10$nPaiv6Hc0TpquYWiLDmCnus7H/SPLc9B3E5mU0nGZsKb7rjdDS0j.',0,'CAaHtqzdCYdycHhrmfgK',NULL,NULL,0,0,NULL,'2017-06-06 06:44:30',NULL,85),(86,0,NULL,NULL,NULL,'moreinvites@gmail.com','$2a$10$1cSx9yY2iR6Gc3KaQ4cNZ.RCKlJuSEGAsjvIs0EhDMZCoDq7joV7y',0,'qqNpIKnxOLlscCiqTIvD',NULL,NULL,0,0,NULL,'2017-06-06 06:53:01',NULL,86),(87,0,NULL,NULL,NULL,'moremoremore@gmail.com','$2a$10$nBEPAMYcNUtWxAtJX42KmOsKcj5XGnSVToWbxfaMLMfCJUp7rYSoG',0,'LbtagQnmEYUHaZGwmzzT',NULL,NULL,0,0,NULL,'2017-06-06 06:53:19',NULL,87),(91,0,NULL,NULL,NULL,'','$2a$10$t3Rq/nEIBRivjt3ugiUG2.or.V2rfsB3Nc1rtvVJ7baaZ0n5sHaee',0,'HEnePEUcqxiNgWVXgGFr',NULL,NULL,0,0,NULL,'2017-08-04 08:29:30',NULL,91);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,7 +384,7 @@ CREATE TABLE `user_authority` (
 
 LOCK TABLES `user_authority` WRITE;
 /*!40000 ALTER TABLE `user_authority` DISABLE KEYS */;
-INSERT INTO `user_authority` VALUES (2,3),(3,2),(4,2),(6,2),(8,2),(10,3),(12,2);
+INSERT INTO `user_authority` VALUES (17,3),(84,2),(85,2),(86,2),(87,2),(91,2);
 /*!40000 ALTER TABLE `user_authority` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -363,4 +397,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-26 22:50:49
+-- Dump completed on 2017-08-13  3:23:42

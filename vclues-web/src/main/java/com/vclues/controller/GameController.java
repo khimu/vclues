@@ -100,10 +100,44 @@ public class GameController extends BaseController {
 		Game game = gameService.getGameCast(gameId);
 
 		model.addAttribute("casts", game.getGameCast());
+		
+		Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
+
+		model.addAttribute("player", player);
         
 		return "cast";
     }
     
+    /*
+     * user has selected a murderer
+     */
+    @GetMapping("/murderer/{gameId}/{castId}/{castName}")
+    public String murderer(@PathVariable("gameId") String gameId, @PathVariable("castId") String castId, @PathVariable("castName") String castName, Model model) {
+    	logger.info("In add game");
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+
+		Game game = gameService.getGameCast(gameId);
+
+		model.addAttribute("casts", game.getGameCast());
+		
+		Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
+		player.setMurdererId(Long.parseLong(castId));
+		
+		gameService.savePlayer(player);
+		
+		logger.info("murderer saved with " + castId);
+
+		model.addAttribute("player", player);
+		
+		logger.info("murderer id " + player.getMurdererId());
+        
+		return "cast";
+    }  
+
     /*
      * user has chosen a character and now we're saving the player information
      */
@@ -120,9 +154,13 @@ public class GameController extends BaseController {
 		
 		Game game = gameService.getGameCast(gameId);
 
-		model.addAttribute("game", game);
+		model.addAttribute("casts", game.getGameCast());
+		
+		Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
+
+		model.addAttribute("player", player);
         
-		return "menu";
+		return "cast";
     }    
     
     /*
@@ -138,8 +176,11 @@ public class GameController extends BaseController {
 			return "redirect:/login";
 		}
 
-		Game game = new Game();
+		Story story = storyService.getStory(Long.parseLong(storyId));
 		
+		Game game = new Game();
+		game.setCount(story.getSize());
+		game.setName(story.getTitle());
 		model.addAttribute("game", game);
 		
 		model.addAttribute("storyId", storyId);

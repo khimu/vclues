@@ -12,12 +12,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
+import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.DefaultErrorAttributes;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -30,13 +30,11 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.context.request.RequestAttributes;
 
-import com.vclues.core.storage.StorageProperties;
-
 @Configuration
 @ComponentScan({"com.vclues","com.vclues.core", "de.frontierpsychiatrist.example.oauth.domain", "it.ozimov.springboot"})
 @EnableAsync
 @SpringBootApplication(exclude = { MongoDataAutoConfiguration.class, DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class,
-		DataSourceTransactionManagerAutoConfiguration.class })
+		DataSourceTransactionManagerAutoConfiguration.class, EmbeddedMongoAutoConfiguration.class })
 @ImportResource({ "classpath*:spring/database.xml","classpath*:spring/mail-context.xml"})
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory",
 transactionManagerRef = "transactionManager", basePackages = "com.vclues.core.repository")

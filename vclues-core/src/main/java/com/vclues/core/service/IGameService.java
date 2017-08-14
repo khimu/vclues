@@ -57,4 +57,6 @@ public interface IGameService {
 	public Game getGameCast(String gameId);
 	
 	public List<String> sendInviteEmail(String email, String emails, String gameId);
+	
+	public void savePlayer(Player player);
 }

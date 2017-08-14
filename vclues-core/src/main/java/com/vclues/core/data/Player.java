@@ -38,10 +38,8 @@ public class Player extends Base {
 	@Field(value = "game")
 	private Game game;
 	
-	@DBRef
-	@Indexed(unique = false)
-	@Field(value = "guess")
-	private Guess guess;
+	@Field(value = "murderer_id")
+	private Long murdererId;
 
 	@Field(value = "cast_name")
 	private String castName;
@@ -163,12 +161,12 @@ public class Player extends Base {
 		this.announcements = announcements;
 	}
 
-	public Guess getGuess() {
-		return guess;
+	public Long getMurdererId() {
+		return murdererId;
 	}
 
-	public void setGuess(Guess guess) {
-		this.guess = guess;
+	public void setMurdererId(Long murdererId) {
+		this.murdererId = murdererId;
 	}
 
 	public Long getScriptId() {

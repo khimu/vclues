@@ -48,18 +48,22 @@
                 width: 320px;
                 height: 568px;
             }
+            
+            .game-header {
+            	padding-top: 50px;
+            }
 
 			.postit-block {
 				width: 220px;
 				margin: 5px auto 10px auto;
 			}
 			            
-			.postit-block h1 {
+			.postit-block h3 {
 				text-align: center;
-				font-size: 30px;
+				font-size: 20px;
 				text-transform: uppercase;
-				padding-top: 35px;
-				margin-bottom: 30px;
+				padding-top: 5px;
+				padding-bottom: 5px;
 				font-weight: bolder;
 			}
 			
@@ -95,9 +99,9 @@
 		and (orientation : portrait) { 
             
             body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;            
+				background: url('/assets/images/redbg.png') no-repeat;
+				background-color:black; 
+				padding-top:60px;            
                 background-repeat: no-repeat;
                 background-position: center;
                 background-size: 375px 667px;
@@ -134,13 +138,17 @@
 				width: 250px;
 				margin: 5px auto 10px auto;
 			}
+			
+            .game-header {
+            	padding-top: 50px;
+            }			
 			            
-			.postit-block h1 {
+			.postit-block h3 {
 				text-align: center;
-				font-size: 30px;
+				font-size: 20px;
+				padding-top: 15px;
+				padding-bottom: 15px;
 				text-transform: uppercase;
-				padding-top: 50px;
-				margin-bottom: 30px;
 				font-weight: bolder;
 			}
 			
@@ -230,10 +238,14 @@
 				width: 350px;
 				margin: 0 0 0 25%;
 			}
+			
+			.game-header {
+            	
+            }
 			            
-			.postit-block h1 {
+			.postit-block h3 {
 				text-align: center;
-				font-size: 30px;
+				font-size: 14px;
 				text-transform: uppercase;
 				font-weight: bolder;
 			}
@@ -307,8 +319,12 @@
 				width: 350px;
 				margin: 0 0 0 25%;
 			}
-			            
-			.postit-block h1 {
+            
+            .game-header {
+            	padding-top: 50px;
+            }
+            			            
+			.postit-block h3 {
 				text-align: center;
 				font-size: 30px;
 				padding-top: 100px;
@@ -360,7 +376,7 @@
 				margin: 0 0 0 37%;
 			}
 			            
-			.postit-block h1 {
+			.postit-block h3 {
 				text-align: center;
 				font-size: 30px;
 				padding-top: 100px;
@@ -449,7 +465,7 @@
 
 		<div id="postit_outer">
 				<div class="postit-block">
-			        	<h1>Add Game</h1>
+			        	<h3 class="game-header">Play Game</h3>
 			            <div class="error"></div>
 			            
 						<form class="text-left" th:action="@{|/game/select/${storyId}|}" th:object="${game}" th:method="POST">
@@ -458,15 +474,15 @@
 							    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
 							</ul>		
 							
-							<input type="text" class="form-control" id="order" th:field="*{name}" placeholder="Group Name" th:errorclass="fieldError"/>			
-							<input type="text" class="form-control" id="count" th:field="*{count}" placeholder="Number of Players"/>
-		
+							<h3 th:text="${game.name}"></h3>
+							<h3>Requires <span th:text="${game.count}"> Characters</span></h3>
+							
 							<div>
 								<div>
 									<div class="form-group">
 										<label for="invites">Invite Emails</label>
 										
-										<textarea  rows="3" cols="5" class="form-control" id="invites" th:field="*{invites}" placeholder="player1@gmail.com, player2@gmail.com">
+										<textarea  rows="4" cols="5" class="form-control" id="invites" th:field="*{invites}" placeholder="player1@gmail.com, player2@gmail.com">
 										
 										</textarea>
 									</div>

@@ -497,4 +497,9 @@ public class GameService implements IGameService {
 		
 		return this.findPlayerByUserIdAndGameId(userId, gameId);
 	}
+	
+	public void savePlayer(Player player) {
+		logger.info("murderer id is " + player.getMurdererId());
+		playerRepository.save(player);
+	}
 }

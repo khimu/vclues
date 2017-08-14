@@ -8,6 +8,9 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+/*
+ * not used
+ */
 @XmlRootElement
 @Document(collection = "guess")
 public class Guess extends Base {

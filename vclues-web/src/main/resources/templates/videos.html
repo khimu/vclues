@@ -437,7 +437,8 @@ function next() {
 				<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''" th:class="${iterStat.count} == 1 ? 'active' : ''">
 					<iframe id="trailer-player" src="https://www.youtube.com/embed/z3eHd87dx6M?rel=0&amp;wmode=opaque&amp;iv_load_policy=3&amp;showinfo=0&amp;enablejsapi=1&amp;version=3&amp;playerapiid=ytplayer" width="100%" height="100%" frameborder="0" allowfullscreen=""></iframe>
 					<div class="description">
-						<span th:text="${story.title}"></span>
+						<h3 th:text="${story.title}"></h3>
+						<p th:text="${story.synapsis}"></p>
 						<br/>
 						<a th:href="@{/game/select/{id}(id=${story.id})}"  class="btn btn-default">SELECT</a>
 					</div>	

@@ -221,7 +221,7 @@ and (orientation : portrait) {
 	
 	.bg_right_character_after_load {
 		top: 15% !important;
-		right: 10% !important;
+		right: 8% !important;
 	}
 	
 	#describe_about_site-left, #describe_about_site-right,

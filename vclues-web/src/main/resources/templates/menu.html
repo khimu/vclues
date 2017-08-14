@@ -376,6 +376,22 @@
 		}
 
 	}	
+	
+	/* COMMON */
+    .description {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: none;
+        z-index: 1000;
+        width: 200px;
+        height: 200px;
+    }	
+    
+    .description p {
+    	font-size: 20px;
+    }
+    
 </style>
 
 <script th:inline="javascript">
@@ -442,10 +458,6 @@ $( document ).ready(function() {
   		});
 
 		$(".game li:first()").on("click",function() {
-			/*<![CDATA[*/if(players < gameCast) {/*]]>*/
-				window.location = "/game/cast/" + gameId;
-			}
-			
 			window.location = "/game/cast/" + gameId;
 		});
 
@@ -486,6 +498,10 @@ $( document ).ready(function() {
 		$('.game').hide();
 		$('.back-button').hide();
 	});
+	
+    $('.description').on('click', function() {
+    	$('.description').hide();
+    });	
 
 });
 
@@ -513,6 +529,10 @@ $( document ).ready(function() {
 				<li>Clues</li>
 			</ul>
 		</div> <!-- end menu -->
+		
+        <div class="description">
+			<p>All players must select a character to start game</p>
+        </div>		
 		
 		<div class="corner-logo"><div></div></div>
 	</div><!-- end container -->
