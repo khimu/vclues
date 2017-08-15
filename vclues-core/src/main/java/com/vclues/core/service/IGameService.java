@@ -59,4 +59,7 @@ public interface IGameService {
 	public List<String> sendInviteEmail(String email, String emails, String gameId);
 	
 	public void savePlayer(Player player);
+	
+	public List<Player> getGuesses(String gameId);
+	
 }

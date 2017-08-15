@@ -10,13 +10,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 //@Controller
-public class SimpleErrorController implements ErrorController {
+public class SimpleErrorController extends BaseController implements ErrorController   {
 
 	private static final String PATH = "/error";
 
 
 	@Override
 	public String getErrorPath() {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+    	if (!(auth instanceof AnonymousAuthenticationToken)) {
+    		if(auth.getAuthorities().contains("ROLE_ADMIN")) {
+    			return "admin";
+    		}
+
+    		return "menu";
+    	}		
 		return PATH;
 	}
 	

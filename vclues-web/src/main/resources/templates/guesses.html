@@ -126,8 +126,8 @@
 		
 		/* iphone 6/6+ portrait 375x667 and 414x736*/
 		@media only screen 
-		and (min-device-width: 350px) 
-		and (max-device-width : 390px) 
+		and (min-device-width: 375px) 
+		and (max-device-width : 375px) 
 		and (orientation : portrait) { 
             body {
                 background-image: url("/assets/images/stories/story1/bg/VEGA_MURDER_BOARD_414x736.png");
@@ -141,8 +141,8 @@
 
 		/* iphone 6/6+ portrait 375x667 and 414x736*/
 		@media only screen 
-		and (min-device-width: 390px) 
-		and (max-device-width : 450px) 
+		and (min-device-width: 414px) 
+		and (max-device-width : 414px) 
 		and (orientation : portrait) { 
             body {
                 background-image: url("/assets/images/stories/story1/bg/VEGA_MURDER_BOARD_414x736.png");
@@ -243,7 +243,6 @@
 
         /* iphone 5 landscape */
 		@media only screen 
-		and (min-device-width : 550px) 
 		and (max-device-width : 570px) 
 		and (orientation : landscape) { 
             body {
@@ -258,8 +257,7 @@
 
         /* iphone 6/6+/nexus/galaxy landscape */
 		@media only screen 
-		and (min-device-width : 590px) 
-		and (max-device-width : 680px) 
+		and (max-device-width : 580px) 
 		and (orientation : landscape) { 
             body {
                 background-image: url("/assets/images/stories/story1/bg/VEGA_MURDER_BOARD_736x414.png");
@@ -273,7 +271,6 @@
            
         /* iphone 6/6+/nexus/galaxy landscape */
 		@media only screen 
-		and (min-device-width : 690px) 
 		and (max-device-width : 750px)  
 		and (orientation : landscape) { 
             body {
@@ -608,7 +605,7 @@
 
     console.log(gameId);
     
-    var listsize = [[${#lists.size(casts)}]];
+    var listsize = [[${#lists.size(players)}]];
     
     console.log('listsize: ' + listsize);
 
@@ -702,59 +699,37 @@ function next() {
 </head>
 
 <body>
+
         <div class="content">
                 <a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
                 <a href="javascript: next()" class="next"><img src="/assets/images/to-the-right.gif"/></a>
                 <a href="javascript: prev();" class="prev"><img src="/assets/images/to-the-left.gif"/></a>
                 
                 <input type="hidden" id="current" value="1" />
-                <input type="hidden" id="listsize" th:value="${#lists.size(casts)}" />
+                <input type="hidden" id="listsize" th:value="${#lists.size(players)}" />
 
-				<div th:each="c,iterStat : ${casts}" th:class="${iterStat.odd}? 'odd'">
+				<div th:each="c,iterStat : ${players}" th:class="${iterStat.odd}? 'odd'">
 					<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
 
-						<!-- IF CUSTOMER IS ANONYMOUS -->
-						<div th:if="${player.castId == null}">
+						<div th:if="${c.murdererId == null}">
 							<div>
-								<div class="character-name"><p th:text="${c.cast.name}"></p></div>
-								<!-- /assets/images/stories/story1/cast/SUSPECT_001_FADED.png -->
-								<a href="javascript: return false;"><img class="character" th:src="${c.cast.image}"/></a>
+								<div class="character-name"><p th:text="${c.name} has not guessed the murderer yet"></p></div>
 							</div>
-			
-			                <div class="description">
-			                        <ul>
-		                                <li>
-		                               		<p th:text="${c.cast.description}"></p>
-		                               		<!-- Choose this game /game/cast/{gameid}/{castid} -->
-		                               		<p><a th:href="@{/game/cast/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}" class="btn btn-default">Select</a><a href="javascript: closeDescription();" class="btn btn-default">Close</a></p>
-		                                </li>
-			                        </ul>
-			                </div>
 						</div>
 						<!-- ELSE -->
-						<div th:if="${player.castId != null}">
+						<div th:if="${c.murdererId != null}">
 							<div>
-								<div class="character-name" th:if="${c.username == null}">
-									<p th:text="${c.cast.name}"></p>
-									<p><a th:href="@{/game/murderer/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}" class="btn btn-default">Murderer</a></p>
+								<div class="character-name">
+									<p th:text="${c.name} believes ${c.guess.name} is the murderer"></p>
 								</div>
-								
-								<div class="character-name" th:if="${c.username != null}">
-									<p th:text="${c.username}"></p> <p>is</p> <p th:text="${c.cast.name}"></p>
-									<p><a th:href="@{/game/murderer/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}" class="btn btn-default">Murderer</a></p>
-								</div>
-								
-								<!-- /assets/images/stories/story1/cast/SUSPECT_001_FADED.png -->
-								<a href="javascript: return false;"><img class="character" th:src="${c.cast.image}"/></a>
+								<a href="javascript: return false;"><img class="character" th:src="${c.guess.image}"/></a>
 								
 							</div>
 			
 			                <div class="description">
 			                        <ul>
 		                                <li>
-		                                	<p th:text="${c.username}"></p>
-		                               		<p th:text="${c.cast.description}"></p>
-		                               		<!-- Choose this game /game/cast/{gameid}/{castid} -->
+		                               		<p th:text="${c.guess.description}"></p>
 		                               		<p><a href="javascript: closeDescription();" class="btn btn-default">Close</a></p>
 		                                </li>
 			                        </ul>
@@ -765,7 +740,7 @@ function next() {
                 
         </div><!-- end content -->
 		<img class="corner-logo" src="/assets/images/logo.png" width="100px" height="50px" />
-
+                
 </body>
 
 </html>

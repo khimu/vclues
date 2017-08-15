@@ -103,63 +103,32 @@
 		.menu li, .game li {
 			vertical-align: middle;
 			width: 150px;
-			height: 60px;
+			height: 30px;
 			font-style: bold;
 			margin-top: 30px;
 			color: white;
-			font-size: 35px;
+			font-size: 14px;
 			font-family: 'Gloria Hallelujah', cursive;
 		}
 		
-	}
-
-	/* iphone 6/6+ portrait 375x667 and 414x736*/
+	}	
+	
+	/* iphone 6+ portrait 375x667 and 414x736*/
 	@media only screen 
 	and (min-device-width: 350px) 
-	and (max-device-width : 400px) 
-	and (orientation : portrait) { 
-		
-		.container {
-			margin-top: 8%;
-		}
-		
-		.corner-logo {
-			left: 25%;
-		}
-		
-		.menu, .game {
-            left: 50%;
-        }
-
-		.menu li, .game li {
-			padding: 5px;
-			vertical-align: middle;
-			width: 150px;
-			height: 80px;
-			font-style: bold;
-			color: white;
-			font-size: 35px;
-			font-family: 'Gloria Hallelujah', cursive;
-		}
-		
-	}		
-	
-	/* iphone 6/6+ portrait 375x667 and 414x736*/
-	@media only screen 
-	and (min-device-width: 375px) 
-	and (max-device-width : 375px) 
+	and (max-device-width : 380px) 
 	and (orientation : portrait) { 
 	
 		body {
 			background: url('/assets/images/redbg.png') no-repeat;
-			background-size: 414px 736px;
+			background-size: 375px 667px;
 		}
 	}
 	
 	/* iphone 6/6+ portrait 375x667 and 414x736*/
 	@media only screen 
-	and (min-device-width: 414px) 
-	and (max-device-width : 414px) 
+	and (min-device-width: 380px) 
+	and (max-device-width : 450px) 
 	and (orientation : portrait) { 
 	
 		body {
@@ -171,7 +140,7 @@
 
 	/* iphone 6/6+ portrait 375x667 and 414x736*/
 	@media only screen 
-	and (min-device-width: 375px) 
+	and (min-device-width: 350px) 
 	and (max-device-width : 450px) 
 	and (orientation : portrait) { 
 
@@ -191,10 +160,10 @@
 			padding: 5px;
 			vertical-align: middle;
 			width: 150px;
-			height: 80px;
+			height: 50px;
 			font-style: bold;
 			color: white;
-			font-size: 35px;
+			font-size: 20px;
 			font-family: 'Gloria Hallelujah', cursive;
 		}
 		
@@ -202,22 +171,19 @@
 
        /* iphone 5 landscape */
 	@media only screen 
-	and (max-device-width : 567px) 
+	and (min-device-width : 550px) 
+	and (max-device-width : 580px) 
 	and (orientation : landscape) { 
 	
 		body {
 			background: url('/assets/images/redbg.png') no-repeat;
-			background-size: 568px 321px;
-		}
-		
-		.container {
-			margin-top: 4%;
+			background-size: 568px 320px;
 		}
 		
 		.corner-logo {
 			left: 0%;
 		}
-
+		
 		.menu, .game {
             left: 50%;
         }
@@ -226,10 +192,10 @@
 			padding: 5px;
 			vertical-align: middle;
 			width: 150px;
-			height: 50px;
+			height: 30px;
 			font-style: bold;
 			color: white;
-			font-size: 35px;
+			font-size: 14px;
 			font-family: 'Gloria Hallelujah', cursive;
 		}
 
@@ -237,7 +203,8 @@
 
        /* iphone 6/6+/nexus/galaxy landscape */
 	@media only screen 
-	and (max-device-width : 667px) 
+	and (min-device-width : 640px) 
+	and (max-device-width : 680px) 
 	and (orientation : landscape) { 
 	
 		body {
@@ -248,7 +215,8 @@
 	
        /* iphone 6/6+/nexus/galaxy landscape */
 	@media only screen 
-	and (max-device-width : 736px) 
+	and (min-device-width : 690px) 
+	and (max-device-width : 750px) 
 	and (orientation : landscape) { 
 	
 		body {
@@ -271,10 +239,10 @@
 			padding: 5px;
 			vertical-align: middle;
 			width: 150px;
-			height: 50px;
+			height: 30px;
 			font-style: bold;
 			color: white;
-			font-size: 35px;
+			font-size: 14px;
 			font-family: 'Gloria Hallelujah', cursive;
 		}
 
@@ -458,26 +426,48 @@ $( document ).ready(function() {
   		});
 
 		$(".game li:first()").on("click",function() {
-			window.location = "/game/cast/" + gameId;
+			/*<![CDATA[*/if(gameId != null) {/*]]>*/
+				window.location = "/game/cast/" + gameId;
+			}
 		});
 
 		$(".game li:nth(1)").on("click",function() {
+			// show scripts only after all characters are chosen
 			/*<![CDATA[*/if(players == gameCast) {/*]]>*/
 				console.log('show scripts');
 				window.location = "/game/script/" + gameId;
 			}
 			
+			// to be deleted
 			window.location = "/game/script/" + gameId;
 		});
 		
 		$(".game li:nth(2)").on("click",function() {
+			// show clues only if all players are chosen
 			/*<![CDATA[*/if(players == gameCast) {/*]]>*/
-				console.log('show scripts');
+				console.log('show clues');
 				window.location = "/game/clue/" + gameId;
 			}
 			
+			// to be deleted
 			window.location = "/game/clue/" + gameId;
 		});
+
+		$(".game li:nth(3)").on("click",function() {
+			console.log('guess murderer');
+			window.location = "/game/guess/" + gameId;
+		});
+		
+		$(".game li:nth(4)").on("click",function() {
+			// show clues only if all players are chosen
+			/*<![CDATA[*/if(gameId != null) {/*]]>*/
+				console.log('end game');
+				window.location = "/game/end/" + gameId;
+			}
+			
+			// to be deleted
+			window.location = "/game/end/" + gameId;
+		});		
 		
 	});
 
@@ -485,9 +475,7 @@ $( document ).ready(function() {
 		console.log("menu-button");
 		
 		if(gameId != null) {
-			//$('.menu-button').hide();
 			$('.menu').show();
-			//$('.back-button').show();
 		}
 	});
 
@@ -526,7 +514,9 @@ $( document ).ready(function() {
 			<ul>
 				<li>Characters</li>
 				<li>Scripts</li>
-				<li>Clues</li>
+				<li>Clues</li>	
+				<li>Guesses</li>			
+				<li>End Game</li>
 			</ul>
 		</div> <!-- end menu -->
 		

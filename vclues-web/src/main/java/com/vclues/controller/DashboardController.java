@@ -45,10 +45,19 @@ public class DashboardController extends BaseController {
 			return "redirect:/login";
 		}		
 
-    	model.addAttribute("stories", storyService.getAllStories());
-    	model.addAttribute("content", "welcome"); 
-    	model.addAttribute("title", "Dashboard");
-    	return "internal";
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	
+    	if (!(auth instanceof AnonymousAuthenticationToken)) {
+    		if(auth.getAuthorities().contains("ROLE_ADMIN")) {
+    	    	model.addAttribute("stories", storyService.getAllStories());
+    	    	model.addAttribute("content", "welcome"); 
+    	    	model.addAttribute("title", "Dashboard");
+    			return "admin";
+    		}
+
+    	}		
+    	
+		return "redirect:/";
     }
     
     @RequestMapping(value = {"/"}, method = RequestMethod.GET)

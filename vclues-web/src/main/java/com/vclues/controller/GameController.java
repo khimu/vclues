@@ -1,17 +1,17 @@
 package com.vclues.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.vclues.core.data.Game;
@@ -98,6 +98,10 @@ public class GameController extends BaseController {
 		}
 		
 		Game game = gameService.getGameCast(gameId);
+		
+		if(game == null) {
+			logger.info("game is null for " + user.getId());
+		}
 
 		model.addAttribute("casts", game.getGameCast());
 		
@@ -113,7 +117,7 @@ public class GameController extends BaseController {
      */
     @GetMapping("/murderer/{gameId}/{castId}/{castName}")
     public String murderer(@PathVariable("gameId") String gameId, @PathVariable("castId") String castId, @PathVariable("castName") String castName, Model model) {
-    	logger.info("In add game");
+    	logger.info("choose murderer");
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
@@ -139,11 +143,31 @@ public class GameController extends BaseController {
     }  
 
     /*
+     * Stop the game before its over
+     */
+    @GetMapping("/end/{gameId}")
+    public String end(@PathVariable("gameId") String gameId, Model model) {
+    	logger.info("end game");
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+
+		Game game = gameService.getGameCast(gameId);
+		game.setDone(true);
+		gameService.saveGame(game);
+        
+		return "menu";
+    }  
+    
+    
+    /*
      * user has chosen a character and now we're saving the player information
      */
     @GetMapping("/cast/{gameId}/{castId}/{castName}")
     public String addCast(@PathVariable("gameId") String gameId, @PathVariable("castId") String castId, @PathVariable("castName") String castName, Model model) {
-    	logger.info("In add game");
+    	logger.info("User choose a game " + gameId);
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
@@ -164,12 +188,31 @@ public class GameController extends BaseController {
     }    
     
     /*
+     * show all players guesses at end of game
+     */
+    @GetMapping("/guess/{gameId}")
+    public String guess(@PathVariable("gameId") String gameId, Model model) {
+    	logger.info("User guesses " + gameId);
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+
+		List<Player> players = gameService.getGuesses(gameId);
+
+		model.addAttribute("players", players);
+        
+		return "guesses";
+    }        
+    
+    /*
      * User has selected a story to play
      * show form for game information
      */
     @GetMapping("/select/{storyId}")
     public String showForm(@PathVariable("storyId") String storyId, Model model) {
-    	logger.info("In add game");
+    	logger.info("User selected a game");
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
@@ -227,11 +270,11 @@ public class GameController extends BaseController {
     } 
     
     /*
-     * Show the script for the player
+     * Show the clue for the player
      */
     @GetMapping("/clue/{gameId}")
     public String clue(@PathVariable("gameId") String gameId, Model model) {
-    	logger.info("In add game");
+    	logger.info("User view clue");
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
@@ -246,11 +289,11 @@ public class GameController extends BaseController {
     }     
     
     /*
-     * Game selection form submit
+     * player executed their script
      */
     @GetMapping("/done/{gameId}")
     public String done(@PathVariable("gameId") String gameId, Model model) {
-    	logger.info("In submit add game");
+    	logger.info("User submit end game");
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");

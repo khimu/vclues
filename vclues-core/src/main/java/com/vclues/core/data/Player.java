@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.vclues.core.entity.Cast;
 import com.vclues.core.entity.Hint;
 import com.vclues.core.entity.Script;
 
@@ -63,6 +64,9 @@ public class Player extends Base {
 
 	@Transient
 	private List<Hint> hints;
+	
+	@Transient
+	private Cast guess;
 
 	@Transient
 	private List<Announcement> announcements;
@@ -192,4 +196,14 @@ public class Player extends Base {
 	public void setHint(Hint hint) {
 		this.hint = hint;
 	}
+
+	public Cast getGuess() {
+		return guess;
+	}
+
+	public void setGuess(Cast guess) {
+		this.guess = guess;
+	}
+	
+	
 }

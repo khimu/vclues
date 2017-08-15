@@ -435,10 +435,33 @@ public class GameService implements IGameService {
 		return null;
 	}
 	
+	public List<Player> getGuesses(String gameId) {
+		Game game = gameRepository.findOne(gameId);
+		List<Player> players = playerRepository.findAllPlayersByGame(game);
+		
+		for(Player p : players) {
+			Cast cast = castRepository.findOne(p.getMurdererId());
+			p.setGuess(cast);
+		}
+		
+		return players;
+	}
+	
 	public Player findPlayerByUserIdAndGameId(Long userId, String gameId) {
 		Player player = playerRepository.findPlayerByUserIdAndGameId(userId, gameId);
-		player.setScript(scriptRepository.findOne(player.getScriptId()));
-		player.setHint(hintRepository.findOne(player.getHintId()));
+		
+		if(player == null) {
+			logger.error("player is null for " + userId + " gameId " + gameId);
+		}
+		
+		if(player.getScriptId() != null) {
+			player.setScript(scriptRepository.findOne(player.getScriptId()));
+		}
+		
+		if(player.getHintId() != null) {
+			player.setHint(hintRepository.findOne(player.getHintId()));
+		}
+		
 		return player;
 	}
 	
