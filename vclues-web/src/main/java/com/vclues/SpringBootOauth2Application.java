@@ -22,6 +22,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
@@ -30,16 +31,20 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.context.request.RequestAttributes;
 
+/*
+ * it.ozimov.springboot for email template
+ */
 @Configuration
 @ComponentScan({"com.vclues","com.vclues.core", "de.frontierpsychiatrist.example.oauth.domain", "it.ozimov.springboot"})
 @EnableAsync
 @SpringBootApplication(exclude = { MongoDataAutoConfiguration.class, DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class,
 		DataSourceTransactionManagerAutoConfiguration.class, EmbeddedMongoAutoConfiguration.class })
-@ImportResource({ "classpath*:spring/database.xml","classpath*:spring/mail-context.xml"})
+@ImportResource({ "classpath*:spring/database.xml","classpath*:spring/mail-context.xml", "classpath*:/cache-config.xml"})
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory",
 transactionManagerRef = "transactionManager", basePackages = "com.vclues.core.repository")
 //@EnableTransactionManagement - caused confusion between transactionManager and oauthTransactionManager
 @EnableCaching
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableMongoRepositories(basePackages = "com.vclues.core.mongo.repository")
 //@EnableConfigurationProperties(StorageProperties.class)
 public class SpringBootOauth2Application extends AsyncConfigurerSupport {
@@ -87,4 +92,45 @@ public class SpringBootOauth2Application extends AsyncConfigurerSupport {
         
     }
 
+    /*
+	@Autowired
+	RedisConnectionFactory connectionFactory;
+
+	private static final StringRedisSerializer STRING_SERIALIZER = new StringRedisSerializer();
+
+	@Bean
+	public JedisConnectionFactory connectionFactory() {
+		JedisConnectionFactory connectionFactory = new JedisConnectionFactory();
+		connectionFactory.setHostName("localhost");
+		connectionFactory.setPassword("JWZokBgsRrWxcNtluxDTCgjnskxSqMcvtOvH8hfigz7k.hRbcJ1V6nu9/Xt65OGJ$2a$10$ab1zdcB.1zdcB.CgjnskxSqMcvJWZokBgsRrWxcNtluxDT$2a$10$ab1zdcB.CgjnskxSqMcvtOvH8hfigz7k.hRbcJ1V6nu9/Xt65OGJ");
+		connectionFactory.setPort(7397);
+		return connectionFactory;
+	}
+
+	@Bean
+	public RedisTemplate<String, Long> longTemplate() {
+
+		RedisTemplate<String, Long> tmpl = new RedisTemplate<String, Long>();
+		tmpl.setConnectionFactory(connectionFactory);
+		tmpl.setKeySerializer(STRING_SERIALIZER);
+		tmpl.setValueSerializer(LongSerializer.INSTANCE);
+
+		return tmpl;
+	}
+	
+	
+
+	  @Bean
+	  public CacheManager cacheManager(RedisTemplate redisTemplate) {
+	    RedisCacheManager cacheManager = new RedisCacheManager(redisTemplate);
+
+	    cacheManager.setCacheNames(Arrays.asList(
+		          "byName", "byId", "getAllCastByStoryId", "findHintBySceneId", "getNextSceneByStoryIdAndPosition", 
+		          "getAllSceneByStoryId", "findScriptBySceneIdAndCastId", "storiesFindAll", "storiesFindAll", "storiesFindAll"));
+	    // Number of seconds before expiration. Defaults to unlimited (0)
+	    cacheManager.setDefaultExpiration(300);
+	    return cacheManager;
+	  }	
+	  */
+ 
 }

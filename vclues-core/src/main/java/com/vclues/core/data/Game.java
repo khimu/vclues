@@ -51,6 +51,7 @@ public class Game extends Base {
 	 * Cast assignment
 	 */
 	@DBRef
+	@Indexed
 	private List<GameCast> gameCast;
 
 	/*

@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.vclues.core.entity.Cast;
 import com.vclues.core.entity.Hint;
 
 @Transactional
@@ -22,5 +22,6 @@ public interface HintRepository extends JpaRepository<Hint, Long> {
 	
 	public List<Hint> getAllHintBySceneIdAndPositionLessThan(Long sceneId, Integer position);
 
+	@Cacheable(value = "findHintBySceneId")
 	public Hint findHintBySceneId(Long sceneId);
 }

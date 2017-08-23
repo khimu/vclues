@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,5 +18,6 @@ public interface CastRepository extends JpaRepository<Cast, Long> {
 	@Query("update Cast u set u.active = 0 where id = ?1")
 	public void deleteCast(Long castId);
 	
+	@Cacheable(value = "getAllCastByStoryId")
 	public List<Cast> getAllCastByStoryId(Long storyId);
 }

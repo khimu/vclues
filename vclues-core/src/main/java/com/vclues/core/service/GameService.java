@@ -92,6 +92,12 @@ public class GameService implements IGameService {
     @Value("${server.base.url}")
     private String baseUrl;
     
+    /*
+     * not used
+     * 
+     * (non-Javadoc)
+     * @see com.vclues.core.service.IGameService#findAllCurrentGames(java.lang.Long)
+     */
 	@Override
 	public List<Player> findAllCurrentGames(Long userId) {
 		// find all games that the user is involved in
@@ -118,6 +124,11 @@ public class GameService implements IGameService {
     	return players;
 	}
 	
+	/*
+	 * not used
+	 * (non-Javadoc)
+	 * @see com.vclues.core.service.IGameService#findAllUserGames(java.lang.Long)
+	 */
 	@Override
 	public Map<Integer, List<Game>> findAllUserGames(Long userId) {
 		List<Player> players = playerRepository.findAllPlayersByUserId(userId);
@@ -434,6 +445,7 @@ public class GameService implements IGameService {
 
 		return null;
 	}
+	
 	
 	public List<Player> getGuesses(String gameId) {
 		Game game = gameRepository.findOne(gameId);

@@ -3,6 +3,7 @@ package com.vclues.core.repository;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
@@ -16,6 +17,7 @@ import com.vclues.core.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	
+	//@Cacheable(value = "findByEmail", key="#root.target.getEmail()")
     @Query("SELECT u FROM User u WHERE LOWER(u.email) = LOWER(:email)")
     User findByEmail(@Param("email") String email);
     /*
