@@ -1,20 +1,21 @@
 package com.vclues.core.entity;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @XmlRootElement
 @Document(collection = "cast")
 @Entity
 @Table(name = "cast")
+@Cacheable @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region="hint")
 public class Cast extends AbstractEntity implements Order {
 
 	/**

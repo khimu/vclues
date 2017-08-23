@@ -3,6 +3,7 @@ package com.vclues.core.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.ConstraintMode;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
@@ -24,6 +27,7 @@ import com.vclues.core.enums.Features;
 
 @Entity
 @Table(name = "user")
+@Cacheable @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region="user")
 public class User extends AbstractEntity {
 
     /**

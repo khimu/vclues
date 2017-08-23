@@ -1,12 +1,17 @@
 package com.vclues.core.entity;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 @Entity
 @Table(name = "script")
+@Cacheable @Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region="script")
 public class Script extends AbstractEntity implements Order {
 
 	/**
