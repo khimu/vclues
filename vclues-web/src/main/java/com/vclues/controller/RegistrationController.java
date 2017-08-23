@@ -89,16 +89,20 @@ public class RegistrationController extends BaseController {
         model.addAttribute("content", "signup"); 
         model.addAttribute("message", "Thank you for registering.  Please check your email for the confirmation link.");
 
-		Map<Integer, List<Game>> games = gameService.getUserGames(getLoggedInUser().getId());
-		//List<Player> players = gameService.findAllCurrentGames(getLoggedInUser().getId());
-		
-		List<Game> currentGame = games.get(1);
-		
-		if(currentGame != null) {
-			model.addAttribute("game", currentGame.get(0));
-		}
-
-        return "menu";
+        if(getLoggedInUser() != null) {
+			Map<Integer, List<Game>> games = gameService.getUserGames(getLoggedInUser().getId());
+			//List<Player> players = gameService.findAllCurrentGames(getLoggedInUser().getId());
+			
+			List<Game> currentGame = games.get(1);
+			
+			if(currentGame != null) {
+				model.addAttribute("game", currentGame.get(0));
+			}
+	
+	        return "menu";
+        }
+        
+        return "login";
     }
     
     /*
