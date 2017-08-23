@@ -23,6 +23,8 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/ `vclues` /*!40100 DEFAULT CHARACTER SET
 
 USE `vclues`;
 
+
+
 --
 -- Table structure for table `account_type`
 --
@@ -398,3 +400,19 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2017-08-13  3:23:42
+
+
+CREATE INDEX user_idx
+ON user (email); 
+
+CREATE INDEX cast_idx
+ON cast (story_id); 
+    
+CREATE INDEX game_scene_idx
+ON scene (scene_id, position);    
+    
+CREATE INDEX player_script_idx
+ON script (scene_id, cast_id);
+
+CREATE INDEX game_hint_idx
+ON hint (scene_id);

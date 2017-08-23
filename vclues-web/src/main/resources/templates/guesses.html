@@ -713,14 +713,14 @@ function next() {
 
 						<div th:if="${c.murdererId == null}">
 							<div>
-								<div class="character-name"><p th:text="${c.name} has not guessed the murderer yet"></p></div>
+								<div class="character-name"><p th:text="${c.name} + ' has not guessed the murderer yet!'"></p></div>
 							</div>
 						</div>
 						<!-- ELSE -->
 						<div th:if="${c.murdererId != null}">
 							<div>
 								<div class="character-name">
-									<p th:text="${c.name} believes ${c.guess.name} is the murderer"></p>
+									<p th:text="${c.name} + ' believes ' + ${c.guess.name} + ' is the murderer!'"></p>
 								</div>
 								<a href="javascript: return false;"><img class="character" th:src="${c.guess.image}"/></a>
 								
