@@ -19,6 +19,7 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
+import org.springframework.cache.annotation.Cacheable;
 
 import com.vclues.core.enums.Features;
 

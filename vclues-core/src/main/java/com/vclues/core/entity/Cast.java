@@ -1,6 +1,5 @@
 package com.vclues.core.entity;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -9,6 +8,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.Cascade;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @XmlRootElement

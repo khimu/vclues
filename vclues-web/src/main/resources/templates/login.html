@@ -29,10 +29,10 @@
 		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		
-		  ga('create', 'UA-93565766-1', 'auto');
+		  ga('create', 'UA-101505063-1', 'auto');
 		  ga('send', 'pageview');
 		
-		</script> 
+		</script>
 		
 		<script>
 		
@@ -283,6 +283,8 @@
 	        
 		<div class="container">
 			<div class="container-left">
+			
+			<span class="alert alert-danger" th:if="${error != null}" th:text="${error}"></span>
 
 	        <div id="bg_left_character"><img src=""/><div class="content"></div></div>
 	        <a href="javascript: return false;" class="next"><img src="/assets/images/to-the-right.gif"/></a>

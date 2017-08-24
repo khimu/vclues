@@ -64,6 +64,9 @@
 	.login_register_button_outer-left {
 		list-style: none;
 		display: none;
+		text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
+		color: white;
 	}
 	
 	/* Controls the style of the Login label */	
@@ -118,6 +121,9 @@
 		margin: 0px 20px 0px auto;
 		list-style: none;
 		display: none;
+		text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
+		coor: white;
 	}
 	
 	.login_register_button_outer-right li {
@@ -170,11 +176,13 @@
 	/* iphone portrait */
 	#describe_about_site-left ul, #describe_about_site_startup ul {
 		list-style: none;
-		padding: 0px;
+		padding: 0px;	
 	}
 	#describe_about_site-left ul li {
 		//opacity: 0.6;
 		font-size: 20px;
+		text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
 		background-size: 100%;
 		font-weight: bold;
 		//background: url('/assets/images/phrase_bg.png') no-repeat top;
@@ -183,7 +191,7 @@
 		//margin-bottom: 10px;
 		//border-radius: 4px;
 		text-align: center;
-		color: yellow;
+		color: white;
 	}
 
 	#describe_about_site_startup ul {
@@ -238,7 +246,10 @@
 	#describe_about_site-left ul li, #describe_about_site-right ul li,
 		#describe_about_site_startup ul li {
 		font-size: 24px;
-		font-family: 'Gloria Hallelujah', cursive;
+		text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
+		//font-family: 'Gloria Hallelujah', cursive;
+		color: white;
 	}
 	
 	/* On click of gun, shows bubble */

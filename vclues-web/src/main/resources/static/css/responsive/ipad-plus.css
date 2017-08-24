@@ -61,6 +61,9 @@
 	.login_register_button_outer-left {
 		list-style: none;
 		display: none;
+		text-shadow: 0 0 10px #FF0000;
+		text-decoration: underline;
+		color:white;
 	}
 	
 	/* Controls the style of the Login label */	
@@ -114,6 +117,9 @@
 		margin: 0px 20px 0px auto;
 		list-style: none;
 		display: none;
+		text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
+		color: white;
 	}
 	
 	.login_register_button_outer-right li {
@@ -168,11 +174,13 @@
 	}
 	#describe_about_site-left ul li {
 		font-size: 20px;
+		text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
 		background-size: 100%;
 		font-weight: bold;
 		//padding: 15px 10px;
 		text-align: center;
-		color: yellow;
+		color: white;
 	}
 
 	#describe_about_site_startup ul {
@@ -203,6 +211,8 @@
 	
 	.login_register_button_outer li {
 		font-size: 48px;
+		text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
 	}
 	
 	#bg_left_character img, #bg_right_character img {
@@ -228,7 +238,9 @@
 	#describe_about_site-left ul li, #describe_about_site-right ul li,
 		#describe_about_site_startup ul li {
 		font-size: 48px;
-		font-family: 'Gloria Hallelujah', cursive;
+		text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
+		//font-family: 'Gloria Hallelujah', cursive;
 	}
 	
 	/* On click of gun, shows bubble */

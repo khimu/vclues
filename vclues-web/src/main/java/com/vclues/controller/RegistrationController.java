@@ -75,12 +75,14 @@ public class RegistrationController extends BaseController {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
+        	StringBuilder builder = new StringBuilder();
         	logger.info("Binding error.  Saved user " + userForm.getEmail());
         	for(ObjectError error: bindingResult.getAllErrors()) {
+        		builder.append(error.getDefaultMessage() + "\n");
         		logger.info("code " + error.getCode() + " " + error.getObjectName());
         	}
         	
-        	//model.addAttribute("content", "signup"); 
+        	model.addAttribute("error", builder.toString()); 
         	return "login";
         }
 

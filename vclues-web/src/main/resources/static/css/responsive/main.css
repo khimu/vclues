@@ -77,7 +77,10 @@
 	    background-size: 100% 100%;
 	    webkit-box-shadow: 0 5px 15px rgb(208, 206, 206);
 	    box-shadow: 0 5px 15px rgb(208, 206, 206);
-	    font-family: 'Gloria Hallelujah', cursive;
+	    text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
+	    //font-family: 'Gloria Hallelujah', cursive;
+	    color: white;
 	}
 	#register_outer .modal-content
 	{
@@ -85,7 +88,10 @@
 	    background-size: 100% 100%;
 	    webkit-box-shadow: 0 5px 15px rgb(208, 206, 206);
 	    box-shadow: 0 5px 15px rgb(208, 206, 206);
-	    font-family: 'Gloria Hallelujah', cursive;
+	    text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
+	    //font-family: 'Gloria Hallelujah', cursive;
+	    color: white;
 	}	
 	
         

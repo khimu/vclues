@@ -62,6 +62,9 @@ and (orientation : portrait) {
 	.login_register_button_outer-left {
 		list-style: none;
 		display: none;
+		text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
+		color: white;
 	}
 	
 	/* Controls the style of the Login label */	
@@ -116,6 +119,9 @@ and (orientation : portrait) {
 		margin: 0px 20px 0px auto;
 		list-style: none;
 		display: none;
+		text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
+		color: white;
 	}
 	
 	.login_register_button_outer-right li {
@@ -172,11 +178,13 @@ and (orientation : portrait) {
 	}
 	#describe_about_site-left ul li {
 		font-size: 20px;
+		text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
 		background-size: 100%;
 		font-weight: bold;
 		//padding: 15px 10px;
 		text-align: center;
-		color: yellow;
+		color: white;
 	}
 
 	#describe_about_site_startup ul {
@@ -232,7 +240,10 @@ and (orientation : portrait) {
 	#describe_about_site-left ul li, #describe_about_site-right ul li,
 		#describe_about_site_startup ul li {
 		font-size: 24px;
-		font-family: 'Gloria Hallelujah', cursive;
+		text-shadow: 0 0 6px #FF0000;
+		text-decoration: underline;
+		color: white;
+		//font-family: 'Gloria Hallelujah', cursive;
 	}
 	
 	/* On click of gun, shows bubble */
