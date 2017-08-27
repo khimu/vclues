@@ -346,6 +346,8 @@ a {
 				<a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
 
 				<div class="description">
+					<span th:switch="${player == null}">
+						<span th:case="false">
 		                	<ul>
 		                    	<li>
 		                    		<h1>Scene <span th:text="${player.script.position}"></span></h1>
@@ -372,7 +374,12 @@ a {
 			               	 			<img src="/assets/images/done_icon_copy.png" />
 			               	 		</div>
 			               	 	</span>
-			               	</span>
+			               	</span>						
+						</span>
+						<span th:case="true">
+							<p>Please select your character</p>
+						</span>
+					</span>
 				</div>
 		
 				<img class="corner-logo" src="/assets/images/logo.png"/>

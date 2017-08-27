@@ -43,6 +43,41 @@
 		
 <style>
 
+            .clue-detail {
+                position: absolute;
+                top: 20%;
+                left: 10%;
+                
+            }
+            
+            .clue-detail h3 {
+            	text-align: center;
+				text-shadow: 0 0 6px #FF0000;
+				color: white;
+				font-weight: bold;
+            }
+            
+            .clue-detail ul {
+                background: url(/assets/images/VEGA-POSTIT2.png) no-repeat bottom;
+                background-size: 240px 240px;
+                list-style-type: none;
+                height: 240px;
+            }
+            .clue-detail li {
+                font-size: 14px;
+                //font-family: 'Gloria Hallelujah', cursive;
+            }
+            .clue-detail li p {
+                padding-top: 40px;
+                padding-right: 40px;
+            }
+            
+            /* width is for text not postit image */
+            .clue-detail li:first-child {
+                text-align: left;
+                width: 240px;
+            }
+
 a {
 		text-shadow: 0 0 6px #FF0000;
 		color: white;
@@ -341,18 +376,27 @@ a {
         <div class="content">
         	<div class="container">
 		        	<a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
-		
-					<div class="description">
-								<h1>Scene <span th:text="${player.hint.position}"></span></h1>
-			                	<ul>
-			                    	<li>
-			                    		
-			                    		<h5>Clue</h5>
-			                    		<p th:text="${player.hint.text}"></p>
-			                    	</li>
-			               	 	</ul>
-					</div>
-		
+					
+						<div class="clue-detail" th:switch="${player == null}">
+	                        <ul>
+                                <li>
+                                	<p>
+                                		<h3>Scene <span th:text="${player.hint.position}"></span> Clue</h3>
+										<span th:case="false">
+							                    	<span th:text="${player.hint.text}"></span>
+										</span>
+									
+										
+										<span th:case="true">
+													<span>Please select your character</span>
+										</span>
+										
+                                	
+                                	</p>
+                                </li>
+	                        </ul>							
+						</div>	
+
 		 			<img class="corner-logo" src="/assets/images/logo.png"/>
 	 		</div>
 		</div><!-- end container -->

@@ -25,7 +25,7 @@
         
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         
-        <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css' />
+        <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css' />
         <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet"/>
 
 		<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
@@ -391,7 +391,8 @@ a {
     }
     
     .inactive {
-    	color: #4d4d4d;
+    	color: gray;
+    	opacity: 0.5;
     }
 </style>
 
@@ -448,22 +449,25 @@ $( document ).ready(function() {
 	$(function() {
 		
 		if(!isEmpty(gameId)) {
-			$(".menu li:nth(1)").addClass("inactive");
+			console.log('making Story inactive and game active');
 			$(".menu li:first()").removeClass("inactive");
+			$(".menu li:nth(1)").addClass("inactive");
+			
 		}
 		else {
+			console.log('making game inactive and story active');
 			$(".menu li:first()").addClass("inactive");
 			$(".menu li:nth(1)").removeClass("inactice");
 		}
 		
 		if(!isEmpty(gameId)) {
 	  		$(".menu li:first()").on("click",function() {
-	    			console.log( "clicked!" );
-	    			
-	    			$('.menu-button').hide();
-	    			$('.back-button').show();
-	   				$('.menu').hide();
-					$('.game').show();
+    			console.log( "clicked!" );
+    			
+    			$('.menu-button').hide();
+    			$('.back-button').show();
+   				$('.menu').hide();
+				$('.game').show();
 	  		});
 		}
 		else {

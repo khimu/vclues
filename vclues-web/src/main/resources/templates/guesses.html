@@ -43,6 +43,37 @@
 
 <style>
 
+/* GUESSES */
+
+            .noguess {
+                position: absolute;
+                top: 20%;
+                left: 15%;
+                
+            }
+            .noguess ul {
+                background: url(/assets/images/VEGA-POSTIT2.png) no-repeat bottom;
+                background-size: 240px 240px;
+                list-style-type: none;
+                height: 240px;
+            }
+            .noguess li {
+                font-size: 14px;
+                //font-family: 'Gloria Hallelujah', cursive;
+            }
+            .noguess li p {
+                padding-top: 70px;
+                padding-right: 40px;
+            }
+            
+            /* width is for text not postit image */
+            .noguess li:first-child {
+                text-align: left;
+                width: 240px;
+            }
+
+/* GUESSES*/
+
 a {
 		text-shadow: 0 0 6px #FF0000;
 		color: white;
@@ -91,7 +122,7 @@ a {
             }
             .description {
                 position: absolute;
-                top: 20%;
+                top: 40%;
                 left: 5px;
                 display: none;
             }
@@ -732,12 +763,18 @@ function next() {
 					<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
 
 						<div th:if="${c.murdererId == null}">
-							<div>
-								<div class="character-name"><p th:text="${c.name} + ' has not guessed the murderer yet!'"></p></div>
+							<div class="noguess" style="display: block;">
+		                        <ul>
+	                                <li>
+	                                	<p>
+	                                		<span th:text="${c.name} + ' has not guessed the murderer yet!'"></span>
+	                                	</p>
+	                                </li>
+		                        </ul>
 							</div>
 						</div>
 						<!-- ELSE -->
-						<div th:if="${c.murdererId != null}">
+						<div th:if="${c.murdererId != null}" >
 							<div>
 								<div class="character-name">
 									<p th:text="${c.name} + ' believes ' + ${c.guess.name} + ' is the murderer!'"></p>
@@ -745,15 +782,20 @@ function next() {
 								<a href="javascript: return false;"><img class="character" th:src="${c.guess.image}"/></a>
 								
 							</div>
-			
+			                 
 			                <div class="description">
 			                        <ul>
 		                                <li>
-		                               		<p th:text="${c.guess.description}"></p>
-		                               		<p><a href="javascript: closeDescription();" class="btn btn-default">Close</a></p>
+		                                	<p>
+		                                		<span th:text="${c.guess.name}"></span>
+		                                		<br/><br/>
+		                                		<span th:text="${c.guess.description}"></span>
+		                                	</p>
+		                               		<div style="text-align: right; position:absolute; top: 14px;right:20px;"><a href="javascript: closeDescription();"><img width="40px" height="40px" src="/assets/images/close_icon_copy.png" /></a></div>
 		                                </li>
 			                        </ul>
-			                </div>
+			                </div>			                
+			                
 						</div>	
 	                </div>
                 </div>

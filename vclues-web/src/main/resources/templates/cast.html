@@ -775,7 +775,7 @@ function next() {
 		                               		</p>
 		                               		<!-- Choose this game /game/cast/{gameid}/{castid} -->
 		                               		
-		                               		<div style="text-align: left; position:absolute; bottom: 14px;left:5px;"><a href="javascript: closeDescription();"><img width="40px" height="40px" src="/assets/images/select_icon_copy.png" /></a></div>
+		                               		<div style="text-align: left; position:absolute; top: 14px;left:5px;"><a th:href="@{/game/cast/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}"><img width="50px" height="50px" src="/assets/images/select_icon_copy.png" /></a></div>
 		                               		<div style="text-align: right; position:absolute; top: 14px;right:20px;"><a href="javascript: closeDescription();"><img width="40px" height="40px" src="/assets/images/close_icon_copy.png" /></a></div>
 		                                </li>
 			                        </ul>
