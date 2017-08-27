@@ -342,16 +342,18 @@ public class GameService implements IGameService {
 			                .from(new InternetAddress(myEmail, "VClues"))
 			                .to(Lists.newArrayList(new InternetAddress(invitee)))
 			                .subject("VClues Registration")
-			                .body(email + " has invited you to join a new murder mystery game online.  Come join your friends.\nYou can sign in with your email and password: " + password + " after confirming your email")//Empty body
+			                .body("")//Empty body
 			                .encoding(Charset.forName("UTF-8").name()).build();
 			            
 			        final Map<String, Object> modelObject = new HashMap<>();
 			            
 			        modelObject.put("url", baseUrl + "/confirm/" + activationKey);
+			        modelObject.put("email", email);
+			        modelObject.put("password", password);
 
-			        emailService.send(invite, "emails/confirm.ftl", modelObject);  
+			        emailService.send(invite, "emails/invite.ftl", modelObject);  
 				}catch(Exception e) {
-					logger.error("Unable to email registration confirmation link for /confirm/" +e + "/" + activationKey);
+					logger.error("Unable to email invite registration confirmation link for /confirm/" +e + "/" + activationKey);
 					e.printStackTrace();
 				}		
 			});
