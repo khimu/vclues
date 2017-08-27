@@ -335,6 +335,7 @@ public class GameService implements IGameService {
 			game.getPlayers().add(player);
 			
 
+			User finalUser = user;
 			executor.submit(() -> { 
 				try {
 					// This needs to be asynchronous
@@ -349,8 +350,13 @@ public class GameService implements IGameService {
 			            
 			        modelObject.put("url", baseUrl + "/confirm/" + activationKey);
 			        modelObject.put("email", email);
-			        modelObject.put("password", password);
-
+			        
+			        if(finalUser == null) {
+			        	modelObject.put("password", password);
+			        }
+			        else {
+			        	modelObject.put("password", "(Your Current Login Password)");
+			        }
 			        emailService.send(invite, "emails/invite.ftl", modelObject);  
 				}catch(Exception e) {
 					logger.error("Unable to email invite registration confirmation link for /confirm/" +e + "/" + activationKey);
