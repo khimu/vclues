@@ -106,7 +106,7 @@ public class GameController extends BaseController {
 		model.addAttribute("casts", game.getGameCast());
 		
 		Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
-
+		
 		model.addAttribute("player", player);
         
 		return "cast";

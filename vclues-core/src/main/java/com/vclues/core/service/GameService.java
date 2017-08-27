@@ -126,7 +126,7 @@ public class GameService implements IGameService {
 		
 		for(Player p : players) {
 			List<Player> ps = playerRepository.findAllPlayersByGame(p.getGame());
-			if(p.isDone()) {
+			if(p.getGame().getDone().booleanValue()) {
 				Game game = p.getGame();
 				game.setPlayers(ps);
 				pastGames.add(game);
@@ -134,48 +134,6 @@ public class GameService implements IGameService {
 			else {
 				Game game = p.getGame();
 				game.setPlayers(ps);
-				
-				/*
-				 * Update scene by frequency
-				 */
-				Calendar minusOneDay = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-				// mm/dd/yyyy hh:mm:ss
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constant.DATE_FORMAT, Locale.US);
-				simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));	
-				
-				// show the script once a day
-				minusOneDay.add(game.getFrequency(), -1);
-				
-				Calendar updateGameDate = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-				updateGameDate.setTime(game.getLastShown());
-
-				Scene scene = sceneRepository.findOne(game.getSceneId());
-				
-				// it has passed the wait time, update the scene to show new script on next login
-				// or send an email
-				if(updateGameDate.after(minusOneDay.getTime())) {
-					// get new scene 
-					
-					scene = sceneRepository.getNextSceneByStoryIdAndPosition(game.getStoryId(), scene.getPosition() + 1);
-					if(scene != null) {
-						logger.info("Game is updating scene to " + scene.getPosition());
-						
-						// update everything
-						game.setSceneId(scene.getId());
-						updateGameDate.setTime(new Date());
-						game.setLastShown(updateGameDate.getTime());
-					}
-					else {
-						logger.info("Game finished");
-						game.setDone(true);
-						p.setDone(true);
-						playerRepository.save(p);
-					}
-					
-					gameRepository.save(game);
-				}
-
-				currentGames.add(game);
 			}
 		}
 		
@@ -366,15 +324,16 @@ public class GameService implements IGameService {
 				user.setEmail(invitee);
 				user.setPassword(password);
 			    user = userService.registerNewUser(user);
-			    
-				Player player = new Player();
-				player.setUserId(user.getId());
-				player.setName(invitee);
-				player.setGame(game);
-				
-				playerRepository.save(player);
-				game.getPlayers().add(player);
 			}
+
+			Player player = new Player();
+			player.setUserId(user.getId());
+			player.setName(invitee);
+			player.setGame(game);
+			
+			playerRepository.save(player);
+			game.getPlayers().add(player);
+			
 
 			executor.submit(() -> { 
 				try {

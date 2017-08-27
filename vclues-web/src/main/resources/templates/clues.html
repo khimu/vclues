@@ -7,11 +7,28 @@
     	<meta charset="utf-8" />
     	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     	<meta name="viewport" content="width=device-width, initial-scale=1" />    	
+    	
+    	<link rel='shortcut icon' type='image/x-icon' href='/assets/images/favicon.ico' />
+		
+		<!-- Opera Speed Dial Favicon -->
+		  <link rel="icon" type="image/png" href="/assets/images/android-chrome-512x512.png" />
+		
+		<!-- For iPhone 4 Retina display: -->
+		  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/apple-touch-icon-114x114-precomposed.png"/>
+		
+		<!-- For iPad: -->
+		  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/apple-touch-icon-72x72-precomposed.png"/>
+		
+		<!-- For iPhone: -->
+		  <link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-57x57-precomposed.png"/>    	
+        	        
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         
         <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css' />
         <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet"/>
 
 		<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -26,6 +43,11 @@
 		
 <style>
 
+a {
+		text-shadow: 0 0 6px #FF0000;
+		color: white;
+		font-weight: bold;
+}
 
 		/* iphone 5 portrait 320x568 */
 		@media screen and (device-aspect-ratio: 40/71) {
@@ -42,7 +64,7 @@
 	
 	        .description li {
 	                font-size: 20px;
-	                font-family: 'Gloria Hallelujah', cursive;
+	                //font-family: 'Gloria Hallelujah', cursive;
 	        } 
 	        
 	        .corner-logo {
@@ -98,7 +120,7 @@
 	
 	        .description li {
 	                font-size: 20px;
-	                font-family: 'Gloria Hallelujah', cursive;
+	                //font-family: 'Gloria Hallelujah', cursive;
 	        }
 	        
 	        .corner-logo {
@@ -169,7 +191,7 @@
 
 	        .description li {
 	                font-size: 20px;
-	                font-family: 'Gloria Hallelujah', cursive;
+	                //font-family: 'Gloria Hallelujah', cursive;
 	        }            
 
 	        .corner-logo {
@@ -225,7 +247,7 @@
 
 	        .description li, .description a, .description span {
 	                font-size: 40px;
-	                font-family: 'Gloria Hallelujah', cursive;
+	                //font-family: 'Gloria Hallelujah', cursive;
 	        }
 
 	        .corner-logo {
@@ -251,7 +273,7 @@
 
 	        .description li, .description a, .description span {
 	                font-size: 40px;
-	                font-family: 'Gloria Hallelujah', cursive;
+	                //font-family: 'Gloria Hallelujah', cursive;
 	        }
 
 	        .corner-logo {
@@ -297,7 +319,7 @@
         .menu-button {
                 font-size: 30px;
                 color: #FFF;
-                font-family: 'Gloria Hallelujah', cursive;
+                //font-family: 'Gloria Hallelujah', cursive;
                 padding: 20px;
 
                 text-decoration: none;
@@ -317,19 +339,23 @@
 
 <body>
         <div class="content">
-	        	<a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
-	
-				<div class="description">
-		                	<ul>
-		                    	<li><p>Clue For Scene <span th:text="${player.hint.position}"></span></p></li>
-		                        <li>
-									<p th:text="${player.hint.text}"></p>
-								</li>
-		               	 	</ul>
-				</div>
-	
-	 		<img class="corner-logo" src="/assets/images/logo.png"/>
-	        </div><!-- end container -->
+        	<div class="container">
+		        	<a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
+		
+					<div class="description">
+								<h1>Scene <span th:text="${player.hint.position}"></span></h1>
+			                	<ul>
+			                    	<li>
+			                    		
+			                    		<h5>Clue</h5>
+			                    		<p th:text="${player.hint.text}"></p>
+			                    	</li>
+			               	 	</ul>
+					</div>
+		
+		 			<img class="corner-logo" src="/assets/images/logo.png"/>
+	 		</div>
+		</div><!-- end container -->
        
 
 </body>

@@ -7,7 +7,21 @@
     	<meta charset="utf-8" />
     	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     	<meta name="viewport" content="width=device-width, initial-scale=1" />    	
-        	
+    	
+    	<link rel='shortcut icon' type='image/x-icon' href='/assets/images/favicon.ico' />
+		
+		<!-- Opera Speed Dial Favicon -->
+		  <link rel="icon" type="image/png" href="/assets/images/android-chrome-512x512.png" />
+		
+		<!-- For iPhone 4 Retina display: -->
+		  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/apple-touch-icon-114x114-precomposed.png"/>
+		
+		<!-- For iPad: -->
+		  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/apple-touch-icon-72x72-precomposed.png"/>
+		
+		<!-- For iPhone: -->
+		  <link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-57x57-precomposed.png"/>    	
+        	        	
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         
         <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css' />
@@ -28,6 +42,12 @@
 		</script>
 
 <style>
+
+a {
+		text-shadow: 0 0 6px #FF0000;
+		color: white;
+		font-weight: bold;
+}
 
 		body {
 			background-color: black;
@@ -71,7 +91,7 @@
             }
             .description {
                 position: absolute;
-                top: 20%;
+                top: 40%;
                 left: 5px;
                 display: none;
             }
@@ -593,6 +613,31 @@
 			text-decoration: none;
 			color: white;
 		}        	
+
+		.bouton-image:before {
+		    content: "";
+		    width: 70px;
+		    height: 70px;
+		    display: inline-block;
+		    margin-right: 5px;
+		    vertical-align: text-top;
+		    background-color: transparent;
+		    background-position : center center;
+		    background-repeat:no-repeat;
+		}
+		
+		.monBouton:before{
+		     background-image : url(/assets/images/close_icon.png);
+		}
+		
+		.btn-default {
+			background:transparent;
+			border: none;
+		}
+		
+		img {
+			background:transparent;
+		}
 		
 </style>
 
@@ -724,9 +769,14 @@ function next() {
 			                <div class="description">
 			                        <ul>
 		                                <li>
-		                               		<p th:text="${c.cast.description}"></p>
+		                               		<p>
+		                               			<h3><span th:text="${c.cast.name}"></span></h3>
+		                               			<span th:text="${c.cast.description}"></span>
+		                               		</p>
 		                               		<!-- Choose this game /game/cast/{gameid}/{castid} -->
-		                               		<p><a th:href="@{/game/cast/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}" class="btn btn-default">Select</a><a href="javascript: closeDescription();" class="btn btn-default">Close</a></p>
+		                               		
+		                               		<div style="text-align: left; position:absolute; bottom: 14px;left:5px;"><a href="javascript: closeDescription();"><img width="40px" height="40px" src="/assets/images/select_icon_copy.png" /></a></div>
+		                               		<div style="text-align: right; position:absolute; top: 14px;right:20px;"><a href="javascript: closeDescription();"><img width="40px" height="40px" src="/assets/images/close_icon_copy.png" /></a></div>
 		                                </li>
 			                        </ul>
 			                </div>
@@ -736,12 +786,18 @@ function next() {
 							<div>
 								<div class="character-name" th:if="${c.username == null}">
 									<p th:text="${c.cast.name}"></p>
-									<p><a th:href="@{/game/murderer/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}" class="btn btn-default">Murderer</a></p>
+									<div th:if="${player.murdererId == null}" style="text-align: left;padding-left:50px;">
+									<span th:text="${player.murdererId}"></span><a th:href="@{/game/murderer/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}">
+									<img width="70xp" height="70px" src="/assets/images/arrow_icon.gif"/></a>
+									</div>
 								</div>
 								
 								<div class="character-name" th:if="${c.username != null}">
-									<p th:text="${c.username}"></p> <p>is</p> <p th:text="${c.cast.name}"></p>
-									<p><a th:href="@{/game/murderer/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}" class="btn btn-default">Murderer</a></p>
+									<p><span th:text="${c.username}"></span><br/> is <span th:text="${c.cast.name}"></span></p>
+									<div th:if="${player.murdererId == null}" style="text-align: left;padding-left:50px;">
+									<span th:text="${player.murdererId}"></span><a th:href="@{/game/murderer/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}">
+									<img width="70xp" height="70px" src="/assets/images/arrow_icon.gif"/></a>
+									</div>
 								</div>
 								
 								<!-- /assets/images/stories/story1/cast/SUSPECT_001_FADED.png -->
@@ -752,10 +808,14 @@ function next() {
 			                <div class="description">
 			                        <ul>
 		                                <li>
-		                                	<p th:text="${c.username}"></p>
-		                               		<p th:text="${c.cast.description}"></p>
+		                                	<p>
+		                                		<span th:text="${c.username}"></span> is <span th:text="${c.cast.name}"></span>
+		                                		<br/><br/>
+		                                		<span th:text="${c.cast.description}"></span>
+		                                	</p>
 		                               		<!-- Choose this game /game/cast/{gameid}/{castid} -->
-		                               		<p><a href="javascript: closeDescription();" class="btn btn-default">Close</a></p>
+		                               		
+		                               		<div style="text-align: right; position:absolute; top: 14px;right:20px;"><a href="javascript: closeDescription();"><img width="40px" height="40px" src="/assets/images/close_icon_copy.png" /></a></div>
 		                                </li>
 			                        </ul>
 			                </div>

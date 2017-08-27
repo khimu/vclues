@@ -7,7 +7,21 @@
     	<meta charset="utf-8" />
     	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     	<meta name="viewport" content="width=device-width, initial-scale=1" />    	
-        	
+    	
+    	<link rel='shortcut icon' type='image/x-icon' href='/assets/images/favicon.ico' />
+		
+		<!-- Opera Speed Dial Favicon -->
+		  <link rel="icon" type="image/png" href="/assets/images/android-chrome-512x512.png" />
+		
+		<!-- For iPhone 4 Retina display: -->
+		  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/apple-touch-icon-114x114-precomposed.png"/>
+		
+		<!-- For iPad: -->
+		  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/apple-touch-icon-72x72-precomposed.png"/>
+		
+		<!-- For iPhone: -->
+		  <link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-57x57-precomposed.png"/>    	
+        	        	
         <link href='/assets/css/responsive/main.css' rel='stylesheet' type='text/css' />
         
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -36,6 +50,12 @@
 		
 		<style>
 
+h2 {
+		text-shadow: 0 0 6px #FF0000;
+		color: white;
+		font-weight: bold;
+}
+
 		/* iphone 5 portrait 320x568 */
 		@media screen and (device-aspect-ratio: 40/71) {
             body {
@@ -56,6 +76,7 @@
 			.postit-block {
 				width: 220px;
 				margin: 5px auto 10px auto;
+				text-align: center;
 			}
 			            
 			.postit-block h3 {
@@ -137,6 +158,7 @@
 			.postit-block {
 				width: 250px;
 				margin: 5px auto 10px auto;
+				text-align: center;
 			}
 			
             .game-header {
@@ -237,6 +259,7 @@
 			.postit-block {
 				width: 350px;
 				margin: 0 0 0 25%;
+				text-align: center;
 			}
 			
 			.game-header {
@@ -318,6 +341,7 @@
 			.postit-block {
 				width: 350px;
 				margin: 0 0 0 25%;
+				text-align: center;
 			}
             
             .game-header {
@@ -374,6 +398,7 @@
 			.postit-block {
 				width: 350px;
 				margin: 0 0 0 37%;
+				text-align: center;
 			}
 			            
 			.postit-block h3 {
@@ -411,7 +436,7 @@
 	        		
 
 			#postit_outer {
-			    font-family: 'Gloria Hallelujah', cursive;
+			    //font-family: 'Gloria Hallelujah', cursive;
 			    color: white;
 			  
 			}
@@ -462,37 +487,44 @@
 	</head>
 	
     <body class='lang-en page_image'>
-
-		<div id="postit_outer">
-				<div class="postit-block">
-			        	<h3 class="game-header">Play Game</h3>
-			            <div class="error"></div>
-			            
-						<form class="text-left" th:action="@{|/game/select/${storyId}|}" th:object="${game}" th:method="POST">
-		
-							<ul>
-							    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
-							</ul>		
-							
-							<h3 th:text="${game.name}"></h3>
-							<h3>Requires <span th:text="${game.count}"></span> Players</h3>
-							
-							<div>
-								<div>
-									<div class="form-group">
-										<label for="invites">Invite Emails</label>
-										
-										<textarea  rows="4" cols="5" class="form-control" id="invites" th:field="*{invites}" placeholder="player1@gmail.com, player2@gmail.com">
-										
-										</textarea>
-									</div>
-								</div>	
-								<button type="submit" class="btn btn-info">Submit</button>
-								<a href="/videos" class="btn btn-default">Cancel</a>
+			<div id="postit_outer">
+					<div class="postit-block">
+				        	<h2 class="game-header">Play Game</h2>
+				            <div class="error"></div>
+				            
+				            <div class="form-group">
+				           	 	<p th:text="${game.name}"></p>
+								<p>Requires <span th:text="${game.count}"></span> Players</p>
 							</div>
-						</form>		
-				</div>		
-				<div class="logo"></div>
+							
+							
+				            
+				         
+				           
+				       	<p>
+							<form th:action="@{|/game/select/${storyId}|}" th:object="${game}" th:method="POST">
+			
+								<ul>
+								    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
+								</ul>		
+
+								<div>
+									<div>
+										<div class="form-group">
+											<label for="invites">Invite Friends</label>
+											<textarea  rows="4" cols="5" class="form-control" id="invites" th:field="*{invites}" placeholder="player1@gmail.com, player2@gmail.com">
+											
+											</textarea>
+										</div>
+									</div>	
+									<button type="submit" class="btn btn-info">Submit</button>
+									<a href="/videos" class="btn btn-default">Cancel</a>
+								</div>
+							</form>
+						</p>		
+					</div>	
+					
+					<div class="logo"></div>	
 		</div>
 		
     </body>

@@ -7,11 +7,30 @@
     	<meta charset="utf-8" />
     	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     	<meta name="viewport" content="width=device-width, initial-scale=1" />    	
+    	
+    	<link rel='shortcut icon' type='image/x-icon' href='/assets/images/favicon.ico' />
+		
+		<!-- Opera Speed Dial Favicon -->
+		  <link rel="icon" type="image/png" href="/assets/images/android-chrome-512x512.png" />
+		
+		<!-- For iPhone 4 Retina display: -->
+		  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/apple-touch-icon-114x114-precomposed.png"/>
+		
+		<!-- For iPad: -->
+		  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/apple-touch-icon-72x72-precomposed.png"/>
+		
+		<!-- For iPhone: -->
+		  <link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-57x57-precomposed.png"/>    	
+        	    	
+        
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         
         <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css' />
         <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet"/>
 
-        <script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+		<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
         
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -26,6 +45,12 @@
 		
 <style>
 
+a {
+		text-shadow: 0 0 6px #FF0000;
+		color: white;
+		font-weight: bold;
+}
+
 		/* Common */
 		.menu, .game {
 			position: absolute;
@@ -34,6 +59,10 @@
 			transform: translate(-50%, -50%);
 			text-align: center;
 			background:transparent;
+
+			text-shadow: 0 0 50px yellow;
+			color: white;
+			font-weight: bold;
 		}	
 		
 
@@ -64,7 +93,7 @@
 		.back-button, .menu-button {
 		    font-size: 30px;
 		    color: #FFF;
-		    font-family: 'Gloria Hallelujah', cursive;
+		    //font-family: 'Gloria Hallelujah', cursive;
 		    padding: 20px;
 		    text-decoration: none;
 		    width: 100px;
@@ -106,9 +135,9 @@
 			height: 30px;
 			font-style: bold;
 			margin-top: 30px;
-			color: white;
-			font-size: 14px;
-			font-family: 'Gloria Hallelujah', cursive;
+			//color: white;
+			font-size: 24px;
+			//font-family: 'Gloria Hallelujah', cursive;
 		}
 		
 	}	
@@ -164,7 +193,7 @@
 			font-style: bold;
 			color: white;
 			font-size: 20px;
-			font-family: 'Gloria Hallelujah', cursive;
+			//font-family: 'Gloria Hallelujah', cursive;
 		}
 		
 	}
@@ -196,7 +225,7 @@
 			font-style: bold;
 			color: white;
 			font-size: 14px;
-			font-family: 'Gloria Hallelujah', cursive;
+			//font-family: 'Gloria Hallelujah', cursive;
 		}
 
 	}	
@@ -243,7 +272,7 @@
 			font-style: bold;
 			color: white;
 			font-size: 14px;
-			font-family: 'Gloria Hallelujah', cursive;
+			//font-family: 'Gloria Hallelujah', cursive;
 		}
 
 	}	
@@ -276,7 +305,7 @@
 			margin-top: 30px;
 			color: white;
 			font-size: 35px;
-			font-family: 'Gloria Hallelujah', cursive;
+			//font-family: 'Gloria Hallelujah', cursive;
 		}
 
 	}
@@ -309,7 +338,7 @@
 			margin-top: 30px;
 			color: white;
 			font-size: 35px;
-			font-family: 'Gloria Hallelujah', cursive;
+			//font-family: 'Gloria Hallelujah', cursive;
 		}
 
 	}	
@@ -340,7 +369,7 @@
 			margin-top: 30px;
 			color: white;
 			font-size: 35px;
-			font-family: 'Gloria Hallelujah', cursive;
+			//font-family: 'Gloria Hallelujah', cursive;
 		}
 
 	}	
@@ -518,8 +547,9 @@ $( document ).ready(function() {
 
 <body>
 
+<div class="content">
 	<div class="container">
-		<a href="#" class="menu-button">Menu</a>
+		<a href="#" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
 		<a href="#" class="back-button" style="display: none;">Back</a>
 
 		<div class="menu">
@@ -546,7 +576,7 @@ $( document ).ready(function() {
 		
 		<div class="corner-logo"><div></div></div>
 	</div><!-- end container -->
-
+</div>
 	
 
 </body>
