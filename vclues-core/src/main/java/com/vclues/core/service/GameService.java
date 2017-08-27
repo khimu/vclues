@@ -399,8 +399,10 @@ public class GameService implements IGameService {
 		List<Player> players = playerRepository.findAllPlayersByGame(game);
 		
 		for(Player p : players) {
-			Cast cast = castRepository.findOne(p.getMurdererId());
-			p.setGuess(cast);
+			if(p.getMurdererId() != null) {
+				Cast cast = castRepository.findOne(p.getMurdererId());
+				p.setGuess(cast);
+			}
 		}
 		
 		return players;

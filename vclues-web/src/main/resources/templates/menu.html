@@ -68,6 +68,7 @@ a {
 
 		.menu ul, .game ul{
 			list-style-type: none;
+			white-space: nowrap;
 		}
 		
 		
@@ -389,6 +390,9 @@ a {
     	font-size: 20px;
     }
     
+    .inactive {
+    	color: #4d4d4d;
+    }
 </style>
 
 <script th:inline="javascript">
@@ -422,7 +426,7 @@ function isEmpty(str) {
 $( document ).ready(function() {
     console.log( "ready!" );
 
-    /*
+    
     var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
@@ -431,17 +435,26 @@ $( document ).ready(function() {
     
     //$('.container').css({'background-size': w + 'px ' + h + 'px'});   
     $('body').css({ 'height': h });   
-    $('.game').css({ 'height': h });   
-    $('.menu').css({ 'height': h });
+    //$('.game').css({ 'height': h });   
+    //$('.menu').css({ 'height': h });
     $('.container').css({ 'height': h }); 
     
     $('body').css({ 'width': w });   
     $('.container').css({ 'width': w }); 
-    $('.game').css({ 'width': w });   
-    $('.menu').css({ 'width': w });  
-    */
+    //$('.game').css({ 'width': w });   
+    //$('.menu').css({ 'width': w });  
+    
     
 	$(function() {
+		
+		if(!isEmpty(gameId)) {
+			$(".menu li:nth(1)").addClass("inactive");
+			$(".menu li:first()").removeClass("inactive");
+		}
+		else {
+			$(".menu li:first()").addClass("inactive");
+			$(".menu li:nth(1)").removeClass("inactice");
+		}
 		
 		if(!isEmpty(gameId)) {
 	  		$(".menu li:first()").on("click",function() {
