@@ -319,11 +319,13 @@ public class GameService implements IGameService {
 			String password = RandomStringUtils.randomAlphabetic(5);
 			
 			User user = userService.findByEmail(invitee);
+			boolean newuser = false;
 			if(user == null) {
 				user = new User();
 				user.setEmail(invitee);
 				user.setPassword(password);
 			    user = userService.registerNewUser(user);
+			    newuser = true;
 			}
 
 			Player player = new Player();
@@ -335,7 +337,8 @@ public class GameService implements IGameService {
 			game.getPlayers().add(player);
 			
 
-			User finalUser = user;
+			final boolean finalnewuser = newuser;
+			final User finalUser = user;
 			executor.submit(() -> { 
 				try {
 					// This needs to be asynchronous
@@ -351,11 +354,12 @@ public class GameService implements IGameService {
 			        modelObject.put("url", baseUrl + "/confirm/" + activationKey);
 			        modelObject.put("email", email);
 			        
-			        if(finalUser == null) {
+			        
+			        if(finalnewuser) {
 			        	modelObject.put("password", password);
 			        }
 			        else {
-			        	modelObject.put("password", "(Your Current Login Password)");
+			        	modelObject.put("password", "(Your Current Login Password and Username " + finalUser.getEmail() + ")");
 			        }
 			        emailService.send(invite, "emails/invite.ftl", modelObject);  
 				}catch(Exception e) {
