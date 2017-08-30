@@ -408,6 +408,11 @@ a {
             z-index:1;
         }      	
         
+    .inactive {
+    	color: gray;
+    	opacity: 0.5;
+    }        
+        
 </style>
 
 <script>
@@ -508,7 +513,12 @@ function next() {
 							<li><a th:href="@{'/game/cast/' + ${game.id}}">Characters</a></li>
 							<li><a th:href="@{'/game/script/' + ${game.id}}">Script</a></li>
 							<li><a th:href="@{'/game/clue/' + ${game.id}}">Clue</a></li>
-							<li><span th:if="${game.done == true}"><a th:href="@{'/game/guess/' + ${game.id}}">Guesses</a></span></li>
+							<li>
+								<span th:switch="${game.done}"> 
+									<span th:case="false" class="inactive">Guesses</span>
+									<span th:case="true" ><a th:href="@{'/game/guess/' + ${game.id}}">Guesses</a></span>
+								</span>
+							</li>
 							<li><span th:if="${game.done == false}"><a th:href="@{'/game/end/' + ${game.id}}">End Game</a></span></li>
 						</ul>
 					</div> <!-- end menu -->

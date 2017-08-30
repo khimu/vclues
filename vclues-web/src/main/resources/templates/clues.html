@@ -343,12 +343,11 @@ a {
             height: 100%;
 		}
         
-        .corner-logo {
-                position: absolute;
-				border-radius: 25px;
-                bottom: 15px;
-                left: 15px;
-        }
+
+       .corner-logo {
+            position: absolute;
+            bottom: 1%;
+        }        
 
 
         .menu-button {
@@ -374,7 +373,6 @@ a {
 
 <body>
         <div class="content">
-        	<div class="container">
 		        	<a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
 					
 						<div class="clue-detail" th:switch="${player == null || player.hint == null}">
@@ -397,9 +395,9 @@ a {
 	                        </ul>							
 						</div>	
 
-		 			<img class="corner-logo" src="/assets/images/logo.png"/>
-	 		</div>
+		 			
 		</div><!-- end container -->
+		<img class="corner-logo" src="/assets/images/logo.png" width="100px" height="50px" />
        
 
 </body>
