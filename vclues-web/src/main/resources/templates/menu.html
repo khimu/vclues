@@ -591,9 +591,8 @@ $( document ).ready(function() {
 					<span th:case="true"><a href="/game/all">Game</a></span>
 					<span th:case="false" class="inactive">Game</span>
 				</li>		
-				<li th:switch="${gameCount != null and gameCount > 0}">
-					<span th:case="true" class="inactive">Story</span>
-					<span th:case="false"><a href="/videos">Story</a></span>
+				<li>
+				 	<span><a href="/videos">Story</a></span>
 				</li>		
 				<li>Logout</li>
 			</ul>

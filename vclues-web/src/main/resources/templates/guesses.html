@@ -44,34 +44,40 @@
 <style>
 
 /* GUESSES */
-
-            .noguess {
+            .postitnote {
                 position: absolute;
                 top: 20%;
-                left: 15%;
+                left: 10%;
                 
             }
-            .noguess ul {
+            
+            .postitnote h3 {
+                text-align: center;
+                text-shadow: 0 0 6px #FF0000;
+                color: white;
+                font-weight: bold;
+            }
+            
+            .postitnote ul {
                 background: url(/assets/images/VEGA-POSTIT2.png) no-repeat bottom;
                 background-size: 240px 240px;
                 list-style-type: none;
                 height: 240px;
             }
-            .noguess li {
+            .postitnote li {
                 font-size: 14px;
                 //font-family: 'Gloria Hallelujah', cursive;
             }
-            .noguess li p {
-                padding-top: 70px;
+            .postitnote li p {
+                padding-top: 40px;
                 padding-right: 40px;
             }
             
             /* width is for text not postit image */
-            .noguess li:first-child {
+            .postitnote li:first-child {
                 text-align: left;
                 width: 240px;
             }
-
 /* GUESSES*/
 
 a {
@@ -384,7 +390,7 @@ a {
             }
             .description li {
                 font-size: 20px;
-                font-family: 'Gloria Hallelujah', cursive;
+                //font-family: 'Gloria Hallelujah', cursive;
             }
             .description li p {
                 padding-top: 100px;
@@ -627,7 +633,7 @@ a {
             background-position: center;
             font-size: 30px;
             color: #FFF;
-            font-family: 'Gloria Hallelujah', cursive;
+            //font-family: 'Gloria Hallelujah', cursive;
             text-decoration: none;
             width: 100px;
             height: 60px;
@@ -752,7 +758,7 @@ function next() {
 <body>
 
         <div class="content">
-                <a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
+                <a href="/game/all" class="menu-button" style="text-decoration: none; color: white;">Back</a>
                 <a href="javascript: next()" class="next"><img src="/assets/images/to-the-right.gif"/></a>
                 <a href="javascript: prev();" class="prev"><img src="/assets/images/to-the-left.gif"/></a>
                 
@@ -763,7 +769,7 @@ function next() {
 					<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
 
 						<div th:if="${c.murdererId == null}">
-							<div class="noguess" style="display: block;">
+							<div class="postitnote" style="display: block;">
 		                        <ul>
 	                                <li>
 	                                	<p>

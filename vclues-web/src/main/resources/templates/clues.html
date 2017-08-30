@@ -43,37 +43,37 @@
 		
 <style>
 
-            .clue-detail {
+            .postitnote {
                 position: absolute;
                 top: 20%;
                 left: 10%;
                 
             }
             
-            .clue-detail h3 {
-            	text-align: center;
-				text-shadow: 0 0 6px #FF0000;
-				color: white;
-				font-weight: bold;
+            .postitnote h3 {
+                text-align: center;
+                text-shadow: 0 0 6px #FF0000;
+                color: white;
+                font-weight: bold;
             }
             
-            .clue-detail ul {
+            .postitnote ul {
                 background: url(/assets/images/VEGA-POSTIT2.png) no-repeat bottom;
                 background-size: 240px 240px;
                 list-style-type: none;
                 height: 240px;
             }
-            .clue-detail li {
+            .postitnote li {
                 font-size: 14px;
                 //font-family: 'Gloria Hallelujah', cursive;
             }
-            .clue-detail li p {
+            .postitnote li p {
                 padding-top: 40px;
                 padding-right: 40px;
             }
             
             /* width is for text not postit image */
-            .clue-detail li:first-child {
+            .postitnote li:first-child {
                 text-align: left;
                 width: 240px;
             }
@@ -373,9 +373,9 @@ a {
 
 <body>
         <div class="content">
-		        	<a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
+		        	<a href="/game/all" class="menu-button" style="text-decoration: none; color: white;">Back</a>
 					
-						<div class="clue-detail" th:switch="${player == null || player.hint == null}">
+						<div class="postitnote" th:switch="${player == null || player.hint == null}">
 	                        <ul>
                                 <li>
                                 	<p>

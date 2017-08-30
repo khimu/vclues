@@ -489,16 +489,22 @@ function next() {
 						<div><a href="#" onclick="$('#description_' + $(this).find('span').attr('id')).hide(); $('#game_' + $(this).find('span').attr('id')).show();"><span th:id="${iterStat.count}"></span><img width="50px" height="50px" src="/assets/images/select_icon_copy.png" /></a></div>
 						
 						
-						<h5 th:text="${game.name}"></h5>
+						<h3 th:text="${game.name}"></h3>
 						<p>
-							<span th:if="${game.started != null}">Game Started <span th:text="${#dates.format(game.started, 'MM-dd-yyyy')}"></span></span>
+							<span th:if="${game.started != null}">Game Started On <span th:text="${#dates.format(game.started, 'MM-dd-yyyy')}"></span></span>
 							<br/>
 							
-							Number of Players: <span th:text="${game.count}"></span>
-							<br/>
-							Invites: <span th:text="${game.invites}"></span>
+							Number of Players is <span th:text="${game.count}"></span>
 							
-							<br/>
+							<div class="description" style="display: block; text-align: left;">
+								<h3>Players</h3>
+								<ul >
+									<span th:each="email,iterStat : ${game.emails}" th:class="${iterStat.odd}? 'odd'">
+										<li th:text="${email}"></li>
+									</span>
+								</ul>
+							</div>
+
 							<span th:if="${game.done == true}">Game Over</span>
 						</p>
 						

@@ -43,7 +43,51 @@
 		</script>
 		
 <style>
+            .postitnote {
+                position: absolute;
+                top: 20%;
+                left: 10%;
+                color: black;
+            }
+            
+            .postitnote h3 {
+                text-align: center;
+                text-shadow: 0 0 6px #FF0000;
+                color: white;
+                font-weight: bold;
+            }
+            
+            .postitnote ul {
+                background: url(/assets/images/VEGA-POSTIT2.png) no-repeat bottom;
+                background-size: 240px 240px;
+                list-style-type: none;
+                height: 240px;
+            }
+            .postitnote li {
+                font-size: 14px;
+                //font-family: 'Gloria Hallelujah', cursive;
+            }
+            .postitnote li p {
+                padding-top: 40px;
+                padding-right: 40px;
+            }
+            
+            /* width is for text not postit image */
+            .postitnote li:first-child {
+                text-align: left;
+                width: 240px;
+            }
+            
 
+h1 {
+				text-shadow: 0 0 6px #FF0000;
+                color: white;
+                font-weight: bold;
+                font-size: 20px;
+                text-align: left;
+                padding-top:20px;
+}            
+            
 a {
 		text-shadow: 0 0 6px #FF0000;
 		color: white;
@@ -343,44 +387,60 @@ a {
 <body>
         <div class="content">
 			<div class="container">
-				<a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
+				<a href="/game/all" class="menu-button" style="text-decoration: none; color: white;">Back</a>
 
-				<div class="description">
+				
 					<span th:switch="${player == null || player.script == null}">
 						<span th:case="false">
-		                	<ul>
-		                    	<li>
-		                    		<h1>Scene <span th:text="${player.script == null ? '' : player.script.position}"></span></h1>
-		                    		
-		                    			<h5>Script</h5>
-		                    			<p><span th:text="${player.script == null ? '' : player.script.text}"></span></p>
-		                    			
-		                    			<h5> Secret </h5>
-										<p><span th:text="${player.script == null ? '' : player.script.secret}"></span></p>
-		                    	</li>	                    	
-		               	 	</ul>
-		               	 	
-		               	 	<span th:switch="${player.done}">
-			               	 	<span th:case="false">
-			               	 		<a th:href="@{/game/done/{gameId}(gameId=${player.game.id})}">
-			               	 			<div style="text-align: left; position:absolute; bottom: 150px;left:100px;">
-			               	 				<img src="/assets/images/done_icon_copy.png" />
-			               	 			</div>
-			               	 		</a>
-			               	 	</span>
-			               	 	<span th:case="true">
-			               	 		<div style="text-align: left; position:absolute; bottom: 130px;left:100px;">
-			               	 			Scene <span th:text="${player.script.position}"></span> 
-			               	 			<img src="/assets/images/done_icon_copy.png" />
-			               	 		</div>
-			               	 	</span>
-			               	</span>						
+							<div id="secret" class="postitnote" style="display: none;">
+								<ul>
+									<li>
+										<p>
+											<h3> Secret </h3>
+											<span th:text="${player.script == null ? '' : player.script.secret}"></span>
+										</p>
+										<div style="position: absolute; top:10px;right:5px;"><a href="#" onclick="$('#secret').hide();"><img src="/assets/images/close_icon_copy.png" /></a></div>
+									</li>
+								</ul>
+							</div>
+						
+							<div class="description">
+							
+			                	<ul>
+			                    	<li>
+			                    				<h1>Scene <span th:text="${player.script == null ? '' : player.script.position}"></span></h1>
+			                    			
+				                    			<h3>Script</h3>
+				                    			<p><span th:text="${player.script == null ? '' : player.script.text}"></span></p>
+				                    			
+				                    			<a href="#" onclick="$('#secret').show();"><img src="/assets/images/select_icon_copy.png" /></a>
+				                    			
+			                    	</li>	                    	
+			               	 	</ul>
+
+			               	 	<span th:switch="${player.done}">
+				               	 	<span th:case="false">
+				               	 		<a th:href="@{/game/done/{gameId}(gameId=${player.game.id})}">
+				               	 			<div style="text-align: left; position:absolute; bottom: 150px;left:100px;">
+				               	 				<img src="/assets/images/done_icon_copy.png" />
+				               	 			</div>
+				               	 		</a>
+				               	 	</span>
+				               	 	<span th:case="true">
+				               	 		<div style="text-align: left; position:absolute; bottom: 130px;left:100px;">
+				               	 			Scene <span th:text="${player.script.position}"></span> 
+				               	 			<img src="/assets/images/done_icon_copy.png" />
+				               	 		</div>
+				               	 	</span>
+				               	</span>		
+			               	</div>			
 						</span>
 						<span th:case="true">
-							<p>Please select your character</p>
+							<div class="postitnote" style="display: block;">
+		                        <ul><li><p>Please select your character</p></li></ul>
+							</div>
 						</span>
 					</span>
-				</div>
 		
 				<img class="corner-logo" src="/assets/images/logo.png"/>
 			</div>					
