@@ -775,9 +775,9 @@ function next() {
 		                               			<h3><span th:text="${c.cast.name}"></span></h3>
 		                               			<span th:text="${c.cast.description}"></span>
 		                               		</p>
-		                               		<!-- Choose this game /game/cast/{gameid}/{castid} -->
 		                               		
-		                               		<div style="text-align: left; position:absolute; top: 14px;left:5px;"><a th:href="@{/game/cast/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}"><img width="50px" height="50px" src="/assets/images/select_icon_copy.png" /></a></div>
+		                               		<!-- character is not chosen -->
+		                               		<div th:if="${c.username == null}" style="text-align: left; position:absolute; top: 14px;left:5px;"><a th:href="@{/game/cast/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}"><img width="50px" height="50px" src="/assets/images/select_icon_copy.png" /></a></div>
 		                               		<div style="text-align: right; position:absolute; top: 14px;right:20px;"><a href="javascript: closeDescription();"><img width="40px" height="40px" src="/assets/images/close_icon_copy.png" /></a></div>
 		                                </li>
 			                        </ul>
@@ -786,6 +786,7 @@ function next() {
 						<!-- ELSE -->
 						<div th:if="${player.castId != null}">
 							<div>
+								<!-- character is not chosen -->
 								<div class="character-name" th:if="${c.username == null}">
 									<p th:text="${c.cast.name}"></p>
 									<div th:if="${player.murdererId == null}" style="text-align: left;padding-left:50px;">
@@ -794,6 +795,7 @@ function next() {
 									</div>
 								</div>
 								
+								<!-- character is chosen -->
 								<div class="character-name" th:if="${c.username != null}">
 									<p><span th:text="${c.username}"></span><br/> is <span th:text="${c.cast.name}"></span></p>
 									<div th:if="${player.murdererId == null}" style="text-align: left;padding-left:50px;">
