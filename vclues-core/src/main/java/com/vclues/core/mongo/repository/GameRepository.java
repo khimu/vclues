@@ -3,6 +3,8 @@ package com.vclues.core.mongo.repository;
 import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.vclues.core.data.Game;
 import com.vclues.core.data.Player;
@@ -10,7 +12,19 @@ import com.vclues.core.data.Player;
 public interface GameRepository extends MongoRepository<Game, String> {
 
     public List<Game> findGamesByUserIdAndDone(Long userId, Boolean done);
-
+    
+    //@Query("select c from Game c where c.emails = :email and done = false")
+    //public List<Game> findGamesByDoneAndEmailsIn(@Param("email") String email, Boolean done);
+    //@Query(value="{ 'emails' : ?0 }")
+    @Query(value = "{ 'emails' : { $all: [?0] }, 'done' : false }")
+    public List<Game> findGamesByEmailAndDone(String email, Boolean done);
+        
+    @Query(value = "{ 'emails' : { $all: [?0] }}")
+    public List<Game> findGamesByEmail(String email);
+    
+    //@Query(value = "{ 'emails' : { $all: [?0] }}")
+    public Long countByEmails(String email);
+    
     public Game findGameById(Long gameId);
     
     public List<Game> findGamesByPlayers(List<Player> players, boolean done);

@@ -77,7 +77,11 @@ public class DashboardController extends BaseController {
     		}
     		*/
 
-    		model.addAttribute("game", gameService.getCurrentGame(getLoggedInUser().getId()));
+    		//model.addAttribute("games", gameService.findGamesByEmail(getLoggedInUser().getEmail()));
+    		
+    		model.addAttribute("gameCount", gameService.countByEmail(getLoggedInUser().getEmail()));
+    		
+    		System.out.println("gameCount " + model.toString());
 
     		return "menu";
     	}

@@ -346,17 +346,17 @@ a {
 				<a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
 
 				<div class="description">
-					<span th:switch="${player == null}">
+					<span th:switch="${player == null || player.script == null}">
 						<span th:case="false">
 		                	<ul>
 		                    	<li>
-		                    		<h1>Scene <span th:text="${player.script.position}"></span></h1>
+		                    		<h1>Scene <span th:text="${player.script == null ? '' : player.script.position}"></span></h1>
 		                    		
 		                    			<h5>Script</h5>
-		                    			<p><span th:text="${player.script.text}"></span></p>
+		                    			<p><span th:text="${player.script == null ? '' : player.script.text}"></span></p>
 		                    			
 		                    			<h5> Secret </h5>
-										<p><span th:text="${player.script.secret}"></span></p>
+										<p><span th:text="${player.script == null ? '' : player.script.secret}"></span></p>
 		                    	</li>	                    	
 		               	 	</ul>
 		               	 	

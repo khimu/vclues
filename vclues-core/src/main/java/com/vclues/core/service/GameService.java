@@ -168,6 +168,8 @@ public class GameService implements IGameService {
 		 * start at scene 1
 		 */
 		game.setSceneId(scene.getId());
+		game.setName(story.getTitle());
+		game.setCount(story.getSize());
 
 		game.setStarted(today);
 		game.setLastShown(today);
@@ -187,6 +189,7 @@ public class GameService implements IGameService {
 		}
 		
 		savedGame.setEmails(sendInviteEmail(username, game.getInvites(), savedGame.getId()));
+		savedGame.getEmails().add(username);
 
 		player.setGame(savedGame);
 		playerRepository.save(player);
@@ -222,6 +225,10 @@ public class GameService implements IGameService {
 		}
 		
 		Game game = gameRepository.findOne(gameId);
+		
+		if(game.getStarted() == null) {
+			game.setStarted(new Date());
+		}
 		
 		Script script = scriptRepository.findScriptBySceneIdAndCastId(game.getSceneId(), Long.parseLong(castId));
 		Hint hint = hintRepository.getAllHintBySceneId(game.getSceneId());
@@ -351,7 +358,7 @@ public class GameService implements IGameService {
 			            
 			        final Map<String, Object> modelObject = new HashMap<>();
 			            
-			        modelObject.put("url", baseUrl + "/confirm/" + activationKey);
+			        modelObject.put("url", baseUrl + "/confirm/" + finalUser.getEmail() + activationKey);
 			        modelObject.put("email", email);
 			        
 			        
@@ -404,6 +411,60 @@ public class GameService implements IGameService {
 		}
 
 		return null;
+	}
+	
+	@Override
+	public List<Game> findGamesByEmailAndDone(String email, Boolean done) {
+		List<Game> games = gameRepository.findGamesByEmailAndDone(email, done);
+		
+		for(Game g : games) {
+			List<Player> players = playerRepository.findAllPlayersByGame(g);
+			
+			for(Player p : players) {
+				if(p.getMurdererId() != null) {
+					Cast cast = castRepository.findOne(p.getMurdererId());
+					p.setGuess(cast);
+				}
+				if(p.getScriptId() != null) {
+					p.setScript(scriptRepository.findOne(p.getScriptId()));
+				}
+				
+				if(p.getHintId() != null) {
+					p.setHint(hintRepository.findOne(p.getHintId()));
+				}				
+			}
+		}
+		
+		return games;
+	}
+	
+	public Long countByEmail(String email) {
+		return gameRepository.countByEmails(email);
+	}
+	
+	@Override
+	public List<Game> findGamesByEmail(String email) {
+		List<Game> games = gameRepository.findGamesByEmail(email);
+		
+		for(Game g : games) {
+			List<Player> players = playerRepository.findAllPlayersByGame(g);
+			
+			for(Player p : players) {
+				if(p.getMurdererId() != null) {
+					Cast cast = castRepository.findOne(p.getMurdererId());
+					p.setGuess(cast);
+				}
+				if(p.getScriptId() != null) {
+					p.setScript(scriptRepository.findOne(p.getScriptId()));
+				}
+				
+				if(p.getHintId() != null) {
+					p.setHint(hintRepository.findOne(p.getHintId()));
+				}				
+			}
+		}
+		
+		return games;
 	}
 	
 	public List<Player> getGuesses(String gameId) {

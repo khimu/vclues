@@ -1,5 +1,7 @@
 package com.vclues.core.mongo.repository;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,12 +18,26 @@ import com.vclues.core.repository.TestAppConfig;
 @SpringBootTest(classes={TestAppConfig.class})
 @RunWith(SpringRunner.class)
 @EnableMongoRepositories(basePackages = "com.vclues.core.mongo.repository")
-public class DisputeRepositoryTest {
+public class GameRepositoryTest {
 
 	@Autowired
 	private GameRepository gameService;
 	
 	private Game game;
+	
+	@Test
+	public void findGamesByEmailAndDone() {
+		List<Game> games = gameService.findGamesByEmailAndDone( "kim2kim@gmail.com", false); 
+		if(games == null) {
+			System.out.println("No games");
+		}
+		else {
+			System.out.println("has games " + games.size());
+			for(Game game : games) {
+				System.out.println("game " + game.getId());
+			}
+		}
+	}
 	
 	@Before
 	public void setup() {

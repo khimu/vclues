@@ -65,13 +65,28 @@ a {
 			font-weight: bold;
 		}	
 		
+		/* unvisited link */
+		.menu a:link, .menu a:active, .menu a:visited, .menu a:hover {
+			vertical-align: middle;
+			width: 150px;
+			height: 30px;
+			font-style: bold;
+			margin-top: 30px;
+		    padding: 5px;
+		    color: white;
+		    font-size: 20px;
+			text-decoration: none;
+			
+		    text-align: center;
+		    background: transparent;
+		    text-shadow: 0 0 50px yellow;				
+		}
 
 		.menu ul, .game ul{
 			list-style-type: none;
 			white-space: nowrap;
 		}
-		
-		
+
 		.game {
 			display: none;
 		}
@@ -447,7 +462,7 @@ $( document ).ready(function() {
     
     
 	$(function() {
-		
+		/*
 		if(!isEmpty(gameId)) {
 			console.log('making Story inactive and game active');
 			$(".menu li:first()").removeClass("inactive");
@@ -459,6 +474,7 @@ $( document ).ready(function() {
 			$(".menu li:first()").addClass("inactive");
 			$(".menu li:nth(1)").removeClass("inactice");
 		}
+		*/
 		
 		if(!isEmpty(gameId)) {
 	  		$(".menu li:first()").on("click",function() {
@@ -571,8 +587,14 @@ $( document ).ready(function() {
 
 		<div class="menu">
 			<ul>
-				<li>Game</li>				
-				<li>Story</li>
+				<li th:switch="${gameCount != null and gameCount > 0}">
+					<span th:case="true"><a href="/game/all">Game</a></span>
+					<span th:case="false" class="inactive">Game</span>
+				</li>		
+				<li th:switch="${gameCount != null and gameCount > 0}">
+					<span th:case="true" class="inactive">Story</span>
+					<span th:case="false"><a href="/videos">Story</a></span>
+				</li>		
 				<li>Logout</li>
 			</ul>
 		</div> <!-- end menu -->

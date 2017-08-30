@@ -92,14 +92,10 @@ public class RegistrationController extends BaseController {
         model.addAttribute("message", "Thank you for registering.  Please check your email for the confirmation link.");
 
         if(getLoggedInUser() != null) {
-			Map<Integer, List<Game>> games = gameService.getUserGames(getLoggedInUser().getId());
-			//List<Player> players = gameService.findAllCurrentGames(getLoggedInUser().getId());
-			
-			List<Game> currentGame = games.get(1);
-			
-			if(currentGame != null) {
-				model.addAttribute("game", currentGame.get(0));
-			}
+    		
+    		//model.addAttribute("games", gameService.findGamesByEmail(getLoggedInUser().getEmail()));
+        	
+        	model.addAttribute("gameCount", gameService.countByEmail(getLoggedInUser().getEmail()));
 	
 	        return "menu";
         }
@@ -120,7 +116,7 @@ public class RegistrationController extends BaseController {
         model.addAttribute("message", "Thank you for confirming your email.  Please try logging in");
         model.addAttribute("content", "confirm"); 
     	
-        return "index";
+        return "redirect:/";
     }   
     
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)

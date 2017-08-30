@@ -377,12 +377,12 @@ a {
         	<div class="container">
 		        	<a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
 					
-						<div class="clue-detail" th:switch="${player == null}">
+						<div class="clue-detail" th:switch="${player == null || player.hint == null}">
 	                        <ul>
                                 <li>
                                 	<p>
-                                		<h3>Scene <span th:text="${player.hint.position}"></span> Clue</h3>
 										<span th:case="false">
+													<h3>Scene <span th:text="${player.hint.position}"></span> Clue</h3>
 							                    	<span th:text="${player.hint.text}"></span>
 										</span>
 									

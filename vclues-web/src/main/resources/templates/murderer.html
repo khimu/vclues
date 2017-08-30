@@ -748,7 +748,7 @@ function next() {
 </head>
 
 <body>
-		<!-- cast -->
+		<!-- murderer -->
         <div class="content">
                 <a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
                 <a href="javascript: next()" class="next"><img src="/assets/images/to-the-right.gif"/></a>
@@ -760,67 +760,28 @@ function next() {
 				<div th:each="c,iterStat : ${casts}" th:class="${iterStat.odd}? 'odd'">
 					<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
 
-						<!-- IF CUSTOMER IS ANONYMOUS -->
-						<div th:if="${player.castId == null}">
-							<div>
-								<div class="character-name"><p th:text="${c.cast.name}"></p></div>
-								<!-- /assets/images/stories/story1/cast/SUSPECT_001_FADED.png -->
-								<a href="javascript: return false;"><img class="character" th:src="${c.cast.image}"/></a>
-							</div>
-			
-			                <div class="description">
-			                        <ul>
-		                                <li>
-		                               		<p>
-		                               			<h3><span th:text="${c.cast.name}"></span></h3>
-		                               			<span th:text="${c.cast.description}"></span>
-		                               		</p>
-		                               		<!-- Choose this game /game/cast/{gameid}/{castid} -->
-		                               		
-		                               		<div style="text-align: left; position:absolute; top: 14px;left:5px;"><a th:href="@{/game/cast/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}"><img width="50px" height="50px" src="/assets/images/select_icon_copy.png" /></a></div>
-		                               		<div style="text-align: right; position:absolute; top: 14px;right:20px;"><a href="javascript: closeDescription();"><img width="40px" height="40px" src="/assets/images/close_icon_copy.png" /></a></div>
-		                                </li>
-			                        </ul>
-			                </div>
-						</div>
 						<!-- ELSE -->
 						<div th:if="${player.castId != null}">
 							<div>
-								<div class="character-name" th:if="${c.username == null}">
+								<div class="character-name">
 									<p th:text="${c.cast.name}"></p>
 									<div th:if="${player.murdererId == null}" style="text-align: left;padding-left:50px;">
-									<span th:text="${player.murdererId}"></span><a th:href="@{/game/murderer/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}">
-									<img width="70xp" height="70px" src="/assets/images/arrow_icon.gif"/></a>
+									
+										<span th:text="${player.murdererId}"></span>
+										
+										<a th:href="@{/game/murderer/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}">
+										
+											<img width="70xp" height="70px" src="/assets/images/arrow_icon.gif"/>
+
+											<img class="character" th:src="${c.cast.image}"/>
+										
+										</a>
+										
 									</div>
 								</div>
-								
-								<div class="character-name" th:if="${c.username != null}">
-									<p><span th:text="${c.username}"></span><br/> is <span th:text="${c.cast.name}"></span></p>
-									<div th:if="${player.murdererId == null}" style="text-align: left;padding-left:50px;">
-									<span th:text="${player.murdererId}"></span><a th:href="@{/game/murderer/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}">
-									<img width="70xp" height="70px" src="/assets/images/arrow_icon.gif"/></a>
-									</div>
-								</div>
-								
-								<!-- /assets/images/stories/story1/cast/SUSPECT_001_FADED.png -->
-								<a href="javascript: return false;"><img class="character" th:src="${c.cast.image}"/></a>
 								
 							</div>
 			
-			                <div class="description">
-			                        <ul>
-		                                <li>
-		                                	<p>
-		                                		<span th:text="${c.username}"></span> is <span th:text="${c.cast.name}"></span>
-		                                		<br/><br/>
-		                                		<span th:text="${c.cast.description}"></span>
-		                                	</p>
-		                               		<!-- Choose this game /game/cast/{gameid}/{castid} -->
-		                               		
-		                               		<div style="text-align: right; position:absolute; top: 14px;right:20px;"><a href="javascript: closeDescription();"><img width="40px" height="40px" src="/assets/images/close_icon_copy.png" /></a></div>
-		                                </li>
-			                        </ul>
-			                </div>
 						</div>	
 	                </div>
                 </div>

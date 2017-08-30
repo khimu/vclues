@@ -9,6 +9,12 @@ import com.vclues.core.data.Player;
 
 public interface IGameService {
 	
+	public Long countByEmail(String email);
+	
+	public List<Game> findGamesByEmail(String email);
+	
+	public List<Game> findGamesByEmailAndDone(String email, Boolean done);
+	
 	public Player findPlayerByUserIdAndGameId(Long userId, String gameId);
 	
 	public Player done(Long userId, String gameId);

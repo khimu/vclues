@@ -5,6 +5,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,7 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.vclues.core.data.Game;
 import com.vclues.core.data.Player;
@@ -75,6 +80,10 @@ public class GameController extends BaseController {
 		
 		model.addAttribute("content", "gameDetail"); 
 		model.addAttribute("title", "Game Detail");
+		
+		//model.addAttribute("games", gameService.findGamesByEmail(getLoggedInUser().getEmail()));
+		
+		model.addAttribute("gameCount", gameService.countByEmail(getLoggedInUser().getEmail()));
         
 		return "menu";
     }
@@ -109,7 +118,17 @@ public class GameController extends BaseController {
 		
 		model.addAttribute("player", player);
         
-		return "cast";
+		if(player.getCastId() == null) {
+			return "cast";
+		}
+		
+		if(player.getMurdererId() == null) {
+			logger.info("player id = " + player.getId());
+			return "murderer";
+		}
+		
+		logger.info("murderer is not null " + player.getMurdererId());
+		return "castOnly";
     }
     
     /*
@@ -139,7 +158,8 @@ public class GameController extends BaseController {
 		
 		logger.info("murderer id " + player.getMurdererId());
         
-		return "cast";
+		return "redirect:/game/cast/" + gameId;
+		//return "cast";
     }  
 
     /*
@@ -157,6 +177,10 @@ public class GameController extends BaseController {
 		Game game = gameService.getGameCast(gameId);
 		game.setDone(true);
 		gameService.saveGame(game);
+		
+		//model.addAttribute("games", gameService.findGamesByEmail(getLoggedInUser().getEmail()));
+		
+		model.addAttribute("gameCount", gameService.countByEmail(getLoggedInUser().getEmail()));
         
 		return "menu";
     }  
@@ -176,15 +200,16 @@ public class GameController extends BaseController {
 
 		gameService.saveCastForGame(gameId, castId, user.getId(), castName, user.getEmail());
 		
-		Game game = gameService.getGameCast(gameId);
+		//Game game = gameService.getGameCast(gameId);
 
-		model.addAttribute("casts", game.getGameCast());
+		//model.addAttribute("casts", game.getGameCast());
 		
-		Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
+		//Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
 
-		model.addAttribute("player", player);
+		//model.addAttribute("player", player);
         
-		return "cast";
+		//return "cast";
+		return "redirect:/game/cast/" + gameId;
     }    
     
     /*
@@ -329,5 +354,24 @@ public class GameController extends BaseController {
 		gameService.deleteGame(Long.parseLong(gameId));
     }
     */
+    
+    @RequestMapping(value = {"/all"}, method = RequestMethod.GET)
+    public String all(Model model) {
+    	
+    	logger.info("Show all games");
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+		
+		List<Game> games = gameService.findGamesByEmail( user.getEmail()); 
+    		
+		model.addAttribute("games", games);
+
+		return "games";
+    	
+    }    
+    
 
 }
