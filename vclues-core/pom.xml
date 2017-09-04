@@ -265,11 +265,19 @@
 			<artifactId>paypal-core</artifactId>
 			<version>1.7.2</version>
 		</dependency>
+<!-- https://mvnrepository.com/artifact/net.authorize/anet-java-sdk -->
+<dependency>
+    <groupId>net.authorize</groupId>
+    <artifactId>anet-java-sdk</artifactId>
+    <version>1.8.0</version>
+</dependency>
+<!--
 		<dependency>
 			<groupId>net.authorize</groupId>
 			<artifactId>anet-java-sdk</artifactId>
 			<version>1.4.6</version>
 		</dependency>
+-->
 
 		<dependency>
       		<groupId>org.aspectj</groupId>
