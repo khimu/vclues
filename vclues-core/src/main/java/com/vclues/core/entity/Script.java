@@ -5,6 +5,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "script")
 public class Script extends AbstractEntity implements Order {
@@ -20,8 +22,10 @@ public class Script extends AbstractEntity implements Order {
 
 	private String image;
 
+	@Type( type = "text" )
 	private String text;
 
+	@Type( type = "text" )
 	private String secret;
 
 	private String sound;

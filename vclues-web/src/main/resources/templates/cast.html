@@ -12,16 +12,16 @@
     	<link rel='shortcut icon' type='image/x-icon' href='/assets/images/favicon.ico' />
 		
 		<!-- Opera Speed Dial Favicon -->
-		  <link rel="icon" type="image/png" href="/assets/images/android-chrome-512x512.png" />
+		<link rel="icon" type="image/png" href="/assets/images/android-chrome-512x512.png" />
 		
 		<!-- For iPhone 4 Retina display: -->
-		  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/apple-touch-icon-114x114-precomposed.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/apple-touch-icon-114x114-precomposed.png"/>
 		
 		<!-- For iPad: -->
-		  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/apple-touch-icon-72x72-precomposed.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/apple-touch-icon-72x72-precomposed.png"/>
 		
 		<!-- For iPhone: -->
-		  <link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-57x57-precomposed.png"/>    	
+		<link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-57x57-precomposed.png"/>    	
         	        	
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         
@@ -596,8 +596,6 @@ a {
         }
         
         .menu-button {
-            background-repeat: no-repeat;
-            background-position: center;
             font-size: 30px;
             color: #FFF;
             //font-family: 'Gloria Hallelujah', cursive;
@@ -609,7 +607,7 @@ a {
             cursor: pointer;
             vertical-align: middle;
         }
-	
+			
 		.menu-button a, .menu-button a:link, .menu-button a:visited, .menu-button a:link:active, .menu-button a:visited:active {
 			text-decoration: none;
 			color: white;
@@ -664,7 +662,19 @@ a {
 <script>
 $( document ).ready(function() {
     	console.log( "ready!" );
+    	
+        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
+        console.log(w);
+        console.log(h);
+        
+        $('body').css({ 'height': h }); 
+        $('.content').css({ 'height': h }); 
+        
+        $('body').css({ 'width': w });   
+        $('.content').css({ 'width': w }); 
+        
         $(function() {
 
     		$('.character').bind('touchstart', function(e) {
@@ -748,8 +758,10 @@ function next() {
 </head>
 
 <body>
+
 		<!-- cast -->
         <div class="content">
+       		<div class="container">
                 <a href="/" class="menu-button" style="text-decoration: none; color: white;">Menu</a>
                 <a href="javascript: next()" class="next"><img src="/assets/images/to-the-right.gif"/></a>
                 <a href="javascript: prev();" class="prev"><img src="/assets/images/to-the-left.gif"/></a>
@@ -826,7 +838,7 @@ function next() {
 						</div>	
 	                </div>
                 </div>
-                
+            </div>    
         </div><!-- end content -->
 		<img class="corner-logo" src="/assets/images/logo.png" width="100px" height="50px" />
 

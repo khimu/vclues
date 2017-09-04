@@ -1,5 +1,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:batch="http://www.springframework.org/schema/batch" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xmlns:batch="http://www.springframework.org/schema/batch" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:rabbit="http://www.springframework.org/schema/rabbit"
 	xsi:schemaLocation="http://www.springframework.org/schema/batch
@@ -11,7 +13,38 @@
         http://www.springframework.org/schema/rabbit 
         http://www.springframework.org/schema/rabbit/spring-rabbit-1.0.xsd
 		http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/cache
+        http://www.springframework.org/schema/cache/spring-cache.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+
+	<context:annotation-config />
+	<cache:annotation-driven />
+
+	<import resource="classpath*:/simplesm-context.xml" />
+
+	<aop:aspectj-autoproxy />
+
+	<bean name="defaultMemcachedClient" class="com.google.code.ssm.CacheFactory">
+		<property name="cacheClientFactory">
+			<bean name="cacheClientFactory"
+				class="com.google.code.ssm.providers.spymemcached.MemcacheClientFactoryImpl" />
+		</property>
+		<property name="addressProvider">
+			<bean class="com.google.code.ssm.config.DefaultAddressProvider">
+				<property name="address" value="127.0.0.1:11211" />
+			</bean>
+		</property>
+		<property name="configuration">
+			<bean class="com.google.code.ssm.providers.CacheConfiguration">
+				<property name="consistentHashing" value="true" />
+			</bean>
+		</property>
+	</bean>
 
 
 	<!-- connect to MySQL database -->
@@ -29,11 +62,11 @@
 	</bean>
 
 	<bean id="mongoClient" class="com.mongodb.MongoClientURI">
-	  <constructor-arg ref="mongoClientUri"/>
+		<constructor-arg ref="mongoClientUri" />
 	</bean>
 
 	<bean id="mongoClientUri" class="java.lang.String">
-	  <constructor-arg value="${spring.data.mongodb.uri}"/>
+		<constructor-arg value="${spring.data.mongodb.uri}" />
 	</bean>
 
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
@@ -41,7 +74,7 @@
 		<constructor-arg name="databaseName" value="${mongo.DB}" />
 		<!-- <property name="writeConcern" value="SAFE" /> Requires replication -->
 	</bean>
-	
+
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
@@ -50,57 +83,47 @@
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan" value="com.vclues.core.entity" />
-		
+
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="database" value="MYSQL" />
 				<property name="generateDdl" value="false" />
 				<property name="showSql" value="false" />
 			</bean>
-		</property>	
+		</property>
 
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">validate</prop> 
+				<prop key="hibernate.hbm2ddl.auto">validate</prop>
 				<prop key="hibernate.hibernate.naming-strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
 			</props>
 		</property>
 	</bean>
 
 
-	<bean id="jsonMessageConverter" class="org.springframework.amqp.support.converter.JsonMessageConverter"/>
+	<bean id="jsonMessageConverter"
+		class="org.springframework.amqp.support.converter.JsonMessageConverter" />
 
-	<!-- 
-	<rabbit:connection-factory host="localhost" password="frog90805" username="khimung" id="connectionFactory" channel-cache-size="10" />
-	 -->
-	 
-	<!-- routing-key must match to pattern : has nothing to do with the message itself or the class name of the message -->
-	<!--
-	<rabbit:template id="amqpTemplate" connection-factory="connectionFactory"
-		exchange="myExchange"  queue="profiles" routing-key="com.vclues.model.Disputes" message-converter="jsonMessageConverter" />
+	<!-- <rabbit:connection-factory host="localhost" password="frog90805" username="khimung" 
+		id="connectionFactory" channel-cache-size="10" /> -->
 
-	<rabbit:admin connection-factory="connectionFactory" />
+	<!-- routing-key must match to pattern : has nothing to do with the message 
+		itself or the class name of the message -->
+	<!-- <rabbit:template id="amqpTemplate" connection-factory="connectionFactory" 
+		exchange="myExchange" queue="profiles" routing-key="com.vclues.model.Disputes" 
+		message-converter="jsonMessageConverter" /> <rabbit:admin connection-factory="connectionFactory" 
+		/> <rabbit:queue name="disputes" /> <rabbit:topic-exchange name="myExchange"> 
+		<rabbit:bindings> <rabbit:binding queue="disputes" pattern="com.vclues.model.Disputes" 
+		/> </rabbit:bindings> </rabbit:topic-exchange> -->
 
-	<rabbit:queue name="disputes"  />
+	<!-- <rabbit:listener-container connection-factory="connectionFactory" concurrency="2" 
+		message-converter="jsonMessageConverter"> <rabbit:listener ref="DisputeController 
+		method="listen" queues="profiles" /> </rabbit:listener-container> -->
 
-	<rabbit:topic-exchange name="myExchange">
-		<rabbit:bindings>
-			<rabbit:binding queue="disputes" pattern="com.vclues.model.Disputes" />
-		</rabbit:bindings>
-	</rabbit:topic-exchange>
-	-->
 
-<!-- 
-	<rabbit:listener-container
-		connection-factory="connectionFactory"  concurrency="2" message-converter="jsonMessageConverter">
-		<rabbit:listener ref="DisputeController method="listen"  queues="profiles" />
-	</rabbit:listener-container>
- -->
- 
-  
- 	<!-- connect to MySQL database -->
+	<!-- connect to MySQL database -->
 	<bean id="oauthDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${spring.datasource_oauth.driverClassName}" />
@@ -122,23 +145,23 @@
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="oauthDataSource" />
 		<property name="packagesToScan" value="de.frontierpsychiatrist.example.oauth.domain" />
-		
+
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="database" value="MYSQL" />
 				<property name="generateDdl" value="true" />
 				<property name="showSql" value="false" />
 			</bean>
-		</property>	
+		</property>
 
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.hbm2ddl.auto">validate</prop> 
+				<prop key="hibernate.hbm2ddl.auto">validate</prop>
 				<prop key="hibernate.hibernate.naming-strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
 			</props>
-		</property>	
+		</property>
 	</bean>
 
 </beans>

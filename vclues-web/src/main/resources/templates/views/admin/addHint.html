@@ -6,21 +6,23 @@
 			<!-- Main Form -->
 			<div class="login-form-1">		
 				<form class="text-left" th:action="@{/admin/hint}" th:object="${hint}" th:method="POST">
-
 					<ul>
 					    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
 					</ul>					
 					<input class="form-control" type="hidden" th:value="${storyId}" id="storyId" name="storyId" />
+					<input class="form-control" type="hidden" th:value="${sceneId}" id="sceneId" name="scene.id" />
 					
 					<div class="login-form-main-message"></div>
 					<div class="main-login-form">
 						<div class="login-group">
+							<!--  
 							<div class="form-group">
 								<label for="scenes" class="sr-only" required="true">Scenes</label>
 								<select th:field="*{scene.id}" th:remove="all-but-first">
 				                	<option th:each="s : ${scenes}" th:value="${s.id}">Scene <span th:text="${s.position}"></span></option>
 								</select>							
 							</div>
+							-->
 							<div class="form-group">
 								<label for="text" class="sr-only" required="true">Text</label>
 								<input type="text" class="form-control" id="text" th:field="*{text}" placeholder="text" th:errorclass="fieldError"/>

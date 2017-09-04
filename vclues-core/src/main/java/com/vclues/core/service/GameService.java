@@ -92,6 +92,10 @@ public class GameService implements IGameService {
     @Value("${server.base.url}")
     private String baseUrl;
     
+    public List<Hint> findHintBySceneId(Long sceneId) {
+    	return hintRepository.findHintBySceneId(sceneId);
+    }
+    
 	@Override
 	public List<Player> findAllCurrentGames(Long userId) {
 		// find all games that the user is involved in
@@ -515,7 +519,7 @@ public class GameService implements IGameService {
 			 * set next scene (script/clues) for all players
 			 */
 			if(nextScene != null) {
-				Hint hint = hintRepository.findHintBySceneId(nextScene.getId());
+				//List<Hint> hint = hintRepository.findHintBySceneId(nextScene.getId());
 				List<Script> scripts = scriptRepository.getAllScriptsBySceneId(nextScene.getId());
 				
 				Map<Long, Script> castToScript = new HashMap<Long, Script>();
@@ -527,7 +531,7 @@ public class GameService implements IGameService {
 				List<Player> players = playerRepository.findAllPlayersByGame(game);
 				
 				for(Player p : players) {
-					p.setHintId(hint.getId());
+					//p.setHintId(hint.getId());
 					p.setScriptId(castToScript.get(p.getCastId()).getId());
 					p.setDone(false);
 					playerRepository.save(p);

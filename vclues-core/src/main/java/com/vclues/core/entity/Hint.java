@@ -5,6 +5,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 
 @Entity
 @Table(name = "hint")
@@ -21,6 +23,7 @@ public class Hint extends AbstractEntity implements Order {
 
 	private String image;
 
+	@Type( type = "text" )
 	private String text;
 
 	private Integer position;

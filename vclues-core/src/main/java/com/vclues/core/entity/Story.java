@@ -10,6 +10,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Type;
 import org.springframework.cache.annotation.Cacheable;
 
 @Entity
@@ -39,6 +40,7 @@ public class Story extends AbstractEntity {
 
 	private String title;
 
+	@Type( type = "text" )
 	private String synapsis;
 
 	private String answer;

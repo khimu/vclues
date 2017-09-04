@@ -49,6 +49,7 @@ public class ScriptController extends BaseController {
 		
 		List<Script> scripts = storyService.getAllScriptsBySceneId(Long.parseLong(sceneId));
 		
+		model.addAttribute("sceneId", sceneId);
 		model.addAttribute("scripts", scripts);
 		
 		model.addAttribute("content", "listScript"); 

@@ -110,20 +110,19 @@ input[type=checkbox], input[type=radio]
 
 	#login_outer .logo {
 		width: 213px;
-		height: 80px;
-		background: url('/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif')
+		height: 90px;
+		background: url('/assets/images/logo.png')
 			no-repeat;
-		margin: 40px 0px 0px 40px;
+		margin: 55px 0px 0px 40px;
 		background-size: 100%;
 	}
 	
 	/* COMMON */
 	#register_outer .logo {
 		width: 213px;
-		height: 80px;
-		background: url('/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif')
-			no-repeat;
-		margin: 40px 0px 0px 40px;
+		height: 90px;
+		background: url('/assets/images/logo.png') no-repeat;
+		margin: 55px 0px 0px 40px;
 		background-size: 100%;
 	}
 	
@@ -136,7 +135,7 @@ input[type=checkbox], input[type=radio]
 	/* COMMON */
 	.login-block h1 {
 		text-align: center;
-		color: #333333;
+		/*color: #333333;*/
 		font-size: 30px;
 		text-transform: uppercase;
 		margin-top: 0;

@@ -8,6 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.code.ssm.api.InvalidateMultiCache;
+import com.google.code.ssm.api.InvalidateSingleCache;
+import com.google.code.ssm.api.ParameterValueKeyProvider;
+import com.google.code.ssm.api.ReadThroughMultiCache;
+import com.google.code.ssm.api.ReadThroughSingleCache;
 import com.vclues.core.entity.Cast;
 import com.vclues.core.entity.Hint;
 import com.vclues.core.entity.Scene;
@@ -58,10 +63,17 @@ public class StoryService implements IStoryService {
     * Somehow not getting a new object from DB and causing stale state exeception on 
     * second edit request
     */
-    public Story saveStory(Story story) {
+    @InvalidateMultiCache(namespace = "stories")
+    public Story saveStory(@ParameterValueKeyProvider Story story) {
+    	return saveSingleCacheStory(story);
+    }
+    
+    @InvalidateSingleCache(namespace = "story")
+    public Story saveSingleCacheStory(@ParameterValueKeyProvider Story story) {
     	return storyRepository.save(story);
     }
     
+    @ReadThroughMultiCache(namespace = "stories")
     public List<Story> getAllStories() {
     	return storyRepository.findAll();
     }
@@ -73,7 +85,8 @@ public class StoryService implements IStoryService {
      * (non-Javadoc)
      * @see com.vclues.core.service.IStoryService#getStory(java.lang.Long)
      */
-    public Story getStory(Long storyId) {
+    @ReadThroughSingleCache(namespace = "story")
+    public Story getStory(@ParameterValueKeyProvider Long storyId) {
     	return storyRepository.findOne(storyId);
     }
 	

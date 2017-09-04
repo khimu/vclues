@@ -4,13 +4,15 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import com.google.code.ssm.api.InvalidateSingleCache;
+import com.google.code.ssm.api.ParameterValueKeyProvider;
+import com.google.code.ssm.api.ReadThroughSingleCache;
 import com.vclues.core.entity.Cast;
 
 @Transactional
@@ -21,6 +23,12 @@ public interface CastRepository extends JpaRepository<Cast, Long> {
 	@CacheEvict(value = "getAllCastByStoryId")
 	public void deleteCast(Long castId);
 	
-	@Cacheable(value="getAllCastByStoryId")
-	public List<Cast> getAllCastByStoryId(Long storyId);
+	//@Cacheable(value="getAllCastByStoryId")
+	@ReadThroughSingleCache(namespace = "CastByStoryId")
+	public List<Cast> getAllCastByStoryId(@ParameterValueKeyProvider Long storyId);
+	
+	@Override
+	//@InvalidateSingleCache(namespace = "StoryById")
+	@CacheEvict(value="StoryById", key="#cast.story")
+	public Cast save(@ParameterValueKeyProvider Cast cast);
 }

@@ -516,9 +516,10 @@ function next() {
 						<div style="text-align: right;"><a href="#" onclick="$('#description_' + $(this).find('span').attr('id')).show(); $('#game_' + $(this).find('span').attr('id')).hide();"><span th:id="${iterStat.count}"></span><img width="50px" height="50px" src="/assets/images/close_icon_copy.png" /></a></div>
 						<br/>
 						<ul>
+							<li>test <span th:text="${game.sceneId}"></span></li>
 							<li><a th:href="@{'/game/cast/' + ${game.id}}">Characters</a></li>
 							<li><a th:href="@{'/game/script/' + ${game.id}}">Script</a></li>
-							<li><a th:href="@{'/game/clue/' + ${game.id}}">Clue</a></li>
+							<li><a th:href="@{'/game/clue/' + ${game.sceneId}}">Clue</a></li>
 							<li>
 								<span th:switch="${game.done}"> 
 									<span th:case="false" class="inactive">Guesses</span>

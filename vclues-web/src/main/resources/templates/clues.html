@@ -367,38 +367,122 @@ a {
                 //background-color:transparent;
         }
 
+            .prev {
+                z-index:1;
+            }
+                        
+            .next {
+                z-index:1;
+            }
 
+            .next img {
+                position: absolute;
+                top: 50%;
+                right: 5px;
+                height: 80px;
+                width: 30px;
+                z-index:1;
+            }            
+
+            .prev img {
+                position: absolute;
+                top: 50%;
+                left: 5px;
+                height: 80px;
+                width: 30px;
+                z-index:1;
+            }     
 </style>
+
+
+<script>
+$( document ).ready(function() {
+    	console.log( "ready!" );
+});
+
+function closeDescription() {
+	$('.description').hide();
+}
+
+function prev() {
+	var prev = parseInt($('#current').val());
+	var current = parseInt($('#current').val());
+	
+	console.log('before prev ' + prev + ' current ' + current);
+	
+	if(prev == 0) {
+		$('#current').val(0);
+	}
+	else {
+		prev--;
+		console.log(prev);
+		$('#current').val(prev);
+	}
+	
+	console.log('after prev ' + prev + ' current ' + current);
+	
+	$('#'+current).hide();
+	$('#'+prev).show();
+}
+
+function next() {
+	var next = parseInt($('#current').val());
+	var current = parseInt($('#current').val());
+	var listsize = parseInt($('#listsize').val());
+	
+	console.log('before next ' + next + ' current ' + current);
+	
+	if(next == listsize) {
+		$('#current').val(listsize);
+	}
+	else {
+		next++;
+		console.log(next);
+		$('#current').val(next);
+	}
+	
+	console.log('after next ' + next + ' current ' + current);
+	
+	$('#'+current).hide();
+	$('#'+next).show();
+}
+
+</script>
+
+
 </head>
 
 <body>
         <div class="content">
-		        	<a href="/game/all" class="menu-button" style="text-decoration: none; color: white;">Back</a>
-					
-						<div class="postitnote" th:switch="${player == null || player.hint == null}">
+		        <a href="/game/all" class="menu-button" style="text-decoration: none; color: white;">Back</a>
+                <a href="javascript: next()" class="next"><img src="/assets/images/to-the-right.gif"/></a>
+                <a href="javascript: prev();" class="prev"><img src="/assets/images/to-the-left.gif"/></a>
+                
+                <input type="hidden" id="current" value="1" />
+                <input type="hidden" id="listsize" th:value="${#lists.size(hints)}" />
+
+				<div th:each="clue,iterStat : ${hints}" th:class="${iterStat.odd}? 'odd'">
+					<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
+						<div class="postitnote" th:switch="${host == null}">
 	                        <ul>
                                 <li>
                                 	<p>
 										<span th:case="false">
-													<h3>Scene <span th:text="${player.hint.position}"></span> Clue</h3>
-							                    	<span th:text="${player.hint.text}"></span>
+													<h3>Scene <span th:text="${clue.position}"></span> Clue</h3>
+							                    	<span th:text="${clue.text}"></span>
 										</span>
-									
-										
+
 										<span th:case="true">
 													<span>Please select your character</span>
 										</span>
-										
-                                	
                                 	</p>
                                 </li>
 	                        </ul>							
 						</div>	
-
-		 			
+					</div>
+				</div>
 		</div><!-- end container -->
 		<img class="corner-logo" src="/assets/images/logo.png" width="100px" height="50px" />
-       
 
 </body>
 
