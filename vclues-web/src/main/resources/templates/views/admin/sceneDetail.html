@@ -11,9 +11,9 @@
                             <div><hr/></div>
                             <div>
                             	<a th:href="@{/admin/story/{id}(id=${scene.story.id})}" class="btn btn-default">Back</a>
-                            	<a th:href="@{/admin/script/{id}(id=${scene.id})}" class="btn btn-default">Add Scripts</a>
-                            	<a th:href="@{/admin/hint/{id}(id=${scene.id})}" class="btn btn-default">Add Hints</a>
-                            </div>                            
+                            	<a th:href="@{/admin/script/{storyId}/{id}(storyId=${scene.story.id},id=${scene.id})}" class="btn btn-default">Add Scripts</a>
+                            	<a th:href="@{/admin/hint/{storyId}/{id}(storyId=${scene.story.id},id=${scene.id})}" class="btn btn-default">Add Hints</a>
+                            </div>
                             <div class="content table-responsive table-full-width table-upgrade">
                                 <table class="table">
                                     <tbody>                          

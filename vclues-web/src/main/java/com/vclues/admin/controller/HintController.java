@@ -103,8 +103,8 @@ public class HintController extends BaseController {
 		return "admin";
     }
 	    
-    @GetMapping("{id}")
-    public String add(@PathVariable("id") Long sceneId, Model model) {
+    @GetMapping("{storyId}/{id}")
+    public String add(@PathVariable("storyId") Long storyId, @PathVariable("id") Long sceneId, Model model) {
     	logger.info("In add hint for " + sceneId);
 		User user = getLoggedInUser();
 		if(user == null) {
@@ -120,7 +120,7 @@ public class HintController extends BaseController {
 		model.addAttribute("hint", hint);
 		//model.addAttribute("scenes", storyService.getAllSceneByStoryId(Long.parseLong(storyId)));
 		model.addAttribute("sceneId", sceneId);
-		model.addAttribute("storyId", scene.getStory().getId());
+		model.addAttribute("storyId", storyId);
         model.addAttribute("content", "addHint");
         model.addAttribute("title", "Add Hint");
         

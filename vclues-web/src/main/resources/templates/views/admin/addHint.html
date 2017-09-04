@@ -40,12 +40,7 @@
 								<input type="text" class="form-control" id="audio" th:field="*{audio}" placeholder="audio link" th:errorclass="fieldError"/>
 							</div>
 						</div>	
-						<div th:if="${!scenes.isEmpty()}">
-							<button type="submit" class="btn btn-info">Submit</button>
-						</div>
-						<div th:if="${scenes.isEmpty()}">
-							<button type="submit"  disabled="disabled" class="btn btn-info">Submit</button>
-						</div>
+						<button type="submit" class="btn btn-info">Submit</button>
 						<a th:href="@{/admin/story/{id}(id=${storyId})}" class="btn btn-default">Cancel</a>
 					</div>
 				</form>

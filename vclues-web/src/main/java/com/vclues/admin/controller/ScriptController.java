@@ -102,9 +102,9 @@ public class ScriptController extends BaseController {
         
 		return "admin";
     }
-	    
-    @GetMapping("{id}")
-    public String add(@PathVariable("id") Long sceneId, Model model) {
+
+    @GetMapping("{storyId}/{id}")
+    public String add(@PathVariable("storyId") Long storyId, @PathVariable("id") Long sceneId, Model model) {
     	logger.info("In add script for " + sceneId);
 		User user = getLoggedInUser();
 		if(user == null) {
@@ -115,12 +115,11 @@ public class ScriptController extends BaseController {
 		Scene scene = storyService.getScene(sceneId);
 		Script script = new Script();
 		script.setScene(scene);
-		
 
-		model.addAttribute("casts", storyService.getAllCastByStoryId(scene.getStory().getId()));	
+		model.addAttribute("casts", storyService.getAllCastByStoryId(storyId));	
 		//model.addAttribute("scenes", storyService.getAllSceneByStoryId(Long.parseLong(storyId)));	
 		model.addAttribute("sceneId", sceneId);
-		model.addAttribute("storyId", scene.getStory().getId());
+		model.addAttribute("storyId", storyId);
 		model.addAttribute("script", script);
         model.addAttribute("content", "addScript");
         model.addAttribute("title", "Add Script");

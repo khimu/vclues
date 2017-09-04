@@ -51,10 +51,10 @@
 								<input type="text" class="form-control" id="audio" th:field="*{audio}" placeholder="audio link" th:errorclass="fieldError"/>
 							</div>
 						</div>	
-						<div th:if="${!scenes.isEmpty() or !casts.isEmpty()}">
+						<div th:if="${!casts.isEmpty()}">
 							<button type="submit" class="btn btn-info">Submit</button>
 						</div>
-						<div th:if="${scenes.isEmpty() and casts.isEmpty()}">
+						<div th:if="${casts.isEmpty()}">
 							<button type="submit"  disabled="disabled" class="btn btn-info">Submit</button>
 						</div>
 						<a th:href="@{/admin/story/{id}(id=${storyId})}" class="btn btn-default">Cancel</a>
