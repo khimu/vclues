@@ -235,7 +235,7 @@ public class GameService implements IGameService {
 		}
 		
 		Script script = scriptRepository.findScriptBySceneIdAndCastId(game.getSceneId(), Long.parseLong(castId));
-		Hint hint = hintRepository.getAllHintBySceneId(game.getSceneId());
+		//Hint hint = hintRepository.getAllHintBySceneId(game.getSceneId());
 		
 		player.setCastId(Long.parseLong(castId));
 		player.setName(name);
@@ -243,7 +243,7 @@ public class GameService implements IGameService {
 		player.setUserId(userId);
 		player.setScript(script);
 		player.setScriptId(script.getId());
-		player.setHintId(hint.getId());
+		//player.setHintId(hint.getId());
 
 		/*
 		 * remove self from previous character selection

@@ -832,10 +832,8 @@ function next() {
 							      </div>
 		                          
 									<!-- character is not chosen -->
-		                            <div th:if="${c.username == null}" style="text-align: left; position:absolute; top: 24px;left:5px;"><a th:href="@{/game/cast/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}"><img width="50px" height="50px" src="/assets/images/select_icon_copy.png" /></a></div>
-		                            <div style="text-align: right; position:absolute; top: 25px;right:20px;"><a href="javascript: closeDescription();"><img width="40px" height="40px" src="/assets/images/close_icon_copy.png" /></a></div>
-
 							      <div class="modal-footer">
+							      	<div th:if="${c.username == null}" style="text-align: left; position:absolute; top: 24px;left:5px;"><a th:href="@{/game/cast/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}"><img width="50px" height="50px" src="/assets/images/select_icon_copy.png" /></a></div>
 							      	<div style="text-align: right; position:absolute; top: 0px;right:0px;"><a href="#" data-dismiss="modal"><img width="40px" height="40px" src="/assets/images/close_icon_copy.png" /></a></div>
 							      </div>
 							    </div>
