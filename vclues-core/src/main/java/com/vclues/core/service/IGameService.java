@@ -6,8 +6,11 @@ import java.util.Map;
 import com.vclues.core.data.Announcement;
 import com.vclues.core.data.Game;
 import com.vclues.core.data.Player;
+import com.vclues.core.entity.Hint;
 
 public interface IGameService {
+	
+	public List<Hint> findHintBySceneId(Long sceneId);
 	
 	public Long countByEmail(String email);
 	

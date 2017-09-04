@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.vclues.core.entity.Cast;
 import com.vclues.core.entity.Hint;
 import com.vclues.core.entity.Scene;
+import com.vclues.core.entity.Script;
 import com.vclues.core.entity.User;
 import com.vclues.core.service.IStoryService;
 import com.vclues.core.service.IUserService;
@@ -103,19 +104,23 @@ public class HintController extends BaseController {
     }
 	    
     @GetMapping("{id}")
-    public String add(@PathVariable("id") String storyId, Model model) {
-    	logger.info("In add hint");
+    public String add(@PathVariable("id") Long sceneId, Model model) {
+    	logger.info("In add hint for " + sceneId);
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
 			return "redirect:/login";
 		}
 
+		Scene scene = storyService.getScene(sceneId);
+		
 		Hint hint = new Hint();
+		hint.setScene(scene);
 
 		model.addAttribute("hint", hint);
-		model.addAttribute("scenes", storyService.getAllSceneByStoryId(Long.parseLong(storyId)));
-		model.addAttribute("storyId", storyId);
+		//model.addAttribute("scenes", storyService.getAllSceneByStoryId(Long.parseLong(storyId)));
+		model.addAttribute("sceneId", sceneId);
+		model.addAttribute("storyId", scene.getStory().getId());
         model.addAttribute("content", "addHint");
         model.addAttribute("title", "Add Hint");
         
@@ -194,7 +199,8 @@ public class HintController extends BaseController {
 		
 		storyService.saveHint(hint);
         
-        return "redirect:/admin/story/" + storyId;
+		return "redirect:/admin/scene/"+hint.getScene().getId() + "/" + storyId;
+        //return "redirect:/admin/story/" + storyId;
     }    
 
 

@@ -12,12 +12,18 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.scheduling.annotation.Async;
 
+import com.google.code.ssm.api.InvalidateSingleCache;
+import com.google.code.ssm.api.ParameterValueKeyProvider;
+import com.google.code.ssm.api.ReadThroughSingleCache;
+import com.vclues.core.entity.Story;
 import com.vclues.core.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	
+	@ReadThroughSingleCache(namespace = "findByEmail")
     @Query("SELECT u FROM User u WHERE LOWER(u.email) = LOWER(:email)")
     User findByEmail(@Param("email") String email);
+	
     /*
     @Modifying(clearAutomatically = true)
     @Query("update User d set d.active = 0 where d.id =:id")
@@ -124,4 +130,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	@Async
 	CompletableFuture<List<User>> readAllBy();
+	
+	@Override
+	@InvalidateSingleCache(namespace = "findByEmail")
+	public User save(@ParameterValueKeyProvider User user);
 }

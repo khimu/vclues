@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 		DataSourceTransactionManagerAutoConfiguration.class })
 //@ComponentScan({"com.vclues","com.vclues.repository"})
 @ComponentScan({"com.vclues.core", "it.ozimov.springboot"})
-@ImportResource({ "classpath*:spring/database.xml"})
+@ImportResource({ "classpath:spring/database.xml"})
 @TestPropertySource(locations = "classpath:application.properties")
 @EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory",
 transactionManagerRef = "transactionManager", basePackages = "com.vclues.core.repository")

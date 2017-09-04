@@ -5,9 +5,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,12 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.vclues.core.data.Game;
 import com.vclues.core.data.Player;
+import com.vclues.core.entity.Hint;
 import com.vclues.core.entity.Story;
 import com.vclues.core.entity.User;
 import com.vclues.core.enums.Frequency;
@@ -297,8 +294,8 @@ public class GameController extends BaseController {
     /*
      * Show the clue for the player
      */
-    @GetMapping("/clue/{gameId}")
-    public String clue(@PathVariable("gameId") String gameId, Model model) {
+    @GetMapping("/clue/{sceneId}")
+    public String clue(@PathVariable("sceneId") Long sceneId, Model model) {
     	logger.info("User view clue");
 		User user = getLoggedInUser();
 		if(user == null) {
@@ -306,9 +303,12 @@ public class GameController extends BaseController {
 			return "redirect:/login";
 		}
 
-		Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
+		//Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
 
-		model.addAttribute("player", player);
+		
+		List<Hint> hints = gameService.findHintBySceneId(sceneId);
+
+		model.addAttribute("hints", hints);
         
         return "clues";
     }     

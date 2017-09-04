@@ -62,26 +62,26 @@
 			<groupId>org.springframework.security.oauth</groupId>
 			<artifactId>spring-security-oauth2</artifactId>
 		</dependency>
-					
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.restdocs</groupId>
 			<artifactId>spring-restdocs-mockmvc</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		
+
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
-		<!--  For Mail -->
+		<!-- For Mail -->
 		<dependency>
 			<groupId>it.ozimov</groupId>
 			<artifactId>spring-boot-email-core</artifactId>
@@ -117,7 +117,7 @@
 			</exclusions>
 		</dependency>
 
-<!--  -->
+		<!-- -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-ehcache</artifactId>
@@ -142,13 +142,8 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 		</dependency>
 
-<!-- 
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>3.5.6-Final</version>
-		</dependency>
-		 -->
+		<!-- <dependency> <groupId>org.hibernate</groupId> <artifactId>hibernate-annotations</artifactId> 
+			<version>3.5.6-Final</version> </dependency> -->
 
 		<dependency>
 			<groupId>joda-time</groupId>
@@ -170,7 +165,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-oxm</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -215,10 +210,10 @@
 			<version>2.6</version>
 		</dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -266,9 +261,9 @@
 			<artifactId>hibernate-java8</artifactId>
 		</dependency>
 		<dependency>
-		    <groupId>com.paypal.sdk</groupId>
-		    <artifactId>paypal-core</artifactId>
-		    <version>1.7.2</version>
+			<groupId>com.paypal.sdk</groupId>
+			<artifactId>paypal-core</artifactId>
+			<version>1.7.2</version>
 		</dependency>
 <!-- https://mvnrepository.com/artifact/net.authorize/anet-java-sdk -->
 <dependency>
@@ -283,6 +278,44 @@
 			<version>1.4.6</version>
 		</dependency>
 -->
+
+		<dependency>
+      		<groupId>org.aspectj</groupId>
+      		<artifactId>aspectjweaver</artifactId>
+	    </dependency>
+	    <dependency>
+		      <groupId>org.aspectj</groupId>
+		      <artifactId>aspectjrt</artifactId>
+	    </dependency>
+		<dependency>
+			<groupId>javax.cache.implementation</groupId>
+			<artifactId>cache-annotations-ri-spring</artifactId>
+			<version>0.5</version>
+		</dependency>
+		<dependency>
+        <groupId>com.google.code.simple-spring-memcached</groupId>
+        	<artifactId>simple-spring-memcached</artifactId>
+        	<version>3.6.1</version>
+    	</dependency>
+    	<dependency>
+			<groupId>com.google.code.simple-spring-memcached</groupId>
+			<artifactId>spring-cache</artifactId>
+			<version>3.6.1</version>
+		</dependency>
+    	<!--
+		<dependency>
+    			 <groupId>com.google.code.simple-spring-memcached</groupId>
+    			 <artifactId>xmemcached-provider</artifactId>
+    			 <version>3.6.0</version>
+  		 </dependency> 
+  		 -->
+  		 <dependency>
+   		<groupId>com.google.code.simple-spring-memcached</groupId>
+   				<artifactId>spymemcached-provider</artifactId>
+   				<version>3.6.1</version>
+		</dependency>
+			
+		
 	</dependencies>
 
 	<build>

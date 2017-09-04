@@ -104,19 +104,23 @@ public class ScriptController extends BaseController {
     }
 	    
     @GetMapping("{id}")
-    public String add(@PathVariable("id") String storyId, Model model) {
-    	logger.info("In add script");
+    public String add(@PathVariable("id") Long sceneId, Model model) {
+    	logger.info("In add script for " + sceneId);
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
 			return "redirect:/login";
 		}
 
+		Scene scene = storyService.getScene(sceneId);
 		Script script = new Script();
+		script.setScene(scene);
+		
 
-		model.addAttribute("casts", storyService.getAllCastByStoryId(Long.parseLong(storyId)));	
-		model.addAttribute("scenes", storyService.getAllSceneByStoryId(Long.parseLong(storyId)));	
-		model.addAttribute("storyId", storyId);
+		model.addAttribute("casts", storyService.getAllCastByStoryId(scene.getStory().getId()));	
+		//model.addAttribute("scenes", storyService.getAllSceneByStoryId(Long.parseLong(storyId)));	
+		model.addAttribute("sceneId", sceneId);
+		model.addAttribute("storyId", scene.getStory().getId());
 		model.addAttribute("script", script);
         model.addAttribute("content", "addScript");
         model.addAttribute("title", "Add Script");
@@ -196,7 +200,9 @@ public class ScriptController extends BaseController {
         
 		storyService.saveScript(script);
 		
-        return "redirect:/admin/story/" + storyId;
+		return "redirect:/admin/scene/"+script.getScene().getId() + "/" + storyId;
+		
+        //return "redirect:/admin/story/" + storyId;
         
     }    
 

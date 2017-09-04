@@ -8,6 +8,12 @@
                                 <p class="category"></p>
 								<br/>
                             </div>
+                            <div><hr/></div>
+                            <div>
+                            	<a th:href="@{/admin/story/{id}(id=${scene.story.id})}" class="btn btn-default">Back</a>
+                            	<a th:href="@{/admin/script/{id}(id=${scene.id})}" class="btn btn-default">Add Scripts</a>
+                            	<a th:href="@{/admin/hint/{id}(id=${scene.id})}" class="btn btn-default">Add Hints</a>
+                            </div>                            
                             <div class="content table-responsive table-full-width table-upgrade">
                                 <table class="table">
                                     <tbody>                          
@@ -18,7 +24,7 @@
 												<table id="script-table" class="table table-striped">
 									              <thead>
 												      <tr>
-														<th>Image</th>
+														<th>CastID</th>
 														<th>Dialog</th>
 												        <th>Secret</th>
 												        <th></th>
@@ -26,7 +32,7 @@
 									              </thead>
 									              <tbody>
 														<tr th:each="script,iterStat : ${scene?.scripts}" th:class="${iterStat.odd}? 'odd'">
-														    <td th:text="${script.image}"></td>
+														    <td th:text="${script.cast.id}"></td>
 														    <td th:text="${script.text}" />
 														    <td th:text="${script.secret}" />
 															<!-- <td><a th:href="@{/admin/script/edit/{id}/{storyId}(id=${script.id}, storyId=${scene.story.id})}" class="btn btn-default">Edit</a></td> -->
@@ -42,6 +48,7 @@
 									              <tbody>
 														<tr th:each="hint,iterStat : ${scene?.hints}" th:class="${iterStat.odd}? 'odd'">
 															<td th:text="${iterStat.count}"></td>
+															<td th:text="${hint.image}"></td>
 														    <td th:text="${hint.text}"></td>
 															<!-- <td><a th:href="@{/admin/hint/edit/{id}/{storyId}(id=${hint.id}, storyId=${hint.story.id})}" class="btn btn-default">Edit</a></td> -->
 														</tr>  
@@ -57,12 +64,6 @@
 										</tr>
                                     </tbody>
                                 </table>
-                            </div>
-                            <div><hr/></div>
-                            <div>
-                            	<a th:href="@{/admin/story/{id}(id=${scene.story.id})}" class="btn btn-default">Back</a>
-                            	<a th:href="@{/admin/script/{id}(id=${scene.story.id})}" class="btn btn-default">Add Scripts</a>
-                            	<a th:href="@{/admin/hint/{id}(id=${scene.story.id})}" class="btn btn-default">Add Hints</a>
                             </div>
                         </div>
                     </div>

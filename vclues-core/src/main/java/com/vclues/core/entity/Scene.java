@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.Type;
 import org.springframework.cache.annotation.Cacheable;
 
 @Entity
@@ -29,6 +30,7 @@ public class Scene extends AbstractEntity implements Order {
 
 	private String image;
 
+	@Type( type = "text" )
 	private String text;
 
 	private String sound;
