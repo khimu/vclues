@@ -1,0 +1,265 @@
+// Core variables and mixins
+@import "_variables.less";
+// Custom for this template
+@import "bootstrap/_mixins.less";
+//
+// Lists
+// --------------------------------------------------
+
+//===========================================
+//   Ordered and Unordered List Styles
+//===========================================
+ul, ol {
+  margin: 0 0 @line-height-base;
+  padding: 0;
+  list-style: none;
+  > li {
+    font-family: Trebuchet MS, sans-serif;
+    font-size: 13px;
+    line-height: @line-height-base;
+    text-transform: uppercase;
+    a {
+      text-decoration: none;
+      color: #6f6f6f;
+      &:hover {
+        color: @global-color;
+      }
+    }
+  }
+}
+
+//===========================================
+//   Ordered List Styles
+//===========================================
+ol {
+  list-style: none;
+  counter-reset: list;
+  li {
+    padding-left: 27px;
+    position: relative;
+    &:before {
+      content: counter(list, decimal-leading-zero)'.';
+      counter-increment: list;
+      left: 0;
+      padding: 0px;
+      position: absolute;
+      top: 0;
+      color: @global-color;
+    }
+    + li {
+      margin-top: 11px;
+    }
+  }
+}
+
+//===========================================
+// Unordered List Styles
+//===========================================
+.item_introtext,
+.item_fulltext,
+.category_desc,
+.site_map {
+  ul {
+    li {
+      + li {
+        margin-top: 11px;
+      }
+    }
+    &.nav-tabs {
+      li {
+        padding: 0;
+        &:before {
+          display: none;
+        }
+      }
+    }
+    a,
+    span {
+      text-decoration: none;
+    }
+  }
+}
+
+// =======================
+// SOCIAL LIST
+// =======================
+.nav.menu.social {
+  font-size: 0;
+  line-height: 0;
+  margin: 61px 0 20px;
+  text-align: right;
+  li {
+    display: inline-block;
+    padding: 0px 0px 10px 10px;
+    &:before {
+      display: none;
+    }
+    a {
+      background: #676767;
+      .border-radius(50%);
+      color: #010101;
+      display: block;
+      font-size: 18px;
+      height: 25px;
+      line-height: 25px;
+      position: relative;
+      text-align: center;
+      .transition(all 0.5s ease);
+      width: 25px;
+      &:hover {
+        background: transparent;
+        color: @global-color;
+      }
+    }
+  }
+}
+
+ul.tags,
+ul.nav,
+ul.btn-toolbar,
+ul.dropdown-menu,
+ul.chzn-results,
+ul.chzn-choices {
+  li {
+    &:before {
+      display: none;
+    }
+  }
+}
+
+//===========================================
+// List Styles
+//===========================================
+ul.list {
+  li {
+    list-style: none;
+    position: relative;
+    padding-left: 23px;
+    &:before {
+      color: #1e1f1e;
+      position: absolute;
+      left: 0;
+      top: 0;
+      content: '\f111';
+      font-family: @fa;
+      font-size: 16px;
+    }
+    + li {
+      margin-top: 11px;
+    }
+  }
+}
+
+//===========================================
+// Icon List Styles
+//===========================================
+ul.icons {
+  li {
+    font-family: @font-family-serif;
+    font-size: 17px;
+    line-height: 30px;
+    list-style: none;
+    position: relative;
+    padding-left: 0px;
+    a {
+      color: @global-color;
+      &:hover {
+        color: @text-color;
+      }
+    }
+    + li {
+      margin-top: 10px;
+    }
+  }
+}
+
+//===========================================
+// Bootstrap Styles
+//===========================================
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  &.nav-child {
+    margin: 5px 0 0;
+  }
+}
+
+// Remove default list styles
+ul.unstyled,
+ol.unstyled {
+  margin-left: 0;
+  list-style: none;
+}
+
+// Single-line list items
+ul.inline,
+ol.inline {
+  margin-left: 0;
+  > li {
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+// Description Lists
+dl + * {
+  margin-top: @line-height-base;
+}
+
+dt,
+dd {
+  line-height: @line-height-base;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: @line-height-base / 2;
+}
+
+// Horizontal layout (like forms)
+.dl-horizontal {
+  .clearfix(); // Ensure dl clears floats if empty dd elements present
+  dt {
+    float: left;
+    width: @component-offset-horizontal - 20;
+    clear: left;
+    text-align: right;
+    .text-overflow();
+  }
+  dd {
+    margin-left: @component-offset-horizontal;
+  }
+}
+
+.portfolio-meta-list {
+  display: table;
+  margin-left: 0;
+  overflow: hidden;
+  li {
+    color: @link-hover-color;
+    display: table-row;
+    strong {
+      color: @text-color;
+    }
+    > strong,
+    > span {
+      display: table-cell;
+    }
+    > span {
+      padding-left: 5px;
+      color: @text-color;
+    }
+    &:before {
+      display: none;
+    }
+  }
+}
+
+.item_fulltext .portfolio-meta-list li span:hover {
+  color: inherit;
+}
