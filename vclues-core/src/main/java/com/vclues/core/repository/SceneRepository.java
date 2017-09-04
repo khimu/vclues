@@ -32,7 +32,6 @@ public interface SceneRepository extends JpaRepository<Scene, Long> {
 	public Scene getNextSceneByStoryIdAndPosition(@ParameterValueKeyProvider Long storyId, @ParameterValueKeyProvider Integer position);
 	
 	@Override
-	//@InvalidateSingleCache(namespace = "StoryById")
-	@CacheEvict(value="StoryById", key="#scene.story")
+	@InvalidateSingleCache(namespace = "getNextSceneByStoryIdAndPosition")
 	public Scene save(@ParameterValueKeyProvider Scene scene);
 }

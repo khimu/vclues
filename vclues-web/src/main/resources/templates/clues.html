@@ -30,6 +30,9 @@
 		<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
         <script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
+		<link rel="stylesheet" href="/assets/fancybox-master/dist/jquery.fancybox.min.css" />
+		<script src="/assets/fancybox-master/dist/jquery.fancybox.min.js"></script>
+        
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -470,6 +473,9 @@ function next() {
                                 	<p>
 										<span th:case="false">
 													<h3>Scene <span th:text="${clue.position}"></span> Clue</h3>
+													<div th:if="${clue.image != null && clue.image != ''}">
+														<a data-fancybox="gallery" th:href="${clue.image}"><img style="width: 50px;height:50px;" th:src="${clue.image}"></a>
+													</div>
 							                    	<div class="pre-scrollable"><span th:utext="${clue.text}"></span></div>
 										</span>
 

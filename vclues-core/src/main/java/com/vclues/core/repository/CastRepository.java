@@ -28,7 +28,6 @@ public interface CastRepository extends JpaRepository<Cast, Long> {
 	public List<Cast> getAllCastByStoryId(@ParameterValueKeyProvider Long storyId);
 	
 	@Override
-	//@InvalidateSingleCache(namespace = "StoryById")
-	@CacheEvict(value="StoryById", key="#cast.story")
+	@InvalidateSingleCache(namespace = "CastByStoryId")
 	public Cast save(@ParameterValueKeyProvider Cast cast);
 }
