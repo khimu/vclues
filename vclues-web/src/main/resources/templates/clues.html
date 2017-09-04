@@ -463,22 +463,24 @@ function next() {
 
 				<div th:each="clue,iterStat : ${hints}" th:class="${iterStat.odd}? 'odd'">
 					<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
+					
 						<div class="postitnote" th:switch="${host == null}">
 	                        <ul>
                                 <li>
                                 	<p>
 										<span th:case="false">
 													<h3>Scene <span th:text="${clue.position}"></span> Clue</h3>
-							                    	<span th:text="${clue.text}"></span>
+							                    	<div class="pre-scrollable"><span th:utext="${clue.text}"></span></div>
 										</span>
 
 										<span th:case="true">
-													<span>Please select your character</span>
+													<span>There are no clues</span>
 										</span>
                                 	</p>
                                 </li>
 	                        </ul>							
 						</div>	
+						
 					</div>
 				</div>
 		</div><!-- end container -->

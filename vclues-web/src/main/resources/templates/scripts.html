@@ -108,7 +108,7 @@ a {
             }
 	
 	        .description li {
-	                font-size: 20px;
+	                font-size: 14px;
 	                //font-family: 'Gloria Hallelujah', cursive;
 	        } 
 	        
@@ -164,7 +164,7 @@ a {
           
 	
 	        .description li {
-	                font-size: 20px;
+	                font-size: 14px;
 	                //font-family: 'Gloria Hallelujah', cursive;
 	        }
 	        
@@ -235,7 +235,7 @@ a {
 			
 
 	        .description li {
-	                font-size: 20px;
+	                font-size: 14px;
 	                //font-family: 'Gloria Hallelujah', cursive;
 	        }            
 
@@ -291,7 +291,7 @@ a {
   			}
 
 	        .description li, .description a, .description span {
-	                font-size: 40px;
+	                font-size: 14px;
 	                //font-family: 'Gloria Hallelujah', cursive;
 	        }
 
@@ -395,10 +395,7 @@ a {
 							<div id="secret" class="postitnote" style="display: none;">
 								<ul>
 									<li>
-										<p>
-											<h3> Secret </h3>
-											<span th:text="${player.script == null ? '' : player.script.secret}"></span>
-										</p>
+										<div class="pre-scrollable"><span th:utext="${player.script == null ? '' : player.script.secret}"></span></div>
 										<div style="position: absolute; top:10px;right:5px;"><a href="#" onclick="$('#secret').hide();"><img src="/assets/images/close_icon_copy.png" /></a></div>
 									</li>
 								</ul>
@@ -406,14 +403,17 @@ a {
 						
 							<div class="description">
 							
+                    			<div style="text-align: left; position:absolute; top: 50px;right:50px;"> 
+                    				<a href="#" onclick="$('#secret').show();"><img style="width: 70px; height: 70px;" src="/assets/images/select_icon_copy.png" /></a>
+                    			</div>							
 			                	<ul>
 			                    	<li>
-			                    				<h1>Scene <span th:text="${player.script == null ? '' : player.script.position}"></span></h1>
-			                    			
 				                    			<h3>Script</h3>
-				                    			<p><span th:text="${player.script == null ? '' : player.script.text}"></span></p>
+				                    			<div class="pre-scrollable">
+				                    				<span th:utext="${player.script == null ? '' : player.script.text}"></span>
+				                    			</div>
 				                    			
-				                    			<a href="#" onclick="$('#secret').show();"><img src="/assets/images/select_icon_copy.png" /></a>
+
 				                    			
 			                    	</li>	                    	
 			               	 	</ul>
@@ -421,14 +421,13 @@ a {
 			               	 	<span th:switch="${player.done}">
 				               	 	<span th:case="false">
 				               	 		<a th:href="@{/game/done/{gameId}(gameId=${player.game.id})}">
-				               	 			<div style="text-align: left; position:absolute; bottom: 150px;left:100px;">
+				               	 			<div style="text-align: left; position:absolute; top: 50px;left:50px;">
 				               	 				<img src="/assets/images/done_icon_copy.png" />
 				               	 			</div>
 				               	 		</a>
 				               	 	</span>
 				               	 	<span th:case="true">
-				               	 		<div style="text-align: left; position:absolute; bottom: 130px;left:100px;">
-				               	 			Scene <span th:text="${player.script.position}"></span> 
+				               	 		<div style="text-align: left; position:absolute; top: 50px;left:50px;opacity: 0.5;"> 
 				               	 			<img src="/assets/images/done_icon_copy.png" />
 				               	 		</div>
 				               	 	</span>

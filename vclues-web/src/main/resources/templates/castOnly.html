@@ -1,4 +1,4 @@
-<!-- /game/cast -->
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -21,7 +21,7 @@
 		
 		<!-- For iPhone: -->
 		  <link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-57x57-precomposed.png"/>    	
-        	        	
+
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         
         <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css' />
@@ -638,7 +638,42 @@ a {
 		img {
 			background:transparent;
 		}
+
+		.modal-body {
+		    background: url('/assets/images/VEGA-POSTIT2.png') no-repeat;
+		    background-repeat: no-repeat;
+		    background-size: cover;
+		    height: 500px;
+		    text-align: left;
+		}
+        
+		.modal-content
+		{
+			background:transparent;
+			webkit-box-shadow: 0 5px 15px rgb(208, 206, 206);
+		    box-shadow: 0 5px 15px rgb(208, 206, 206);
+		}
 		
+		.modal-backdrop
+		{
+		    opacity:0.8 !important;
+		}
+		
+		.modal-header
+		{
+			opacity:0.8 !important;
+		    background-color: white;
+		    border-radius: 25px;
+		}
+		
+		.modal-footer
+		{
+		    border: none;
+		}
+		
+		.pre-scrollable {
+			padding-top: 75px;
+		}
 </style>
 
 
@@ -651,49 +686,17 @@ a {
     	storyId = [[${game == null ? '' : game.storyId}]];
     }
 
-    console.log(gameId);
+    //console.log(gameId);
     
     var listsize = [[${#lists.size(casts)}]];
     
-    console.log('listsize: ' + listsize);
+    //console.log('listsize: ' + listsize);
 
     /*]]>*/
 </script>
 
 <script>
-$( document ).ready(function() {
-    	console.log( "ready!" );
 
-        $(function() {
-
-    		$('.character').bind('touchstart', function(e) {
-        		$('.description').show();
-    		});
-
-    		/*
-    		$('.character').bind('touchend', function(e) {
-        		$('.description').hide();
-    		});
-
-			$('.character').on('hover',function(){
-        		$('.description').show();
-    		});
-			*/
-        });
-
-
-		$('.character').on('click',function(){
-				console.log('test');
-        		//$('.description').show();
-				setTimeout($('.description').show(), 5 * 60000); // Recall
-    	});
-        
-		/*
-        $('.description').on('click', function() {
-        	$('.description').hide();
-        });
-		*/
-});
 
 function closeDescription() {
 	$('.description').hide();
@@ -775,24 +778,37 @@ function next() {
 								</div>
 								
 								<!-- /assets/images/stories/story1/cast/SUSPECT_001_FADED.png -->
-								<a href="javascript: return false;"><img class="character" th:src="${c.cast.image}"/></a>
+								<a href="javascript: return false;" data-toggle="modal" th:attr="data-target='#modal_description_'+${c.id}"><img class="character" th:src="${c.cast.image}"/></a>
 								
 							</div>
 			
-			                <div class="description">
-			                        <ul>
-		                                <li>
-		                                	<p>
-		                                		<span th:text="${c.username}"></span> is <span th:text="${c.cast.name}"></span>
-		                                		<br/><br/>
-		                                		<span th:text="${c.cast.description}"></span>
-		                                	</p>
-		                               		<!-- Choose this game /game/cast/{gameid}/{castid} -->
-		                               		
-		                               		<div style="text-align: right; position:absolute; top: 14px;right:20px;"><a href="javascript: closeDescription();"><img width="40px" height="40px" src="/assets/images/close_icon_copy.png" /></a></div>
-		                                </li>
-			                        </ul>
-			                </div>
+			                
+							<!-- Modal -->
+							<div th:id="'modal_description_' + ${c.id}" class="modal fade" role="dialog">
+							  <div class="modal-dialog">
+							
+							    <!-- Modal content-->
+							    <div class="modal-content">
+							    
+							      <div class="modal-header">
+							        <h4 class="modal-title"><span th:text="${c.username}"></span> is <span th:text="${c.cast.name}"></span></h4>
+							      </div>
+							      
+							      <div class="modal-body">
+	                               		<div class="pre-scrollable">
+	                               			<span th:utext="${c.cast.description}"></span>
+										</div>	
+							      </div>
+							      
+							      <div class="modal-footer">
+							      	<div style="text-align: right; position:absolute; top: 0px;right:0px;"><a href="#" data-dismiss="modal"><img width="40px" height="40px" src="/assets/images/close_icon_copy.png" /></a></div>
+							      </div>
+							    </div>
+							
+							  </div>
+							</div>	
+							<!-- End Modal -->
+							
 						</div>	
 	                </div>
                 </div>

@@ -114,7 +114,7 @@ a {
                 //background: url(/assets/images/name_label.png) no-repeat;
                 text-align: center;
                 position: absolute;
-                top: 20%;
+                top: 25%;
                 left: 25%;
                 z-index: 1;
                 width: 180px;
@@ -231,7 +231,7 @@ a {
                 background-size: 350px 125px;
                 text-align: center;
                 position: absolute;
-                top: 20%;
+                top: 25%;
                 left: 5%;
                 z-index: 1;
                 width: 350px;
@@ -646,7 +646,12 @@ a {
 		.menu-button a, .menu-button a:link, .menu-button a:visited, .menu-button a:link:active, .menu-button a:visited:active {
 			text-decoration: none;
 			color: white;
-		}        	
+		} 
+		
+		.pre-scrollable {
+			height: 120px;
+			width: 200px;
+		}       	
 		
 </style>
 
@@ -794,9 +799,10 @@ function next() {
 		                                <li>
 		                                	<p>
 		                                		<span th:text="${c.guess.name}"></span>
-		                                		<br/><br/>
-		                                		<span th:text="${c.guess.description}"></span>
 		                                	</p>
+		                                	<div class="pre-scrollable">
+		                                		<span th:utext="${c.guess.description}"></span>
+		                                	</div>
 		                               		<div style="text-align: right; position:absolute; top: 14px;right:20px;"><a href="javascript: closeDescription();"><img width="40px" height="40px" src="/assets/images/close_icon_copy.png" /></a></div>
 		                                </li>
 			                        </ul>

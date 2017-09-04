@@ -360,7 +360,11 @@ a {
             height: 80px;
             width: 30px;
             z-index:1;
-        }      	
+        }    
+        
+        .pre-scrollable {
+        	height: 150px;
+        }  	
         
 </style>
 
@@ -467,9 +471,12 @@ function next() {
 					<div><a th:href="@{/game/select/{id}(id=${story.id})}"><img width="50px" height="50px" src="/assets/images/select_icon_copy.png" /></a></div>
 					
 					<iframe id="trailer-player" th:src="${story.video}" width="100%" height="100%" frameborder="0" allowfullscreen=""></iframe>
+					
 					<div class="description">
 						<h5 th:text="${story.title}"></h5>
-						<p th:text="${story.synapsis}"></p>
+						<div class="pre-scrollable">
+							<span th:utext="${story.synapsis}"></span>
+						</div>
 					</div>	
 				</div>			
 			</div>
