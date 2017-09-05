@@ -20,10 +20,10 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 	public void deleteStory(Long storyId);
 
 	@Override
-	@ReadThroughSingleCache(namespace = "StoryById")
+	//@ReadThroughSingleCache(namespace = "StoryById")
 	public Story findOne(@ParameterValueKeyProvider Long storyId);
 	
 	@Override
-	@InvalidateSingleCache(namespace = "StoryById")
+	//@InvalidateSingleCache(namespace = "StoryById")
 	public Story save(@ParameterValueKeyProvider Story story);
 }

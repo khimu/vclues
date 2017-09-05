@@ -24,10 +24,10 @@ public interface CastRepository extends JpaRepository<Cast, Long> {
 	public void deleteCast(Long castId);
 	
 	//@Cacheable(value="getAllCastByStoryId")
-	@ReadThroughSingleCache(namespace = "CastByStoryId")
+	//@ReadThroughSingleCache(namespace = "CastByStoryId")
 	public List<Cast> getAllCastByStoryId(@ParameterValueKeyProvider Long storyId);
 	
 	@Override
-	@InvalidateSingleCache(namespace = "CastByStoryId")
+	//@InvalidateSingleCache(namespace = "CastByStoryId")
 	public Cast save(@ParameterValueKeyProvider Cast cast);
 }

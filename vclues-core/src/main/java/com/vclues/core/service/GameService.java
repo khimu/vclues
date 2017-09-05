@@ -192,7 +192,11 @@ public class GameService implements IGameService {
 			savedGame.getGameCast().add(gameCast);
 		}
 		
-		savedGame.setEmails(sendInviteEmail(username, game.getInvites(), savedGame.getId()));
+		if(game.getInvites() != null) {
+			savedGame.setEmails(sendInviteEmail(username, game.getInvites().toLowerCase(), savedGame.getId()));
+		}
+		
+		// Add the current host player
 		savedGame.getEmails().add(username);
 
 		player.setGame(savedGame);
