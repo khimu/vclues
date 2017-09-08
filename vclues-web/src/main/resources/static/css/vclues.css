@@ -1,3 +1,20 @@
+
+body {
+    overflow-y:hidden;
+}
+
+#element::-webkit-scrollbar { 
+    display: none; 
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+::-webkit-scrollbar { 
+    display: block; 
+}
+
 		.modal-body {
 		    background: url('/assets/images/VEGA-POSTIT2.png') no-repeat;
 		    background-repeat: no-repeat;
