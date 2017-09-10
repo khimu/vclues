@@ -465,7 +465,7 @@ function next() {
 				<div th:each="clue,iterStat : ${hints}" th:class="${iterStat.odd}? 'odd'">
 					<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
 					
-						<div class="postitnote" th:switch="${host == null}">
+						<div class="postitnote" th:switch="${clue == null}">
 	                        <ul>
                                 <li>
                                 	<p>
