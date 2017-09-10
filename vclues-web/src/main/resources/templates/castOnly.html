@@ -1,4 +1,5 @@
-
+<!-- castOnly -->
+<!--  Player has chosen their character -->
 <!doctype html>
 <html lang="en">
     <head>
@@ -792,6 +793,7 @@ function next() {
 							    
 							      <div class="modal-header">
 							        <h4 class="modal-title"><span th:text="${c.username}"></span> is <span th:text="${c.cast.name}"></span></h4>
+							        <div style="text-align: right; position:absolute; top: 0px;right:0px;"><a th:href="@{/game/announcement/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}" data-dismiss="modal">Announce</a></div>
 							      </div>
 							      
 							      <div class="modal-body">

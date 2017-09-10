@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	@ReadThroughSingleCache(namespace = "findByEmail")
     @Query("SELECT u FROM User u WHERE LOWER(u.email) = LOWER(:email)")
-    User findByEmail(@Param("email") String email);
+    User findByEmail(@ParameterValueKeyProvider @Param("email") String email);
 	
     /*
     @Modifying(clearAutomatically = true)

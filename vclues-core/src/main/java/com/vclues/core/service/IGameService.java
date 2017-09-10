@@ -52,18 +52,20 @@ public interface IGameService {
 	 */
 	public Map<Integer, List<Game>> findAllUserGames(Long userId);
 	
-	public List<Announcement> getAllGameAnnouncements(Game game);
+	public List<Announcement> getAllGameAnnouncements(String gameId);
 	
 	public void saveAnnouncement(Announcement announcement);
 	
 	public void saveGame(Game game);
 	
-	public Game getGame(String gameId);
+	public Game getGameWithPlayers(String gameId);
+	
+	public Game getGameOnly(String gameId);
 	
 	/*
 	 * used
 	 */
-	public Game getGameCast(String gameId);
+	public Game getGameWithGameCast(String gameId);
 	
 	public List<String> sendInviteEmail(String email, String emails, String gameId);
 	

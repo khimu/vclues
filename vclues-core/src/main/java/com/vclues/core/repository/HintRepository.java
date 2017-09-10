@@ -25,10 +25,10 @@ public interface HintRepository extends JpaRepository<Hint, Long> {
 	
 	public List<Hint> getAllHintBySceneIdAndPositionLessThan(Long sceneId, Integer position);
 
-	//@ReadThroughSingleCache(namespace = "findHintBySceneId")
+	@ReadThroughSingleCache(namespace = "findHintBySceneId")
 	public List<Hint> findHintBySceneId(@ParameterValueKeyProvider Long sceneId);
 	
 	@Override
-	//@InvalidateSingleCache(namespace = "findHintBySceneId")
+	@InvalidateSingleCache(namespace = "findHintBySceneId")
 	public Hint save(@ParameterValueKeyProvider Hint hint);
 }

@@ -1,12 +1,13 @@
 package com.vclues.core.data;
 
-import java.math.BigInteger;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+
+import com.vclues.core.entity.Cast;
 
 @XmlRootElement
 @Document(collection = "announcement")
@@ -27,6 +28,9 @@ public class Announcement extends Base {
 	@Indexed(unique = false)
 	@Field(value = "cast_id")
 	private Long castId;
+	
+	@Transient
+	private Cast cast;
 
 	@Indexed(unique = false)
 	@Field(value = "game")
@@ -81,6 +85,14 @@ public class Announcement extends Base {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Cast getCast() {
+		return cast;
+	}
+
+	public void setCast(Cast cast) {
+		this.cast = cast;
 	}
 
 }

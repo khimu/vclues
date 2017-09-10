@@ -10,6 +10,7 @@ import com.google.code.ssm.api.ParameterValueKeyProvider;
 import com.google.code.ssm.api.ReadThroughMultiCache;
 import com.google.code.ssm.api.ReadThroughSingleCache;
 import com.vclues.core.data.Game;
+import com.vclues.core.data.GameCast;
 import com.vclues.core.data.Player;
 
 public interface GameRepository extends MongoRepository<Game, String> {
@@ -23,21 +24,25 @@ public interface GameRepository extends MongoRepository<Game, String> {
     @Query(value = "{ 'emails' : { $all: [?0] }, 'done' : false }")
     public List<Game> findGamesByEmailAndDone(String email, Boolean done);
         
-    @ReadThroughSingleCache(namespace = "GamesByEmail")
+    //@ReadThroughSingleCache(namespace = "GamesByEmail")
     @Query(value = "{ 'emails' : { $all: [?0] }}")
     public List<Game> findGamesByEmail(@ParameterValueKeyProvider String email);
     
-    @ReadThroughSingleCache(namespace = "CountByEmail")
+    //@ReadThroughSingleCache(namespace = "CountByEmail")
     public Long countByEmails(@ParameterValueKeyProvider String email);
     
-    @ReadThroughSingleCache(namespace = "Games")
+    //@ReadThroughSingleCache(namespace = "Games")
     public Game findGameById(Long gameId);
     
-    @ReadThroughMultiCache(namespace = "GamesByPlayers")
+    //@ReadThroughMultiCache(namespace = "GamesByPlayers")
     public List<Game> findGamesByPlayers(@ParameterValueKeyProvider List<Player> players, boolean done);
     
     @Override
-    @InvalidateSingleCache(namespace = "GamesByPlayers")
+    @InvalidateSingleCache(namespace = "GameById")
     public Game save(@ParameterValueKeyProvider Game game);
-    
+
+	@Override
+	@ReadThroughSingleCache(namespace = "GameById")
+	public Game findOne(@ParameterValueKeyProvider String gameId);
+
 }

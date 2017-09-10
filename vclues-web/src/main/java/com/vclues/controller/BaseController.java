@@ -51,6 +51,8 @@ public abstract class BaseController {
 			}
 		}
 		
+		logger.info("logged in user name " + user.getEmail());
+		
 		return user;
 	}
 }

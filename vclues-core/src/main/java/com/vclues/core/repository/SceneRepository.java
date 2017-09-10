@@ -28,10 +28,10 @@ public interface SceneRepository extends JpaRepository<Scene, Long> {
 	@Query("select count(e) from Scene e where e.story.id = ?1")
 	public Integer countByStoryId(@ParameterValueKeyProvider Long storyId);
 	
-	//@ReadThroughSingleCache(namespace = "getNextSceneByStoryIdAndPosition")
+	@ReadThroughSingleCache(namespace = "getNextSceneByStoryIdAndPosition")
 	public Scene getNextSceneByStoryIdAndPosition(@ParameterValueKeyProvider Long storyId, @ParameterValueKeyProvider Integer position);
 	
 	@Override
-	//@InvalidateSingleCache(namespace = "getNextSceneByStoryIdAndPosition")
+	@InvalidateSingleCache(namespace = "getNextSceneByStoryIdAndPosition")
 	public Scene save(@ParameterValueKeyProvider Scene scene);
 }

@@ -11,4 +11,6 @@ public interface AnnouncementRepository extends MongoRepository<Announcement, St
     
 
 	public List<Announcement> findAllByGame(Game game);
+	
+	public List<Announcement> findAllByGameAndCastId(Game game, Long castId);
 }

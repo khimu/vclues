@@ -14,6 +14,7 @@ import com.google.code.ssm.api.InvalidateSingleCache;
 import com.google.code.ssm.api.ParameterValueKeyProvider;
 import com.google.code.ssm.api.ReadThroughSingleCache;
 import com.vclues.core.entity.Cast;
+import com.vclues.core.entity.Story;
 
 @Transactional
 public interface CastRepository extends JpaRepository<Cast, Long> {
@@ -24,10 +25,11 @@ public interface CastRepository extends JpaRepository<Cast, Long> {
 	public void deleteCast(Long castId);
 	
 	//@Cacheable(value="getAllCastByStoryId")
-	//@ReadThroughSingleCache(namespace = "CastByStoryId")
+	@ReadThroughSingleCache(namespace = "CastByStoryId")
 	public List<Cast> getAllCastByStoryId(@ParameterValueKeyProvider Long storyId);
 	
 	@Override
-	//@InvalidateSingleCache(namespace = "CastByStoryId")
+	@InvalidateSingleCache(namespace = "CastByStoryId")
 	public Cast save(@ParameterValueKeyProvider Cast cast);
+	
 }

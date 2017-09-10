@@ -24,11 +24,11 @@ public interface ScriptRepository extends JpaRepository<Script, Long> {
 	
 	public List<Script> getAllScriptsBySceneIdAndPositionLessThan(Long sceneId, Integer position);
 	
-	//@ReadThroughSingleCache(namespace = "findScriptBySceneIdAndCastId")
+	@ReadThroughSingleCache(namespace = "findScriptBySceneIdAndCastId")
 	public Script findScriptBySceneIdAndCastId(@ParameterValueKeyProvider Long sceneId, @ParameterValueKeyProvider Long castId);
 	
 	@Override
-	//@InvalidateSingleCache(namespace = "findScriptBySceneIdAndCastId")	
+	@InvalidateSingleCache(namespace = "findScriptBySceneIdAndCastId")	
 	public Script save(@ParameterValueKeyProvider Script script);
 	
 }

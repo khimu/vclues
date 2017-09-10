@@ -1,4 +1,4 @@
-<!-- clues -->
+<!-- announcements -->
 
 <!doctype html>
 <html lang="en">
@@ -25,6 +25,8 @@
         	        
         <link rel="stylesheet" type="text/css" href="/assets/css/vclues.css" />	        
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+        
+        <script type="text/javascript" src="/assets/js/social.js"></script>
         
 		<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
         <script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -461,25 +463,23 @@ function next() {
                 <a href="javascript: prev();" class="prev"><img src="/assets/images/to-the-left.gif"/></a>
                 
                 <input type="hidden" id="current" value="1" />
-                <input type="hidden" id="listsize" th:value="${#lists.size(hints)}" />
+                <input type="hidden" id="listsize" th:value="${#lists.size(announcements)}" />
 
-				<div th:each="clue,iterStat : ${hints}" th:class="${iterStat.odd}? 'odd'">
+				<div th:each="a,iterStat : ${announcements}" th:class="${iterStat.odd}? 'odd'">
 					<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
 					
-						<div class="postitnote" th:switch="${clue == null}">
+						<div class="postitnote" th:switch="${a == null}">
 	                        <ul>
                                 <li>
                                 	<p>
 										<span th:case="false">
-													<h3>Scene <span th:text="${clue.position}"></span> Clue</h3>
-													<div th:if="${clue.image != null and clue.image != ''}">
-														<a data-fancybox="gallery" th:href="${clue.image}"><img style="width: 50px;height:50px;" th:src="${clue.image}"/></a>
+													<div th:if="${a.cast.image != null and a.cast.image != ''}">
+														<a data-fancybox="gallery" th:href="${a.cast.image}"><img style="width: 50px;height:50px;" th:src="${a.cast.image}"/></a>
 													</div>
-							                    	<div class="pre-scrollable"><span th:utext="${clue.text}"></span></div>
+							                    	<div class="pre-scrollable"><span th:utext="${a.message}"></span></div>
 										</span>
-
 										<span th:case="true">
-													<span>There are no clues</span>
+													<span>There are no announcements</span>
 										</span>
                                 	</p>
                                 </li>

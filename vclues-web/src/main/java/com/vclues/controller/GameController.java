@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.vclues.core.data.Announcement;
 import com.vclues.core.data.Game;
 import com.vclues.core.data.Player;
 import com.vclues.core.entity.Hint;
@@ -52,40 +56,39 @@ public class GameController extends BaseController {
 	@Autowired
 	private IGameService gameService;
 
-    @GetMapping("{id}")
-    public String view(@PathVariable("id") String gameId, Model model) {
-    	logger.info("View game " + gameId);
-    	
+    /*
+     * Called from murderer.html
+     * 
+     * user has selected a murderer
+     */
+    @GetMapping("/announcements/{gameId}")
+    public String displayGameAnnouncments(@PathVariable("gameId") String gameId, Model model) {
+    	logger.info("choose murderer");
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
 			return "redirect:/login";
 		}
 		
-		if(gameId == null) {
-			logger.info("Not able to retrieve user in session");
-			return "redirect:/welcome";
+		Game game = gameService.getGameOnly(gameId);
+		
+		/*
+		 * check if user is part of this game
+		 */
+		if(!game.getEmails().contains(user.getEmail())) {
+			return "redirect:/game/all";
 		}
-		
-		Game game = gameService.getGame(gameId);
 
-		Story story = storyService.getStory(game.getStoryId());
+		List<Announcement> announcements = gameService.getAllGameAnnouncements(gameId);
 
-		model.addAttribute("story", story);
-		model.addAttribute("game", game);
-		//model.addAttribute("announcements", announcements);
-		
-		model.addAttribute("content", "gameDetail"); 
-		model.addAttribute("title", "Game Detail");
-		
-		//model.addAttribute("games", gameService.findGamesByEmail(getLoggedInUser().getEmail()));
-		
-		model.addAttribute("gameCount", gameService.countByEmail(getLoggedInUser().getEmail()));
-        
-		return "menu";
-    }
-    
+		model.addAttribute("announcements", announcements);
+		model.addAttribute("gameId", gameId);
+
+		return "announcements";
+    }  
+
     /*
+     * Server cast.html (need to choose a character), castOnly.html (character already chosen), or murderer.html (need to choose a murderer)
      * Display cast selection and description when game has been chosen
      */
     @GetMapping("/cast/{id}")
@@ -103,7 +106,15 @@ public class GameController extends BaseController {
 			return "redirect:/welcome";
 		}
 		
-		Game game = gameService.getGameCast(gameId);
+		Game game = gameService.getGameWithGameCast(gameId);
+		
+		/*
+		 * check if user is part of this game
+		 * but not necessary here - extra safe
+		 */
+		if(!game.getEmails().contains(user.getEmail())) {
+			return "redirect:/game/all";
+		}
 		
 		if(game == null) {
 			logger.info("game is null for " + user.getId());
@@ -129,6 +140,8 @@ public class GameController extends BaseController {
     }
     
     /*
+     * Called from murderer.html
+     * 
      * user has selected a murderer
      */
     @GetMapping("/murderer/{gameId}/{castId}/{castName}")
@@ -140,7 +153,7 @@ public class GameController extends BaseController {
 			return "redirect:/login";
 		}
 
-		Game game = gameService.getGameCast(gameId);
+		Game game = gameService.getGameWithGameCast(gameId);
 
 		model.addAttribute("casts", game.getGameCast());
 		
@@ -160,6 +173,8 @@ public class GameController extends BaseController {
     }  
 
     /*
+     * Called from games.html
+     * 
      * Stop the game before its over
      */
     @GetMapping("/end/{gameId}")
@@ -171,12 +186,18 @@ public class GameController extends BaseController {
 			return "redirect:/login";
 		}
 
-		Game game = gameService.getGameCast(gameId);
+		Game game = gameService.getGameWithGameCast(gameId);
+
+		/*
+		 * check if user is part of this game
+		 */
+		if(!game.getEmails().contains(user.getEmail())) {
+			return "redirect:/game/all";
+		}		
+		
 		game.setDone(true);
 		gameService.saveGame(game);
-		
-		//model.addAttribute("games", gameService.findGamesByEmail(getLoggedInUser().getEmail()));
-		
+
 		model.addAttribute("gameCount", gameService.countByEmail(getLoggedInUser().getEmail()));
         
 		return "menu";
@@ -184,6 +205,8 @@ public class GameController extends BaseController {
     
     
     /*
+     * Called from cast.html
+     * 
      * user has chosen a character and now we're saving the player information
      */
     @GetMapping("/cast/{gameId}/{castId}/{castName}")
@@ -196,20 +219,14 @@ public class GameController extends BaseController {
 		}
 
 		gameService.saveCastForGame(gameId, castId, user.getId(), castName, user.getEmail());
-		
-		//Game game = gameService.getGameCast(gameId);
-
-		//model.addAttribute("casts", game.getGameCast());
-		
-		//Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
-
-		//model.addAttribute("player", player);
         
 		//return "cast";
 		return "redirect:/game/cast/" + gameId;
     }    
     
     /*
+     * Serves guesses.html
+     * 
      * show all players guesses at end of game
      */
     @GetMapping("/guess/{gameId}")
@@ -220,6 +237,15 @@ public class GameController extends BaseController {
 			logger.info("Not able to retrieve user in session");
 			return "redirect:/login";
 		}
+		
+		Game game = gameService.getGameOnly(gameId);
+		
+		/*
+		 * check if user is part of this game
+		 */
+		if(!game.getEmails().contains(user.getEmail())) {
+			return "redirect:/game/all";
+		}
 
 		List<Player> players = gameService.getGuesses(gameId);
 
@@ -229,6 +255,8 @@ public class GameController extends BaseController {
     }        
     
     /*
+     * Serves addGame.html
+     * 
      * User has selected a story to play
      * show form for game information
      */
@@ -257,6 +285,8 @@ public class GameController extends BaseController {
     } 
     
     /*
+     * Called from addGame.html
+     * 
      * Game selection form submit
      */
     @PostMapping("/select/{storyId}")
@@ -273,6 +303,8 @@ public class GameController extends BaseController {
     } 
     
     /*
+     * Serves scripts.html
+     * 
      * Show the script for the player
      */
     @GetMapping("/script/{gameId}")
@@ -292,6 +324,10 @@ public class GameController extends BaseController {
     } 
     
     /*
+     * Serves clues.html
+     * 
+     * TBD add permission based on gameId and logged in user
+     * 
      * Show the clue for the player
      */
     @GetMapping("/clue/{sceneId}")
@@ -303,9 +339,6 @@ public class GameController extends BaseController {
 			return "redirect:/login";
 		}
 
-		//Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
-
-		
 		List<Hint> hints = gameService.findHintBySceneId(sceneId);
 
 		model.addAttribute("hints", hints);
@@ -314,6 +347,8 @@ public class GameController extends BaseController {
     }     
     
     /*
+     * Called from scripts.html
+     * 
      * player executed their script
      */
     @GetMapping("/done/{gameId}")
@@ -331,6 +366,80 @@ public class GameController extends BaseController {
         
         return "scripts";
     }     
+    
+    /**
+     * Serves addAnnouncement.html
+     * 
+     * Show announcment form
+     * 
+     * @param descriptor
+     * @param bindingResult
+     * @param model
+     * @return
+     */
+    @GetMapping("/announcement/{gameId}/{castId}/{castName}")
+    public String getAnnouncement(@PathVariable("gameId") String gameId, @PathVariable("castId") Long castId, @PathVariable("castName") String castName, Model model) {
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+
+		Game game = gameService.getGameOnly(gameId);
+		
+		/*
+		 * check if user is part of this game
+		 */
+		if(!game.getEmails().contains(user.getEmail())) {
+			return "redirect:/game/all";
+		}
+		
+		Announcement yell = new Announcement();
+		yell.setGame(game);
+		yell.setUserId(user.getId());
+		yell.setCastId(castId);
+		yell.setName(castName);
+
+		model.addAttribute("announcement", yell);
+        model.addAttribute("gameId", gameId);
+         
+        return "addAnnouncement";
+    }    
+
+    /**
+     * Post from addAnnouncement.html
+     * 
+     * Announcment by character of game
+     * 
+     * @param descriptor
+     * @param bindingResult
+     * @param model
+     * @return
+     */
+    @PostMapping("/announcement")
+    public String postAnnouncement(@ModelAttribute("announcement") Announcement announcement, BindingResult bindingResult, Model model) {
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+
+    	// descriptorValidator.validate(descriptor, bindingResult);
+    	
+        if (bindingResult.hasErrors()) {
+        	for(ObjectError error: bindingResult.getAllErrors()) {
+        		logger.info("code " + error.getCode() + " " + error.getDefaultMessage());
+        	}
+            return "addAnnouncement";
+        }
+                       
+        //logger.info("Saving descriptor " + descriptor.toString());
+        
+        gameService.saveAnnouncement(announcement);
+         
+        return "redirect:/game/cast/" + announcement.getGame().getId();
+    }    
+    
     
     /*
      * Ajax call
@@ -354,7 +463,10 @@ public class GameController extends BaseController {
 		gameService.deleteGame(Long.parseLong(gameId));
     }
     */
-    
+
+    /*
+     * Serves games.html
+     */    
     @RequestMapping(value = {"/all"}, method = RequestMethod.GET)
     public String all(Model model) {
     	

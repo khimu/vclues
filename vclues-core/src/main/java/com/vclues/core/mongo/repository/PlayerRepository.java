@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import com.google.code.ssm.api.InvalidateSingleCache;
+import com.google.code.ssm.api.ParameterValueKeyProvider;
+import com.google.code.ssm.api.ReadThroughSingleCache;
 import com.vclues.core.data.Game;
 import com.vclues.core.data.Player;
 
@@ -31,4 +34,11 @@ public interface PlayerRepository extends MongoRepository<Player, String> {
 	 */
 	public List<Player> findAllPlayersByGame(Game game);
 
+    @Override
+    @InvalidateSingleCache(namespace = "PlayerById")
+    public Player save(@ParameterValueKeyProvider Player player);
+
+	@Override
+	@ReadThroughSingleCache(namespace = "PlayerById")
+	public Player findOne(@ParameterValueKeyProvider String playerId);
 }

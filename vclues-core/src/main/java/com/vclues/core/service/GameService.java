@@ -198,6 +198,7 @@ public class GameService implements IGameService {
 		
 		// Add the current host player
 		savedGame.getEmails().add(username);
+		savedGame.setCount(savedGame.getEmails().size());
 
 		player.setGame(savedGame);
 		playerRepository.save(player);
@@ -294,15 +295,33 @@ public class GameService implements IGameService {
 	public void saveGame(Game game) {
 		gameRepository.save(game);
 	}
-
+	
 	@Override
-	public Game getGame(String gameId) {
+	public Game getGameOnly(String gameId) {
+		Game game = gameRepository.findOne(gameId);
+		return game;
+	}	
+
+	/*
+	 * Called from GameController done(String, Model)
+	 * 
+	 * (non-Javadoc)
+	 * @see com.vclues.core.service.IGameService#getGame(java.lang.String)
+	 */
+	@Override
+	public Game getGameWithPlayers(String gameId) {
 		Game game = gameRepository.findOne(gameId);
 		List<Player> players = playerRepository.findAllPlayersByGame(game);
 		game.setPlayers(players);
 		return game;
 	}
 	
+	/*
+	 * Not used
+	 * 
+	 * (non-Javadoc)
+	 * @see com.vclues.core.service.IGameService#getUserGames(java.lang.Long)
+	 */
 	@Override
     public Map<Integer, List<Game>> getUserGames(Long userId) {
     	Map<Integer, List<Game>> games = new HashMap<Integer, List<Game>>();
@@ -312,8 +331,22 @@ public class GameService implements IGameService {
     }
     
 	@Override
-    public List<Announcement> getAllGameAnnouncements(Game game) {
-    	return announcementRepository.findAllByGame(game);
+    public List<Announcement> getAllGameAnnouncements(String gameId) {
+		Game game = gameRepository.findOne(gameId);
+		List<Cast> casts = castRepository.getAllCastByStoryId(game.getStoryId());
+
+		Map<Long, Cast> map = new HashMap<Long, Cast>();
+		for(Cast cast : casts) {
+			map.put(cast.getId(), cast);
+		}
+		
+		List<Announcement> announcements = announcementRepository.findAllByGame(game);
+		
+		for(Announcement a : announcements) {
+			a.setCast(map.get(a.getCastId()));
+		}
+		
+		return announcements;
     }
 	
 	private final static ExecutorService executor = Executors.newCachedThreadPool();
@@ -391,7 +424,7 @@ public class GameService implements IGameService {
 	}
 
 	@Override
-	public Game getGameCast(String gameId) {
+	public Game getGameWithGameCast(String gameId) {
 		Game game = gameRepository.findOne(gameId);
 		List<Cast> casts = castRepository.getAllCastByStoryId(game.getStoryId());
 		
@@ -409,6 +442,7 @@ public class GameService implements IGameService {
 		return game;
 	}
 
+	/* Not used */
 	@Override
 	public Game getCurrentGame(Long userId) {
 		List<Game> games = gameRepository.findGamesByUserIdAndDone(userId, false);
@@ -421,6 +455,12 @@ public class GameService implements IGameService {
 		return null;
 	}
 	
+	/*
+	 * Not used
+	 * 
+	 * (non-Javadoc)
+	 * @see com.vclues.core.service.IGameService#findGamesByEmailAndDone(java.lang.String, java.lang.Boolean)
+	 */
 	@Override
 	public List<Game> findGamesByEmailAndDone(String email, Boolean done) {
 		List<Game> games = gameRepository.findGamesByEmailAndDone(email, done);
