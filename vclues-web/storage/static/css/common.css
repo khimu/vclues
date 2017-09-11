@@ -1,0 +1,7 @@
+#sr-only {
+	white-space: nowrap;
+}
+
+.error {
+	color: red;
+}

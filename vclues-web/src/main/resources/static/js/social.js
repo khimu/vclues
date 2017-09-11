@@ -68,7 +68,7 @@ function facebookReady(){
     /* does not work in sandbox mode */
     FB.getLoginStatus(function(response) {
  	   
-    	alert('login');
+    	console.log('login');
  	   
         updateButton(response);
              
@@ -108,17 +108,17 @@ $(document).ready(function(){
 }); // end document().ready
 
 function updateButton(response) {
-    alert('updateButton');
+    console.log('updateButton');
     var button = document.getElementById('fb-auth');
         
     if (response.authResponse) {
-      alert('already logged in');
+    	console.log('already logged in');
       $('#logged-in').show();
       $('#logged-out').hide();
 
       FB.api('/me?fields=name,id', function(response) {
     	  fbId = response.id;
-    	  alert(fbId);
+    	  console.log(fbId);
           $('.profileFBpic img').attr('src', 'https://graph.facebook.com/' + response.id + '/picture');
           $('#fbname').html(response.name);
           //$('#fbname-title').html(response.name);
