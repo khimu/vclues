@@ -17,6 +17,7 @@
 																<input type="hidden" name="domain" value="story"/>
 																<input type="hidden" name="id" value="${story.id}"/>
 																 -->
+																 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 																 <input type="hidden" name="storyId" value="${story.id}"/>
 																<table>
 																	<tr>
@@ -100,6 +101,7 @@
 													<input type="hidden" name="id" value="${story.id}"/>
 													 -->
 													 <input type="hidden" name="castId" value="${c.id}"/>
+													 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 													<table>
 														<tr>
 															<td>Character Image</td>

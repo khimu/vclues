@@ -8,6 +8,8 @@ import com.vclues.core.entity.User;
 
 public interface IUserService {
 	
+	public User autoSaveFacebookLoginUsers(String email, String password);
+	
 	/*
 	 * Used by register to find an exist email
 	 */

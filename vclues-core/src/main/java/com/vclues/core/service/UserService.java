@@ -64,29 +64,24 @@ public class UserService implements IUserService {
     	return userRepository.findOne(userId);
     }
     
-    public void sendEmailWithTemplating(){
-       /*
-           final Email email = DefaultEmail.builder()
-                .from(new InternetAddress("divus.iulius@mala-tempora.currunt", "Gaius Iulius Caesar"))
-                .to(Lists.newArrayList(new InternetAddress(tyrannicida.getEmail(), tyrannicida.getName())))
-                .subject("Idus Martii")
-                .body("")//Empty body
-                .encoding(Charset.forName("UTF-8")).build();
-            //Defining the model object for the given Freemarker template
-            final Map<String, Object> modelObject = new HashMap<>();
-            modelObject.put("tyrannicida", tyrannicida.getName());
-*/
-            /*
-             * final InlinePicture inlinePicture = DefaultInlinePicture.builder()
-                               .file(imageFile)
-                               .imageType(ImageType.JPG)
-                               .templateName("my_image.jpg").build());
 
-       emailService.send(email, "idus_martii.ftl", modelObject, inlinePicture);
-             */
-          // emailService.send(email, "confirm.ftl", modelObject);
+    @Transactional
+    public User autoSaveFacebookLoginUsers(String email, String password) {
+
+		User user = userRepository.findByEmail(email);
+		
+		if(user == null) {
+			user = new User();
+			user.setEmail(email);
+			user.setPassword(password);
+		    user = this.registerNewUser(user);
+		    return userRepository.save(user);
+		}
+		else {
+			
+		}
+		return user;
     }
-    
 
     @Override
     @Transactional(rollbackOn = Exception.class) 
@@ -265,7 +260,7 @@ public class UserService implements IUserService {
         final Email email = DefaultEmail.builder()
                 .from(new InternetAddress("imurdermystery@gmail.com", "VClues"))
                 .to(Lists.newArrayList(new InternetAddress(user.getEmail(), user.getFirstName() + " " + user.getLastName())))
-                .subject("Idus Martii")
+                .subject("Vega Clues")
                 .body("")//Empty body
                 .encoding(Charset.forName("UTF-8").name()).build();
             //Defining the model object for the given Freemarker template

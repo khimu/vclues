@@ -73,6 +73,7 @@ function facebookReady(){
         updateButton(response);
              
         if (response.status != 'connected') {
+        	console.log('response.status ' + response.status + ' is NOT connected');
           $('#logged-out').show();
           $('#logged-in').hide();     
         }else{           
@@ -80,7 +81,8 @@ function facebookReady(){
           FB.api('/me?fields=name,id,email', function(response) {
                  fbId = response.id;
                  userEmail = response.email;
-                 //updateUserSession(response.id, accessToken, response.email);
+                 console.log('response.status ' + response.status + ' is connected');
+                 //autoLogin(response.id, accessToken, response.email);
                  $(document).trigger("facebook:ready");
           });
           $('#logged-in').show();
@@ -153,7 +155,7 @@ function updateButton(response) {
            $('#fbname').html(response.name);
            //$('#fbname-title').html(response.name);
 
-         // updateUserSession(response.id, aToken, response.email);
+         // autoLogin(response.id, aToken, response.email);
         });    
           } else {
             //user cancelled login or did not grant authorization
@@ -171,7 +173,7 @@ function post(postMsg){
             if (response.authResponse) {
                     accessToken = response.authResponse.accessToken; 
         FB.api('/me?fields=name,id,email', function(response) {
-             updateUserSession(response.id, accessToken,response.email);
+             autoLogin(response.id, accessToken,response.email);
              fbId = response.id;
              fbPost(postMsg); 
          });    
@@ -188,4 +190,20 @@ function fbPost(postMsg){
     	  alert('failed');
       } 
     });
+}
+
+function autoLogin(fbId, accessToken, email){
+
+    if (email == undefined || email == null){
+            FB.api('/me', function(response) {
+            	email = response.email;
+            }
+    }
+            
+    $.ajax({
+        type: "POST",
+        url: "/fblogin",
+        data: {fbId: fbId, accessToken: accessToken, email: email}
+      }).done(function ( data ) {     
+      });
 }

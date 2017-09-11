@@ -33,7 +33,7 @@ public class User extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 
 	private String password;
-
+	
     @Column(unique=true, updatable = false, nullable = false)
     private String email;
 
