@@ -477,7 +477,7 @@ public class GameController extends BaseController {
 			return "redirect:/login";
 		}
 		
-		List<Game> games = gameService.findGamesByEmail( user.getEmail()); 
+		List<Game> games = gameService.findGamesByEmail(user.getEmail()); 
     		
 		model.addAttribute("games", games);
 

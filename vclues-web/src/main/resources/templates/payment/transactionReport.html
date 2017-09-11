@@ -1,0 +1,35 @@
+<%@ include file="/common/include.jsp" %>
+
+<body>
+
+    <div data-role="page" id="transaction" data-theme="a"> 
+		<div data-role="header" data-position="fixed">
+			<a href="#nav-panel" data-icon="bars" data-iconpos="notext" data-corners="false">Menu</a>
+			<h1>Transaction History</h1>
+		</div>
+
+		<div data-role="content">
+
+			<div class="left-right">
+				<div th:text="${appxusername}"></div>
+				<div th:text="${email}"></div>
+			</div>
+
+			<div class="ui-grid-a">
+				<div class="ui-block-a"><strong>Invoice Number</strong></div>
+				<div class="ui-block-b"><strong>Details</strong></div>	   
+			</div>	
+			<div th:if="records != null">
+				<div th:each="r,iterStat : ${records}" th:class="${iterStat.odd}? 'odd'">
+					<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
+						<div class="ui-grid-a reportRow">
+							<div class="ui-block-a" th:text="${r.invoiceNumber}"></div>
+	          				<div class="ui-block-b"><span th:text="${r.transactionId}"></span> <br><fmt:formatNumber type="currency" value="${r.amount}" /> <br/><span th:text="${r.email}"></span> <br><span th:text="${r.createdOn}"></span><br><span th:text="${r.transactionMessage}"></span></div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+	</div>
+</body>
+</html>

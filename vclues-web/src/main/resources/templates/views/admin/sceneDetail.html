@@ -35,7 +35,7 @@
 														    <td th:text="${script.cast.id}"></td>
 														    <td th:text="${script.text}" />
 														    <td th:text="${script.secret}" />
-															<!-- <td><a th:href="@{/admin/script/edit/{id}/{storyId}(id=${script.id}, storyId=${scene.story.id})}" class="btn btn-default">Edit</a></td> -->
+															<!-- <td><a th:href="@{/admin/script/edit/{id}/{storyId}(id=${script.id}, storyId=${scene.story.id})}" class="btn btn-default">Edit</a></td> -->															
 														</tr>  
 									              </tbody>
 									            </table>
@@ -51,6 +51,23 @@
 															<td th:text="${hint.image}"></td>
 														    <td th:text="${hint.text}"></td>
 															<!-- <td><a th:href="@{/admin/hint/edit/{id}/{storyId}(id=${hint.id}, storyId=${hint.story.id})}" class="btn btn-default">Edit</a></td> -->
+															<form class="text-left" th:action="@{/admin/assets}" method="POST" enctype="multipart/form-data">
+																<!-- 
+																<input type="hidden" name="domain" value="story"/>
+																<input type="hidden" name="id" value="${story.id}"/>
+																 -->
+																 <input type="hidden" name="hintId" value="${hint.id}"/>
+																<table>
+																	<tr>
+																		<td>Character Image</td>
+																		<td><input type="file"  name="file" /></td>
+																	</tr>
+																	<tr>
+																		<td></td>
+																		<td><button type="submit" class="btn btn-info">Submit</button></td>
+																	</tr>
+																</table>
+															</form>
 														</tr>  
 									              </tbody>
 									            </table>

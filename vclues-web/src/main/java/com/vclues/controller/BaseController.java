@@ -18,10 +18,9 @@ public abstract class BaseController {
 	
     @Autowired
     protected IUserService userService;
-    
+     
 	// A special header sent with each AJAX request
 	protected static final String IS_AJAX_HEADER = "X-Requested-With=XMLHttpRequest";
-
 
 	// example usage
 	public HttpSession session() {

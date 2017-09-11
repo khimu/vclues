@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    	<title>Vega Clues LLC</title>
+    	
+    	<meta charset="utf-8" />
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1" />    	
+    	
+    	<link rel='shortcut icon' type='image/x-icon' href='/assets/images/favicon.ico' />
+		
+		<!-- Opera Speed Dial Favicon -->
+		<link rel="icon" type="image/png" href="/assets/images/android-chrome-512x512.png" />
+		
+		<!-- For iPhone 4 Retina display: -->
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/apple-touch-icon-114x114-precomposed.png"/>
+		
+		<!-- For iPad: -->
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/apple-touch-icon-72x72-precomposed.png"/>
+		
+		<!-- For iPhone: -->
+		<link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-57x57-precomposed.png"/>    	
+	
+		<link rel="stylesheet" type="text/css" href="/assets/css/vclues.css" />
+        <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+        
+		<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+        <script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-101505063-1', 'auto');
+		  ga('send', 'pageview');
+		
+		</script>
+	</head>
+
+    <div data-role="page" id="addfunds" data-theme="d"> 
+		<div data-role="header" data-position="fixed">
+			<a href="#nav-panel" data-icon="bars" data-iconpos="notext" data-corners="false">Menu</a>
+			<h1>Fund Account</h1>
+		</div>
+
+		<div data-role="content">
+
+			<FORM data-ajax="false" NAME='secure_redirect_form' ID='secure_redirect_form_id' ACTION='https://test.authorize.net/gateway/transact.dll' METHOD='POST'>
+		        <div data-role="fieldcontain">
+		          <p>Balance:  <span th:text="${balance}"></span></p>
+		        </div>
+				<div data-role="fieldcontain">
+					<label for="cardNum">Credit Card Number</label>
+					<input type='text' class='text required cc-number' name='x_card_num' id="cardNum" size='15' /> 
+				</div>
+				
+				<div data-role="fieldcontain">
+					<label for="expDate">Card Exp. Date</label>
+					<input type='date' class='text required cc-exp' name='x_exp_date' id="expDate" size='4' data-options='{"mode":"calbox", "useNewStyle":true}'  data-role="datebox"   /> 
+				</div>
+
+				<div data-role="fieldcontain">
+					<label for="cvv">CVV</label>
+					<input type="text" class="text required cc-cvc" name="x_card_code" id="cvv" size="9" />
+				</div>
+
+				<div data-role="fieldcontain">
+					<label for="amount">Amount</label>
+					<input type='text' class='text required numbers' name='x_amount' id="amount" size='9' value=''/>
+				</div>			
+
+				<div data-role="fieldcontain">
+					<label for="firstName">First Name</label>
+					<INPUT TYPE='text' NAME='x_first_name' id="firstName" class='text required' VALUE=''/>	
+				</div>			
+				
+				<div data-role="fieldcontain">
+					<label for="lastName">Last Name</label>
+					<INPUT TYPE='text' NAME='x_last_name' class='text required' id="lastName" VALUE=''/>	
+				</div>	
+				
+				<div data-role="fieldcontain">
+					<label for="address">Address</label>
+					<INPUT TYPE='text' NAME='x_address' id="address" class='text required' VALUE=''/>	
+				</div>		
+				
+				<div data-role="fieldcontain">
+					<label for="city">City</label>
+					<INPUT TYPE='text' NAME='x_city' id="city" class='text required' VALUE=''/>		
+				</div>
+				
+				<div data-role="fieldcontain">
+					<label for="state">State</label>
+					<INPUT TYPE='text' NAME='x_state' id="state" class='text required' VALUE=''/>	
+				</div>
+				
+				<div data-role="fieldcontain">
+					<label for="zipcode">Zip Code</label>
+					<INPUT TYPE='text' NAME='x_zip' id="zipcode" class='text required numbers' VALUE=''/>			
+				</div>
+				
+				<div data-role="fieldcontain">
+					<label for="country">Country</label>	
+					<select name="x_country" id="country" class="text" >
+					</select>	
+				</div>		
+				
+				<INPUT TYPE='HIDDEN' NAME='x_invoice_num' th:VALUE='${#temporals.millisecond(#calendars.createNow())}'/>
+				<INPUT TYPE='HIDDEN' NAME='x_relay_url' th:VALUE='${relayResponseUrl}'/> 
+				<INPUT TYPE='HIDDEN' NAME='x_login' th:VALUE='${apiLoginId}'/> 
+				
+				<div id="fingerprint"></div>
+				
+				<INPUT TYPE='HIDDEN' NAME='x_version' VALUE='3.1'/> 
+				<INPUT TYPE='HIDDEN' NAME='x_method' VALUE='CC'/> 
+				<INPUT TYPE='HIDDEN' NAME='x_type' VALUE='AUTH_CAPTURE'/> 
+				<INPUT TYPE='HIDDEN' NAME='x_test_request' VALUE='FALSE'/> 
+				<INPUT TYPE='hidden' NAME='x_email' class='text' id="email" th:VALUE='${email}' />
+				
+
+				<div data-role="fieldcontain">
+					<input name="agreeToTermsOfService" type="checkbox" id="user_terms_of_service" />
+					<label for="user_terms_of_service"></label>	
+					<div style="padding-left:50px;">By checking this box, I agree to the <a href="/terms.html" target="_blank">terms of use</a> and <a href="/privacy.html">privacy policy</a>.	</div>			
+				</div>				
+				
+				<div data-role="fieldcontain">
+					<div class="error_msg" id="user_terms_of_service_error"></div>
+				</div>				
+				
+				<INPUT TYPE='button' NAME='buy_button' VALUE='Add Funds' onclick="calculateFingerprint();"/>
+			</FORM>
+		</div>
+
+  <script>
+  
+  function validate_form() {
+	    var valid = true;
+	    
+	    $('#secure_redirect_form_id .required').each(function(){
+	    	var $spanVal = $(this).next();
+	    	$spanVal.remove();
+	    });
+
+	    var cardType = $.payment.cardType($('.cc-number').val());
+	    
+	    $('#secure_redirect_form_id .required').each(function(){
+	    	var $spanVal = $("#" + $(this).attr('id')).next();
+
+	    	if($(this).hasClass('cc-number') == true){
+	    		if(!$.payment.validateCardNumber($('.cc-number').val())){
+	 	    	   if(!$spanVal.is("div.error_msg")){ //Create a validation message if it doesn't exist
+	 	    		  $("#" + $(this).attr('id')).parent().append('<div class="error_msg">* Invalid Card Number</div>');
+		               //$('<div class="error_msg">* Invalid Card Number</div>').insertAfter(this);
+		            }
+	 	    	  	valid = false;
+		 	    	return false;
+	    		}	    		
+	    	}
+
+	    	if($(this).hasClass('cc-exp') == true){
+	    		if(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal'))){
+		 	    	   if(!$spanVal.is("div.error_msg")){ //Create a validation message if it doesn't exist
+			               $('<div class="error_msg">* Invalid Expiration Date</div>').insertAfter(this);
+			            }
+			 	    	valid = false;
+				 	    return false;
+	    		}
+	    	}
+	    	
+	    	if($(this).hasClass('cc-cvc') == true){
+	    		if(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType)){
+		 	    	   if(!$spanVal.is("div.error_msg")){ //Create a validation message if it doesn't exist
+			               $('<div class="error_msg">* Invalid CVC Code</div>').insertAfter(this);
+			            }
+			 	    	valid = false;
+				 	    return false;
+	    		}
+	    	}	    	
+	    	
+	    	if($(this).hasClass('numbers') == true){
+	    	    var number = new Number();
+	    	    number = Number($(this).val());
+	    	    if (isNaN(number) == true){
+	 	    	   if(!$spanVal.is("div.error_msg")){ //Create a validation message if it doesn't exist
+		               $('<div class="error_msg">* Invalid Field Input</div>').insertAfter(this);
+		            }
+		 	    	valid = false;
+			 	    return false;
+	 	    	}
+	    	}
+
+	    	if ($(this).val() == ''){
+	    	   if(!$spanVal.is("div.error_msg")){ //Create a validation message if it doesn't exist
+	               $('<div class="error_msg">* Required Field</div>').insertAfter(this);
+	            }	         
+	 	    	valid = false;
+		 	    return false;
+	       }else{
+	    	 $spanVal.remove();
+	       }
+	    });
+
+	    return valid;
+	}
+  
+  function calculateFingerprint(){
+		if($('#user_terms_of_service').is(':checked') == true){
+			  var amount = $('#amount').val();
+			  var url = "/payment/submitAmount";
+
+			  $.ajax({
+				  type: "POST",
+				  url: url,
+				  data: {amount: amount}
+				}).done(function ( data ) {	
+					$('#fingerprint').html(data);
+
+					if(validate_form() == true){
+						$('#secure_redirect_form_id').submit();
+					}
+				});
+		} else {
+			$('#user_terms_of_service_error').html('Please accept our terms of service');
+			return false;
+		}
+  }
+  
+  </script>					
+  
+  		
+
+	</div>

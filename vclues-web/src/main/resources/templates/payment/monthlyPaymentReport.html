@@ -1,0 +1,74 @@
+
+<body>
+
+    <div data-role="page" id="monthlypayment" data-theme="d"> 
+		<div data-role="header" data-position="fixed">
+			<a href="#nav-panel" data-icon="bars" data-iconpos="notext" data-corners="false">Menu</a>
+			<h1>Campaign Fund Balance</h1>
+		</div>
+
+		<div data-role="content">
+
+			<div class="left-right">
+				<div th:text="${appxusername}"></div>
+				<div th:text="${email}"></div>
+			</div>
+
+			<div class="ui-grid-c">
+				<div class="ui-block-a"><strong>Month</strong></div>
+				<div class="ui-block-b" style="text-align:right;"><strong>Beginning Balance</strong></div>	
+				<div class="ui-block-c" style="text-align:right;"><strong>Payments Received</strong></div>
+				<div class="ui-block-d" style="text-align:right;"><strong>Ending Balance</strong></div>	   
+			</div>			
+			<div th:each="payment,iterStat : ${records}" th:class="${iterStat.odd}? 'odd'">
+				<div class="ui-grid-c reportRow" th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
+				<div class="ui-block-a">
+					<div th:switch="${payment.key}">
+					  <div th:case="'1'">
+					    January
+					  </div>
+					  <div th:case="'2'">
+					    February
+					  </div>
+					  <div th:case="'3'">
+					     March
+					  </div>
+					  <div th:case="'4'">
+					    April
+					  </div>
+					  <div th:case="'5'">
+					    May
+					  </div>
+					  <div th:case="'6'">
+					     June
+					  </div>	
+					  <div th:case="'7'">
+					    July
+					  </div>
+					  <div th:case="'8'">
+					    August
+					  </div>
+					  <div th:case="'9'">
+					     September
+					  </div>	
+					  <div th:case="'10'">
+					    October
+					  </div>
+					  <div th:case="'11'">
+					    November
+					  </div>
+					  <div th:case="'12'">
+					     December
+					  </div>
+					</div>
+				</div>
+				</div>
+        		<div class="ui-block-b" style="text-align:right;"><span th:text="${#numbers.formatDecimal(payment.value.beginningBalance, 0, 'COMMA', 2, 'POINT')}"></span></div> 
+        		<div class="ui-block-c" style="text-align:right;"><span th:value="${#numbers.formatDecimal(payment.value.paymentReceived, 0, 'COMMA', 2, 'POINT')}"></span></div> 
+        		<div class="ui-block-d" style="text-align:right;"><span th:value="${#numbers.formatDecimal(payment.value.endingBalance, 0, 'COMMA', 2, 'POINT')}"></span></div>  
+			</div>			
+		</div>
+		
+	</div>
+</body>
+</html>

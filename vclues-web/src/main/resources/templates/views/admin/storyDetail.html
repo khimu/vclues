@@ -12,6 +12,23 @@
                             	<a href="/admin/welcome" class="btn btn-default">Back</a>
                             	<a th:href="@{/admin/cast/{id}(id=${story.id})}" class="btn btn-default">Add Cast</a>
                             	<a th:href="@{/admin/scene/add/{id}(id=${story.id})}" class="btn btn-default">Add Scene</a>	
+															<form class="text-left" th:action="@{/admin/assets}" method="POST" enctype="multipart/form-data">
+																<!-- 
+																<input type="hidden" name="domain" value="story"/>
+																<input type="hidden" name="id" value="${story.id}"/>
+																 -->
+																 <input type="hidden" name="storyId" value="${story.id}"/>
+																<table>
+																	<tr>
+																		<td>Story Image</td>
+																		<td><input type="file"  name="file" /></td>
+																	</tr>
+																	<tr>
+																		<td></td>
+																		<td><button type="submit" class="btn btn-info">Submit</button></td>
+																	</tr>
+																</table>
+															</form>                            	
                             </div>
                              <div><hr/></div>                            
                             <div class="content table-responsive table-full-width table-upgrade">
@@ -77,6 +94,23 @@
 											    <td th:text="${c.role}" />
 											    <td th:text="${c.gender}" />
 											    <td th:text="${c.description}" />
+												<form class="text-left" th:action="@{/admin/assets}" method="POST" enctype="multipart/form-data">
+													<!-- 
+													<input type="hidden" name="domain" value="story"/>
+													<input type="hidden" name="id" value="${story.id}"/>
+													 -->
+													 <input type="hidden" name="castId" value="${c.id}"/>
+													<table>
+														<tr>
+															<td>Character Image</td>
+															<td><input type="file"  name="file" /></td>
+														</tr>
+														<tr>
+															<td></td>
+															<td><button type="submit" class="btn btn-info">Submit</button></td>
+														</tr>
+													</table>
+												</form>												    
 												<!-- <td><a th:href="@{/admin/cast/edit/{id}(id=${c.id})}" class="btn btn-default">Edit</a></td> -->
 											</tr>    
 						              </tbody>

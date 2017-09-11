@@ -1,0 +1,38 @@
+
+<body>
+
+    <div data-role="page" id="reportform" data-theme="a"> 
+
+		<div data-role="header" data-position="fixed">
+			<a href="#nav-panel" data-icon="bars" data-iconpos="notext" data-corners="false">Menu</a>	
+			<h1>Payment Report Summary</h1>
+		</div>
+
+		<div data-role="content">
+			<div class="left-right">
+				<div th:text="${appxusername}"></div>
+				<div th:text="${email}<"></div>
+			</div>
+
+			<h3>Monthly Report</h3>
+			
+			<form:form data-ajax="false" commandName="appxReportForm" modelAttribute="appxReportForm" id="appxReportForm" ACTION='/payment/monthlyReport' METHOD='POST'>
+				<div data-role="fieldcontain">
+					<label for="startDate">Start Date</label>
+					<form:input type="date" path="startDate" id="startDate" data-options='{"mode":"calbox", "useNewStyle":true}'  data-role="datebox"  />
+				</div>
+				
+				<div data-role="fieldcontain">
+					<label for="endDate">End Date</label>
+					<form:input type="date" path="endDate" id="endDate" data-options='{"mode":"calbox", "useNewStyle":true}'  data-role="datebox"  />
+				</div>
+				<INPUT TYPE='SUBMIT' NAME='generate_report' VALUE='Generate Report'/>
+			</form:form>
+			
+			<div data-role="fieldcontain">
+				<a data-ajax="false" href="/payment/transactions">View All Transactions</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
