@@ -74,19 +74,18 @@ function facebookReady(){
              
         if (response.status != 'connected') {
         	console.log('response.status ' + response.status + ' is NOT connected');
-          $('#logged-out').show();
-          $('#logged-in').hide();     
         }else{           
           accessToken = response.authResponse.accessToken;
           FB.api('/me?fields=name,id,email', function(response) {
                  fbId = response.id;
                  userEmail = response.email;
                  console.log('response.status ' + response.status + ' is connected');
-                 //autoLogin(response.id, accessToken, response.email);
+
+                 // Login to VegaClues
+                 autoLogin(response.id, accessToken, response.email);
+                 
                  $(document).trigger("facebook:ready");
-          });
-          $('#logged-in').show();
-          $('#logged-out').hide();          
+          });       
         }
       });
 } // end facebookReady();
@@ -115,24 +114,25 @@ function updateButton(response) {
         
     if (response.authResponse) {
     	console.log('already logged in');
-      $('#logged-in').show();
-      $('#logged-out').hide();
+    	
 
       FB.api('/me?fields=name,id', function(response) {
     	  fbId = response.id;
     	  console.log(fbId);
           $('.profileFBpic img').attr('src', 'https://graph.facebook.com/' + response.id + '/picture');
-          $('#fbname').html(response.name);
+          
+          //$('#fbname').html(response.name);
           //$('#fbname-title').html(response.name);
+          
+          //var aToken = response.authResponse.accessToken;
+          //var email = response.email
+          //autoLogin(fbId, accessToken, email);
       });
 
-      button.onclick = function() {
-         $('#logged-out').show();
-         $('#logged-in').hide();                              
+      button.onclick = function() {                         
         FB.logout(function(response) {
          $('.profileFBpic img').attr('src', staticUrl + '/assets/images/fb_login.png');
-                $('#fbname').html('Login Here');
-                //$('#fbname-title').html('Please Login');
+                //$('#fbname').html('Login Here');
     });
 
       };
@@ -144,18 +144,20 @@ function updateButton(response) {
          if (response.authResponse) {
             FB.api('/me', function(response) {
                 fbId = response.id;
+                console.log('After facebook login button click');
                 //window.location.href = ctx + "/fas/load.htm";
                 // NOTE: not every page has the html below and therefore we cannot support code below.  To allow this code to listen
                 // to click on 'fb-auth' from any page, we must handle this even generically which is to redirect to the load page
                 
-                $('#logged-in').show();
-                $('#logged-out').hide();                                                
+                //$('#logged-in').show();
+                //$('#logged-out').hide();                                                
                 //alert('logged in' + $('.profileFBpic img').attr('src'));
-           $('.profileFBpic img').attr('src', 'https://graph.facebook.com/' + response.id + '/picture');
-           $('#fbname').html(response.name);
-           //$('#fbname-title').html(response.name);
-
-         // autoLogin(response.id, aToken, response.email);
+                
+                //$('.profileFBpic img').attr('src', 'https://graph.facebook.com/' + response.id + '/picture');
+                //$('#fbname').html(response.name);
+                //$('#fbname-title').html(response.name);
+                
+               autoLogin(response.id, aToken, response.email);
         });    
           } else {
             //user cancelled login or did not grant authorization
@@ -179,7 +181,7 @@ function post(postMsg){
          });    
             }
       // handle the response
-}, {scope: 'publish_stream,user_about_me,email'});
+     }, {scope: 'publish_stream,user_about_me,email'});
 }
 
 function fbPost(postMsg){
@@ -197,13 +199,17 @@ function autoLogin(fbId, accessToken, email){
     if (email == undefined || email == null){
             FB.api('/me', function(response) {
             	email = response.email;
-            }
+            });
     }
             
     $.ajax({
         type: "POST",
         url: "/fblogin",
         data: {fbId: fbId, accessToken: accessToken, email: email}
-      }).done(function ( data ) {     
-      });
+      }).done(function ( data ) {
+          console.log('login success');
+      }).fail(function(jqXHR, textStatus){ //ERROR
+            console.log('FAILURE: ' + textStatus);
+            console.log(jqXHR);
+        });
 }

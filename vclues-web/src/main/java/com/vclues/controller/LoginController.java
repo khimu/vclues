@@ -98,7 +98,6 @@ public class LoginController extends BaseController {
     	return "login";
     }
     
-
     @PostMapping(value = {"/fblogin"})
     public String login(@RequestParam String fbId, @RequestParam String accessToken, @RequestParam String email, Model model) {
 
@@ -107,6 +106,8 @@ public class LoginController extends BaseController {
     		securityService.facebookAutoLogin(user, accessToken+fbId);
     	}
 
+    	logger.info("Called fblogin");
+    	
     	return "redirect:/";
     }
 
