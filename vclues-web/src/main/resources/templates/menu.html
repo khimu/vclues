@@ -433,6 +433,9 @@ a {
     }
 
     console.log('gameId ' + gameId);
+    
+	csrfParam = [[${_csrf == null ? '' : _csrf.parameterName}]];
+	csrfToken = [[${_csrf == null ? '' : _csrf.token}]];   
 
     /*]]>*/
 
@@ -542,12 +545,14 @@ $( document ).ready(function() {
 			window.location = "/game/guess/" + gameId;
 		});
 		
+		
+		
 		$(".game li:nth(4)").on("click",function() {
 			// show clues only if all players are chosen
 			/*<![CDATA[*/if(gameId != null) {/*]]>*/
 				console.log('end game');
 				logoutClick.facebookLogout();
-			
+
 				window.location = "/game/end/" + gameId;
 			}
 			

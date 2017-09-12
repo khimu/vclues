@@ -214,6 +214,9 @@ function fbPost(postMsg){
     });
 }
 
+var csrfParam = '';
+var csrfToken = '';
+
 function autoLogin(fbId, accessToken, email){
 
     if (email == undefined || email == null){
@@ -225,7 +228,7 @@ function autoLogin(fbId, accessToken, email){
     $.ajax({
         type: "POST",
         url: "/fblogin",
-        data: {fbId: fbId, accessToken: accessToken, email: email}
+        data: {fbId: fbId, accessToken: accessToken, email: email, csrfParam: csrfToken}
       }).done(function ( data ) {
           console.log('login success');
       }).fail(function(jqXHR, textStatus){ //ERROR
