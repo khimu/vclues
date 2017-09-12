@@ -30,6 +30,9 @@
         
 		<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
         <script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        <script src="/js/social.js" type="text/javascript"></script>
+ 
 
         
 		<script>
@@ -543,6 +546,8 @@ $( document ).ready(function() {
 			// show clues only if all players are chosen
 			/*<![CDATA[*/if(gameId != null) {/*]]>*/
 				console.log('end game');
+				logoutClick.facebookLogout();
+			
 				window.location = "/game/end/" + gameId;
 			}
 			

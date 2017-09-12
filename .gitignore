@@ -6,14 +6,16 @@ logs/
 output
 .cache-main
 .cache-tests
-nordic-oauth/.mvn/
-nordic-oauth/.travis.yml
-nordic-oauth/mvnw
-nordic-oauth/mvnw.cmd
-nordic-web/mvnw
-nordic-web/mvnw.cmd
-nordic-api/.externalToolBuilders/
-nordic-api/.tmpBin/
-nordic-core/.externalToolBuilders/
+vclues-oauth/.mvn/
+vclues-oauth/.travis.yml
+vclues-oauth/mvnw
+vclues-oauth/mvnw.cmd
+vclues-web/mvnw
+vclues-web/mvnw.cmd
+vclues-api/.externalToolBuilders/
+vclues-api/.tmpBin/
+vclues-core/.externalToolBuilders/
+vclues-web/storage/PSD/
+vclues-web/storage/Order_FO8F61159BB3.mov
 
 

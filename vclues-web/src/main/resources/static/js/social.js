@@ -108,9 +108,26 @@ $(document).ready(function(){
 		  
 }); // end document().ready
 
+
+var logoutClick = (function(response) {
+	  console.log('logoutClick anonymous function called');
+	  
+		var copyResponse = response;
+		
+		function facebookLogout() {
+		    FB.logout(function(copyResponse) {
+		        $('.profileFBpic img').attr('src', staticUrl + '/assets/images/fb_login.png');
+		               //$('#fbname').html('Login Here');
+		    });	
+		}
+	});
+
+
 function updateButton(response) {
     console.log('updateButton');
-    var button = document.getElementById('fb-auth');
+    //var button = document.getElementById('fb-auth');
+    
+    logoutClick(response);
         
     if (response.authResponse) {
     	console.log('already logged in');
@@ -129,13 +146,16 @@ function updateButton(response) {
           //autoLogin(fbId, accessToken, email);
       });
 
-      button.onclick = function() {                         
-        FB.logout(function(response) {
-         $('.profileFBpic img').attr('src', staticUrl + '/assets/images/fb_login.png');
+      //button.onclick = function() {                         
+      //  FB.logout(function(response) {
+      //   $('.profileFBpic img').attr('src', staticUrl + '/assets/images/fb_login.png');
                 //$('#fbname').html('Login Here');
-    });
+    	//});
+      //};
+      
+      
 
-      };
+      
     } else {                        
       button.onclick = function() {     
       // window.setTimeout(function() { window.location.href = ctx + "/fas/load.htm"; }, 6000); 
