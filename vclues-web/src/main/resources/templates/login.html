@@ -50,8 +50,8 @@
 <script th:inline="javascript">
 /*<![CDATA[*/
     
-	csrfParam = [[${_csrf == null ? '' : _csrf.parameterName}]];
-	csrfToken = [[${_csrf == null ? '' : _csrf.token}]];   
+	var csrfParam = [[${_csrf == null ? '' : _csrf.parameterName}]];
+	var csrfToken = [[${_csrf == null ? '' : _csrf.token}]];   
 	
 	console.log(csrfParam);
 	console.log(csrfToken);

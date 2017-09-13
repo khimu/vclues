@@ -55,26 +55,19 @@ function renderButtons() {
 
 };
 
-
-function facebookReady(){
-	
-    FB.init({
-      appId  : appId,
-      status : true,
-      cookie : true,
-      xfbml  : true
-    });
-    
+function checkLoginState() {
     /* does not work in sandbox mode */
     FB.getLoginStatus(function(response) {
- 	   
-    	console.log('login');
- 	   
+
+        console.log('login');
+
+        //statusChangeCallback(response);
+
         updateButton(response);
-             
-        if (response.status != 'connected') {
-        	console.log('response.status ' + response.status + ' is NOT connected');
-        }else{           
+
+        console.log('response ' + response);
+
+        if (response.status === 'connected') {
           accessToken = response.authResponse.accessToken;
           FB.api('/me?fields=name,id,email', function(response) {
                  fbId = response.id;
@@ -83,12 +76,59 @@ function facebookReady(){
 
                  // Login to VegaClues
                  autoLogin(response.id, accessToken, response.email);
-                 
+
                  $(document).trigger("facebook:ready");
-          });       
+          });
+        }else{
+                console.log('response.status ' + response.status + ' is NOT connected');
         }
       });
+}
+
+function facebookReady(){
+
+    FB.init({
+      appId  : appId,
+      status : true,
+      cookie : true,
+      xfbml  : true
+    });
+
+    /* does not work in sandbox mode */
+    FB.getLoginStatus(function(response) {
+
+        console.log('login');
+
+        updateButton(response);
+
+        console.log('response.status ' + response.status);
+        if (response.status === 'connected') {
+          console.log('response.status === connected');
+          console.log(' id ' + response.authResponse.userID);
+          accessToken = response.authResponse.accessToken;
+          console.log('accessToken ' + accessToken);
+          console.log('userEmail ' + response.authResponse.email);
+
+       FB.api('/me?fields=username,name,id,email', function(response) { 
+        	  
+                 console.log(' fbId ' + fbId);
+                 userEmail = response.email;
+                 console.log('name ' + response.name);
+                 console.log('userEmail ' + userEmail + 'response.status ' + response.status + ' is connected');
+
+                 // Login to VegaClues
+                 autoLogin(response.id, accessToken, response.email);
+
+                 $(document).trigger("facebook:ready");
+          });
+        }else{
+                console.log('response.status ' + response.status + ' is NOT connected');
+        }
+      });
+
 } // end facebookReady();
+
+
     
 $(document).ready(function(){
 	(function () {
@@ -131,7 +171,6 @@ function updateButton(response) {
         
     if (response.authResponse) {
     	console.log('already logged in');
-    	
 
       FB.api('/me?fields=name,id', function(response) {
     	  fbId = response.id;
@@ -152,12 +191,9 @@ function updateButton(response) {
                 //$('#fbname').html('Login Here');
     	//});
       //};
-      
-      
 
-      
     } else {                        
-      button.onclick = function() {     
+      //button.onclick = function() {     
       // window.setTimeout(function() { window.location.href = ctx + "/fas/load.htm"; }, 6000); 
       FB.login(function(response) {
          var aToken = response.authResponse.accessToken;
@@ -182,7 +218,8 @@ function updateButton(response) {
           } else {
             //user cancelled login or did not grant authorization
           }
-        }, {scope:'email', perms:'publish_stream'});                                  }
+        }, {scope:'email', perms:'publish_stream'});                                  
+      //}
     }
   }
 
@@ -214,9 +251,6 @@ function fbPost(postMsg){
     });
 }
 
-var csrfParam = '';
-var csrfToken = '';
-
 function autoLogin(fbId, accessToken, email){
 
     if (email == undefined || email == null){
@@ -228,7 +262,7 @@ function autoLogin(fbId, accessToken, email){
     $.ajax({
         type: "POST",
         url: "/fblogin",
-        data: {fbId: fbId, accessToken: accessToken, email: email, csrfParam: csrfToken}
+        data: {fbId: fbId, accessToken: accessToken, email: email, _csrf: csrfToken}
       }).done(function ( data ) {
           console.log('login success');
       }).fail(function(jqXHR, textStatus){ //ERROR
