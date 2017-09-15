@@ -1,8 +1,10 @@
 /* background images not getting imported properly */
+/*
 @import "ipad-plus.css";
 @import "iphone-landscape.css";
 @import "iphone-portrait.css";
 @import "iphone5-portrait.css";
+*/
 
 @font-face {
 	font-family: awesome;

@@ -24,6 +24,7 @@
 		<!-- For iPhone: -->
 		  <link rel="apple-touch-icon-precomposed" href="/assets/images/favicon/apple-touch-icon-57x57-precomposed.png"/>    	
 
+        <link href='/assets/css/style.css' rel='stylesheet' type='text/css' />
         <link href='/assets/css/responsive/main.css' rel='stylesheet' type='text/css' />
         
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -364,63 +365,53 @@
 			Your browser does not support the audio element.
 			</audio>
 		</div>
-	 -->
+	 -->    
+    
+  <div class="global_container_">
+   <div class="content">
         <div id='loader'>
             <img src="/assets/images/loader.gif" class="page_image"/>
-        </div>    
-	        
-		<div class="container">
-			<div class="container-left">
-			
-			<span class="alert alert-danger" th:if="${error != null}" th:text="${error}"></span>
-
-	        <div id="bg_left_character"><img src=""/><div class="content"></div></div>
-	        <a href="javascript: return false;" class="next"><img src="/assets/images/to-the-right.gif"/></a>
-	        
-	        <div style="display:none;" id="describe_site_short_typed_strings"><span>Luxury cruise turns deadly</span></div>
-	        
-	        <ul class="login_register_button_outer-left">
+        </div>     
+    <div class="home_layer">
+    <span class="alert alert-danger" th:if="${error != null}" th:text="${error}"></span>
+     <img class="logo" src="/assets/images/logo.png" alt="" width="254" height="118"/>
+     <div class="wrapper-8">
+      <img class="magnifying_glass" src="/assets/images/magnifying_glass.png" alt="" width="180" height="105"/>
+      <div class="button-7">
+			<ul class="login_register_button_outer-left">
 	            <li class="working page_image">
-	                <div data-toggle="modal" data-target="#login_outer" class="title">Login</div>
+	                <div data-toggle="modal" data-target="#login_outer" class="title"><p class="login">Login</p></div>
 	                <div class="describe_site page_image">
 	                    <span class="typed"></span>
 	                </div>
 	            </li>
-	        </ul>
-	        <div class="clear"></div>
-	        <div id="describe_about_site_startup" class="">
-	            <div style="display:none;" id="describe_site_phrase_typed_strings"><span><p>Welcome to the game where you are the character</p></span></div>
-	           <ul>
-	               <li>
-	                   <span class="typed_phrase"></span>
-	               </li>
-	           </ul> 
-	        </div>
-	        <div id="describe_about_site-left" class="">
-	           <ul>
-	               <li>
-	                   <span><p>Welcome to the game where you are the character</p></span>
-	               </li>
-	           </ul> 
-	        </div>
-
-		</div>
-		<div class="container-right">
-	        
-	        <div id="bg_right_character"><img src=""/><div class="content"></div></div>
-	        <a href="javascript: return false;" class="prev"><img src="/assets/images/to-the-left.gif"/></a>
-
-	        <ul class="login_register_button_outer-right">
+	        </ul>      
+			<ul class="login_register_button_outer-right">
 	            <li class="working page_image">
-	                <div data-toggle="modal" data-target="#register_outer" class="title">Regist<span style=''>er</span></div>
+	                <div data-toggle="modal" data-target="#register_outer" class="title"><p class="register">Regist<span style=''>er</span></p></div>
 	                <div class="describe_site page_image">
 	                    <span class="typed"></span>
 	                </div>
 	            </li>
-	        </ul>
-	        <div class="clear"></div>
-		</div>
-	</div>
+	        </ul>       
+       
+      </div>
+      
+
+      <div class="description_popup-2" style="display:none">
+       <a href="#" class="btn_close-11"><img src="/assets/images/btn_close.png" alt="" width="52" height="52" /></a>
+       <p class="description_popup_text-copy">Welcome to the game where you are the character</p>
+      </div>
+      <img class="suspect_011_faded" src="/assets/images/suspect_011_faded.png" alt="" width="89" height="148"/>
+      <img class="suspect_005_faded" src="/assets/images/suspect_005_faded.png" alt="" width="73" height="151"/>
+      <img class="suspect_001_faded-3" src="/assets/images/suspect_001_faded_3.png" alt="" width="229" height="227"/>         
+        </div>
+       </div>
+      
+
+     </div>
+    </div>    
+
 
 	        <div id="login_outer" class="modal fade" role="dialog">
 	            <div class="modal-dialog">
@@ -437,11 +428,7 @@
 								<input type="password" class="form-control" id="lg_password" name="password" placeholder="password"  required="required"/>
 								<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
 							</form>
-							
-							<fb:login-button 
-							  scope="public_profile,email,user_friends,user_posts"
-							  onlogin="checkLoginState();">
-							</fb:login-button>						
+							<a href="#" class="fb_close"><img src="/assets/images/fb_close.png" alt="" width="106" height="35"/></a>				
 	                    </div>
 	                </div>
 	            </div>
@@ -466,10 +453,12 @@
 								<p id="reg_agree_error" class="error"></p>
 								<button type="submit" style="background-image: url('/assets/images/VEGA-DONE-KNIFE--RED-200-X-39.gif');">&nbsp;</button>
 							</form>
+							<a href="#" class="fb_btn"><img src="/assets/images/fb_btn.png" alt="" width="106" height="36"/></a>
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
+
     </body>
   </html>
   
