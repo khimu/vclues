@@ -55,6 +55,9 @@
     height: auto;
     border-radius: 0;
 }
+.pre-scrollable {
+	height: 120px;
+}
 </style>
 
 
@@ -172,18 +175,24 @@ function next() {
         
        </div>
        <div class="tag-2">
-       	<a th:href="@{/game/gamemenu/{gameId}(gameId=${game.id})}">More Detail</a>
+			<span th:switch="${game.done == true}">
+				<span th:case="false">
+					Keep Playing
+				</span>
+				<span th:case="true">
+					Game Over
+				</span>
+			</span> 
        </div>
        <p class="text-5"><span th:if="${game.started != null}">Game Started On <span th:text="${#dates.format(game.started, 'MM-dd-yyyy')}"></span></span></p>
-       <p class="text-6">Number Of Player is <span th:text="${#lists.size(game.emails)}"></span><br/> <span th:if="${game.done == true}">Game Over</span> </p>
+       <p class="text-6">Number Of Player is <span th:text="${#lists.size(game.emails)}"></span> </p>
        
-								<span class="pre-scrollable">
-									<ul class="players_list group" >
-										<span th:each="email,iterStat : ${game.emails}" th:class="${iterStat.odd}? 'odd'">
-											<li th:text="${email}"></li>
-										</span>
-									</ul>
-								</span>   
+								
+			<ul class="players_list group pre-scrollable" >
+				<span th:each="email,iterStat : ${game.emails}" th:class="${iterStat.odd}? 'odd'">
+					<li th:text="${email}"></li>
+				</span>
+			</ul>  
 
      </div>
 			</span>

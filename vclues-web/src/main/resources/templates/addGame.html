@@ -67,7 +67,7 @@
         <h3 class="murder-she-wrote" th:text="${game.name}"></h3>
         <h4 class="requires-1-player">Requires <span th:text="${game.count}"></span> Player</h4>
        </div>
-       <h5 class="tag-3">Description</h5>
+       <h5 class="tag-3">Invite Friends</h5>
        
        <div class="wrapper">
         <img class="text_area_fb_friends" src="/assets/images/text_area_fb_friends.png" alt="" width="249" height="84"/>
@@ -101,8 +101,8 @@
         -->
        </div>
        <div class="button-3 group">
-       <button type="submit" class="submit">Submit</button>
-		<a href="/videos" class="cancle">Cancel</a>
+       	<button type="submit" class="btn btn-primary btn-sm" style="opacity: 0.7;">Submit</button>
+       	<button type="button" class="btn btn-primary btn-sm" style="opacity: 0.7;" onclick="window.location='/videos';">Cancel</button>
        </div>
        </form>
        </div>

@@ -293,7 +293,7 @@ a.btn_show_more img {
 .select {
 	left: 10px;
 	margin: -22px auto 0;
-	min-height: 30px;
+	min-height: 50px;
 	padding: 6px 5px 15px 0;
 	position: relative;
 	width: 216px;
@@ -301,6 +301,7 @@ a.btn_show_more img {
 	font-family: Deneane, serif;
 	font-size: 27.42857px;
 	text-align: center;
+	z-index:1009;
 }
 .announcement_layer {
 	left: 50%;
@@ -867,12 +868,14 @@ a.right-7 img {
 	font-family: Deneane, serif;
 	font-size: 18.28571px;
 	text-align: center;
+	white-space: nowrap;
 }
 .text-4 {
 	margin: 8px 0 0;
 	font-family: Deneane, serif;
 	font-size: 18.28571px;
 	text-align: center;
+	white-space: nowrap;
 }
 .tag-2 {
 	margin: -50px auto 0;
@@ -888,6 +891,7 @@ a.right-7 img {
 	text-align: center;
 }
 .text-5 {
+	padding-top:10px;
 	margin: -8px 26px 0;
 	position: relative;
 	z-index: 151;
@@ -904,7 +908,7 @@ a.right-7 img {
 	color:white;
 }
 .players_list {
-	margin: 90px auto 0;
+	margin: 70px auto 0;
 	position: relative;
 	width: 124px;
 	z-index: 143;
@@ -983,6 +987,7 @@ a.right-7 img {
 	font-size: 18.28571px;
 	font-weight: normal;
 	text-align: center;
+	white-space: nowrap;
 }
 .requires-1-player {
 	margin: 8px 0 0;
@@ -990,6 +995,7 @@ a.right-7 img {
 	font-size: 18.28571px;
 	font-weight: normal;
 	text-align: center;
+	white-space: nowrap;
 }
 .tag-3 {
 	margin: -38px auto 0;
@@ -1250,7 +1256,7 @@ a.btn_close-8 img {
 .button-5 {
 	left: 50%;
 	position: absolute;
-	top: 135px;
+	top: 115px;
 	width: 179px;
 	margin-left: -84.5px;
 }
@@ -1611,13 +1617,21 @@ a.btn_close-11 img {
   	opacity: 0.5;
   }
     
-a {
+.global_container_ a {
 	color: white;
 	text-decoration: none;
 }
 
-a:visited, a:active, a:hover {
+.global_container_ a:visited, .global_container_ a:active, .global_container_ a:hover {
 	color: white;
 	text-decoration: none;
 }
     
+    
+html {
+  overflow:   scroll;
+}
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}    

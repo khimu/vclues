@@ -45,6 +45,10 @@
 		
 		<style>
 
+.text_description {
+	padding-top: 1px;
+}
+
 .pre-scrollable, .text_description span {
 	left: 9.5px;
 	margin: 32px auto 0;
@@ -54,6 +58,11 @@
 	line-height: 1.2;
 	height: 200px;
 }		
+
+.pre-scrollable {
+	color: white;
+	overflow-x: auto;
+}
 
 		</style>
 
@@ -76,33 +85,38 @@
 				<span th:case="false">
 				
 					<p class="name_title" th:text="${player.castName}"></p>
+					
 					<!-- The script -->
-					<p class="text_description">
 					<div class="pre-scrollable">
+					<p class="text_description">
 					<span th:utext="${player.script == null ? '' : player.script.text}">
 					</span>
-					</div>
+					
 					</p>
+					</div>
 					
 					<!-- The Secret -->
 			       	<div id="secret" class="description_popup" style="display:none">
 			       		<!-- Close -->
 			       		<a href="#" onclick="$('#secret').hide();" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
 			       		<!-- Secret -->
-			       		<p class="description_popup_text"><div class="pre-scrollable"><span th:utext="${player.script == null ? '' : player.script.secret}"></span></div></p>
+			       		<div class="pre-scrollable"><p class="description_popup_text"><span th:utext="${player.script == null ? '' : player.script.secret}"></span></p></div>
 			       	</div> 
 				</span>
 			
 				<!--  Player has not selected a character -->
 				<span th:case="true">
-					<p class="text_description">Please select your character</p>
+					<div class="pre-scrollable" style="height: 200px;">
+					<p class="text_description">
+						Please select your character
+					</p>
+					</div>
 				</span>
 			</span>
 			
 		        <!-- footer -->
 		        <div class="button">
 					<a href="#" onclick="$('#secret').show();" class="btn_show_more"><img src="/assets/images/btn_show_more.png" alt="" width="47" height="42"/></a>
-		
 					<div class="select" th:switch="${player.done}">
 						<span th:case="false">
 							<a th:href="@{/game/done/{gameId}(gameId=${player.game.id})}">
