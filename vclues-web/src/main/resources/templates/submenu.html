@@ -1,4 +1,5 @@
-<!-- clues -->
+<!-- /games/all -->
+<!-- Shows all games -->
 
 <!doctype html>
 <html lang="en">
@@ -22,16 +23,14 @@
 		
 		<!-- For iPhone: -->
 		  <link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-57x57-precomposed.png"/>    	
-        	        
-        <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />	        
+        	
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />	
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
-        
+
 		<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
         <script type="text/javascript" src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         
-		<link rel="stylesheet" href="/assets/fancybox-master/dist/jquery.fancybox.min.css" />
-		<script src="/assets/fancybox-master/dist/jquery.fancybox.min.js"></script>
-        
+ 
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -42,34 +41,34 @@
 		  ga('send', 'pageview');
 		
 		</script>
-		
-  <!--[if IE 6]>
-	<style type="text/css">
-		* html .group {
-			height: 1%;
-		}
-	</style>
-  <![endif]--> 
-  <!--[if IE 7]>
-	<style type="text/css">
-		*:first-child+html .group {
-			min-height: 1px;
-		}
-	</style>
-  <![endif]--> 
-  <!--[if lt IE 9]> 
-	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
-  <![endif]--> 
+
+<style>
+.modal-dialog {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.modal-content {
+    height: 100%;
+    min-height: 100%;
+    height: auto;
+    border-radius: 0;
+}
+</style>
+
+
 
 
 <script>
+
+
+
 $( document ).ready(function() {
-    	console.log( "ready!" );
+    console.log( "ready!" );
+
 });
 
-function closeDescription() {
-	$('.description').hide();
-}
 
 function prev() {
 	var prev = parseInt($('#current').val());
@@ -92,9 +91,7 @@ function prev() {
 	$('#'+prev).show();
 }
 
-
 function next() {
-	console.log('called next');
 	var next = parseInt($('#current').val());
 	var current = parseInt($('#current').val());
 	var listsize = parseInt($('#listsize').val());
@@ -115,50 +112,48 @@ function next() {
 	$('#'+current).hide();
 	$('#'+next).show();
 }
-
-
 </script>
-
 
 </head>
 
 <body>
 
-	                
-	                <input type="hidden" id="current" value="1" />
-	                <input type="hidden" id="listsize" th:value="${#lists.size(hints)}" />
+  <div class="global_container_">
+   <div class="content">
+    
+    
+	    <div class="game_menu_layer" >
+	     <div class="row no-space-between-inline-blocks">
+	      
+	      <a href="#" class="btn_anounce"><img src="/assets/images/btn_anounce.png" alt="" width="55" height="55"/></a>
+	      <a href="/game/all" class="btn_close" style="left: 0px;"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
+	      
+	     </div>
+	     <div class="wrapper-7">
+	
+	      <ul class="button-5 group" >
+	       <li  class="li-script-3"><p class="character-5" ><a th:href="@{'/game/cast/' + ${game.id}}">Characters</a></p></li>
+	       <li class="li-script-3"><p class="script-3"><a th:href="@{'/game/script/' + ${game.id}}">Script</a></p></li>
+	       <li class="li-clue-2"><p class="clue-2"><a th:href="@{'/game/clue/' + ${game.sceneId}}">Clue</a></p></li>
+	       <li class="li-guesses"><p class="guesses">
+						<span th:switch="${game.done}"> 
+							<span th:case="false" class="inactive">Guesses</span>
+							<span th:case="true" ><a th:href="@{'/game/guess/' + ${game.id}}">Guesses</a></span>
+						</span>
+						</p></li>
+	       <li class="li-end-game"><p class="end-game"><a th:href="@{'/game/end/' + ${game.id}}">End Game</a></p></li>
+	       
+	      </ul>
+	
+	
+	      <h1 class="menu">Menu</h1>
+                	</div>
+ 			</div>
 
-  	<div class="global_container_">
-   		<div class="content">
-    		<div class="clue_layer">
-    			<a href="/game/all" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
-    			<h1 class="clue">Clues</h1>
-    			<div class="row-4 group">
-			        <a href="javascript: prev()" class="left"><img src="/assets/images/left.png" alt="" width="45" height="64"/></a>
+    </div>
+    
+   </div>
 
-	                <div th:each="clue,iterStat : ${hints}" th:class="${iterStat.odd}? 'odd'">
-						<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
-							<div th:switch="${clue == null}">
-								<span th:case="false">
-									<div th:if="${clue.image != null and clue.image != ''}">
-									
-										<a data-fancybox="gallery" th:href="${clue.image}"><img style="width: 50px;height:50px;" th:src="${clue.image}"/></a>
-									</div>
-			                		<p class="full_text_description"><div class="pre-scrollable"><span th:utext="${clue.text}"></span></div></p>
-			                	</span>
-		                		<span th:case="true">
-									<p class="full_text_description"><span>There are no clues</span></p>
-								</span>
-	                		</div>
-	                	</div>
-	                </div>
-	                
-	                <a href="javascript: next();" class="right"><img src="/assets/images/right.png" alt="" width="44" height="63"/></a>
-	                
-				</div>
-			</div>
-		</div>
-	</div>
 </body>
 
 </html>

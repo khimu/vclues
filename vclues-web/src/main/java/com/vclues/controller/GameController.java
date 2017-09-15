@@ -55,6 +55,29 @@ public class GameController extends BaseController {
 	
 	@Autowired
 	private IGameService gameService;
+	
+    @GetMapping("/gamemenu/{gameId}")
+    public String gamemenu(@PathVariable("gameId") String gameId, Model model) {
+    	logger.info("User guesses " + gameId);
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+		
+		Game game = gameService.getGameOnly(gameId);
+		
+		/*
+		 * check if user is part of this game
+		 */
+		if(!game.getEmails().contains(user.getEmail())) {
+			return "redirect:/game/all";
+		}
+
+		model.addAttribute("game", game);
+        
+		return "submenu";
+    }      	
 
     /*
      * Called from murderer.html
