@@ -476,7 +476,7 @@
 	window.Typed = Typed;
 
 	var defaults = {
-		strings: ["These are the default values...", "You know what you should do?", "Use your own!", "Have a great day!"],
+		strings: ["Here are a few internet quotes for fun...", "You know what you should do?", "Use your own!", "Have a great day!","I don't live in darkness; darkness lives in me", "If you can't wak up from the nightmare, maybe you're not asleep", "The madness got to you too", "she was an angel craving chaos and he was a demon seeking peace", "madness is like gravity, all it needs is a little push", "your thoughts kill you don't they?", "when you can't look on the bright side, i will sit with you in the darkness", "in truth, you like the pain.  you like it because you believe you deserve it"],
 		stringsElement: null,
 		// typing speed
 		typeSpeed: 0,

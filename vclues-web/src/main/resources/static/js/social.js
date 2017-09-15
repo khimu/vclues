@@ -123,6 +123,8 @@ function facebookReady(){
     });
 
     /* does not work in sandbox mode */
+    
+    
     FB.getLoginStatus(function(response) {
 
         console.log('login');
@@ -137,6 +139,7 @@ function facebookReady(){
           console.log('accessToken ' + accessToken);
           console.log('userEmail ' + response.authResponse.email);
 
+          
        FB.api('/me?fields=username,name,id,email', function(response) { 
         	  
                  console.log(' fbId ' + fbId);
@@ -149,10 +152,13 @@ function facebookReady(){
 
                  $(document).trigger("facebook:ready");
           });
+       
         }else{
                 console.log('response.status ' + response.status + ' is NOT connected');
         }
       });
+      
+      
 
 } // end facebookReady();
 
@@ -168,11 +174,13 @@ $(document).ready(function(){
 	    renderButtons(); // render the buttons in the page
 	} ());	
 
+	/*
 	  if(window.FB) {
 	    facebookReady();
 	  } else {
 	    window.fbAsyncInit = facebookReady;
 	  }
+	  */
 		  
 }); // end document().ready
 
