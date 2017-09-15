@@ -24,7 +24,7 @@
 		<!-- For iPhone: -->
 		  <link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-57x57-precomposed.png"/>    	
         	        	
-        <link href='/assets/css/responsive/main.css' rel='stylesheet' type='text/css' />
+        <link href='/assets/css/style.css' rel='stylesheet' type='text/css' />
         
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         
@@ -49,488 +49,70 @@
 		
 		</script>
 		
-		<style>
-
-		h2 {
-				text-shadow: 0 0 6px #FF0000;
-				color: white;
-				font-weight: bold;
-		}
-
-		/* iphone 5 portrait 320x568 */
-		@media screen and (device-aspect-ratio: 40/71) {
-            body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;            
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 320px 568px;
-                width: 320px;
-                height: 568px;
-            }
-            
-            .game-header {
-            	padding-top: 50px;
-            }
-
-			.postit-block {
-				width: 220px;
-				margin: 5px auto 10px auto;
-				text-align: center;
-			}
-			            
-			.postit-block h3 {
-				text-align: center;
-				font-size: 20px;
-				text-transform: uppercase;
-				padding-top: 5px;
-				padding-bottom: 5px;
-				font-weight: bolder;
-			}
-			
-			.postit-block input[type="text"], .postit-block input[type="password"],
-				.postit-block input[type="email"] {
-				width: 100%;
-				height: 42px;
-				box-sizing: border-box;
-				border-radius: 5px;
-				border: 1px solid #ccc;
-				margin-bottom: 20px;
-				font-size: 14px;
-				font-family: Montserrat;
-				padding: 0 20px 0 50px;
-				outline: none;
-			}	        
-			
-			#postit_outer .logo {
-				width: 200px;
-				height: 80px;
-				background: url('/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif') no-repeat;
-				background-size: 100%;
-				position: absolute;
-				bottom: 0px;
-			}			
-		}
-
-
-		/* iphone 6/6+ portrait 375x667 and 414x736*/
-		@media only screen 
-		and (min-device-width: 340px) 
-		and (max-device-width : 400px) 
-		and (orientation : portrait) { 
-            
-            body {
-				background: url('/assets/images/redbg.png') no-repeat;
-				background-color:black; 
-				padding-top:60px;            
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 375px 667px;
-                width: 375px;
-                height: 667px;
-            }
-        }		
-
-		/* iphone 6/6+ portrait 375x667 and 414x736*/
-		@media only screen 
-		and (min-device-width: 400px) 
-		and (max-device-width : 420px) 
-		and (orientation : portrait) { 
-            
-            body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;            
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 414px 736px;
-                width: 414px;
-                height: 736px;
-            }
-        }	
-
-		/* iphone 6/6+ portrait 375x667 and 414x736*/
-		@media only screen 
-		and (min-device-width: 330px) 
-		and (max-device-width : 680px) 
-		and (orientation : portrait) { 
-          
-			.postit-block {
-				width: 250px;
-				margin: 5px auto 10px auto;
-				text-align: center;
-			}
-			
-            .game-header {
-            	padding-top: 50px;
-            }			
-			            
-			.postit-block h3 {
-				text-align: center;
-				font-size: 20px;
-				padding-top: 15px;
-				padding-bottom: 15px;
-				text-transform: uppercase;
-				font-weight: bolder;
-			}
-			
-			.postit-block input[type="text"], .postit-block input[type="password"],
-				.postit-block input[type="email"] {
-				width: 100%;
-				height: 42px;
-				box-sizing: border-box;
-				border-radius: 5px;
-				border: 1px solid #ccc;
-				margin-bottom: 10px;
-				font-size: 14px;
-				font-family: Montserrat;
-				outline: none;
-			}
-			
-			
-			#postit_outer .logo {
-				width: 200px;
-				height: 80px;
-				background: url('/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif') no-repeat;
-				background-size: 100%;
-				position: absolute;
-				bottom: 0px;
-			}			
-		}
-		
-        /* iphone 5 /nexus/galaxy landscape */
-		@media only screen 
-		and (min-device-width: 550px) 
-		and (max-device-width : 570px) 
-		and (orientation : landscape) { 
-            body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;            
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 568px 320px;
-                width:568px;
-                height:320px;
-            }
-        }
-
-        /* iphone 6 /nexus/galaxy landscape */
-		@media only screen 
-		and (min-device-width: 650px) 
-		and (max-device-width : 670px) 
-		and (orientation : landscape) { 
-            body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;            
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 667px 375px;
-                width: 667px;
-                height:375px;
-            }
-       
-        }
-
-        /* iphone 6+/nexus/galaxy landscape */
-		@media only screen 
-		and (min-device-width: 720px) 
-		and (max-device-width : 740px) 
-		and (orientation : landscape) { 
-            body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;            
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 736px 414px;
-                width:736px;
-                height:414px;
-            }
-        }
-
-        /* iphone 6/6+/nexus/galaxy landscape */
-		@media only screen 
-		and (min-device-width: 321px) 
-		and (max-device-width : 780px) 
-		and (orientation : landscape) { 
-			
-			.postit-block {
-				width: 350px;
-				margin: 0 0 0 25%;
-				text-align: center;
-			}
-			
-			.game-header {
-            	
-            }
-			            
-			.postit-block h3 {
-				text-align: center;
-				font-size: 14px;
-				text-transform: uppercase;
-				font-weight: bolder;
-			}
-			
-			
-			.postit-block input[type="text"], .postit-block input[type="password"],
-				.postit-block input[type="email"] {
-				width: 100%;
-				height: 42px;
-				box-sizing: border-box;
-				border-radius: 5px;
-				border: 1px solid #ccc;
-				margin-bottom: 10px;
-				font-size: 14px;
-				font-family: Montserrat;
-				outline: none;
-			}     
-			
-			#postit_outer .logo {
-			    width: 150px;
-			    height: 50px;
-			    background: url(/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif) no-repeat;
-			    background-size: 100%;
-			    position: absolute;
-			    bottom: 5px;
-			}			
-					
-		}		
-
-        /* i-pad, desktop, bigscreen 768x1024 */
-		@media only screen 
-  		and (device-width: 768px) 
-  		and (orientation : portrait) { 
-		
-	         body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;	         
-	             background-repeat: no-repeat;
-	             background-position: center;
-	             background-size: 768px 1024px;
-	             width: 768px;
-	             height: 1024px;
-	         }
-		}
-
-        /* i-pad, desktop, bigscreen 768x1024 */
-		@media only screen 
-  		and (device-width: 1024px) 
-  		and (orientation : portrait) { 
-		
-	         body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;	         
-	             background-repeat: no-repeat;
-	             background-position: center;
-	             background-size: 1024px 1366px;
-	             width: 1024px;
-	             height: 1366px;
-	         }
-		}
-
-        /* i-pad, desktop, bigscreen 768x1024 */
-		@media only screen 
-  		and (min-device-width: 768px) 
-  		and (max-device-width: 1050px) 
-  		and (orientation : portrait) { 
-  		
-			.postit-block {
-				width: 350px;
-				margin: 0 0 0 25%;
-				text-align: center;
-			}
-            
-            .game-header {
-            	padding-top: 50px;
-            }
-            			            
-			.postit-block h3 {
-				text-align: center;
-				font-size: 30px;
-				padding-top: 100px;
-				margin-bottom: 30px;
-				text-transform: uppercase;
-				font-weight: bolder;
-			}
-			
-			
-			.postit-block input[type="text"], .postit-block input[type="password"],
-				.postit-block input[type="email"] {
-				width: 100%;
-				height: 42px;
-				box-sizing: border-box;
-				border-radius: 5px;
-				border: 1px solid #ccc;
-				margin-bottom: 10px;
-				font-size: 14px;
-				font-family: Montserrat;
-				outline: none;
-			}     
-			
-			#postit_outer .logo {
-			    width: 200px;
-			    height: 50px;
-			    background: url(/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif) no-repeat;
-			    background-size: 100%;
-			    position: absolute;
-			    bottom: 5px;
-			}			        
-		}
-
-        /* Desktop 1440x950 */
-        @media  only screen and (min-width:1125px), only screen and (min-width:1281px) {
-		
-	         body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;	         
-	             background-repeat: no-repeat;
-	             background-position: center;
-	             background-size: 1440px 700px;
-	             width: 1440px;
-	             height: 700px;
-	         }
-
-			.postit-block {
-				width: 350px;
-				margin: 0 0 0 37%;
-				text-align: center;
-			}
-			            
-			.postit-block h3 {
-				text-align: center;
-				font-size: 30px;
-				padding-top: 100px;
-				margin-bottom: 30px;
-				text-transform: uppercase;
-				font-weight: bolder;
-			}
-			
-			
-			.postit-block input[type="text"], .postit-block input[type="password"],
-				.postit-block input[type="email"] {
-				width: 100%;
-				height: 42px;
-				box-sizing: border-box;
-				border-radius: 5px;
-				border: 1px solid #ccc;
-				margin-bottom: 10px;
-				font-size: 14px;
-				font-family: Montserrat;
-				outline: none;
-			}     
-			
-			#postit_outer .logo {
-			    width: 200px;
-			    height: 50px;
-			    background: url(/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif) no-repeat;
-			    background-size: 100%;
-			    position: absolute;
-			    bottom: 5px;
-			}		
-		}
-	        		
-
-			#postit_outer {
-			    //font-family: 'Gloria Hallelujah', cursive;
-			    color: white;
-			  
-			}
-								
-			input[type=checkbox], input[type=radio]
-			{
-			    vertical-align: top;
-			}
-			.modal-backdrop
-			{
-			    opacity:0.8 !important;
-			}
-				
-
-			/* COMMON */
-
-			
-			/* COMMON */
-			.postit-block input#username, .postit-block input#firstname, .postit-block input#lastname
-				{
-				background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px top no-repeat;
-				background-size: 16px 80px;
-			}
-			
-			.postit-block input#username:focus, .postit-block input#firstname:focus,
-				.postit-block input#lastname:focus {
-				background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px bottom no-repeat;
-				background-size: 16px 80px;
-			}
-			
-			.postit-block input#password {
-				background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px top no-repeat;
-				background-size: 16px 80px;
-			}
-			
-			/* COMMON */
-			.postit-block input#password:focus {
-				background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px bottom no-repeat;
-				background-size: 16px 80px;
-			}
-			
-			.postit-block input:active, .postit-block input:focus {
-				border: 1px solid #ff656c;
-			}
-
-		</style>
 		
 	</head>
 	
     <body class='lang-en page_image'>
-			<div id="postit_outer">
-					<div class="postit-block">
-				        	<h2 class="game-header">Play Game</h2>
-				            <div class="error"></div>
-				            
-				            <div class="form-group">
-				           	 	<p th:text="${game.name}"></p>
-								<p>Requires <span th:text="${game.count}"></span> Players</p>
-							</div>
-							
-							
-				            
-				         
-				           
-				       	<p>
-							<form th:action="@{|/game/select/${storyId}|}" th:object="${game}" th:method="POST">
-			
-								<ul>
-								    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
-								</ul>		
 
-								<div>
-									<div>
-										<div class="form-group">
-											<label for="invites">Invite Friends</label>
-											
-											<!-- Show facebook friends -->
-											<!-- on click of facebook friends, add their email to below or concat to below -->
-											
-											<textarea  rows="4" cols="5" class="form-control" id="invites" th:field="*{invites}" placeholder="player1@gmail.com, player2@gmail.com">
-											
-											</textarea>
-										</div>
-									</div>	
-									<button type="submit" class="btn btn-info">Submit</button>
-									<a href="/videos" class="btn btn-default">Cancel</a>
-								</div>
-							</form>
-						</p>		
-					</div>	
-					
-					<div class="logo"></div>	
-		</div>
+  <div class="global_container_">
+   <div class="content">
+    
+    <div class="game_detail_layer">
+     <a href="#" class="btn_close-7"><img src="/assets/images/space.png" alt="" width="55" height="55"/></a>
+     <div class="wrapper-6">
+     
+      <div class="game_form_layer">
+       <h1 class="play-game">Play Game</h1>
+       <div class="col-2">
+        <h3 class="murder-she-wrote" th:text="${game.name}"></h3>
+        <h4 class="requires-1-player">Requires <span th:text="${game.count}"></span> Player</h4>
+       </div>
+       <h5 class="tag-3">Description</h5>
+       
+       <div class="wrapper">
+        <img class="text_area_fb_friends" src="/assets/images/text_area_fb_friends.png" alt="" width="249" height="84"/>
+        <a href="#" class="fb_friends_btn"><img src="/assets/images/fb_friends_btn.png" alt="" width="101" height="30"/></a>
+        <img class="select_game_menu_glow" src="/assets/images/select_game_menu_glow.png" alt="" width="234" height="56"/>
+        
+        <ul class="facebook_friends_list group">
+         <!-- <li><p class="text-13"><span class="font-myriadpro">@</span>gmail.com</p></li> -->
+
+        </ul>
+       </div>
+       
+		<form th:action="@{|/game/select/${storyId}|}" th:object="${game}" th:method="POST">
+	
+			<ul>
+			    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
+			</ul>		
+
+       <div class="invite_friend_text_area-holder">
+
+       
+			<textarea style="resize: none;background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)" rows="4" cols="5" class="form-control" id="invites" th:field="*{invites}" placeholder="player1@gmail.com, player2@gmail.com">
+			</textarea>       
+       <!--  
+        <ul class="invite_list group">
+         <li><p class="text-16"><span class="font-myriadpro">@</span>gmail.com</p></li>
+         <li><p class="text-17"><span class="font-myriadpro">@</span>gmail.com</p></li>
+         <li><p class="text-18"><span class="font-myriadpro">@</span>gmail.com</p></li>
+         <li><p class="text-19"><span class="font-myriadpro">@</span>gmail.com</p></li>
+        </ul>
+        -->
+       </div>
+       <div class="button-3 group">
+       <button type="submit" class="submit">Submit</button>
+		<a href="/videos" class="cancle">Cancel</a>
+       </div>
+       </form>
+       </div>
+
+   </div>
+  </div> 
+  </div>
+  </div>
+     
+    
 		
     </body>
 </html>

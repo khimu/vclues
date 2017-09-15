@@ -23,7 +23,7 @@
 		<!-- For iPhone: -->
 		  <link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon-57x57-precomposed.png"/>    	
         	        
-        <link rel="stylesheet" type="text/css" href="/assets/css/vclues.css" />	        
+        <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />	        
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
         
 		<script type="text/javascript" src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
@@ -43,358 +43,23 @@
 		
 		</script>
 		
-<style>
-
-            .postitnote {
-                position: absolute;
-                top: 20%;
-                left: 10%;
-                
-            }
-            
-            .postitnote h3 {
-                text-align: center;
-                text-shadow: 0 0 6px #FF0000;
-                color: white;
-                font-weight: bold;
-            }
-            
-            .postitnote ul {
-                background: url(/assets/images/VEGA-POSTIT2.png) no-repeat bottom;
-                background-size: 240px 240px;
-                list-style-type: none;
-                height: 240px;
-            }
-            .postitnote li {
-                font-size: 14px;
-                //font-family: 'Gloria Hallelujah', cursive;
-            }
-            .postitnote li p {
-                padding-top: 40px;
-                padding-right: 40px;
-            }
-            
-            /* width is for text not postit image */
-            .postitnote li:first-child {
-                text-align: left;
-                width: 240px;
-            }
-
-a {
-		text-shadow: 0 0 6px #FF0000;
-		color: white;
-		font-weight: bold;
-}
-
-		/* iphone 5 portrait 320x568 */
-		@media screen and (device-aspect-ratio: 40/71) {
-            body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;            
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 320px 568px;
-                width: 320px;
-                height: 568px;
-            }
-	
-	        .description li {
-	                font-size: 20px;
-	                //font-family: 'Gloria Hallelujah', cursive;
-	        } 
-	        
-	        .corner-logo {
-	                position: absolute;
-	                left: 0px;
-	                bottom: 0px;
-	        }		        
+  <!--[if IE 6]>
+	<style type="text/css">
+		* html .group {
+			height: 1%;
 		}
-
-
-		/* iphone 6/6+ portrait 375x667 and 414x736*/
-		@media only screen 
-		and (min-device-width: 340px) 
-		and (max-device-width : 400px) 
-		and (orientation : portrait) { 
-            
-            body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;            
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 375px 667px;
-                width: 375px;
-                height: 667px;
-            }
-        }		
-
-		/* iphone 6/6+ portrait 375x667 and 414x736*/
-		@media only screen 
-		and (min-device-width: 400px) 
-		and (max-device-width : 420px) 
-		and (orientation : portrait) { 
-            
-            body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;            
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 414px 736px;
-                width: 414px;
-                height: 736px;
-            }
-        }	
-
-		/* iphone 6/6+ portrait 375x667 and 414x736*/
-		@media only screen 
-		and (min-device-width: 330px) 
-		and (max-device-width : 680px) 
-		and (orientation : portrait) { 
-          
-	
-	        .description li {
-	                font-size: 20px;
-	                //font-family: 'Gloria Hallelujah', cursive;
-	        }
-	        
-	        .corner-logo {
-	                position: absolute;
-	                left: 0px;
-	                bottom: 0px;
-	        }	
+	</style>
+  <![endif]--> 
+  <!--[if IE 7]>
+	<style type="text/css">
+		*:first-child+html .group {
+			min-height: 1px;
 		}
-		
-        /* iphone 5 /nexus/galaxy landscape */
-		@media only screen 
-		and (min-device-width: 550px) 
-		and (max-device-width : 570px) 
-		and (orientation : landscape) { 
-            body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;            
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 568px 320px;
-                width:568px;
-                height:320px;
-            }
-        }
-
-        /* iphone 6 /nexus/galaxy landscape */
-		@media only screen 
-		and (min-device-width: 650px) 
-		and (max-device-width : 670px) 
-		and (orientation : landscape) { 
-            body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;            
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 667px 375px;
-                width: 667px;
-                height:375px;
-            }
-       
-        }
-
-        /* iphone 6+/nexus/galaxy landscape */
-		@media only screen 
-		and (min-device-width: 720px) 
-		and (max-device-width : 740px) 
-		and (orientation : landscape) { 
-            body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;            
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: 736px 414px;
-                width:736px;
-                height:414px;
-            }
-        }
-
-        /* iphone 6/6+/nexus/galaxy landscape */
-		@media only screen 
-		and (min-device-width: 321px) 
-		and (max-device-width : 780px) 
-		and (orientation : landscape) { 
-			
-
-	        .description li {
-	                font-size: 20px;
-	                //font-family: 'Gloria Hallelujah', cursive;
-	        }            
-
-	        .corner-logo {
-	                position: absolute;
-	                left: 0px;
-	                bottom: 0px;
-	        }	     
-		}		
-
-        /* i-pad, desktop, bigscreen 768x1024 */
-		@media only screen 
-  		and (device-width: 768px) 
-  		and (orientation : portrait) { 
-		
-	         body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;	         
-	             background-repeat: no-repeat;
-	             background-position: center;
-	             background-size: 768px 1024px;
-	             width: 768px;
-	             height: 1024px;
-	         }
-		}
-
-        /* i-pad, desktop, bigscreen 768x1024 */
-		@media only screen 
-  		and (device-width: 1024px) 
-  		and (orientation : portrait) { 
-		
-	         body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;	         
-	             background-repeat: no-repeat;
-	             background-position: center;
-	             background-size: 1024px 1366px;
-	             width: 1024px;
-	             height: 1366px;
-	         }
-		}
-
-        /* i-pad, desktop, bigscreen 768x1024 */
-		@media only screen 
-  		and (min-device-width: 768px) 
-  		and (max-device-width: 1050px) 
-  		and (orientation : portrait) { 
-  		
-  			.menu-button {
-  				font-size: 40px;
-  			}
-
-	        .description li, .description a, .description span {
-	                font-size: 40px;
-	                //font-family: 'Gloria Hallelujah', cursive;
-	        }
-
-	        .corner-logo {
-	                position: absolute;
-	                left: 0px;
-	                bottom: 0px;
-	        }		        
-		}
-
-        /* Desktop 1440x950 */
-        @media  only screen and (min-width:1125px), only screen and (min-width:1281px) {
-		
-	         body {
-			background: url('/assets/images/redbg.png') no-repeat;
-			background-color:black; 
-			padding-top:60px;	         
-	             background-repeat: no-repeat;
-	             background-position: center;
-	             background-size: 1440px 700px;
-	             width: 1440px;
-	             height: 700px;
-	         }
-
-	        .description li, .description a, .description span {
-	                font-size: 40px;
-	                //font-family: 'Gloria Hallelujah', cursive;
-	        }
-
-	        .corner-logo {
-	                position: absolute;
-	                left: 0px;
-	                bottom: 0px;
-	        }	
-		}
-
-		.subcontent {
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 50%;
-			height: 50%;
-		}
-		
-		.description {
-			color: white;
-			padding-top: 50px;
-			padding-right: 50px;
-		}
-
-        .description ul {
-                list-style-type: none;
-        }
-	        		
-		.content {
-			text-align: center;
-			width: 100%;
-            height: 100%;
-		}
-        
-
-       .corner-logo {
-            position: absolute;
-            bottom: 1%;
-        }        
-
-
-        .menu-button {
-                font-size: 30px;
-                color: #FFF;
-                //font-family: 'Gloria Hallelujah', cursive;
-                padding: 20px;
-
-                text-decoration: none;
-
-                width: 100px;
-                height: 60px;
-                border: none;
-                outline:none;
-                cursor: pointer;        
-                vertical-align: middle; /* align the text vertically centered */
-                //background-color:transparent;
-        }
-
-            .prev {
-                z-index:1;
-            }
-                        
-            .next {
-                z-index:1;
-            }
-
-            .next img {
-                position: absolute;
-                top: 50%;
-                right: 5px;
-                height: 80px;
-                width: 30px;
-                z-index:1;
-            }            
-
-            .prev img {
-                position: absolute;
-                top: 50%;
-                left: 5px;
-                height: 80px;
-                width: 30px;
-                z-index:1;
-            }     
-</style>
+	</style>
+  <![endif]--> 
+  <!--[if lt IE 9]> 
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script> 
+  <![endif]--> 
 
 
 <script>
@@ -412,8 +77,8 @@ function prev() {
 	
 	console.log('before prev ' + prev + ' current ' + current);
 	
-	if(prev == 0) {
-		$('#current').val(0);
+	if(prev == 1) {
+		$('#current').val(1);
 	}
 	else {
 		prev--;
@@ -427,7 +92,9 @@ function prev() {
 	$('#'+prev).show();
 }
 
+
 function next() {
+	console.log('called next');
 	var next = parseInt($('#current').val());
 	var current = parseInt($('#current').val());
 	var listsize = parseInt($('#listsize').val());
@@ -449,48 +116,48 @@ function next() {
 	$('#'+next).show();
 }
 
+
 </script>
 
 
 </head>
 
 <body>
-        <div class="content">
-		        <a href="/game/all" class="menu-button" style="text-decoration: none; color: white;">Back</a>
-                <a href="javascript: next()" class="next"><img src="/assets/images/to-the-right.gif"/></a>
-                <a href="javascript: prev();" class="prev"><img src="/assets/images/to-the-left.gif"/></a>
-                
-                <input type="hidden" id="current" value="1" />
-                <input type="hidden" id="listsize" th:value="${#lists.size(hints)}" />
 
-				<div th:each="clue,iterStat : ${hints}" th:class="${iterStat.odd}? 'odd'">
-					<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
-					
-						<div class="postitnote" th:switch="${clue == null}">
-	                        <ul>
-                                <li>
-                                	<p>
-										<span th:case="false">
-													<h3>Scene <span th:text="${clue.position}"></span> Clue</h3>
-													<div th:if="${clue.image != null and clue.image != ''}">
-														<a data-fancybox="gallery" th:href="${clue.image}"><img style="width: 50px;height:50px;" th:src="${clue.image}"/></a>
-													</div>
-							                    	<div class="pre-scrollable"><span th:utext="${clue.text}"></span></div>
-										</span>
-
-										<span th:case="true">
-													<span>There are no clues</span>
-										</span>
-                                	</p>
-                                </li>
-	                        </ul>							
-						</div>	
-						
-					</div>
+  	<div class="global_container_">
+   		<div class="content">
+    		<div class="clue_layer">
+    			<a href="/game/all" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
+    			<h1 class="clue">Clues</h1>
+    			<div class="row-4 group">
+			        <a href="javascript: prev()" class="left"><img src="/assets/images/left.png" alt="" width="45" height="64"/></a>
+	                
+	                
+	                <input type="hidden" id="current" value="1" />
+	                <input type="hidden" id="listsize" th:value="${#lists.size(hints)}" />
+	                
+	                <div th:each="clue,iterStat : ${hints}" th:class="${iterStat.odd}? 'odd'">
+						<div th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
+							<div th:switch="${clue == null}">
+								<span th:case="false">
+									<div th:if="${clue.image != null and clue.image != ''}">
+										<a data-fancybox="gallery" th:href="${clue.image}"><img style="width: 50px;height:50px;" th:src="${clue.image}"/></a>
+									</div>
+			                		<p class="full_text_description"><div class="pre-scrollable"><span th:utext="${clue.text}"></span></div></p>
+			                	</span>
+		                		<span th:case="true">
+									<p class="full_text_description"><span>There are no clues</span></p>
+								</span>
+	                		</div>
+	                	</div>
+	                </div>
+	                
+	                <a href="javascript: next();" class="right"><img src="/assets/images/right.png" alt="" width="44" height="63"/></a>
+	                
 				</div>
-		</div><!-- end container -->
-		<img class="corner-logo" src="/assets/images/logo.png" width="100px" height="50px" />
-
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>
