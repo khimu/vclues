@@ -130,6 +130,13 @@ public class RegistrationController extends BaseController {
 
         	session().setAttribute("users", null);
         }
+        
+        if(logout != null) {
+        	logger.info("logout " + logout);
+            model.addAttribute("message", "You have been logged out successfully.");
+
+            logout();
+        }
     	
         User user = new User();
         model.addAttribute("userForm", user);

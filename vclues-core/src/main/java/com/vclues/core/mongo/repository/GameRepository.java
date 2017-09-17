@@ -38,11 +38,11 @@ public interface GameRepository extends MongoRepository<Game, String> {
     public List<Game> findGamesByPlayers(@ParameterValueKeyProvider List<Player> players, boolean done);
     
     @Override
-    @InvalidateSingleCache(namespace = "GameById")
+    //@InvalidateSingleCache(namespace = "GameById")
     public Game save(@ParameterValueKeyProvider Game game);
 
 	@Override
-	@ReadThroughSingleCache(namespace = "GameById")
+	//@ReadThroughSingleCache(namespace = "GameById")
 	public Game findOne(@ParameterValueKeyProvider String gameId);
 
 }

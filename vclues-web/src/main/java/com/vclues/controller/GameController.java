@@ -507,6 +507,5 @@ public class GameController extends BaseController {
 		return "games";
     	
     }    
-    
 
 }

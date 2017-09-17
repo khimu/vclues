@@ -161,6 +161,27 @@ function next() {
 
 </script>
 
+
+<style>
+.character_layer {
+	left: 43%;
+	position: absolute;
+	top: 64px;
+	width: 375px;
+	margin-left: -187.5px;
+}
+
+.name_title-3 {
+	margin: 65px 0 0 25px;
+	font-family: Deneane, serif;
+	font-size: 22.85714px;
+	font-weight: normal;
+	text-align:center;
+}
+</style>
+
+
+
 </head>
 
 <body>
@@ -194,14 +215,20 @@ function next() {
 				
 				<img class="curtain_plate" src="/assets/images/curtain_plate.png" alt="" width="206" height="124"/>
 	
-	      		<section class="character_select_layer">
+	      		<section class="character_select_layer" style="left: 43%;">
 	       			<div class="select-4">
 	        			<p class="select_text-4" style="margin:0 10px;"><a th:href="@{/game/cast/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}">Select</a></p>
 	       			</div>
 	
 	      			<div class="text group">
 	        			<h1 class="character-4">Character</h1>
-	        			<h3 class="name_title-3" th:text="${c.cast.name}"></h3>
+       			
+	        			<h3 class="name_title-3">
+	        				<span th:if="${c.username != null}">
+			        	 		<span style="font-size:12pt; white-space: nowrap;"><span th:text="${c.username}"></span> is </span>
+			        		</span>
+			        		<span style="white-space: nowrap;" th:text="${c.cast.name}"></span>
+	        			</h3>
 	       			</div>
 					<!-- Modal -->
 					<div th:id="'modal_description_' + ${c.id}" class="modal fade " role="dialog"  style="heigth:200px;text-align:center;">

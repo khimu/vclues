@@ -35,10 +35,10 @@ public interface PlayerRepository extends MongoRepository<Player, String> {
 	public List<Player> findAllPlayersByGame(Game game);
 
     @Override
-    @InvalidateSingleCache(namespace = "PlayerById")
+    //@InvalidateSingleCache(namespace = "PlayerById")
     public Player save(@ParameterValueKeyProvider Player player);
 
 	@Override
-	@ReadThroughSingleCache(namespace = "PlayerById")
+	//@ReadThroughSingleCache(namespace = "PlayerById")
 	public Player findOne(@ParameterValueKeyProvider String playerId);
 }

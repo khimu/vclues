@@ -115,6 +115,16 @@ function next() {
 
 </script>
 
+<style>
+.character_layer {
+	left: 50%;
+	position: absolute;
+	top: 64px;
+	width: 375px;
+	margin-left: -187.5px;
+}
+</style>
+
 </head>
 
 <body>
@@ -158,9 +168,9 @@ function next() {
 			        
 			        <!--  Enter the character name and the player name -->
 			        <h2 class="email-tag">
-			        <span th:if="${c.username != null}">
-			        	 <span th:text="${c.username}"></span> is 
-			        </span>
+				        <span th:if="${c.username != null}">
+				        	 <span th:text="${c.username}"></span> is 
+				        </span>
 			        </h2>
 			        
 			        <h2 class="is-holly-harrison-2"><span th:text="${c.cast.name}"></span></h2>        

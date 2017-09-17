@@ -474,13 +474,7 @@ a.btn_show_story img {
 	font-size: 27.42857px;
 	text-align: center;
 }
-.character_layer {
-	left: 50%;
-	position: absolute;
-	top: 64px;
-	width: 375px;
-	margin-left: -187.5px;
-}
+
 .btn_close-5 {
 	display: block;
 	left: 146px;
@@ -604,12 +598,14 @@ a.done_btn img {
 	font-size: 13.71429px;
 	font-weight: normal;
 	text-align: center;
+	white-space:nowrap;
 }
 .is-holly-harrison-2 {
 	margin: 10px 0 0 17px;
 	font-family: Deneane, serif;
 	font-size: 18.28571px;
 	font-weight: normal;
+	white-space:nowrap;
 }
 .wrapper-15 {
 	height: 297px;
@@ -723,11 +719,11 @@ a.right-6 img {
 	margin-top: 0px;
 }
 .name_title-3 {
-	margin: 83px 0 0 13px;
+	margin: 65px 0 0 13px;
 	font-family: Deneane, serif;
 	font-size: 22.85714px;
 	font-weight: normal;
-	white-space: nowrap;
+	
 }
 .description_popup {
 	left: 50%;

@@ -54,4 +54,9 @@ public abstract class BaseController {
 		
 		return user;
 	}
+	
+	protected void logout() {
+		session().setAttribute("loggedInUser", null);
+		session().setAttribute("users", null);
+	}
 }
