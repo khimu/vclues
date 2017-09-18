@@ -213,8 +213,13 @@ function next() {
 							<span th:case="false" class="inactive">Guesses</span>
 							<span th:case="true" ><a th:href="@{'/game/guess/' + ${game.id}}">Guesses</a></span>
 						</span>
-						</p></li>
-	       <li class="li-end-game"><p class="gamemenu-item"><a th:href="@{'/game/end/' + ${game.id}}">End Game</a></p></li>
+			</p></li>
+	       <li class="li-end-game"><p class="gamemenu-item">
+	       				<span th:switch="${game.done}"> 
+							<span th:case="false" class="inactive">
+	       						<a th:href="@{'/game/end/' + ${game.id}}">End Game</a></span>
+	       					<span th:case="true" class="inactive">End Game</span>
+	       	</p></li>
 	       
 	      </ul>
 	
