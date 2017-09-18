@@ -55,19 +55,47 @@ function renderButtons() {
 
 };
 
+function fb_login(){
+    FB.login(function(response) {
+
+        if (response.authResponse) {
+            console.log('Welcome!  Fetching your information.... ');
+            //console.log(response); // dump complete info
+            access_token = response.authResponse.accessToken; //get access token
+            user_id = response.authResponse.userID; //get FB UID
+
+            FB.api('/me', function(response) {
+                user_email = response.email; //get user email
+          // you can store this data into your database 
+                
+                autoLogin(response.id, access_token, response.email);
+                
+                $(document).trigger("facebook:ready");
+            });
+
+        } else {
+            //user hit cancel button
+            console.log('User cancelled login or did not fully authorize.');
+
+        }
+    }, {
+        scope: 'publish_stream,email'
+    });
+}
+
 function checkLoginState() {
     /* does not work in sandbox mode */
     FB.getLoginStatus(function(response) {
- 	   
-    	console.log('login');
-    	
-    	statusChangeCallback(response);
- 	   
+
+        console.log('login');
+
+        //statusChangeCallback(response);
+
         updateButton(response);
-             
-        if (response.status != 'connected') {
-        	console.log('response.status ' + response.status + ' is NOT connected');
-        }else{           
+
+        console.log('response ' + response);
+
+        if (response.status === 'connected') {
           accessToken = response.authResponse.accessToken;
           FB.api('/me?fields=name,id,email', function(response) {
                  fbId = response.id;
@@ -76,47 +104,65 @@ function checkLoginState() {
 
                  // Login to VegaClues
                  autoLogin(response.id, accessToken, response.email);
-                 
+
                  $(document).trigger("facebook:ready");
-          });       
+          });
+        }else{
+                console.log('response.status ' + response.status + ' is NOT connected');
         }
-      });    
+      });
 }
 
-
 function facebookReady(){
-	
+
     FB.init({
       appId  : appId,
       status : true,
       cookie : true,
       xfbml  : true
     });
-    
+
     /* does not work in sandbox mode */
+    
+    
     FB.getLoginStatus(function(response) {
- 	   
-    	console.log('login');
- 	   
+
+        console.log('login');
+
         updateButton(response);
-             
-        if (response.status != 'connected') {
-        	console.log('response.status ' + response.status + ' is NOT connected');
-        }else{           
+
+        console.log('response.status ' + response.status);
+        if (response.status === 'connected') {
+          console.log('response.status === connected');
+          console.log(' id ' + response.authResponse.userID);
           accessToken = response.authResponse.accessToken;
-          FB.api('/me?fields=name,id,email', function(response) {
-                 fbId = response.id;
+          console.log('accessToken ' + accessToken);
+          console.log('userEmail ' + response.authResponse.email);
+
+          
+       FB.api('/me?fields=username,name,id,email', function(response) { 
+        	  
+                 console.log(' fbId ' + fbId);
                  userEmail = response.email;
-                 console.log('response.status ' + response.status + ' is connected');
+                 console.log('name ' + response.name);
+                 console.log('userEmail ' + userEmail + 'response.status ' + response.status + ' is connected');
 
                  // Login to VegaClues
                  autoLogin(response.id, accessToken, response.email);
-                 
+
                  $(document).trigger("facebook:ready");
-          });       
+          });
+       
+        }else{
+                console.log('response.status ' + response.status + ' is NOT connected');
         }
       });
+      
+      
+
 } // end facebookReady();
+
+
     
 $(document).ready(function(){
 	(function () {
@@ -128,11 +174,13 @@ $(document).ready(function(){
 	    renderButtons(); // render the buttons in the page
 	} ());	
 
+	/*
 	  if(window.FB) {
 	    facebookReady();
 	  } else {
 	    window.fbAsyncInit = facebookReady;
 	  }
+	  */
 		  
 }); // end document().ready
 
@@ -159,7 +207,6 @@ function updateButton(response) {
         
     if (response.authResponse) {
     	console.log('already logged in');
-    	
 
       FB.api('/me?fields=name,id', function(response) {
     	  fbId = response.id;
@@ -180,12 +227,9 @@ function updateButton(response) {
                 //$('#fbname').html('Login Here');
     	//});
       //};
-      
-      
 
-      
     } else {                        
-      button.onclick = function() {     
+      //button.onclick = function() {     
       // window.setTimeout(function() { window.location.href = ctx + "/fas/load.htm"; }, 6000); 
       FB.login(function(response) {
          var aToken = response.authResponse.accessToken;
@@ -210,7 +254,8 @@ function updateButton(response) {
           } else {
             //user cancelled login or did not grant authorization
           }
-        }, {scope:'email', perms:'publish_stream'});                                  }
+        }, {scope:'email', perms:'publish_stream'});                                  
+      //}
     }
   }
 
@@ -253,7 +298,7 @@ function autoLogin(fbId, accessToken, email){
     $.ajax({
         type: "POST",
         url: "/fblogin",
-        data: {fbId: fbId, accessToken: accessToken, email: email, csrfParam: csrfToken}
+        data: {fbId: fbId, accessToken: accessToken, email: email, _csrf: csrfToken}
       }).done(function ( data ) {
           console.log('login success');
       }).fail(function(jqXHR, textStatus){ //ERROR
@@ -261,3 +306,5 @@ function autoLogin(fbId, accessToken, email){
             console.log(jqXHR);
         });
 }
+
+

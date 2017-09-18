@@ -26,10 +26,10 @@
 }
 
 .body_class {
-	background-color: #ffffff;
-	background: url('/assets/images/stories/story1/bg/background.png') no-repeat;
-	background-size: 100%;
-	background-position: center top;
+	//background-color: #ffffff;
+	//background: url('/assets/images/stories/story1/bg/background.png') no-repeat;
+	//background-size: 100%;
+	//background-position: center top;
 }
 
 .container {
@@ -75,7 +75,7 @@
 	
 	#login_outer .modal-content
 	{
-	    background: url('/assets/images/posty_note_bg.png') no-repeat;
+	    background: url('/assets/images/VEGA-POSTIT2.png') no-repeat;
 	    background-size: 100% 100%;
 	    webkit-box-shadow: 0 5px 15px rgb(208, 206, 206);
 	    box-shadow: 0 5px 15px rgb(208, 206, 206);
@@ -86,7 +86,7 @@
 	}
 	#register_outer .modal-content
 	{
-	    background: url('/assets/images/posty_note_bg.png') no-repeat;
+	    background: url('/assets/images/VEGA-POSTIT2.png') no-repeat;
 	    background-size: 100% 100%;
 	    webkit-box-shadow: 0 5px 15px rgb(208, 206, 206);
 	    box-shadow: 0 5px 15px rgb(208, 206, 206);
@@ -161,24 +161,24 @@ input[type=checkbox], input[type=radio]
 	/* COMMON */
 	.login-block input#username, .login-block input#firstname, .login-block input#lastname
 		{
-		background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px top no-repeat;
+		background: #fff url('/assets/images/u0XmBmv.png') 20px top no-repeat;
 		background-size: 16px 80px;
 	}
 	
 	.login-block input#username:focus, .login-block input#firstname:focus,
 		.login-block input#lastname:focus {
-		background: #fff url('http://i.imgur.com/u0XmBmv.png') 20px bottom no-repeat;
+		background: #fff url('/assets/images/u0XmBmv.png') 20px bottom no-repeat;
 		background-size: 16px 80px;
 	}
 	
 	.login-block input#password {
-		background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px top no-repeat;
+		background: #fff url('/assets/images/Qf83FTt.png') 20px top no-repeat;
 		background-size: 16px 80px;
 	}
 	
 	/* COMMON */
 	.login-block input#password:focus {
-		background: #fff url('http://i.imgur.com/Qf83FTt.png') 20px bottom no-repeat;
+		background: #fff url('Qf83FTt.png') 20px bottom no-repeat;
 		background-size: 16px 80px;
 	}
 	
