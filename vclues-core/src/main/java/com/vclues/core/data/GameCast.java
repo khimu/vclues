@@ -14,6 +14,10 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.vclues.core.entity.Cast;
 
+/*
+ * Allows persisting to mongo db the list of db cast members of a story so that
+ * retrieving game can also retrieve game_cast.  And game_cast can be stored with a game.
+ */
 @XmlRootElement
 @Document(collection = "game_cast")
 public class GameCast extends Base {

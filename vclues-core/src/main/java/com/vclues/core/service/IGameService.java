@@ -54,7 +54,7 @@ public interface IGameService {
 	
 	public List<Announcement> getAllGameAnnouncements(String gameId);
 	
-	public void saveAnnouncement(Announcement announcement);
+	public Announcement saveAnnouncement(Announcement announcement);
 	
 	public void saveGame(Game game);
 	

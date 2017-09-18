@@ -287,8 +287,8 @@ public class GameService implements IGameService {
 	}
 
 	@Override
-	public void saveAnnouncement(Announcement announcement) {
-		announcementRepository.save(announcement);
+	public Announcement saveAnnouncement(Announcement announcement) {
+		return announcementRepository.save(announcement);
 	}
 
 	@Override

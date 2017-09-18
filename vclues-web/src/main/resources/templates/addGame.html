@@ -81,24 +81,13 @@
        </div>
        
 		<form th:action="@{|/game/select/${storyId}|}" th:object="${game}" th:method="POST">
-	
 			<ul>
 			    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
 			</ul>		
 
        <div class="invite_friend_text_area-holder">
-
-       
 			<textarea style="resize: none;background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)" rows="4" cols="5" class="form-control" id="invites" th:field="*{invites}" placeholder="player1@gmail.com, player2@gmail.com">
 			</textarea>       
-       <!--  
-        <ul class="invite_list group">
-         <li><p class="text-16"><span class="font-myriadpro">@</span>gmail.com</p></li>
-         <li><p class="text-17"><span class="font-myriadpro">@</span>gmail.com</p></li>
-         <li><p class="text-18"><span class="font-myriadpro">@</span>gmail.com</p></li>
-         <li><p class="text-19"><span class="font-myriadpro">@</span>gmail.com</p></li>
-        </ul>
-        -->
        </div>
        <div class="button-3 group">
        	<button type="submit" class="btn btn-primary btn-sm" style="opacity: 0.7;">Submit</button>

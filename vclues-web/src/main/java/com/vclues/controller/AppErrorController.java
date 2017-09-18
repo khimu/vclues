@@ -22,8 +22,10 @@ public class AppErrorController {
 		logger.error("Exception during execution of SpringSecurity application", throwable);
 		String errorMessage = (throwable != null ? throwable.getMessage() : "Unknown error");
 		
-		model.addAttribute("content", "error");
-		return "internal";
+		logger.error(errorMessage);
+		model.addAttribute("message", "There is a slight technicality.  Please try again.");
+		
+		return "error";
 	}
 
 	/*

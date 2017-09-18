@@ -568,7 +568,7 @@ a.right-4 img {
 .done_btn {
 	display: block;
 	left: 102px;
-	margin: 130px auto 0;
+	margin: 260px auto 0;
 	position: relative;
 	width: 55px;
 }
@@ -606,6 +606,7 @@ a.done_btn img {
 	font-size: 18.28571px;
 	font-weight: normal;
 	white-space:nowrap;
+	text-align:center;
 }
 .wrapper-15 {
 	height: 297px;
@@ -856,7 +857,7 @@ a.right-7 img {
 	overflow: hidden;
 	padding: 38px 15px 37px;
 	position: relative;
-	width: 176px;
+	//width: 176px;
 	z-index: 141;
 	background: url(/assets/images/curtain_plate.png) no-repeat;
 }
@@ -904,7 +905,7 @@ a.right-7 img {
 	color:white;
 }
 .players_list {
-	margin: 70px auto 0;
+	margin: 80px auto 0;
 	position: relative;
 	width: 124px;
 	z-index: 143;

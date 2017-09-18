@@ -9,12 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -423,6 +421,8 @@ public class GameController extends BaseController {
 		yell.setCastId(castId);
 		yell.setName(castName);
 
+		model.addAttribute("castId", castId);
+		model.addAttribute("castName", castName);
 		model.addAttribute("announcement", yell);
         model.addAttribute("gameId", gameId);
          
@@ -455,13 +455,24 @@ public class GameController extends BaseController {
         	}
             return "addAnnouncement";
         }
-                       
-        //logger.info("Saving descriptor " + descriptor.toString());
         
-        gameService.saveAnnouncement(announcement);
+		Game game = gameService.getGameOnly(announcement.getGame().getId());
+		
+		/*
+		 * check if user is part of this game
+		 */
+		if(!game.getEmails().contains(user.getEmail())) {
+			return "redirect:/game/all";
+		}
+		
+        announcement.setGame(game);
+        announcement.setUserId(user.getId());       
+        announcement.setEmail(user.getEmail());
+        
+        Announcement a = gameService.saveAnnouncement(announcement);
          
         return "redirect:/game/cast/" + announcement.getGame().getId();
-    }    
+    }     
     
     
     /*

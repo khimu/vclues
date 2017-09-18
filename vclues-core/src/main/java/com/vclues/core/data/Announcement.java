@@ -20,6 +20,9 @@ public class Announcement extends Base {
 
 	@Field
 	private String name;
+	
+	@Field 
+	private String email;
 
 	@Indexed(unique = false)
 	@Field(value = "user_id")
@@ -93,6 +96,14 @@ public class Announcement extends Base {
 
 	public void setCast(Cast cast) {
 		this.cast = cast;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
