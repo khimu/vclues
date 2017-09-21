@@ -63,17 +63,17 @@ public class StoryService implements IStoryService {
     * Somehow not getting a new object from DB and causing stale state exeception on 
     * second edit request
     */
-    @InvalidateMultiCache(namespace = "stories")
+    //@InvalidateMultiCache(namespace = "stories")
     public Story saveStory(@ParameterValueKeyProvider Story story) {
     	return saveSingleCacheStory(story);
     }
     
-    @InvalidateSingleCache(namespace = "story")
+    //@InvalidateSingleCache(namespace = "story")
     public Story saveSingleCacheStory(@ParameterValueKeyProvider Story story) {
     	return storyRepository.save(story);
     }
     
-    @ReadThroughMultiCache(namespace = "stories")
+    //@ReadThroughMultiCache(namespace = "stories")
     public List<Story> getAllStories() {
     	return storyRepository.findAll();
     }
@@ -85,7 +85,7 @@ public class StoryService implements IStoryService {
      * (non-Javadoc)
      * @see com.vclues.core.service.IStoryService#getStory(java.lang.Long)
      */
-    @ReadThroughSingleCache(namespace = "story")
+    //@ReadThroughSingleCache(namespace = "story")
     public Story getStory(@ParameterValueKeyProvider Long storyId) {
     	return storyRepository.findOne(storyId);
     }

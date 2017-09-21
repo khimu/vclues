@@ -52,48 +52,110 @@
     			width: 250px;
 			}
 		</style>
-		
+
+<script>
+$( document ).ready(function() {
+	console.log( "ready!" );
+
+    
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    console.log(w);
+    console.log(h);
+    
+    //$('.container').css({'background-size': w + 'px ' + h + 'px'});   
+    $('body').css({ 'height': h });   
+    //$('.game').css({ 'height': h });   
+    //$('.menu').css({ 'height': h });
+    $('.container').css({ 'height': h }); 
+    
+    $('body').css({ 'width': w });   
+    $('.container').css({ 'width': w }); 
+    //$('.game').css({ 'width': w });   
+    //$('.menu').css({ 'width': w });      	
+});
+</script>	
+
+<style>
+
+.announcement_form_layer-form {
+    left: 33%;
+    position: absolute;
+    top: 65px;
+    width: 375px;
+    margin-left: -125px;
+}
+
+.col {
+    width: 200px;
+}
+
+.announcement_form_layer {
+    /* margin: 0 auto; */
+    width: 375px;
+    z-index: 0;
+    text-align: center;
+}
+.col {
+    right: 0px;
+}
+
+.tag-3 {
+    right: 0px;
+}
+
+.fb_share {
+   right: 0px;
+}
+
+.fb_post {
+    right: 0px;
+}
+.invite-2 {
+    padding: 10px;
+    width: 255px;
+    height: 120px;
+    margin-left:17%;
+}
+.button-2 {
+	margin-left: 17%;
+}
+</style>
+	
 	</head>
 	
     <body class='lang-en'>
-    
-  <div class="global_container_">
-   <div class="content">
-    
-    <div class="game_detail_layer">
-     
-     <a href="/games/all" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
-     
-     <div class="wrapper-6">
-
-       <h1 class="announcement_title">Announcement</h1>
-       <h3 class="curtain_plate-holder"></h3>
-       <h5 class="tag-4">Description</h5>
-       <a href="#" class="fb_share"><img src="/assets/images/fb_share.png" alt="" width="101" height="30"/></a>
-       <a href="#" class="fb_post"><img src="/assets/images/fb_post.png" alt="" width="101" height="30"/></a>
-       
-       <form th:action="@{|/game/announcement|}" th:object="${announcement}" th:method="POST">
-		<input class="form-control" type="hidden" th:value="${gameId}" id="gameId" name="game.id" />
-		<input class="form-control" type="hidden" th:value="${castId}" id="castId" name="castId" />
-		<input class="form-control" type="hidden" th:value="${castName}" id="castName" name="name" />
-       	
-       	<div class="text_area-holder">
-       		<textarea id="message" th:field="*{message}" style="background: transparent;"  rows="4" cols="5" class="form-control" ></textarea>
-       	</div>
-       	
-       <div class="button-4 group">
-       	<button type="submit" class="btn btn-info">Post</button>
-        <a th:href="@{/game/cast/{gameId}(gameId=${gameId})}" class="btn btn-default" style="color:black;">Cancel</a>
-       </div>
-       
-       </form>
-
-     </div>
-    </div>
-    
-   </div>
-  </div>
-    
+	  <div class="content">
+	   <form class="announcement_form_layer-form" th:action="@{|/game/announcement|}" th:object="${announcement}" th:method="POST">
+			<input class="form-control" type="hidden" th:value="${gameId}" id="gameId" name="game.id" />
+			<input class="form-control" type="hidden" th:value="${castId}" id="castId" name="castId" />
+			<input class="form-control" type="hidden" th:value="${castName}" id="castName" name="name" />
+			
+	    <div class="announcement_form_layer">
+	     <a href="/game/all" class="btn_close-5"><img src="/assets/images/btn_close_5.png" alt="" width="55" height="55"/></a>
+	     
+	     <h1 class="title-6">Announcement</h1>
+	     <div class="col">
+	      <h3 class="curtain_plate_text-4" th:text="${castName}"></h3>
+	      <h5 class="curtain_plate_subtext-2"></h5>
+	     </div>
+	     
+	     <div class="tag-3">
+	      <a href="#">Post Message</a>
+	     </div>
+	     
+	     <a href="#" class="fb_share"><img src="/assets/images/fb_share.png" alt="" width="106" height="35"/></a>
+	     <a href="#" class="fb_post"><img src="/assets/images/fb_post.png" alt="" width="106" height="35"/></a>
+	     <textarea class="invite-2" id="message" th:field="*{message}"  name="message"></textarea>
+	     
+	     <div class="button-2 group">
+			<button type="submit" class="btn btn-primary btn-sm" style="opacity: 0.7;">Submit</button>
+	       	<a th:href="@{/game/cast/{gameId}(gameId=${gameId})}" class="btn btn-primary btn-sm" style="opacity: 0.7;">Cancel</a>   
+	     </div>
+	    </div>
+	   </form>
+	  </div>
     </body>
 </html>
   

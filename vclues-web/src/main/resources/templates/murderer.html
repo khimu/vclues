@@ -70,6 +70,23 @@
 $( document ).ready(function() {
     	console.log( "ready!" );
 
+        
+        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+        console.log(w);
+        console.log(h);
+        
+        //$('.container').css({'background-size': w + 'px ' + h + 'px'});   
+        $('body').css({ 'height': h });   
+        //$('.game').css({ 'height': h });   
+        //$('.menu').css({ 'height': h });
+        $('.container').css({ 'height': h }); 
+        
+        $('body').css({ 'width': w });   
+        $('.container').css({ 'width': w }); 
+        //$('.game').css({ 'width': w });   
+        //$('.menu').css({ 'width': w });  
         $(function() {
 
     		$('.character').bind('touchstart', function(e) {
@@ -154,97 +171,183 @@ function next() {
 </script>
 
 <style>
+
+
+.name_text-4 {
+    margin: 60px 0 0 20px;
+    margin-top: 38px;
+    font-family: Deneane, serif;
+    font-weight: normal;
+    text-align: center;
+    width: 165px;
+}
+
 .character_layer {
 	left: 50%;
+	min-height: 660px;
+	padding: 66px 1px 7px;
 	position: absolute;
-	top: 64px;
+	top: 0px;
 	width: 375px;
+	//z-index: 0;
+	background: url(/assets/images/door.png) no-repeat;
 	margin-left: -187.5px;
 }
-
-.is-holly-harrison-2 {
-	margin: -15px 0 0 10px;
+.curtain_plate_text-6 {
+    margin: 10px 0 0;
+    white-space: nowrap; 
+    font-size: 16px;
+    overflow: scroll;
 }
 
+.curtain_plate-holder-4 {
+    width: 197px;
+    margin-left: -120px;
+    /*padding: 25px 16px 50px; */
+    padding:0px;
+    text-align:center; 
+    height: 110px;
+}
+.curtain_plate_subtext-3 {
+    font-size: 12px;
+    overflow: scroll;
+    height:45px;
+}    
+
+.select-5 {
+    width: 230px;
+    padding: 2px 105px 27px 6px;
+}
+.character_select_layer {
+    top: 370px;
+}
+.character {
+    left: 50%;
+    top:102px;
+}
+.character_select_layer {
+    left: 35%;
+}
+.dynamic-4 {
+    margin: -218px 0 0 35px;
+}
+
+.tag-4 {
+	left: 43%;
+    margin: 0 0 0 -65px;
+}    
+.line {
+    left: 45%;
+    top:410px;
+}
+    
+.dagger {
+	top:110px;
+    margin-left: -150px;
+}    
+
+.character_murderer_layer {
+    top: -3px;
+}
+.h4, .h5, .h6, h4, h5, h6 {
+    /* margin-top: 10px; */
+    /* margin-bottom: 10px; */
+}
+
+.icon_murder {
+    top: 326px;
+    margin-left: 50px;
+}
+
+
+a {
+       background-color: transparent;
+    }
+
+a, a:hover, a:link, a:active {
+    text-decoration: none;
+    color: black;
+}
+
+
 </style>
+
+
 
 </head>
 
 <body>
-  <div class="global_container_" >
-   <div class="content" >
-    <div class="character_layer" >
-     	<a href="/game/all" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
-     	
-       	<div class="left_right-3 group">
-        	<a href="javascript: prev();" class="left-6"><img src="/assets/images/left_4.png" alt="" width="38" height="57"/></a>
-        	<a href="javascript: next();" class="right-6"><img src="/assets/images/right_4.png" alt="" width="38" height="57"/></a>
-       	</div>
+
 		
 		<input type="hidden" id="current" value="1" />
     	<input type="hidden" id="listsize" th:value="${#lists.size(casts)}" /> 
     	
-    	
-		<div class="curtain-holder" >
-		<span th:each="c,iterStat : ${casts}" th:class="${iterStat.odd}? 'odd'">
+  <section class="character_layer">
+   <div class="header">
+    <a href="/game/all" class="btn_close-8"><img src="/assets/images/btn_close_8.png" alt="" width="55" height="54"/></a>
+    <h1 class="title-10">Who Dunit</h1>
+    
+    <div class="left_right group">
+     <a href="javascript: prev();" class="left"><img src="/assets/images/left.png" alt="" width="44" height="63"/></a>
+     <a href="javascript: next();" class="right"><img src="/assets/images/right.png" alt="" width="44" height="63"/></a>
+    </div>
+   </div>
+   
+   <div class="dynamic-4">
+    <!-- <a href="#" class="btn_done"><img src="/assets/images/btn_done.png" alt="" width="55" height="54"></a>-->
 
-			<!-- Player Cast is null -->
-	
+		<span th:each="c,iterStat : ${casts}" th:class="${iterStat.odd}? 'odd'">
+			<!-- Player Cast is null -->	
 	     	<span th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
 	      		
-	      		<img class="character" th:src="${c.cast.image}" alt="" width="283" height="289"/>
-	      		
-				<div class="tag" style="z-index: 1005;">
-						<a href="javascript: return false;" onclick="console.log('test test'); " data-toggle="modal" th:attr="data-target='#modal_description_'+${c.id}">Description</a>
-				</div>
-				
-				
-				<img class="curtain_plate" src="/assets/images/curtain_plate.png" alt="" width="206" height="124"/>
 
-      <div class="murder_select_layer">
-       <div class="text_after_character_selection-2">
-        <h1 class="character-4">Who Dunit</h1>
-        <h2 class="email-tag">
-	        <img src="/assets/images/space.png" alt="" width="25" height="15"/>
-        </h2>
-        <h2 class="is-holly-harrison-2">
-        	<span th:if="${c.username != null}" style="font-size: 10pt;">
-	        	 <span th:text="${c.username}"></span> is 
-	        </span>
-	        <br/>
-        	<span th:text="${c.cast.name}"></span>
-        </h2>        
-       </div>
-       <div class="wrapper-15">
-        <div class="select-3">
-         <p class="select_text-3"><a th:href="@{/game/murderer/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}">Select</a></p>
-        </div>
-        <img class="murderer_icon" src="/assets/images/murderer_icon.png" alt="" width="57" height="58"/>
-        <img class="dagger" src="/assets/images/dagger.png" alt="" width="255" height="282"/>
-       </div>
-       
+					<div class="character_murderer_layer">
+     					<img class="line" src="/assets/images/line.png" alt="" width="220" height="11"/>
+    
+
+
+			     <div class="character_select_layer">
+			      <div class="select-5">
+			       <a th:href="@{/game/murderer/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}">Select</a>
+			      </div>
+			     </div>
+			     
+				<div class="tag-4" >
+						<a href="javascript: return false;" data-toggle="modal" th:attr="data-target='#modal_description_'+${c.id}">Description</a>
+				</div>
+ 
+			    <div class="curtain_plate-holder-4">
+			     <div class="name_text-4">
+			      <h3 style="line-height:1;padding:0px;margin-top: 0px;margin-bottom: 0px;" class="curtain_plate_text-6" th:text="${c.cast.name}"></h3>
+			      <h5 style="line-height:1;padding:0px;margin-top: 0px;margin-bottom: 0px;" class="curtain_plate_subtext-3"><span  th:if="${c.username != null}">Starring <span style="font-size:12pt; white-space: nowrap;"><span th:text="${c.username}"></span></span></span></h5>
+			     </div>
+			    </div>
+			    
+			    <img class="character" th:src="${c.cast.image}" alt="" width="283" height="288" style="z-index:-230;"/>
+     			<img class="icon_murder" src="/assets/images/icon_murder.png" alt="" width="56" height="58" />
+     			<img class="dagger" src="/assets/images/dagger.png" alt="" width="255" height="281"  style="z-index:-130;"/>
+			    
+			  </div>
+		 	</span>
+		 </span>
+   </div>
+  </section>
+
+		<span th:each="c,iterStat : ${casts}" th:class="${iterStat.odd}? 'odd'">
 					<!-- Modal -->
-					<div th:id="'modal_description_' + ${c.id}" class="modal fade " role="dialog"  style="heigth:200px;text-align:center;">
+					<div th:id="'modal_description_' + ${c.id}" class="modal fade" role="dialog"  style="z-index:2000;heigth:200px;text-align:center;">
 			  			<div class="modal-dialog">
 			    			<!-- Modal content-->
 			    			<div class="modal-body">
-		    					<div class="description_popup">
-				      				<a href="#" data-dismiss="modal" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
+		    					<div class="descrpition_popup_altered">
+				      				<a href="#" data-dismiss="modal" class="btn_close-11"><img src="/assets/images/btn_close_11.png" alt="" width="55" height="55"/></a>
 	                            	<p class="description_popup_text pre-scrollable" th:utext="${c.cast.description}"></p>
 	                            </div>
 		                    </div>
 			    		</div>
 			  		</div>
-					<!-- End Modal -->	   
-        
-      </div>
-	      		<img class="line" src="/assets/images/line.png" alt="" width="221" height="11"/>
-	     	</span>
-     	</span>
-     </div>
-    </div>
-   </div>
-  </div>
+		</span>  
+
 </body>
 
 </html>

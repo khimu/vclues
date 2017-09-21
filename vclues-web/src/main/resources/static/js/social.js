@@ -56,6 +56,12 @@ function renderButtons() {
 };
 
 function fb_login(){
+	  if(window.FB) {
+		    facebookReady();
+		  } else {
+		    window.fbAsyncInit = facebookReady;
+		  }
+	  
     FB.login(function(response) {
 
         if (response.authResponse) {

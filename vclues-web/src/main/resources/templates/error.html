@@ -42,27 +42,49 @@
 		  ga('send', 'pageview');
 		
 		</script>
+
+<script>
+$( document ).ready(function() {
+	console.log( "ready!" );
+
+    
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    console.log(w);
+    console.log(h);
+    
+    //$('.container').css({'background-size': w + 'px ' + h + 'px'});   
+    $('body').css({ 'height': h });   
+    //$('.game').css({ 'height': h });   
+    //$('.menu').css({ 'height': h });
+    $('.container').css({ 'height': h }); 
+    
+    $('body').css({ 'width': w });   
+    $('.container').css({ 'width': w }); 
+    //$('.game').css({ 'width': w });   
+    //$('.menu').css({ 'width': w });      	
+});
+</script>
 		
 		 <style>
 		 	.pre-scrollable {
-				height: 120px;
+				height: 400px;
 			}
 		 </style>
 </head>
 <body>
-  	<div class="global_container_">
-   		<div class="content">
-    		<div class="clue_layer">
-				<a href="/" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
-    			<h1 class="clue">Error</h1>
-    			<div class="row-4 group">
-					<div class="pre-scrollable">
-						<p class="button-6 group" style="width:200px; left:40%"><span th:text="${message}"></span></p>
-			        </div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="clue_layer">
+   <div class="header-2">
+    <a href="/" class="btn_close-2"><img src="/assets/images/btn_close.png" alt="" width="55" height="54"/></a>
+    <h1 class="title-2">Error</h1>
+    <div class="left_right-2 group">
+     <a href="#" class="left-2"><img src="/assets/images/space.png" alt="" width="44" height="63"/></a>
+     <a href="#" class="right-2"><img src="/assets/images/space.png" alt="" width="44" height="63"/></a>
+    </div>    
+   </div>
+   <p class="full_text_description pre-scrollable"><span th:text="${message}"></span></p>
+  </div>
 </body>
 </html>
 

@@ -167,21 +167,73 @@ function next() {
 
 
 <style>
+
 .character_layer {
-	left: 43%;
+	left: 50%;
+	min-height: 660px;
+	padding: 66px 1px 7px;
 	position: absolute;
-	top: 64px;
+	top: 0px;
 	width: 375px;
+	//z-index: 0;
+	background: url(/assets/images/door.png) no-repeat;
 	margin-left: -187.5px;
 }
-
-.name_title-3 {
-	margin: 65px 0 0 25px;
-	font-family: Deneane, serif;
-	font-size: 22.85714px;
-	font-weight: normal;
-	text-align:center;
+.curtain_plate-holder-4 {
+    width: 272px;
 }
+
+.select-5 {
+    width: 175px;
+   padding: 2px 45px 27px 6px;
+}
+.character_select_layer {
+    top: 370px;
+}
+.character {
+    left: 55%;
+    top:99px;
+    z-index:-30;
+}
+.character_select_layer {
+    left: 35%;
+}
+.dynamic-4 {
+    margin: -218px 0 0 35px;
+}
+
+.name_text-4 {
+    margin: 60px 0 0 20px;
+    margin-top: 38px;
+    font-family: Deneane, serif;
+    font-weight: normal;
+    text-align: center;
+    width: 165px;
+}
+
+.curtain_plate_text-6 {
+    margin: 10px 0 0;
+    white-space: nowrap; 
+    font-size: 16px;
+    overflow: scroll;
+}
+.curtain_plate-holder-4 {
+    margin-left: -100px;
+}
+
+.curtain_plate-holder-4 {
+    width: 197px;
+    margin-left: -100px;
+    /*padding: 25px 16px 50px; */
+    padding:0px;
+    text-align:center; 
+    height: 110px;
+}
+
+.tag-4 {
+    margin: 0 0 0 -65px;
+}    
+    
 </style>
 
 
@@ -189,73 +241,65 @@ function next() {
 </head>
 
 <body>
-  <div class="global_container_" >
-   <div class="content" >
-    <div class="character_layer" >
-     	<a href="/game/all" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
-     	
-       	<div class="left_right-3 group">
-        	<a href="javascript: prev();" class="left-6"><img src="/assets/images/left_4.png" alt="" width="38" height="57"/></a>
-        	<a href="javascript: next();" class="right-6"><img src="/assets/images/right_4.png" alt="" width="38" height="57"/></a>
-       	</div>
+
 		
 		<input type="hidden" id="current" value="1" />
     	<input type="hidden" id="listsize" th:value="${#lists.size(casts)}" /> 
     	
-    	
-		<div class="curtain-holder" >
-		<span th:each="c,iterStat : ${casts}" th:class="${iterStat.odd}? 'odd'">
+  <section class="character_layer">
+   <div class="header">
+    <a href="/game/all" class="btn_close-8"><img src="/assets/images/btn_close_8.png" alt="" width="55" height="54"/></a>
+    <h1 class="title-10">Character</h1>
+    
+    <div class="left_right group">
+     <a href="javascript: prev();" class="left"><img src="/assets/images/left.png" alt="" width="44" height="63"/></a>
+     <a href="javascript: next();" class="right"><img src="/assets/images/right.png" alt="" width="44" height="63"/></a>
+    </div>
+   </div>
+   
+   <div class="dynamic-4">
+    <!-- <a href="#" class="btn_done"><img src="/assets/images/btn_done.png" alt="" width="55" height="54"></a>-->
 
-			<!-- Player Cast is null -->
-	
+		<span th:each="c,iterStat : ${casts}" th:class="${iterStat.odd}? 'odd'">
+			<!-- Player Cast is null -->	
 	     	<span th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
-	      		
-	      		<img class="character" th:src="${c.cast.image}" alt="" width="283" height="289"/>
-	      		
-				<div class="tag" style="z-index: 1005;">
+	      		<img class="character" th:src="${c.cast.image}" alt="" width="283" height="288"/>
+
+			     <div class="character_select_layer">
+			      <div class="select-5">
+			       <a th:href="@{/game/cast/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}">Select</a>
+			      </div>
+			     </div>
+			     
+				<div class="tag-4">
 						<a href="javascript: return false;" data-toggle="modal" th:attr="data-target='#modal_description_'+${c.id}">Description</a>
 				</div>
-				
-				
-				<img class="curtain_plate" src="/assets/images/curtain_plate.png" alt="" width="206" height="124"/>
-	
-	      		<section class="character_select_layer" style="left: 43%;">
-	       			<div class="select-4">
-	        			<p class="select_text-4" style="margin:0 10px;"><a th:href="@{/game/cast/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}">Select</a></p>
-	       			</div>
-	
-	      			<div class="text group">
-	        			<h1 class="character-4">Character</h1>
-       			
-	        			<h3 class="name_title-3">
-	        				<span th:if="${c.username != null}">
-			        	 		<span style="font-size:12pt; white-space: nowrap;"><span th:text="${c.username}"></span> is </span>
-			        		</span>
-			        		<span style="white-space: nowrap;" th:text="${c.cast.name}"></span>
-	        			</h3>
-	       			</div>
+ 
+			    <div class="curtain_plate-holder-4">
+			     <div class="name_text-4">
+			      <h5 class="curtain_plate_subtext-3"><span th:if="${c.username != null}"><span style="font-size:12pt; white-space: nowrap;"><span th:text="${c.username}"></span> is </span></span></h5>
+			      <h3 class="curtain_plate_text-6" th:text="${c.cast.name}"></h3>
+			     </div>
+			    </div>
+		 	</span>
+		 </span>
+   </div>
+  </section>
+
+		<span th:each="c,iterStat : ${casts}" th:class="${iterStat.odd}? 'odd'">
 					<!-- Modal -->
-					<div th:id="'modal_description_' + ${c.id}" class="modal fade " role="dialog"  style="heigth:200px;text-align:center;">
+					<div th:id="'modal_description_' + ${c.id}" class="modal fade" role="dialog"  style="z-index:2000;heigth:200px;text-align:center;">
 			  			<div class="modal-dialog">
 			    			<!-- Modal content-->
 			    			<div class="modal-body">
-		    					<div class="description_popup">
-				      				<a href="#" data-dismiss="modal" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
+		    					<div class="descrpition_popup_altered">
+				      				<a href="#" data-dismiss="modal" class="btn_close-11"><img src="/assets/images/btn_close_11.png" alt="" width="55" height="55"/></a>
 	                            	<p class="description_popup_text pre-scrollable" th:utext="${c.cast.description}"></p>
 	                            </div>
 		                    </div>
 			    		</div>
 			  		</div>
-					<!-- End Modal -->	
-	      		</section>
-      		
-	      		<img class="line" src="/assets/images/line.png" alt="" width="221" height="11"/>
-	     	</span>
-     	</span>
-     	</div>
-    </div>
-   </div>
-  </div>
+		</span>  
 
 </body>
 

@@ -64,7 +64,27 @@
 </script>
 
 <script>
+$( document ).ready(function() {
+	console.log( "ready!" );
 
+    
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    console.log(w);
+    console.log(h);
+    
+    //$('.container').css({'background-size': w + 'px ' + h + 'px'});   
+    $('body').css({ 'height': h });   
+    //$('.game').css({ 'height': h });   
+    //$('.menu').css({ 'height': h });
+    $('.container').css({ 'height': h }); 
+    
+    $('body').css({ 'width': w });   
+    $('.container').css({ 'width': w }); 
+    //$('.game').css({ 'width': w });   
+    //$('.menu').css({ 'width': w });      	
+});
 
 function closeDescription() {
 	$('.description').hide();
@@ -119,102 +139,145 @@ function next() {
 
 </script>
 
+
 <style>
-.character_layer {
-	left: 50%;
-	position: absolute;
-	top: 64px;
-	width: 375px;
-	margin-left: -187.5px;
+.header-6 {
+	z-index:0;
 }
 
-.is-holly-harrison-2 {
-    margin: 0px 0 0 0px;
+.name_text-4 {
+    /* margin: 0 0 0 14px; */
+	margin:0px;
+}    
+
+.name_title-3 {
+	margin: 65px 0 0 25px;
+	font-family: Deneane, serif;
+	font-size: 22.85714px;
+	font-weight: normal;
+	text-align:center;
 }
+
+.character_layer {
+	left: 50%;
+	min-height: 660px;
+	padding: 66px 1px 7px;
+	position: absolute;
+	top: 0px;
+	width: 375px;
+	//z-index: 0;
+	background: url(/assets/images/door.png) no-repeat;
+	margin-left: -187.5px;
+}
+.curtain_plate-holder-4 {
+    width: 200px;
+    margin-left: -105px;
+    height: 110px;
+    text-align:center; 
+}
+
+.curtain_plate_text-6 {
+    font-size: 16px;
+}
+
+.character_murderer_layer {
+    left: 42%;
+    top:0px;
+    z-index: -1000;
+}
+
+.select-5 {
+    width: 175px;
+   padding: 2px 45px 27px 6px;
+}
+.character_select_layer {
+    top: 370px;
+    left: 35%;
+}
+.character {
+    left: 53%;
+    z-index:-1000;
+    top: 105px;
+}
+
+.dynamic-4 {
+    margin: -218px 0 0 35px;
+}
+
+.tag-4 {
+    margin: 0 0 0 -65px;
+}    
+
+
+    
 </style>
+
+
 
 </head>
 
-<body>
-		<!-- castOnly -->
 
-  <div class="global_container_" >
-   <div class="content" >
-    <div class="character_layer" >
-     	<a href="/game/all" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
-     	
-       	<div class="left_right-3 group">
-        	<a href="javascript: prev();" class="left-6"><img src="/assets/images/left_4.png" alt="" width="38" height="57"/></a>
-        	<a href="javascript: next();" class="right-6"><img src="/assets/images/right_4.png" alt="" width="38" height="57"/></a>
-       	</div>
-		
+<body>
+
+		<!-- castOnly -->
 		<input type="hidden" id="current" value="1" />
     	<input type="hidden" id="listsize" th:value="${#lists.size(casts)}" /> 
     	
-    	
-		<div class="curtain-holder" >
-		<span th:each="c,iterStat : ${casts}" th:class="${iterStat.odd}? 'odd'">
+  <section class="character_layer">
 
-			<!-- Player Cast is null -->
-	
-	     	<span th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
-	      		
-	      		<!--  Display character image -->
-	      		<img class="character" th:src="${c.cast.image}" alt="" width="283" height="289"/>
-	      		
-	      		<!--  set up dialog box of character description -->
-				<div class="tag" style="z-index: 1005;">
-						<a href="javascript: return false;" data-toggle="modal" th:attr="data-target='#modal_description_'+${c.id}">Description</a>
-				</div>
-				
-				
-				<img class="curtain_plate" src="/assets/images/curtain_plate.png" alt="" width="206" height="124"/>
 
-			      <div class="character_info_layer">
-			       <div class="text_after_character_selection-2">
-			        <h1 class="character-4">Character</h1>
-			        
-			        <!--  Enter the character name and the player name -->
-			        <h2 class="email-tag">
-				        <span th:if="${c.username != null}">
-				        	 <span th:text="${c.username}"></span> is 
-				        </span>
-			        </h2>
-			        
-			        <h2 class="is-holly-harrison-2"><span th:text="${c.cast.name}"></span></h2>        
-			       </div>
-			       
-			       <!--  TBD change to announce icon -->
-			       
-								
-					<!-- if player.castId == c.castId or c.cast.id then allow announcing a message as the character  -->
-					<span th:if="${player.castId == c.castId}">
-   	 					<a th:href="@{/game/announcement/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}" class="done_btn"><img src="/assets/images/btn_anounce.png" alt="" width="55" height="55" /></a>
-					</span>
-												
-								<!-- Modal -->
-								<div th:id="'modal_description_' + ${c.id}" class="modal fade " role="dialog"  style="heigth:200px;text-align:center;">
-						  			<div class="modal-dialog">
-						    			<!-- Modal content-->
-						    			<div class="modal-body">
-					    					<div class="description_popup">
-					    					
-												<a href="#" data-dismiss="modal" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
-				                            	<p class="description_popup_text pre-scrollable" th:utext="${c.cast.description}"></p>
-				                            </div>
-					                    </div>
-						    		</div>
-						  		</div>
-								<!-- End Modal -->	   
-			        
-			      </div>
-	      		<img class="line" src="/assets/images/line.png" alt="" width="221" height="11"/>
-	     	</span>
-     	</span>
-     </div>
+   <div class="header-6">
+    <a href="/game/all" class="btn_close-8"><img src="/assets/images/btn_close_8.png" alt="" width="55" height="54"/></a>
+    <h1 class="title-10">Character</h1>
+    <div class="left_right-5 group">
+     <a href="javascript: prev();" class="left-5"><img src="/assets/images/left.png" alt="" width="44" height="63"/></a>
+     <a href="javascript: next();" class="right-5"><img src="/assets/images/right.png" alt="" width="44" height="63"/></a>
     </div>
    </div>
-  </div>
+      
+   <div class="dynamic-4">
+
+
+		<span th:each="c,iterStat : ${casts}" th:class="${iterStat.odd}? 'odd'">
+			<!-- Player Cast is null -->	
+	     	<span th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
+				<span th:if="${player.castId == c.castId}">
+		   	 		<a th:href="@{/game/announcement/{gameId}/{id}/{name}(id=${c.cast.id},gameId=${c.game.id},name=${c.cast.name})}" class="btn_done"><img src="/assets/images/btn_anounce.png" alt="" width="55" height="55" /></a>
+				</span>   
+	      		<img class="character" th:src="${c.cast.image}" alt="" width="283" height="288"/>
+
+					<div class="character_murderer_layer">
+
+						<div class="tag-4">
+								<a href="javascript: return false;" data-toggle="modal" th:attr="data-target='#modal_description_'+${c.id}">Description</a>
+						</div>
+ 
+			    <div class="curtain_plate-holder-4">
+			     <div class="name_text-4">
+			      <h3 style="line-height:1;padding:0px;margin-top: 0px;margin-bottom: 0px;overflow: scroll;" class="curtain_plate_text-6" th:text="${c.cast.name}"></h3>
+			      <h5 style="line-height:1.2;padding:0px;margin-top: 0px;margin-bottom: 0px;overflow: scroll;font-size:12px; " class="curtain_plate_subtext-3"><span  th:if="${c.username != null}">Starring <span style="white-space: nowrap;"><span th:text="${c.username}"></span></span></span></h5>
+			     </div>
+			    </div>
+			  		</div>
+		 	</span>
+		 </span>
+   </div>
+  </section>
+
+		<span th:each="c,iterStat : ${casts}" th:class="${iterStat.odd}? 'odd'">
+					<!-- Modal -->
+					<div th:id="'modal_description_' + ${c.id}" class="modal fade" role="dialog"  style="z-index:2000;heigth:200px;text-align:center;">
+			  			<div class="modal-dialog">
+			    			<!-- Modal content-->
+			    			<div class="modal-body">
+		    					<div class="descrpition_popup_altered">
+				      				<a href="#" data-dismiss="modal" class="btn_close-11"><img src="/assets/images/btn_close_11.png" alt="" width="55" height="55"/></a>
+	                            	<p class="description_popup_text pre-scrollable" th:utext="${c.cast.description}"></p>
+	                            </div>
+		                    </div>
+			    		</div>
+			  		</div>
+		</span>  
 
 </body>
 

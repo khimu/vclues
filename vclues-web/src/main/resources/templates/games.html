@@ -58,8 +58,35 @@
     height: auto;
     border-radius: 0;
 }
+
 .pre-scrollable {
 	height: 120px;
+}
+
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.h3, h3 {
+    font-size: 20px;
+}
+
+
+.player, .players_list li, .game_description {
+    color:white;
+}
+
+.game_description {
+	font-size:12pt;
+}
+
+.wrapper {
+    height: 260px;
+}
+
+.dynamic {
+    margin: -218px auto 0;
 }
 </style>
 
@@ -83,6 +110,23 @@
 $( document ).ready(function() {
     console.log( "ready!" );
 
+    
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    console.log(w);
+    console.log(h);
+    
+    //$('.container').css({'background-size': w + 'px ' + h + 'px'});   
+    $('body').css({ 'height': h });   
+    //$('.game').css({ 'height': h });   
+    //$('.menu').css({ 'height': h });
+    $('.container').css({ 'height': h }); 
+    
+    $('body').css({ 'width': w });   
+    $('.container').css({ 'width': w }); 
+    //$('.game').css({ 'width': w });   
+    //$('.menu').css({ 'width': w });  
 });
 
 
@@ -135,79 +179,51 @@ function next() {
 <body>
 
 		<input type="hidden" id="current" value="1" />
-       <input type="hidden" id="listsize" th:value="${#lists.size(games)}" />	
+       <input type="hidden" id="listsize" th:value="${#lists.size(games)}" />
        
-  <div class="global_container_">
-   <div class="content">
-    
-    <div class="game_detail_layer">
-     
-     <a href="/" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
-
-     <div class="wrapper-6">
-     
-     <h1 class="playgame">Play Game</h1>
-
+  <section class="game_detail_layer">
+   <div class="header">
+    <a href="/" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="54"/></a>
+    <h1 class="title">Play Game</h1>
+    <div class="left_right group">
+     <a href="javascript:  prev();" class="left"><img src="/assets/images/left.png" alt="" width="44" height="63"/></a>
+     <a href="javascript:  next();" class="right"><img src="/assets/images/right.png" alt="" width="44" height="63"/></a>
+    </div>
+   </div>
+   <div class="dynamic group">
 	<span th:each="game,iterStat : ${games}" th:class="${iterStat.odd}? 'odd'">
-	
 		<span th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''" th:class="${iterStat.count} == 1 ? 'active' : ''">
- 
 
-      <div class="select-5">
-		       <div class="select_plate-holder">
-		        <a th:href="@{/game/gamemenu/{gameId}(gameId=${game.id})}">More</a>
-		       </div>	
+		    <div class="wrapper">
+		     <div class="tag">
+		      <a href="#"><span th:text="${#lists.size(game.emails)}"></span> Players</a>
+		     </div>
+		     <img class="curtain_plate" src="/assets/images/curtain_plate.png" alt="" width="204" height="124"/>
+		     <div class="text">
+		      <h3 class="story_title" th:text="${game.name}"></h3>
+		      <h5 class="subtitle">Requires <span th:text="${#lists.size(game.count)}"></span> Player</h5>
+		      <p class="game_description"><span th:if="${game.started != null}">Game Started On <span th:text="${#dates.format(game.started, 'MM-dd-yyyy')}"></span></span></p>
+		      
+		      <div class="wrapper-19">
+		      	<img class="player_glow" src="/assets/images/player_glow.png" alt="" width="233" height="55"/>
+		       <p class="player">Player</p>
 		       
-       			<img class="line-2" src="/assets/images/line.png" alt="" width="221" height="11"/>
-      </div>
-
-      <div class="left_right-4 group" style="z-index:1009;">
-       <a href="javascript:  prev();" class="left-7"><img src="/assets/images/left.png" alt="" width="45" height="64"/></a>
-       <a href="javascript:next();" class="right-7"><img src="/assets/images/right.png" alt="" width="44" height="63"/></a>
-      </div>
-
-
-      <div class="button-2">
-       Player
-      </div>
-
-      <div class="text-2">
-       <div class="col">
-        <p class="text-3" th:text="${game.name}"></p>
-        <p class="text-4">Requires <!-- <span th:text="${#lists.size(game.count)}"></span> --> Player</p>
-        
-       </div>
-       <div class="tag-2">
-			<span th:switch="${game.done == true}">
-				<span th:case="false">
-					Keep Playing
-				</span>
-				<span th:case="true">
-					Game Over
-				</span>
-			</span> 
-       </div>
-       <p class="text-5"><span th:if="${game.started != null}">Game Started On <span th:text="${#dates.format(game.started, 'MM-dd-yyyy')}"></span></span></p>
-       <p class="text-6">Number Of Player is <span th:text="${#lists.size(game.emails)}"></span> </p>
-       
-								
-			<ul class="players_list group pre-scrollable" >
+		      </div>
+		      <ul class="players_list group pre-scrollable" >
 				<span th:each="email,iterStat : ${game.emails}" th:class="${iterStat.odd}? 'odd'">
 					<li th:text="${email}"></li>
 				</span>
-			</ul>  
-
-     </div>
-			</span>
-		</span>
-     
-    </div>
-
-
-     </div>
-    </div>
-    
-   </div>
+			  </ul>
+		     </div>
+		    </div>
+		    <div class="select">
+		     <a th:href="@{/game/gamemenu/{gameId}(gameId=${game.id})}">Select</a>
+		    </div>
+    	</span>
+    </span>
+   </div> <!-- End dynamic group -->
+  </section>
+       
 
 </body>
 

@@ -67,6 +67,17 @@
 <script>
 $( document ).ready(function() {
     	console.log( "ready!" );
+
+        
+        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+        console.log(w);
+        console.log(h);
+
+        $('body').css({ 'height': h });   
+        
+        $('body').css({ 'width': w });     	
 });
 
 function closeDescription() {
@@ -126,47 +137,57 @@ function next() {
 	<input type="hidden" id="current" value="1" />
 	<input type="hidden" id="listsize" th:value="${#lists.size(announcements)}" />
 
-	<div class="global_container_">
-		<div class="content">
-			<div class="announcement_layer">
-				<a href="/game/all" class="btn_close-3"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
-       	<div class="left_right-3 group">
-        	<a href="javascript: prev();" class="left-6"><img src="/assets/images/left_4.png" alt="" width="38" height="57"/></a>
-        	<a href="javascript: next();" class="right-6"><img src="/assets/images/right_4.png" alt="" width="38" height="57"/></a>
-       	</div>				
-				<div class="wrapper-4">
-					<img class="suspect_001_faded-2" src="/assets/images/suspect_001_faded.png" alt="" width="122" height="232"/>
-					<img class="suspect_003_faded-2" src="/assets/images/suspect_003_faded.png" alt="" width="137" height="236"/>
-					<div class="col-6">
-						<h1 class="script-2">Announcements</h1>
-						<div class="col-14">
-							<span th:each="a,iterStat : ${announcements}" th:class="${iterStat.odd}? 'odd'">
-								<span th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
-									<span th:switch="${a == null}">
-			       						<span th:case="true">
-			       							<p class="name_title-2"></p>
-			      							<div class="row-5 group">
-												<div class="pre-scrollable"><p class="text_description-2">There are no announcements</p></div>
-											</div>
-										</span>     
+  <section class="announcement_layer" style="height:640px;">
+  <!-- 
+   <div class="header-3">
+    <a href="#" class="btn_close-3"><img src="images/btn_close.png" alt="" width="55" height="54"></a>
+    <h1 class="title-3">Announcement</h1>
+    <div class="left_right-3 group">
+     <a href="#" class="left-3"><img src="images/left.png" alt="" width="44" height="63"></a>
+     <a href="#" class="right-3"><img src="images/right.png" alt="" width="44" height="63"></a>
+    </div>
+   </div>
+   -->
+   <div class="header">
+    <a href="/game/all" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="54"/></a>
+    <h1 class="title">Announcement</h1>
+    <div class="left_right group">
+     <a href="javascript:  prev();" class="left"><img src="/assets/images/left.png" alt="" width="44" height="63"/></a>
+     <a href="javascript:  next();" class="right"><img src="/assets/images/right.png" alt="" width="44" height="63"/></a>
+    </div>
+   </div>   
+   <div class="dynamic-2 group">
+		<span th:each="a,iterStat : ${announcements}" th:class="${iterStat.odd}? 'odd'">
+			<span th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''">
+				<span th:switch="${a == null}">
+	    						<span th:case="true">
+    <div class="curtain_plate-holder">
+     <div class="name_text">
+      <p class="curtain_plate_subtext_h5"></p>
+      <h3 class="curtain_plate_text"></h3>
+     </div>
+    </div>
+    <p class="text_description">There are no announcements</p>
+					</span>     
+	
+					<span th:case="false">
+					    <div class="curtain_plate-holder" style="text-align:center;">
+					     <div class="name_text">
+					      <h3 class="curtain_plate_text"><span style="font-size:16px;white-space:nowrap;overflow:scroll;" th:text="${a.name}"></span></h3>
+					      <p class="curtain_plate_subtext_h5" style="font-size:12px;overflow:scroll;">Starring <span th:text="${a.email}"></span></p>
+					     </div>
+					    </div>
+					    <p class="text_description pre-scrollable"><span th:utext="${a.message}"></span></p>					
+						
+					</span>							
+				</span>		
+			</span>
+		</span>
+						
+   </div>
+  </section>
 
-										<span th:case="false">
-											<p class="name_title-2"><span th:text="${a.name}"></span> <br/><span style="font-size:12pt;" th:text="${a.email}"></span></p>
-											
-											<div class="row-5 group">
-										        <div class="pre-scrollable"><p class="text_description-2"><span th:utext="${a.message}"></span></p></div>
-											</div>
-										</span>							
-									</span>		
-								</span>
-							</span>
-						</div>
-					</div>
-      			</div>
-			</div>
-		</div>
-	</div>
-       	
+	
 </body>
 
 </html>

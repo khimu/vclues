@@ -48,61 +48,92 @@
 		  ga('send', 'pageview');
 		
 		</script>
+
+<style>
+.game_form_layer-form {
+    top: 130px;
+}
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 0px;
+}
+
+.button {
+    text-align: center;
+}
+
+.invite {
+    height: 122px;
+    padding: 10px;
+}
+
+.facebook_friends_list {
+    height: 85px;
+    padding: 10px;
+}
+
+.curtain_plate_subtext {
+	color:white;
+}
+
+</style>		
 		
+<script>
+$( document ).ready(function() {
+	console.log( "ready!" );
+
+    
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    console.log(w);
+    console.log(h);
+    
+    //$('.container').css({'background-size': w + 'px ' + h + 'px'});   
+    $('body').css({ 'height': h });   
+    //$('.game').css({ 'height': h });   
+    //$('.menu').css({ 'height': h });
+    $('.container').css({ 'height': h }); 
+    
+    $('body').css({ 'width': w });   
+    $('.container').css({ 'width': w }); 
+    //$('.game').css({ 'width': w });   
+    //$('.menu').css({ 'width': w });      	
+});
+</script>		
 		
 	</head>
 	
     <body class='lang-en page_image'>
 
-  <div class="global_container_">
-   <div class="content">
-    
-    <div class="game_detail_layer">
-     <a href="#" class="btn_close-7"><img src="/assets/images/space.png" alt="" width="55" height="55"/></a>
-     <div class="wrapper-6">
+
+  <div class="content">
+   <form class="game_form_layer-form" th:action="@{|/game/select/${storyId}|}" th:object="${game}" th:method="POST">>
+    <div class="game_form_layer">
+     <h1 class="title-5">Play Game</h1>
+     <div class="wrapper-10">
+      <textarea style="resize: none;background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)" rows="4" cols="5" class="invite" id="invites" th:field="*{invites}" placeholder="player1@gmail.com, player2@gmail.com" name="invite"></textarea>
+      <textarea class="facebook_friends_list" name="facebook_friends_list"></textarea>
+      <div class="tag-2 group">
+       <a href="#" class="fb_friends_btn"><img src="/assets/images/fb_friends_btn.png" alt="" width="105" height="35"/></a>
+       <p class="tag_link-2"><a href="#">Invite Friends</a></p>
+      </div>
+      
+      <div class="curtain_plate-holder-2">
+       <div class="game_form_header">
+        <h3 class="curtain_plate_text-3" th:text="${game.name}"></h3>        
+       </div>
+      </div>
+     </div>
      
-      <div class="game_form_layer">
-       <h1 class="play-game">Play Game</h1>
-       <div class="col-2">
-        <h3 class="murder-she-wrote" th:text="${game.name}"></h3>
-        <h4 class="requires-1-player">Requires <span th:text="${game.count}"></span> Player</h4>
-       </div>
-       <h5 class="tag-3">Invite Friends</h5>
-       
-       <div class="wrapper">
-        <img class="text_area_fb_friends" src="/assets/images/text_area_fb_friends.png" alt="" width="249" height="84"/>
-        <a href="#" class="fb_friends_btn"><img src="/assets/images/fb_friends_btn.png" alt="" width="101" height="30"/></a>
-        <img class="select_game_menu_glow" src="/assets/images/select_game_menu_glow.png" alt="" width="234" height="56"/>
-        
-        <ul class="facebook_friends_list group">
-         <!-- <li><p class="text-13"><span class="font-myriadpro">@</span>gmail.com</p></li> -->
-
-        </ul>
-       </div>
-       
-		<form th:action="@{|/game/select/${storyId}|}" th:object="${game}" th:method="POST">
-			<ul>
-			    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
-			</ul>		
-
-       <div class="invite_friend_text_area-holder">
-			<textarea style="resize: none;background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)" rows="4" cols="5" class="form-control" id="invites" th:field="*{invites}" placeholder="player1@gmail.com, player2@gmail.com">
-			</textarea>       
-       </div>
-       <div class="button-3 group">
-       	<button type="submit" class="btn btn-primary btn-sm" style="opacity: 0.7;">Submit</button>
+     <h5 class="curtain_plate_subtext">Requires <span th:text="${game.count}"></span> Player</h5>
+     
+     <div class="button group">
+      	<button type="submit" class="btn btn-primary btn-sm" style="opacity: 0.7;">Submit</button>
        	<button type="button" class="btn btn-primary btn-sm" style="opacity: 0.7;" onclick="window.location='/videos';">Cancel</button>
-       </div>
-       </form>
-       </div>
-
-   </div>
-  </div> 
+     </div>
+    </div>
+   </form>
   </div>
-  </div>
-     
-    
-		
     </body>
 </html>
   

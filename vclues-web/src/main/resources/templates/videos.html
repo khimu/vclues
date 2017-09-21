@@ -52,6 +52,25 @@
 $( document ).ready(function() {
     console.log( "ready!" );
 
+
+    
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    console.log(w);
+    console.log(h);
+    
+    //$('.container').css({'background-size': w + 'px ' + h + 'px'});   
+    $('body').css({ 'height': h });   
+    //$('.game').css({ 'height': h });   
+    //$('.menu').css({ 'height': h });
+    $('.container').css({ 'height': h }); 
+    
+    $('body').css({ 'width': w });   
+    $('.container').css({ 'width': w }); 
+    //$('.game').css({ 'width': w });   
+    //$('.menu').css({ 'width': w });  
+    
         $(function() {
 
     		$('.character').bind('touchstart', function(e) {
@@ -148,6 +167,30 @@ function next() {
 	height: 200px;
 }		
 
+.dynamic-3 {
+    margin: -250px auto 0;
+}
+
+.left {
+    margin: 0 283px 0 0;
+}
+.story_layer {
+    min-height: 640px;
+}
+
+.name_text-2 {
+	left:45%;
+    top: 25px;
+    text-align: center;
+}
+a, a:hover, a:link, a:active {
+    text-decoration: none;
+    color: black;
+}
+
+.curtain_plate_text-3 {
+    text-align: center;
+}
 		</style>
 		
 </head>
@@ -156,37 +199,37 @@ function next() {
 
        <input type="hidden" id="current" value="1" />
        <input type="hidden" id="listsize" th:value="${#lists.size(stories)}" />	
-       
-  <div class="global_container_">
-   <div class="content">
-    <div class="script_layer group">
-     <a href="/" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
-       	<div class="left_right-3 group">
-        	<a href="javascript: prev();" class="left-6"><img src="/assets/images/left_4.png" alt="" width="38" height="57"/></a>
-        	<a href="javascript: next();" class="right-6"><img src="/assets/images/right_4.png" alt="" width="38" height="57"/></a>
-       	</div>     
-     
-     <div class="wrapper-3">
-      <img class="suspect_001_faded" src="/assets/images/suspect_001_faded.png" alt="" width="122" height="232"/>
-      <img class="suspect_003_faded" src="/assets/images/suspect_003_faded.png" alt="" width="137" height="236"/>
-      <div class="col-5">
+       <!-- 
+		<img class="suspect_001_faded" src="/assets/images/suspect_001_faded.png" alt="" width="122" height="232"/>
+		<img class="suspect_003_faded" src="/assets/images/suspect_003_faded.png" alt="" width="137" height="236"/> 
+		 -->       
+  <section class="story_layer">
+   <div class="header">
+    <a href="/" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="54"/></a>
+    <h1 class="title">Story</h1>
+    <div class="left_right group">
+     <a href="javascript:  prev();" class="left"><img src="/assets/images/left.png" alt="" width="44" height="63"/></a>
+     <a href="javascript:  next();" class="right"><img src="/assets/images/right.png" alt="" width="44" height="63"/></a>
+    </div>
+   </div>
+  
+   <div class="dynamic-3 group">
+		<span th:each="story,iterStat : ${stories}" th:class="${iterStat.odd}? 'odd'">	
+			<span th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''" th:class="${iterStat.count} == 1 ? 'active' : ''">
 
-       <h1 class="script">Story</h1>
-
-       <div class="col-11">
-			<span th:each="story,iterStat : ${stories}" th:class="${iterStat.odd}? 'odd'">	
-				<span th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''" th:class="${iterStat.count} == 1 ? 'active' : ''">
-
-					<p class="name_title" th:text="${story.title}"></p>
-					<!-- The script -->
-					
-					<p class="text_description">
+    			<div class="wrapper-5">
+   
+   				
 					<div class="pre-scrollable">
-					<span th:utext="${story.synapsis == null ? '' : story.synapsis}">
-					</span>
+						<p class="text_description-2" th:utext="${story.synapsis == null ? '' : story.synapsis}"></p>
 					</div>
-					</p>
-					
+				
+    				<img class="curtain_plate-2" src="/assets/images/curtain_plate.png" alt="" width="204" height="124"/>
+    				<div class="name_text-2">
+     					<h3 class="curtain_plate_text-2" th:text="${story.title}"></h3>
+    				</div>
+
+
 					<!-- Modal -->
 					<div th:id="'modal_description_' + ${story.id}" class="modal fade " role="dialog"  style="position:absolute; left: 0%;width: 350px;heigth:200px;text-align:center;">
 			 			<div class="modal-dialog">
@@ -197,26 +240,20 @@ function next() {
 			               </div>
 			   			</div>
 			 		</div>
-					<!-- End Modal -->	
+					<!-- End Modal -->	  
 					
-					
-			        <!-- footer -->
-			        <div class="button">
-						<a href="javascript: return false;" data-toggle="modal" th:attr="data-target='#modal_description_'+${story.id}"><img class="btn_show_story" src="/assets/images/btn_show_story.png" alt="" width="47" height="42"/></a>
-						<div class="select">
-							<a th:href="@{/game/select/{id}(id=${story.id})}">Select</a>
-						</div>   
-			        </div>
-						
-				</span>
-			</span>
-			
-			</div><!-- col-11 -->	
-       </div><!-- end col-5 -->
-      </div>
-     </div>
-    </div>    
-   </div>
+     			</div>
+				<a href="javascript: return false;" data-toggle="modal" th:attr="data-target='#modal_description_'+${story.id}" class="btn_show"><img src="/assets/images/btn_show.png" alt="" width="46" height="42"/></a>
+			    <div class="select-2">
+			    	<a th:href="@{/game/select/{id}(id=${story.id})}" style="z-index:2010;">Select</a>
+				</div>
+    				
+    		</span>
+    	</span>	 
+    </div>
+  </section>
+       
+       
 </body>
 
 </html>

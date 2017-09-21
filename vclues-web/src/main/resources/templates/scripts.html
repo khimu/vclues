@@ -45,9 +45,28 @@
 		  ga('send', 'pageview');
 		
 		</script>
-		
-		<style>
+<script>
+$( document ).ready(function() {
+	console.log( "ready!" );
 
+    
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    console.log(w);
+    console.log(h);
+  
+    $('body').css({ 'height': h });  
+    $('body').css({ 'width': w });     	
+});
+</script>		
+		
+		
+
+
+<style>
+		
+	
 .text_description {
 	padding-top: 1px;
 }
@@ -67,76 +86,88 @@
 	overflow-x: auto;
 }
 
+.col-2 {
+    width: 375px;
+}
+
+.curtain_plate-holder-3 {
+    width: 202px;
+}
+
+.story_layer {
+    min-height: 640px;
+}
+
+.dynamic-3 {
+    margin: -0px auto 0;
+}
+
+
 		</style>
 
 </head>
 
 <body>
 
-  <div class="global_container_">
-   <div class="content">
-    <div class="script_layer group">
-     <a href="/game/all" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
-     <div class="wrapper-3">
-      <img class="suspect_001_faded" src="/assets/images/suspect_001_faded.png" alt="" width="122" height="232"/>
-      <img class="suspect_003_faded" src="/assets/images/suspect_003_faded.png" alt="" width="137" height="236"/>
-      <div class="col-5">
-       <h1 class="script">Script</h1>
-       <div class="col-11">
-       		<span  th:switch="${player == null || player.script == null}">
-				<!--  Player has selected a character -->
-				<span th:case="false">
-				
-					<p class="name_title" th:text="${player.castName}"></p>
-					
-					<!-- The script -->
-					<div class="pre-scrollable">
-					<p class="text_description">
-					<span th:utext="${player.script == null ? '' : player.script.text}">
-					</span>
-					
-					</p>
-					</div>
-					
-					<!-- The Secret -->
-			       	<div id="secret" class="description_popup" style="display:none">
-			       		<!-- Close -->
-			       		<a href="#" onclick="$('#secret').hide();" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
-			       		<!-- Secret -->
-			       		<div class="pre-scrollable"><p class="description_popup_text"><span th:utext="${player.script == null ? '' : player.script.secret}"></span></p></div>
-			       	</div> 
-				</span>
-			
-				<!--  Player has not selected a character -->
-				<span th:case="true">
-					<div class="pre-scrollable" style="height: 200px;">
-					<p class="text_description">
-						Please select your character
-					</p>
-					</div>
-				</span>
-			</span>
-			
-		        <!-- footer -->
-		        <div class="button">
-					<a href="#" onclick="$('#secret').show();" class="btn_show_more"><img src="/assets/images/btn_show_more.png" alt="" width="47" height="42"/></a>
-					<div class="select" th:switch="${player.done}">
-						<span th:case="false">
-							<a th:href="@{/game/done/{gameId}(gameId=${player.game.id})}">
-		             	 			Done
-							</a>
-						</span>
-						<span th:case="true">
-							<a href=""></a>
-						</span>
-					</div>   
-		        </div>
-			</div><!-- col-11 -->
-       </div><!-- end col-5 -->
-      </div>
-     </div>
-    </div>    
+  <section class="story_layer">
+   <div class="header">
+    <a href="/game/all" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="54"/></a>
+    <h1 class="title">Script</h1>
    </div>
+  
+   <div class="dynamic-3 group">
+		<span th:switch="${player == null || player.script == null}">
+			<!--  Player has selected a character -->
+			<span th:case="false"> 
+    			<div class="wrapper-5">
+					<div class="pre-scrollable">
+						<p class="text_description-2" th:utext="${player.script == null ? '' : player.script.text}"></p>
+					</div>
+				
+    				<img class="curtain_plate-2" src="/assets/images/curtain_plate.png" alt="" width="204" height="124"/>
+    				<div class="name_text-2">
+     					<h3 class="curtain_plate_text-2" th:text="${player.castName}"></h3>
+    				</div>
+     			</div>
+     			
+     			<a href="javascript: return false;" class="btn_show" data-toggle="modal" data-target="#secret-popup"><img src="/assets/images/btn_show.png" alt="" width="47" height="42"/></a>
+				
+			    <div class="select-2">
+			    	<a th:href="@{/game/done/{gameId}(gameId=${player.game.id})}">Done</a>
+				</div>
+    		</span>
+			<span th:case="true"> 
+    			<div class="wrapper-5">
+					<div class="pre-scrollable">
+						<p class="text_description-2">Please select your character before you can start the game.</p>
+					</div>
+				
+    				<img class="curtain_plate-2" src="/assets/images/curtain_plate.png" alt="" width="204" height="124"/>
+    				
+    				<div class="name_text-2">
+     					<h3 class="curtain_plate_text-2"></h3>
+    				</div>
+     			</div>
+     	
+				
+    		</span>    		
+    	</span>	 
+    </div>
+  </section>
+  
+
+				<div id="secret-popup" class="modal fade" role="dialog" style="heigth:200px;">
+					<div class="modal-dialog">
+						<!-- Modal content-->
+						<div class="modal-body">	   
+						    <div class="descrpition_popup_altered">
+						     	<a href="javascript: alert('clicked');" data-dismiss="modal" class="btn_close-11" ><img src="/assets/images/btn_close_11.png" alt="" width="55" height="54"/></a>
+						     	<p class="description_popup_text" th:utext="${player.script == null ? '' : player.script.secret}"></p>
+						    </div>					      
+			  			</div>
+			  		</div>
+			  	</div>	  
+
 </body>
 
 </html>
