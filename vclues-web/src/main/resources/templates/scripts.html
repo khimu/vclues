@@ -181,14 +181,23 @@ jQuery(document).ready(function()
 				
     				<img class="curtain_plate-2" src="/assets/images/curtain_plate.png" alt="" width="204" height="124"/>
     				<div class="name_text-2 describe_site">
-     					<h3 class="curtain_plate_text-2" th:text="${player.castName}"></h3>
+     					<h3 style="white-space:nowrap;overflow:scroll" class="curtain_plate_text-2" th:text="${player.castName}"></h3>
     				</div>
      			</div>
      			
      			<a href="javascript: return false;" class="btn_show" data-toggle="modal" data-target="#secret-popup"><img src="/assets/images/btn_show.png" alt="" width="47" height="42"/></a>
 				
 			    <div class="select-2">
-			    	<a th:href="@{/game/done/{gameId}(gameId=${player.game.id})}">Done</a>
+					<div class="select" th:switch="${player.done}">
+						<span th:case="false">
+							<a th:href="@{/game/done/{gameId}(gameId=${player.game.id})}">
+		             	 			Done
+							</a>
+						</span>
+						<span th:case="true">
+							<a href=""></a>
+						</span>
+					</div>  
 				</div>
     		</span>
 			<span th:case="true"> 

@@ -85,6 +85,8 @@ em {
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: bold;
+	white-space:nowrap;
+	overflow:scroll
 }
 
 sup {
@@ -362,7 +364,7 @@ a.right-2 img {
 	position: relative;
 	width: 233px;
 	color: #fafaf8;
-	font-size: 23.15829px;
+	font-size: 15px;
 	line-height: 1.2;
 }
 .announcement_layer {
