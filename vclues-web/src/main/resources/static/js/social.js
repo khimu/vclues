@@ -260,7 +260,7 @@ function updateButton(response) {
           } else {
             //user cancelled login or did not grant authorization
           }
-        }, {scope:'email', perms:'user_about_me'});                                  
+        }, {scope:'email', perms:'publish_actions,user_about_me'});                                  
       //}
     }
   }
@@ -280,7 +280,7 @@ function post(postMsg){
          });    
             }
       // handle the response
-     }, {scope: 'user_about_me,email'});
+     }, {scope: 'publish_actions,user_about_me,email'});
    }
 }
 
@@ -318,7 +318,7 @@ function populateFriends(fieldName){
 	         });    
 	            }
 	      // handle the response
-	     }, {scope: 'user_about_me,email'});   
+	     }, {scope: 'publish_actions,user_about_me,email'});   
 	}
 
 function fbPost(postMsg){
