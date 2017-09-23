@@ -12,7 +12,7 @@ public class FeaturesTest {
 	public void testEnableAll() {
 		Integer permission = 0;
 
-		Assert.assertTrue(BitOperations.isTrue(permission, UserType.NONE.getBit()));
+		Assert.assertTrue(BitOperations.isTrue(permission, UserType.PAID.getBit()));
 
 		permission = UserType.enableAllFeatures();
 		
@@ -27,17 +27,17 @@ public class FeaturesTest {
 	public void testEnableOne() {
 		Integer permission = 0;
 		
-		Assert.assertFalse(BitOperations.isTrue(permission, UserType.ADD_ACCOUNT.getBit()));
+		Assert.assertFalse(BitOperations.isTrue(permission, UserType.PAID.getBit()));
 		
-		permission = BitOperations.enable(permission, UserType.ADD_ACCOUNT.getBit());
+		permission = BitOperations.enable(permission, UserType.PAID.getBit());
 		System.out.println("permission " + permission);
 
-		Assert.assertTrue(BitOperations.isTrue(permission, UserType.ADD_ACCOUNT.getBit()));
+		Assert.assertTrue(BitOperations.isTrue(permission, UserType.PAID.getBit()));
 		
 		permission = 0;
-		permission = UserType.READ_ACCOUNT.enabled(0);
-		permission = UserType.READ_DISPUTES.enabled(permission);
-		permission = UserType.READ_DESCRIPTOR.enabled(permission);
+		permission = UserType.PAID.enabled(0);
+		permission = UserType.LIMITED.enabled(permission);
+		permission = UserType.GUEST.enabled(permission);
 		System.out.println(permission);
 	}
 	
