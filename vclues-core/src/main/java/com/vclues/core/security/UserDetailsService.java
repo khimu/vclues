@@ -37,7 +37,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 
         User userFromDatabase = null;
         if(lowercaseLogin.contains("@")) {
-            userFromDatabase = userRepository.findByEmail(lowercaseLogin);
+            userFromDatabase = userRepository.findByEmailAndActivated(lowercaseLogin, true);
         } else {
             log.error("User logging in without email");
         }

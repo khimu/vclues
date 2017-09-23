@@ -24,6 +24,8 @@ public interface IUserService {
 	public List<User> findAll();
 	
 	public User registerNewUser(User user);
+	
+	public User registerNewUser(User user,String password);
 
 	public User saveOrUpdateMerchantAccount(User user, String businessKey);
 	

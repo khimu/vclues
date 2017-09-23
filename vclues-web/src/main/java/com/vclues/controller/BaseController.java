@@ -23,7 +23,7 @@ public abstract class BaseController {
 	protected static final String IS_AJAX_HEADER = "X-Requested-With=XMLHttpRequest";
 
 	// example usage
-	public HttpSession session() {
+	protected HttpSession session() {
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 
 		return attr.getRequest().getSession(true); // true == allow create

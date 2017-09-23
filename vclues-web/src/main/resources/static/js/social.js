@@ -70,14 +70,14 @@ function fb_login(){
             access_token = response.authResponse.accessToken; //get access token
             user_id = response.authResponse.userID; //get FB UID
 
-            FB.api('/me', function(response) {
-                user_email = response.email; //get user email
-          // you can store this data into your database 
-                
-                autoLogin(response.id, access_token, response.email);
-                
-                $(document).trigger("facebook:ready");
-            });
+            FB.api('/me', { locale: 'en_US', fields: 'name, email' },
+                    function(response) {
+                            console.log(response.email); 
+                            user_email = response.email; //get user email
+                            autoLogin(response.id, access_token, response.email);
+                            $(document).trigger("facebook:ready");
+                    }
+            );
 
         } else {
             //user hit cancel button
@@ -285,41 +285,43 @@ function post(postMsg){
 }
 
 function populateFriends(fieldName){
-	 //storeBoxy.hide(); 
-	     FB.login(function(response) {
-	            if (response.authResponse) {
-	                    accessToken = response.authResponse.accessToken; 
+	 // storeBoxy.hide();
+	FB.login(function(response) {
+		if (response.authResponse) {
+			accessToken = response.authResponse.accessToken; 
 	        FB.api('/me/friends?fields=name,id,email', function(response) {
 	        	if(response.error == null){
-	                var friends = response.data;
+	        		var friends = response.data;
 	                var len = friends.length;
 	                var returnedCallsCounter = 0;
 	                for(var x=0; x<len; x++){    
 	                	var j = i;   
-	                        FB.api(friends[x].id+'/picture', function(response) {
-	                            //x no longer is the same x as the initial call, and I can't pass in the orignal array object into the FB.api function to return as part of the response... or can I?
-	                        	friends[x].pictureUrl = response;
-	                        	
-	                        	 $(fieldName).append("<li onclick='$(\"#invites\").append("+friends[x].email+");'><div><img src=\""+friends[x].pictureUrl+" width='105' height='35' />"+friends[x].email+"</li>");
+	                    FB.api(friends[x].id+'/picture', function(response) {
+                            // x no longer is the same x as the initial
+							// call, and I can't pass in the orignal array
+							// object into the FB.api function to return as
+							// part of the response... or can I?
+                        	friends[x].pictureUrl = response;
+                        	
+                        	 $(fieldName).append("<li onclick='$(\"#invites\").append("+friends[x].email+");'><div><img src=\""+friends[x].pictureUrl+" width='105' height='35' />"+friends[x].email+"</li>");
 
-	                        	 returnedCallsCounter++;
-	                        	
-	                        	if (returnedCallsCounter == len) {
-	                                m.friends(friends);
-	                            }
-	                        });
-	                    }
+                        	 returnedCallsCounter++;
+                        	
+                        	if (returnedCallsCounter == len) {
+                                m.friends(friends);
+                            }
+	                    });
 	                }
-	                //Then how do I know when I have all the pictures set so I can then set datamodle with the complete friend array?
-	                m.friends(friendsSale);
-	            }	        	
-	             fbId = response.id;
-	            
-	         });    
-	            }
-	      // handle the response
-	     }, {scope: 'publish_actions,user_about_me,email'});   
-	}
+	        	}
+	            // Then how do I know when I have all the pictures set so I
+				// can then set datamodle with the complete friend array?
+	            m.friends(friendsSale);
+	        });	        	
+	        fbId = response.id;
+		} 
+		// handle the response
+	}, {scope: 'publish_actions,user_about_me,email'});   
+}
 
 function fbPost(postMsg){
     FB.api('/me/feed', 'post', { message: postMsg }, function(response) {
@@ -334,10 +336,14 @@ function fbPost(postMsg){
 function autoLogin(fbId, accessToken, email){
 
     if (email == undefined || email == null){
-            FB.api('/me', function(response) {
-            	email = response.email;
-            });
+        FB.api('/me', { locale: 'en_US', fields: 'name, email' },
+                function(response) {
+                        console.log(response.email);
+                        email = response.email;
+                }
+        );
     }
+
             
     $.ajax({
         type: "POST",

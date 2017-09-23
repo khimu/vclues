@@ -8,6 +8,8 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.mail.internet.InternetAddress;
 import javax.transaction.Transactional;
@@ -23,10 +25,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
+import com.vclues.core.app.Constant;
 import com.vclues.core.entity.User;
 import com.vclues.core.enums.UserType;
 import com.vclues.core.repository.AuthorityRepository;
-import com.vclues.core.repository.StoryRepository;
 import com.vclues.core.repository.UserRepository;
 
 @Service("userService")
@@ -126,35 +128,77 @@ public class UserService implements IUserService {
     
     @Override
     @Transactional(rollbackOn = Exception.class)
-    public User registerNewUser(User user) {
+    public User registerNewUser(final User user) {
     	String activationKey = RandomStringUtils.randomAlphabetic(20);
 
-		try {
-		// This needs to be asynchronous
-        final Email email = DefaultEmail.builder()
-                .from(new InternetAddress(myEmail, "VClues"))
-                .to(Lists.newArrayList(new InternetAddress(user.getEmail(), user.getFirstName() + " " + user.getLastName())))
-                .subject("VClues Registration")
-                .body("")//Empty body
-                .encoding(Charset.forName("UTF-8").name()).build();
-            //Defining the model object for the given Freemarker template
-            final Map<String, Object> modelObject = new HashMap<>();
-            modelObject.put("url", baseUrl + "/confirm/" + user.getEmail() + "/" + activationKey);
-
-           emailService.send(email, "emails/confirm.ftl", modelObject);  
-		}catch(Exception e) {
-			log.error("Unable to email registration confirmation link for /confirm/" + user.getEmail() + "/" + activationKey);
-			e.printStackTrace();
-		}
+    	executor.submit(() -> { 
+			try {
+			// This needs to be asynchronous
+	        final Email email = DefaultEmail.builder()
+	                .from(new InternetAddress(myEmail, "VClues"))
+	                .to(Lists.newArrayList(new InternetAddress(user.getEmail(), user.getFirstName() + " " + user.getLastName())))
+	                .subject("VClues Registration")
+	                .body("")//Empty body
+	                .encoding(Charset.forName("UTF-8").name()).build();
+	            //Defining the model object for the given Freemarker template
+	            final Map<String, Object> modelObject = new HashMap<>();
+	            modelObject.put("url", baseUrl + "/confirm/" + user.getEmail() + "/" + activationKey);
+	
+	           emailService.send(email, "emails/confirm.ftl", modelObject);  
+			}catch(Exception e) {
+				log.error("Unable to email registration confirmation link for /confirm/" + user.getEmail() + "/" + activationKey);
+				e.printStackTrace();
+			}
+    	});
 
 		user.getAuthorities().add(authorityRepository.findByName("ROLE_USER"));		  
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));        
         user.setActivationKey(activationKey);
+        user.setType(Constant.USER_TYPE.PAID);
+        user.setActive(true);
         user.setParentUser(user);
 
-        user = userRepository.save(user);
-        return user;
+        return userRepository.save(user);
     }
+    
+    private final static ExecutorService executor = Executors.newCachedThreadPool();
+    
+    @Override
+    @Transactional(rollbackOn = Exception.class)
+    public User registerNewUser(final User user, String password) {
+    	String activationKey = RandomStringUtils.randomAlphabetic(20);
+
+    	executor.submit(() -> { 
+			try {
+			// This needs to be asynchronous
+	        final Email email = DefaultEmail.builder()
+	                .from(new InternetAddress(myEmail, "VClues"))
+	                .to(Lists.newArrayList(new InternetAddress(user.getEmail(), user.getFirstName() + " " + user.getLastName())))
+	                .subject("VClues Registration")
+	                .body("")//Empty body
+	                .encoding(Charset.forName("UTF-8").name()).build();
+	            //Defining the model object for the given Freemarker template
+	            final Map<String, Object> modelObject = new HashMap<>();
+	            modelObject.put("email", user.getEmail());
+	            modelObject.put("password", password);
+	
+	           emailService.send(email, "emails/facebook.ftl", modelObject);  
+			}catch(Exception e) {
+				log.error("Unable to email registration confirmation link for /confirm/" + user.getEmail() + "/" + activationKey);
+				e.printStackTrace();
+			}
+    	});
+
+		user.getAuthorities().add(authorityRepository.findByName("ROLE_USER"));		  
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));        
+        user.setActivationKey(activationKey);
+        user.setActivated(true);
+        user.setActive(true);
+        user.setType(Constant.USER_TYPE.PAID);
+        user.setParentUser(user);
+
+        return userRepository.save(user);
+    }    
     
     public void resetPassword(final String email) {
     	User user = userRepository.findByEmail(email);
@@ -169,7 +213,6 @@ public class UserService implements IUserService {
     	}
     	
     	// otherwise do not send email
-    	
     }
     
     public void confirmEmail(final String email, String activationKey) {

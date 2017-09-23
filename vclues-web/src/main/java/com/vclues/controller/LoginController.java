@@ -1,5 +1,6 @@
 package com.vclues.controller;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,9 +102,13 @@ public class LoginController extends BaseController {
     @PostMapping(value = {"/fblogin"})
     public String login(@RequestParam String fbId, @RequestParam String accessToken, @RequestParam String email, Model model) {
 
-    	if(StringUtils.trimToNull(email) !=  null) {
-    		User user = userService.autoSaveFacebookLoginUsers(email.toLowerCase().trim(), accessToken+fbId);
-    		securityService.facebookAutoLogin(user, accessToken+fbId);
+    	if(StringUtils.trimToNull(email) !=  null && fbId != null && accessToken != null) {
+    		User user = userService.findByEmail(email);
+    		if(user == null) {
+    			String password = RandomStringUtils.randomAlphabetic(20);
+    			user = userService.registerNewUser(user, password);
+    		}
+    		session().setAttribute("loggedInUser", user);
     	}
 
     	logger.info("Called fblogin");
