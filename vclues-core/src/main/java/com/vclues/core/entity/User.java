@@ -19,9 +19,9 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
-import org.springframework.cache.annotation.Cacheable;
 
-import com.vclues.core.enums.Features;
+import com.vclues.core.app.Constant;
+import com.vclues.core.enums.UserType;
 
 @Entity
 @Table(name = "user")
@@ -31,6 +31,9 @@ public class User extends AbstractEntity {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	@Column(name ="user_type")
+	private Integer type = 0;
 
 	private String password;
 	
@@ -182,6 +185,14 @@ public class User extends AbstractEntity {
 	public void setParentUser(User parentUser) {
 		this.parentUser = parentUser;
 	}
+	
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
 	public Integer getPermissions() {
 		return permissions;
@@ -189,42 +200,6 @@ public class User extends AbstractEntity {
 
 	public void setPermissions(Integer permissions) {
 		this.permissions = permissions;
-	}
-	
-	public String getAccountAccess(){
-		if(Features.ALL_ACCOUNT.isEnabled(permissions)){
-			return Features.ALL_ACCOUNT.name().split("_")[0];
-		}
-		else if(Features.ADD_ACCOUNT.isEnabled(permissions)){
-			return Features.ADD_ACCOUNT.name().split("_")[0];
-		}
-		return Features.READ_ACCOUNT.name().split("_")[0];
-	}
-	
-	public String getDescriptorAccess(){
-		if(Features.ALL_DESCRIPTOR.isEnabled(permissions)){
-			return Features.ALL_DESCRIPTOR.name().split("_")[0];
-		}
-		else if(Features.ADD_DESCRIPTOR.isEnabled(permissions)){
-			return Features.ADD_DESCRIPTOR.name().split("_")[0];
-		}
-		return Features.READ_DESCRIPTOR.name().split("_")[0];
-	}
-	
-	public String getDisputesAccess(){
-		if(Features.ALL_DISPUTES.isEnabled(permissions)){
-			return Features.ALL_DISPUTES.name().split("_")[0];
-		}
-		else if(Features.ADD_DISPUTES.isEnabled(permissions)){
-			return Features.ADD_DISPUTES.name().split("_")[0];
-		}
-		else if(Features.REJECT_REFUND.isEnabled(permissions)){
-			return Features.REJECT_REFUND.name().split("_")[0];
-		}
-		else if(Features.SEND_REFUND.isEnabled(permissions)){
-			return Features.SEND_REFUND.name().split("_")[0];
-		}
-		return Features.READ_DISPUTES.name().split("_")[0];
 	}
 
 	@Override

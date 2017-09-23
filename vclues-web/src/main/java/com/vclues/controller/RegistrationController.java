@@ -112,6 +112,14 @@ public class RegistrationController extends BaseController {
     	logger.info("Confirm user " + email + " " + activationKey);
 
         userService.confirmEmail(email, activationKey);
+        
+        // if activationKey has access to story
+        // then if user exist create game 
+        // create account, with activation key and default password using activationKey
+        // send user email to confirm account creation
+
+        // then check if user account already has activationKey and update story_access with user activationKey
+        // create 
 
         model.addAttribute("message", "Thank you for confirming your email.  Please try logging in");
         model.addAttribute("content", "confirm"); 

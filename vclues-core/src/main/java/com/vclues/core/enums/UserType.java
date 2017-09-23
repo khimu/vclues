@@ -2,11 +2,13 @@ package com.vclues.core.enums;
 
 import com.vclues.core.utils.BitOperations;
 
-public enum Features {
-	NONE(0), ALL_DISPUTES(1), ADD_DISPUTES(2), READ_DISPUTES(4), ALL_DESCRIPTOR(
+public enum UserType {
+	GUEST(0), LIMITED(1), PAID(2);
+	
+	/*, READ_DISPUTES(4), ALL_DESCRIPTOR(
 			8), ADD_DESCRIPTOR(16), READ_DESCRIPTOR(32), ALL_ACCOUNT(64), ADD_ACCOUNT(
 			128), READ_ACCOUNT(256), ALL_PERMISSION(512), SEND_REFUND(1024), REJECT_REFUND(
-			2048);
+			2048);*/
 
 	// READ_PERMISSION(4096), ADD_PERMISSION(8192), ADD_GROUP(16384),
 	// EDIT_GROUP(
@@ -17,7 +19,7 @@ public enum Features {
 
 	private Integer bit;
 
-	private Features(Integer bit) {
+	private UserType(Integer bit) {
 		this.bit = bit;
 	}
 
@@ -27,7 +29,7 @@ public enum Features {
 
 	public static Integer enableAllFeatures() {
 		Integer permissions = 0;
-		for (Features feature : Features.values()) {
+		for (UserType feature : UserType.values()) {
 			permissions = BitOperations.enable(permissions, feature.getBit());
 		}
 		return permissions;

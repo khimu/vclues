@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 import com.vclues.core.entity.User;
-import com.vclues.core.enums.Features;
+import com.vclues.core.enums.UserType;
 import com.vclues.core.repository.AuthorityRepository;
 import com.vclues.core.repository.StoryRepository;
 import com.vclues.core.repository.UserRepository;
@@ -99,10 +99,8 @@ public class UserService implements IUserService {
         	user.setPassword(editUser.getPassword());
         }
         
-    	// set permission to read only access
-    	user.setPermissions(Features.READ_ACCOUNT.enabled(0));
-    	user.setPermissions(Features.READ_DISPUTES.enabled(user.getPermissions()));
-    	user.setPermissions(Features.READ_DESCRIPTOR.enabled(user.getPermissions()));
+    	// convert 0 to PAID integer which will set permission to Unlimited access
+    	user.setPermissions(UserType.PAID.enabled(0));
     	
     	user.getAuthorities().add(authorityRepository.findByName("ROLE_USER"));		
     	

@@ -51,10 +51,14 @@ public class StoryController extends BaseController {
 			return "redirect:/login";
 		}
 		
+		
+		
 		List<Story> stories = storyService.getAllStories();
 		
 		model.addAttribute("stories", stories);
 		
+		// PAID == 4
+		model.addAttribute("isPaid", user.getType());
 		model.addAttribute("content", "listStory"); 
 		model.addAttribute("title", "Stories");
 		

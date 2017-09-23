@@ -3,7 +3,7 @@ package com.vclues.core.enums;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.vclues.core.enums.Features;
+import com.vclues.core.enums.UserType;
 import com.vclues.core.utils.BitOperations;
 
 public class FeaturesTest {
@@ -12,11 +12,11 @@ public class FeaturesTest {
 	public void testEnableAll() {
 		Integer permission = 0;
 
-		Assert.assertTrue(BitOperations.isTrue(permission, Features.NONE.getBit()));
+		Assert.assertTrue(BitOperations.isTrue(permission, UserType.NONE.getBit()));
 
-		permission = Features.enableAllFeatures();
+		permission = UserType.enableAllFeatures();
 		
-		for(Features feature : Features.values()) {
+		for(UserType feature : UserType.values()) {
 			Assert.assertTrue(BitOperations.isTrue(permission, feature.getBit()));
 		}
 		
@@ -27,17 +27,17 @@ public class FeaturesTest {
 	public void testEnableOne() {
 		Integer permission = 0;
 		
-		Assert.assertFalse(BitOperations.isTrue(permission, Features.ADD_ACCOUNT.getBit()));
+		Assert.assertFalse(BitOperations.isTrue(permission, UserType.ADD_ACCOUNT.getBit()));
 		
-		permission = BitOperations.enable(permission, Features.ADD_ACCOUNT.getBit());
+		permission = BitOperations.enable(permission, UserType.ADD_ACCOUNT.getBit());
 		System.out.println("permission " + permission);
 
-		Assert.assertTrue(BitOperations.isTrue(permission, Features.ADD_ACCOUNT.getBit()));
+		Assert.assertTrue(BitOperations.isTrue(permission, UserType.ADD_ACCOUNT.getBit()));
 		
 		permission = 0;
-		permission = Features.READ_ACCOUNT.enabled(0);
-		permission = Features.READ_DISPUTES.enabled(permission);
-		permission = Features.READ_DESCRIPTOR.enabled(permission);
+		permission = UserType.READ_ACCOUNT.enabled(0);
+		permission = UserType.READ_DISPUTES.enabled(permission);
+		permission = UserType.READ_DESCRIPTOR.enabled(permission);
 		System.out.println(permission);
 	}
 	

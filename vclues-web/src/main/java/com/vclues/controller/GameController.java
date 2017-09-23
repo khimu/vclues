@@ -23,6 +23,7 @@ import com.vclues.core.entity.Hint;
 import com.vclues.core.entity.Story;
 import com.vclues.core.entity.User;
 import com.vclues.core.enums.Frequency;
+import com.vclues.core.enums.UserType;
 import com.vclues.core.service.IGameService;
 import com.vclues.core.service.IStoryService;
 import com.vclues.core.service.IUserService;
@@ -284,10 +285,21 @@ public class GameController extends BaseController {
     @GetMapping("/select/{storyId}")
     public String showForm(@PathVariable("storyId") String storyId, Model model) {
     	logger.info("User selected a game");
+    	
+    	// story_access(activation_key, story_id)
+    	
+    	// if activation key exist and has access to story then find user
+    	// allow user to create game and invite friends as they have just purchased the activation key and
+    	// was redirected to this page
+    	
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
 			return "redirect:/login";
+		}
+		
+		if(!UserType.PAID.isEnabled(user.getType())) {
+			return "redirect:/";
 		}
 
 		Story story = storyService.getStory(Long.parseLong(storyId));
@@ -317,6 +329,10 @@ public class GameController extends BaseController {
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
 			return "redirect:/login";
+		}
+		
+		if(!UserType.PAID.isEnabled(user.getType())) {
+			return "redirect:/";
 		}
 
 		// go back to the game cast view

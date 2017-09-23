@@ -63,15 +63,24 @@ public class SecurityService implements ISecurityService {
 	public void facebookAutoLogin(User user, String facebookPassword) {
 		UserDetails userDetails = this.loadFBUserByUsername(user, facebookPassword);
 		
+		logger.info("facebookPassword" + facebookPassword);
+		
 		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
 				userDetails, facebookPassword, userDetails.getAuthorities());
+		
+		logger.info("After usernamepasswordauthenticationtoken");
 
 		authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+		
+		logger.info("After authenticationManager.authenticate");
 
 		if (usernamePasswordAuthenticationToken.isAuthenticated()) {
+			logger.info("user is authenticated via facebook");
 			SecurityContextHolder.getContext().setAuthentication(
 					usernamePasswordAuthenticationToken);
 			logger.debug(String.format("Auto login %s successfully!", user.getEmail()));
+		}else {
+			logger.info("user is NOT authenticated via facebook");
 		}
 	}	
 

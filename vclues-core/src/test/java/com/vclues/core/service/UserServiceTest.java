@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.vclues.core.entity.User;
-import com.vclues.core.enums.Features;
+import com.vclues.core.enums.UserType;
 import com.vclues.core.repository.AuthorityRepository;
 import com.vclues.core.repository.StoryRepository;
 import com.vclues.core.repository.TestAppConfig;
@@ -72,7 +72,7 @@ public class UserServiceTest {
 		
 		Assert.assertEquals(1, businessRepository.findAll().size());
 
-		for(Features feature : Features.values()) {
+		for(UserType feature : UserType.values()) {
 			Assert.assertTrue(BitOperations.isTrue(user.getPermissions(), feature.getBit()));
 		}
 	}
