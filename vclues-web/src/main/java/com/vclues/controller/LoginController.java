@@ -100,9 +100,9 @@ public class LoginController extends BaseController {
     }
     
     @PostMapping(value = {"/fblogin"})
-    public String login(@RequestParam String fbId, @RequestParam String accessToken, @RequestParam String email, Model model) {
+    public String login(@RequestParam("fbId") String fbId, @RequestParam("accessToken") String accessToken, @RequestParam("email") String email, Model model) {
 
-    	if(StringUtils.trimToNull(email) !=  null && fbId != null && accessToken != null) {
+    	if(StringUtils.trimToNull(email) !=  null && StringUtils.trimToNull(fbId) != null && StringUtils.trimToNull(accessToken) != null) {
     		User user = userService.findByEmail(email);
     		if(user == null) {
     			String password = RandomStringUtils.randomAlphabetic(20);
