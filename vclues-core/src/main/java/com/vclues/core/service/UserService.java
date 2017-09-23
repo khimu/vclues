@@ -76,12 +76,10 @@ public class UserService implements IUserService {
 			user = new User();
 			user.setEmail(email);
 			user.setPassword(password);
-		    user = this.registerNewUser(user);
+		    user = this.registerNewUser(user, password);
 		    return userRepository.save(user);
 		}
-		else {
-			
-		}
+		
 		return user;
     }
 
@@ -126,6 +124,12 @@ public class UserService implements IUserService {
     	userRepository.save(user);
     }
     
+    /*
+     * sends an email confirmation 
+     * 
+     * (non-Javadoc)
+     * @see com.vclues.core.service.IUserService#registerNewUser(com.vclues.core.entity.User)
+     */
     @Override
     @Transactional(rollbackOn = Exception.class)
     public User registerNewUser(final User user) {
@@ -163,6 +167,12 @@ public class UserService implements IUserService {
     
     private final static ExecutorService executor = Executors.newCachedThreadPool();
     
+    /*
+     * sends the password after registering the new user
+     * 
+     * (non-Javadoc)
+     * @see com.vclues.core.service.IUserService#registerNewUser(com.vclues.core.entity.User, java.lang.String)
+     */
     @Override
     @Transactional(rollbackOn = Exception.class)
     public User registerNewUser(final User user, String password) {

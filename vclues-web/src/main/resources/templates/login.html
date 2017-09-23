@@ -257,7 +257,7 @@ a, a:hover, a:link, a:active {
 		    	<div class="button-5" style="text-align:center;">
 		     		<p class="home_link describe_site"><a href="javascript: return false;" data-toggle="modal" data-target="#login_outer">Login</a></p>
 		     		<p class="home_link-2"><a href="javascript: return false;" data-toggle="modal" data-target="#register_outer">Register</a></p>
-		     		<a href="javascript: return false;" data-toggle="modal" data-target="#social-share">Social Share</a>
+		     		<a href="javascript: return false;" data-toggle="modal" data-target="#social-share" style="color:white !important;">Social Login</a>
 		    	</div>
 		   	</div>
 		</section>
@@ -275,38 +275,59 @@ a, a:hover, a:link, a:active {
 		    					<div class="descrpition_popup_altered">
 		    					
 				      				<a href="#" data-dismiss="modal" class="btn_close-11"><img src="/assets/images/btn_close_11.png" alt="" width="55" height="55"/></a>
-	                            	<p class="description_popup_text pre-scrollable">
-	                            		<ul style="list-style: none;">
-	                            			<li><g:plusone href="' + linkUrl + '" size="medium" style="float:right"></g:plusone></li>
-	                            			<li><div class="fb-like" 
+	                            	<p class="description_popup_text pre-scrollable" style="text-align:center;">
+<table style="border-collapse: separate; border-spacing: 2px;padding-left:15px;">
+    <tr>
+        <td><g:plusone href="' + linkUrl + '" size="medium" style="float:right"></g:plusone></td>
+        <td>
+	                            				<div class="fb-like" 
 											    data-href="http://vclues.com" 
 											    data-layout="standard" 
 											    data-action="like" 
 											    data-show-faces="true">
-											   </div>
-											</li>
-	                            			<li><a href="http://twitter.com/share" data-url="http://www.vclues.com" class="twitter-share-button" data-count="none" data-via="test">Tweet</a></li>
-	                            			<li><fb:comments href="http://www.vclues.com" num_posts="3" width="640"></fb:comments></li>
-	                            		</ul>
+											   </div></td>
+        <td> <a href="http://twitter.com/share" data-url="http://www.vclues.com" class="twitter-share-button" data-count="none" data-via="test">Tweet</a></td>
+    </tr>
+    
+</table>	                            		
 	                            		
-										<ul  style="list-style: none;">
-					                        <li >
-					                            <a href="/assets/html/terms.html">
-					                                Terms &amp; Conditions
-					                            </a>
-					                        </li>
-					                        <li>
-					                            <a href="/assets/html/privacy.html">
-					                                Privacy
-					                            </a>
-					                        </li>
-					                        <li>
-					                            <a href="/assets/html/contact.html">
-					                                Contact Us
-					                            </a>
-					                        </li>
-					                    </ul>	                            		
-	                            	</p>
+	                            		<hr style="width: 80%;height:1px;"/>
+
+<table style="border-collapse: separate; border-spacing: 2px">
+    <tr>
+        <td><a th:href="@{/auth/linkedin}" class="btn"><i class="btn"></i>LinkedIn Login</a></td>
+        <td><a th:href="@{/auth/facebook}" class="btn"><i class="btn"></i>Facebook Login</a></td>
+    </tr>
+    <!-- 
+    <tr>
+    	<td colspan="2">
+    			<form action="/fb/connect/facebook" method="POST">
+			<input type="hidden" name="scope" value="user_posts" />
+			<div class="formInfo">
+				<p>You aren't connected to Facebook yet. Click the button to connect this application with your Facebook account.</p>
+			</div>
+			<p><button type="submit">Connect to Facebook</button></p>
+		</form>
+    	</td>
+    </tr>
+    -->
+    <tr>
+        <td><a th:href="@{/auth/twitter}" class="btn"><i class="btn"></i>Twitter Login</a></td>
+        <td><a th:href="@{/auth/live(scope='wl.signin,wl.basic')}" class="btn"><i class="btn"></i>Microsoft Login</a></td>
+    </tr>
+    <tr>
+        <td><a th:href="@{/auth/github}" class="btn"><i class="btn"></i>Github Login</a></td>
+        <td><a th:href="@{/auth/google(scope='profile')}" class="btn"><i class="btn"></i>Google+ Login</a></td>
+    </tr>
+</table>
+	                      		
+	                            		<hr style="width: 80%"/>
+       
+<table style="border-collapse: separate; border-spacing: 2px; padding-left:15px;">
+    <tr>
+        <td><a href="/assets/html/terms.html"> Terms &amp; Conditions </a> |  <a href="/assets/html/privacy.html">Privacy</a> | <a href="/assets/html/contact.html">Contact Us </a></td>
+    </tr>
+</table>	                    	</p> 
 	                            </div>
 		                    </div>
 			    		</div>

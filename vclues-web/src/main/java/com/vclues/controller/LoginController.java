@@ -100,20 +100,17 @@ public class LoginController extends BaseController {
     }
     
     @PostMapping(value = {"/fblogin"})
-    public String login(@RequestParam("fbId") String fbId, @RequestParam("accessToken") String accessToken, @RequestParam("email") String email, Model model) {
+    public void login(@RequestParam("fbId") String fbId, @RequestParam("accessToken") String accessToken, @RequestParam("email") String email, Model model) {
 
-    	if(StringUtils.trimToNull(email) !=  null && StringUtils.trimToNull(fbId) != null && StringUtils.trimToNull(accessToken) != null) {
-    		User user = userService.findByEmail(email);
-    		if(user == null) {
-    			String password = RandomStringUtils.randomAlphabetic(20);
-    			user = userService.registerNewUser(user, password);
-    		}
-    		session().setAttribute("loggedInUser", user);
+    	if(StringUtils.trimToNull(email) !=  null) {
+    		String password = RandomStringUtils.randomAlphabetic(20);
+    		User user = userService.autoSaveFacebookLoginUsers(email.toLowerCase().trim(), password);
+    		securityService.facebookAutoLogin(user, accessToken+fbId);
     	}
 
     	logger.info("Called fblogin");
     	
-    	return "redirect:/";
+    	//return "redirect:/";
     }
 
 }

@@ -16,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler;
+import org.springframework.social.security.SocialUserDetailsService;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 
 @Configuration
@@ -73,13 +75,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/error").anonymous();
         http.authorizeRequests().antMatchers("/error/**").anonymous();
         http.authorizeRequests().anyRequest().authenticated();
-        
-        
+        http.authorizeRequests().antMatchers("/auth/**" ).permitAll().antMatchers("/**").hasRole("USER");
+
          http.formLogin()
          .loginPage("/login")
          .failureUrl("/login?error")
          .usernameParameter("email")
          .permitAll()
+         .and()
+         .apply(new SpringSocialConfigurer()
+         .postLoginUrl("/")
+         .alwaysUsePostLoginUrl(true))
          .and()
          .logout()
          .logoutUrl("/logout")
@@ -97,6 +103,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(getBCryptPasswordEncoder());
     }
+    
+    /**
+     * This bean is used to load the user specific data when social sign in
+     * is used.
+     */
+    @Bean
+    public SocialUserDetailsService socialUserDetailsService() {
+        return new SimpleSocialUserDetailService(userDetailsService());
+    }    
 
     /*
      * configure(WebSecurity) is used for configuration settings that impact global security (ingore resources, set debug mode, reject requests by implementing a custom firewall definition). 

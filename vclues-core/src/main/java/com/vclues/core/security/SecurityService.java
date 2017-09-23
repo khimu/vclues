@@ -8,11 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,23 +65,12 @@ public class SecurityService implements ISecurityService {
 		
 		logger.info("facebookPassword" + facebookPassword);
 		
-		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-				userDetails, facebookPassword, userDetails.getAuthorities());
-		
-		logger.info("After usernamepasswordauthenticationtoken");
+        logger.debug("Logging in principal: {}", userDetails);
 
-		authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-		
-		logger.info("After authenticationManager.authenticate");
+        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		if (usernamePasswordAuthenticationToken.isAuthenticated()) {
-			logger.info("user is authenticated via facebook");
-			SecurityContextHolder.getContext().setAuthentication(
-					usernamePasswordAuthenticationToken);
-			logger.debug(String.format("Auto login %s successfully!", user.getEmail()));
-		}else {
-			logger.info("user is NOT authenticated via facebook");
-		}
+        logger.info("User: {} has been logged in.", userDetails);
 	}	
 
     @Transactional(readOnly = true)
