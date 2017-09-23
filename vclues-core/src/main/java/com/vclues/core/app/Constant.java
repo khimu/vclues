@@ -5,10 +5,11 @@ public class Constant {
 	public final static String DATE_FORMAT = "MM/dd/yyyy HH:mm:ss";
 	
 	public static class USER_TYPE {
-		public Integer GUEST = 1 << 0; // 1 - registered online
-		public Integer LIMITED = 1 << 1; // 2 - paid for access code of individual games - games pre-created during email confirmation on purchase of access code based on what game is assigned to the access code
-		public Integer PAID = 1 << 2; // 4 - paid for unlimited access and can choose game and invite
+		public Integer GUEST = 0;
+		public Integer LIMITED = 1 << 0; // 1 - registered online
+		public Integer PAID = 1 << 1; // 2 - paid for access code of individual games - games pre-created during email confirmation on purchase of access code based on what game is assigned to the access code
 		
+		public Integer PAID2 = 1 << 2; // 4 - paid for unlimited access and can choose game and invite		
 		public Integer career = 1 << 3; // 8
 		public Integer travel = 1 << 4; // 16
 		public Integer education = 1 << 5; // 32

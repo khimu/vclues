@@ -85,6 +85,8 @@ $( document ).ready(function() {
 
 .col {
     width: 200px;
+    margin: 20px auto 0;
+    right: 0px;
 }
 
 .announcement_form_layer {
@@ -93,12 +95,10 @@ $( document ).ready(function() {
     z-index: 0;
     text-align: center;
 }
-.col {
-    right: 0px;
-}
 
 .tag-3 {
     right: 0px;
+    margin: -78px auto 0;
 }
 
 .fb_share {
@@ -115,7 +115,15 @@ $( document ).ready(function() {
     margin-left:17%;
 }
 .button-2 {
-	margin-left: 17%;
+	margin-left: 0%;
+}
+.curtain_plate_text-4 {
+	overflow:scroll;
+}
+
+.title-6 {
+	overflow:scroll;
+    font-size: 27px;
 }
 </style>
 	
@@ -141,12 +149,14 @@ $( document ).ready(function() {
 	      <a href="#">Post Message</a>
 	     </div>
 	     
-	     <a href="#" class="fb_share"><img src="/assets/images/fb_share.png" alt="" width="106" height="35"/></a>
-	     <a href="#" class="fb_post"><img src="/assets/images/fb_post.png" alt="" width="106" height="35"/></a>
+	     <!-- <a href="#" class="fb_share"><img src="/assets/images/fb_share.png" alt="" width="106" height="35"/></a> -->
+	     
+	     <span class="fb_post" style="color:white;white-space:nowrap;"><input type="checkbox" id="post-to-fb" name="post-to-fb" />  Post To Facebook</span> 
+	     
 	     <textarea class="invite-2" id="message" th:field="*{message}"  name="message"></textarea>
 	     
 	     <div class="button-2 group">
-			<button type="submit" class="btn btn-primary btn-sm" style="opacity: 0.7;">Submit</button>
+			<button type="submit" onclick="post($('.invite-2').val()); $('.announcement_form_layer-form').submit();" class="btn btn-primary btn-sm" style="opacity: 0.7;">Submit</button>
 	       	<a th:href="@{/game/cast/{gameId}(gameId=${gameId})}" class="btn btn-primary btn-sm" style="opacity: 0.7;">Cancel</a>   
 	     </div>
 	    </div>

@@ -39,16 +39,12 @@ footer, header, menu, nav, section, time {
 	display: block;
 }
 
-body {
-	line-height: 1;
-	color: black;
-	background: white;
-}
-
+/*
 a {
 	color: inherit;
 	text-decoration: none;
 }
+*/
 
 ol, ul {
 	list-style: none;
@@ -137,6 +133,14 @@ video {
 	left: -5000px;
 }
 
+
+body {
+	line-height: 1;
+	color: black;
+	background: black;
+}
+
+
 body {
 	color: #000000;
 	font-family: MyriadPro, serif;
@@ -182,7 +186,7 @@ a.btn_close img {
 .title {
 	margin: 26px 0 0;
 	font-family: Deneane, serif;
-	font-size: 27px;
+	font-size: 36px;
 	font-weight: normal;
 	text-align: center;
 }
@@ -338,7 +342,7 @@ a.btn_close-2 img {
 .title-2 {
 	margin: 24px 0 0;
 	font-family: Deneane, serif;
-	font-size: 27px;
+	font-size: 36px;
 	font-weight: normal;
 	text-align: center;
 }
@@ -364,7 +368,7 @@ a.right-2 img {
 	position: relative;
 	width: 233px;
 	color: #fafaf8;
-	font-size: 15px;
+	font-size: 12px;
 	line-height: 1.2;
 }
 .announcement_layer {
@@ -393,7 +397,7 @@ a.btn_close-3 img {
 }
 .title-3 {
 	margin: 26px 0 0;
-	font-size: 25.90476px;
+	font-size: 36px;
 	font-weight: normal;
 	text-align: center;
 }
@@ -435,13 +439,13 @@ a.right-3 img {
 	position: relative;
 }
 .curtain_plate_subtext_h5 {
-	font-size: 9.14286px;
+	font-size: 12px;
 	text-align: center;
 }
 .curtain_plate_text {
 	margin: 4px 0 0;
 	font-family: Deneane, serif;
-	font-size: 22.85714px;
+	font-size: 20px;
 	font-weight: normal;
 }
 .text_description {
@@ -449,7 +453,7 @@ a.right-3 img {
 	position: relative;
 	z-index: 50;
 	color: #fafaf8;
-	font-size: 21.33334px;
+	font-size: 12px;
 	line-height: 1.2;
 }
 .story_layer {
@@ -479,7 +483,7 @@ a.btn_close-4 img {
 .title-4 {
 	margin: 20px 0 0;
 	font-family: Deneane, serif;
-	font-size: 27;
+	font-size: 37;
 	font-weight: normal;
 	text-align: center;
 }
@@ -523,6 +527,7 @@ a.right-4 img {
 	color: #fafaf8;
 	line-height: 1.2;
 	margin-left: -119.5px;
+	font-size:12px;
 }
 .curtain_plate-2 {
 	left: 50%;
@@ -539,7 +544,7 @@ a.right-4 img {
 }
 .curtain_plate_text-2 {
 	font-family: Deneane, serif;
-	font-size: 22.85714px;
+	font-size: 20px;
 	font-weight: normal;
 }
 .btn_show {
@@ -580,7 +585,7 @@ a.btn_show img {
 .title-5 {
 	margin: 0 0 0 101px;
 	font-family: Deneane, serif;
-	font-size: 27px;
+	font-size: 37px;
 	font-weight: normal;
 }
 .wrapper-10 {
@@ -647,6 +652,7 @@ a.fb_friends_btn img {
 .curtain_plate_text-3 {
 	font-family: Deneane, serif;
 	font-weight: normal;
+	font-size: 20px;
 }
 .curtain_plate_subtext {
 	margin: 8px 0 0;
@@ -697,7 +703,7 @@ a.btn_close-5 img {
 	margin: 30px 51px 0;
 	position: relative;
 	z-index: 146;
-	font-size: 25px;
+	font-size: 36px;
 	font-weight: normal;
 	font-family: Deneane, serif;
 }
@@ -822,7 +828,7 @@ a.btn_close-6 img {
 	position: relative;
 	z-index: 161;
 	font-family: Deneane, serif;
-	font-size: 27;
+	font-size: 36;
 	font-weight: normal;
 	text-align: center;
 }
@@ -895,7 +901,7 @@ a.btn_close-7 img {
 	margin: 21px 0 0;
 	color: #010101;
 	font-family: Deneane, serif;
-	font-size: 38.09524px;
+	font-size: 36px;
 	font-weight: normal;
 	text-align: center;
 }
@@ -977,7 +983,7 @@ a.btn_close-7 img {
 .title-9 {
 	color: #010101;
 	font-family: Deneane, serif;
-	font-size: 38.09524px;
+	font-size: 36px;
 	font-weight: normal;
 	text-align: center;
 }
@@ -1206,7 +1212,7 @@ a.btn_done img {
 .curtain_plate_text-6 {
 	margin: 2px 0 0;
 	font-family: Deneane, serif;
-	font-size: 23px;
+	font-size: 20px;
 	font-weight: normal;
 }
 .home_layer {
@@ -1509,7 +1515,7 @@ a.btn_close-11 img {
 	position: relative;
 	right: 4px;
 	width: 263px;
-	font-size: 25px;
+	font-size: 12px;
 	line-height: 1.2;
 }
 .font-myriadpro {
@@ -1529,9 +1535,11 @@ html {
 
 a {
        background-color: transparent;
-    }
+       color: black !important;
+       text-decoration: none;
+}
 
-a, a:hover, a:link, a:active {
+a:hover !important, a:link !important, a:active !important {
     text-decoration: none;
     color: black;
 }

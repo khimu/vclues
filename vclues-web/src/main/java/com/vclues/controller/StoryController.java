@@ -57,7 +57,7 @@ public class StoryController extends BaseController {
 		
 		model.addAttribute("stories", stories);
 		
-		// PAID == 4
+		// PAID == 2
 		model.addAttribute("isPaid", user.getType());
 		model.addAttribute("content", "listStory"); 
 		model.addAttribute("title", "Stories");

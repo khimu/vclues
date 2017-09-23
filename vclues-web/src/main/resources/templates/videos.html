@@ -191,6 +191,14 @@ a, a:hover, a:link, a:active {
 .curtain_plate_text-3 {
     text-align: center;
 }
+
+.btn_show {
+	width:50px;
+	margin: 0px 0 0;
+}
+.select-2 {
+	height: 120px;
+}
 		</style>
 		
 </head>
@@ -244,7 +252,7 @@ a, a:hover, a:link, a:active {
 					
      			</div>
 				<a style="z-index:0;" href="javascript: return false;" data-toggle="modal" th:attr="data-target='#modal_description_'+${story.id}" class="btn_show"><img src="/assets/images/btn_show.png" alt="" width="46" height="42"/></a>
-			    <div class="select-2"  th:switch="${isPaid == 4}"> 
+			    <div class="select-2"  th:switch="${isPaid == 2}"> 
 					<span th:case="false"></span>
 		       		<span th:case="true"><a th:href="@{/game/select/{id}(id=${story.id})}" style="z-index:2010;">Select</a></span>
 				</div>

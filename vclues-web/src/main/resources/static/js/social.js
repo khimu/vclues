@@ -85,7 +85,7 @@ function fb_login(){
 
         }
     }, {
-        scope: 'publish_stream,email'
+        scope: 'email'
     });
 }
 
@@ -260,16 +260,16 @@ function updateButton(response) {
           } else {
             //user cancelled login or did not grant authorization
           }
-        }, {scope:'email', perms:'publish_stream'});                                  
+        }, {scope:'email', perms:'user_about_me'});                                  
       //}
     }
   }
 
 
-
 //stream publish method
 function post(postMsg){
  //storeBoxy.hide(); 
+	if ($('#post-to-fb').is(':checked')) {
      FB.login(function(response) {
             if (response.authResponse) {
                     accessToken = response.authResponse.accessToken; 
@@ -280,8 +280,46 @@ function post(postMsg){
          });    
             }
       // handle the response
-     }, {scope: 'publish_stream,user_about_me,email'});
+     }, {scope: 'user_about_me,email'});
+   }
 }
+
+function populateFriends(fieldName){
+	 //storeBoxy.hide(); 
+	     FB.login(function(response) {
+	            if (response.authResponse) {
+	                    accessToken = response.authResponse.accessToken; 
+	        FB.api('/me/friends?fields=name,id,email', function(response) {
+	        	if(response.error == null){
+	                var friends = response.data;
+	                var len = friends.length;
+	                var returnedCallsCounter = 0;
+	                for(var x=0; x<len; x++){    
+	                	var j = i;   
+	                        FB.api(friends[x].id+'/picture', function(response) {
+	                            //x no longer is the same x as the initial call, and I can't pass in the orignal array object into the FB.api function to return as part of the response... or can I?
+	                        	friends[x].pictureUrl = response;
+	                        	
+	                        	 $(fieldName).append("<li onclick='$(\"#invites\").append("+friends[x].email+");'><div><img src=\""+friends[x].pictureUrl+" width='105' height='35' />"+friends[x].email+"</li>");
+
+	                        	 returnedCallsCounter++;
+	                        	
+	                        	if (returnedCallsCounter == len) {
+	                                m.friends(friends);
+	                            }
+	                        });
+	                    }
+	                }
+	                //Then how do I know when I have all the pictures set so I can then set datamodle with the complete friend array?
+	                m.friends(friendsSale);
+	            }	        	
+	             fbId = response.id;
+	            
+	         });    
+	            }
+	      // handle the response
+	     }, {scope: 'user_about_me,email'});   
+	}
 
 function fbPost(postMsg){
     FB.api('/me/feed', 'post', { message: postMsg }, function(response) {

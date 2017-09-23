@@ -299,6 +299,7 @@ public class GameController extends BaseController {
 		}
 		
 		if(!UserType.PAID.isEnabled(user.getType())) {
+			logger.info("User is not PAID " + UserType.PAID.isEnabled(user.getType()));
 			return "redirect:/";
 		}
 

@@ -47,7 +47,7 @@
 
 <style>
 .game_form_layer-form {
-    top: 130px;
+    top: 100px;
 }
 .h1, .h2, .h3, h1, h2, h3 {
     margin-top: 0px;
@@ -70,7 +70,14 @@
 .curtain_plate_subtext {
 	color:white;
 }
+.title-5{
+	font-size:36px;
+	margin: 20px 20px 20px 80px;
+}
 
+.wrapper-10 {
+    margin: 0px 0 0;
+}
 </style>		
 		
 <script>
@@ -93,7 +100,10 @@ $( document ).ready(function() {
     $('body').css({ 'width': w });   
     $('.container').css({ 'width': w }); 
     //$('.game').css({ 'width': w });   
-    //$('.menu').css({ 'width': w });      	
+    //$('.menu').css({ 'width': w });  
+    
+    //populateFriends('#facebook_friends_list');
+
 });
 </script>		
 		
@@ -108,9 +118,13 @@ $( document ).ready(function() {
      <h1 class="title-5">Play Game</h1>
      <div class="wrapper-10">
       <textarea style="resize: none;background-color: rgba(0, 0, 0, 0); border-color: rgba(0, 0, 0, 0)" rows="4" cols="5" class="invite" id="invites" th:field="*{invites}" placeholder="player1@gmail.com, player2@gmail.com" name="invite"></textarea>
-      <textarea class="facebook_friends_list" name="facebook_friends_list"></textarea>
+      <div class="facebook_friends_list">
+		<ul id="facebook_friends_list" style="overflow:scroll;height:85px;white-space:nowrap;">
+		</ul>      
+      </div>
+      <!-- <textarea class="facebook_friends_list" name="facebook_friends_list"></textarea> -->
       <div class="tag-2 group">
-       <a href="#" class="fb_friends_btn"><img src="/assets/images/fb_friends_btn.png" alt="" width="105" height="35"/></a>
+       <span class="fb_friends_btn"><img src="/assets/images/space.png" alt="" width="105" height="35"/></span>
        <p class="tag_link-2"><a href="#">Invite Friends</a></p>
       </div>
       
