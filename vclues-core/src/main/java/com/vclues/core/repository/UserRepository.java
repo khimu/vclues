@@ -25,7 +25,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByEmail(@ParameterValueKeyProvider @Param("email") String email);
 	
 	@ReadThroughSingleCache(namespace = "findByEmailAndActivated")
-    @Query("SELECT u FROM User u WHERE LOWER(u.email) = LOWER(:email) and u.activated = true")
+    @Query("SELECT u FROM User u WHERE LOWER(u.email) = LOWER(:email) and u.activated = :activated")
     User findByEmailAndActivated(@ParameterValueKeyProvider @Param("email") String email, @ParameterValueKeyProvider @Param("activated") boolean activated);	
 	
     /*
