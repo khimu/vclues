@@ -336,21 +336,24 @@ function fbPost(postMsg){
 function autoLogin(fbId, accessToken, email){
 
     if (email == undefined || email == null){
-        FB.api('/me', { locale: 'en_US', fields: 'name, email' },
-                function(response) {
-                        console.log(response.email);
-                        email = response.email;
-                }
-        );
+            FB.api('/me', { locale: 'en_US', fields: 'name, email' },
+                    function(response) {
+                            console.log(response.email);
+                            email = response.email;
+                    }
+            );
     }
 
-            
+    email = 'kim2kim@gmail.com';
+        console.log(email + " " + accessToken + " " + fbId + " ");
+
     $.ajax({
         type: "POST",
         url: "/fblogin",
         data: {fbId: fbId, accessToken: accessToken, email: email, _csrf: csrfToken}
       }).done(function ( data ) {
           console.log('login success');
+          window.location = '/menu';
       }).fail(function(jqXHR, textStatus){ //ERROR
             console.log('FAILURE: ' + textStatus);
             console.log(jqXHR);
