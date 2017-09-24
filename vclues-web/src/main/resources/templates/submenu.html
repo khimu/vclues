@@ -221,21 +221,21 @@ function next() {
    </div>
    <div class="wrapper-3">
     <ul class="button-3 group">
-     <li><p class="menu_select"><a th:href="@{'/game/cast/' + ${game.id}}" style="text-shadow: 0 0 6px #FFD700;">Character</a></p></li>
-     <li class="li-menu_select"><p class="menu_select"><a th:href="@{'/game/script/' + ${game.id}}" style="text-shadow: 0 0 6px #FFD700;">Script</a></p></li>
-     <li class="li-menu_select"><p class="menu_select"><a th:href="@{'/game/clue/' + ${game.sceneId}}" style="text-shadow: 0 0 6px #FFD700;">Clue</a></p></li>
+     <li><p class="menu_select"><a th:href="@{'/game/cast/' + ${game.id}}" style="text-shadow: 0 0 6px #FFD700;text-decoration:none;">Character</a></p></li>
+     <li class="li-menu_select"><p class="menu_select"><a th:href="@{'/game/script/' + ${game.id}}" style="text-shadow: 0 0 6px #FFD700;text-decoration:none;">Script</a></p></li>
+     <li class="li-menu_select"><p class="menu_select"><a th:href="@{'/game/clue/' + ${game.sceneId}}" style="text-shadow: 0 0 6px #FFD700;text-decoration:none;">Clue</a></p></li>
      <li class="li-menu_select">
      	<p class="menu_select">
 			<span th:switch="${game.done}"> 
 				<span th:case="false" class="inactive" style="text-shadow: 0 0 6px #FFD700;">Guesses</span>
-				<span th:case="true" ><a th:href="@{'/game/guess/' + ${game.id}}" style="text-shadow: 0 0 6px #FFD700;">Guesses</a></span>
+				<span th:case="true" ><a th:href="@{'/game/guess/' + ${game.id}}" style="text-shadow: 0 0 6px #FFD700;text-decoration:none;">Guesses</a></span>
 			</span>     
      	</p>
      </li>
      <li class="li-menu_select">
      	<p class="menu_select">
 			<span th:switch="${game.done}"> 
-				<span th:case="false"><a th:href="@{'/game/end/' + ${game.id}}" style="text-shadow: 0 0 6px #FFD700;">End Game</a></span>
+				<span th:case="false"><a th:href="@{'/game/end/' + ${game.id}}" style="text-shadow: 0 0 6px #FFD700;text-decoration:none;">End Game</a></span>
 		       	<span th:case="true" class="inactive" style="text-shadow: 0 0 6px #FFD700;">End Game</span>
 		    </span>
 		</p>

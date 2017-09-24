@@ -196,7 +196,7 @@ jQuery(document).ready(function()
 				
 			    <div class="select-2" th:switch="${player.done}">
 						<span th:case="false">
-							<a th:href="@{/game/done/{gameId}(gameId=${player.game.id})}">
+							<a th:href="@{/game/done/{gameId}(gameId=${player.game.id})}" style="text-decoration:none;">
 		             	 			Done
 							</a>
 						</span>
