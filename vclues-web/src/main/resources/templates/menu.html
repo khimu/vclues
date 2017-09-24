@@ -212,26 +212,6 @@ $( document ).ready(function() {
 
 });
 
-function logout() {
-	var jqxhr = $.post( "/logout", {_csrf: csrfToken}, function() {
-		  console.log( "success" );
-		}).done(function() {
-		    console.log( "second success" );
-		}).fail(function() {
-			console.log( "error" );
-		}).always(function() {
-			console.log( "finished" );
-		});
-		 
-		window.location = '/login';
-		
-		// Perform other work here ...
-		 
-		// Set another completion function for the request above
-		jqxhr.always(function() {
-			console.log( "second finished" );
-	});
-}
 
 
 function content_type_short()

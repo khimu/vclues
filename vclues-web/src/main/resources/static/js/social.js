@@ -128,44 +128,6 @@ function facebookReady(){
       xfbml  : true
     });
 
-    /* does not work in sandbox mode */
-    
-    
-    FB.getLoginStatus(function(response) {
-
-        console.log('login');
-
-        updateButton(response);
-
-        console.log('response.status ' + response.status);
-        if (response.status === 'connected') {
-          console.log('response.status === connected');
-          console.log(' id ' + response.authResponse.userID);
-          accessToken = response.authResponse.accessToken;
-          console.log('accessToken ' + accessToken);
-          console.log('userEmail ' + response.authResponse.email);
-
-          
-       FB.api('/me?fields=username,name,id,email', function(response) { 
-        	  
-                 console.log(' fbId ' + fbId);
-                 userEmail = response.email;
-                 console.log('name ' + response.name);
-                 console.log('userEmail ' + userEmail + 'response.status ' + response.status + ' is connected');
-
-                 // Login to VegaClues
-                 autoLogin(response.id, accessToken, response.email);
-
-                 $(document).trigger("facebook:ready");
-          });
-       
-        }else{
-                console.log('response.status ' + response.status + ' is NOT connected');
-        }
-      });
-      
-      
-
 } // end facebookReady();
 
 
@@ -353,11 +315,31 @@ function autoLogin(fbId, accessToken, email){
         data: {fbId: fbId, accessToken: accessToken, email: email, _csrf: csrfToken}
       }).done(function ( data ) {
           console.log('login success');
-          window.location = '/menu';
+          window.location = 'http://vclues.com';
       }).fail(function(jqXHR, textStatus){ //ERROR
             console.log('FAILURE: ' + textStatus);
             console.log(jqXHR);
         });
 }
 
+function logout() {
+	var jqxhr = $.post( "/logout", {_csrf: csrfToken}, function() {
+		  console.log( "success" );
+		}).done(function() {
+		    console.log( "second success" );
+		}).fail(function() {
+			console.log( "error" );
+		}).always(function() {
+			console.log( "finished" );
+		});
+		 
+		window.location = 'http://vclues.com';
+		
+		// Perform other work here ...
+		 
+		// Set another completion function for the request above
+		jqxhr.always(function() {
+			console.log( "second finished" );
+	});
+}
 
