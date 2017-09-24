@@ -100,7 +100,7 @@ public class LoginController extends BaseController {
     }
     
     @PostMapping(value = {"/fblogin"})
-    public void login(@RequestParam("fbId") String fbId, @RequestParam("accessToken") String accessToken, @RequestParam("email") String email, Model model) {
+    public String login(@RequestParam("fbId") String fbId, @RequestParam("accessToken") String accessToken, @RequestParam("email") String email, Model model) {
     	logger.info("Called fblogin");
     	if(StringUtils.trimToNull(email) !=  null) {
     		String password = RandomStringUtils.randomAlphabetic(20);
@@ -110,7 +110,7 @@ public class LoginController extends BaseController {
 
     	logger.info("Called fblogin");
     	
-    	//return "redirect:/";
+    	return "redirect:/";
     }
 
 }
