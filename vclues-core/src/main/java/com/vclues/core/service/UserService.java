@@ -69,7 +69,7 @@ public class UserService implements IUserService {
 
     @Transactional
     public User autoSaveFacebookLoginUsers(String email, String password) {
-
+    	log.info("Called autoSaveFacebookLoginUsers");
 		User user = userRepository.findByEmail(email);
 		
 		if(user == null) {
@@ -80,6 +80,7 @@ public class UserService implements IUserService {
 		    return userRepository.save(user);
 		}
 		
+		log.info("returning user autoSaveFacebookLoginUsers " + user.getEmail());
 		return user;
     }
 

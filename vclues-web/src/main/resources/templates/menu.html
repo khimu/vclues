@@ -312,16 +312,26 @@ jQuery(document).ready(function()
     height: 348px;
 }
 
-a, a:hover, a:link, a:active {
-    text-decoration: none;
-    color: white;
-}
-
 .active {
 	background: url(/assets/images/main_menu_select_glow.png) no-repeat;
 	background-size: 202px 55px;
 	z-index: 1001;
 	width: 200px;
+}
+
+.button-4 {
+	color:white;
+	top: -20px;
+}
+
+.button-4 {
+	top: -20px;
+}
+
+.menu-item p {
+		text-shadow: 0 0 6px #FF0000;
+		color: white;
+		font-weight: bold;
 }
 </style>
 
@@ -337,12 +347,12 @@ a, a:hover, a:link, a:active {
     <div class="wrapper-6">
      <ul class="button-4 group">
       <li th:switch="${gameCount != null and gameCount > 0}">
-      	<p class="menu_item" th:case="true"><a href="/game/all">Game</a></p>
-      	<p class="menu_item inactive" th:case="false">Game</p>
+      	<p class="menu_item" th:case="true"><a style="text-shadow: 0 0 6px #FFD700;" href="/game/all">Game</a></p>
+      	<p class="menu_item inactive" th:case="false" style="text-shadow: 0 0 6px #FFD700;">Game</p>
       </li>
-      <li><p class="menu_item"><a href="/videos">Story</a></p></li>
-      <li><p class="menu_item"><a href="/assets/html/help.html">Help</a></p></li>
-      <li><p class="menu_item"><a href="javascript: logout();">Logout</a></p></li>
+      <li><p class="menu_item"><a style="text-shadow: 0 0 6px #FFD700;" href="/videos">Story</a></p></li>
+      <li><p class="menu_item"><a style="text-shadow: 0 0 6px #FFD700;" href="/assets/html/help.html">Help</a></p></li>
+      <li><p class="menu_item"><a style="text-shadow: 0 0 6px #FFD700;" href="javascript: logout();">Logout</a></p></li>
      </ul>
     </div>
    </div>
