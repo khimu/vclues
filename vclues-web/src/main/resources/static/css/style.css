@@ -173,13 +173,15 @@ body {
 	overflow: hidden;
 	position: relative;
 }
+/*
 .btn_close {
-	display: block;
-	left: 143.5px;
-	margin: 0 auto;
-	position: relative;
-	width: 55px;
+		display: block;
+        right: 20px;
+        margin: 0 auto;
+        position: absolute;
+        width: 55px;
 }
+*/
 a.btn_close img {
 	display: block;
 }
@@ -511,7 +513,7 @@ a.right-4 img {
 	width: 253px;
 	z-index: 0;
 }
-.wrapper-5 {
+.wrapper-inner {
 	height: 334px;
 	left: 7px;
 	margin: 0 auto;
@@ -707,6 +709,7 @@ a.btn_close-5 img {
 	font-weight: normal;
 	font-family: Deneane, serif;
 }
+/*
 .col {
 	margin: 39px auto 0;
 	min-height: 48px;
@@ -718,6 +721,7 @@ a.btn_close-5 img {
 	z-index: 139;
 	background: url(/assets/images/curtain_plate.png) no-repeat;
 }
+*/
 .curtain_plate_text-4 {
 	font-family: Deneane, serif;
 	font-weight: normal;
@@ -881,13 +885,17 @@ a.btn_show-2 img {
 .header-5 {
 	position: relative;
 }
+/*
 .row {
 	position: relative;
 }
+*/
+/*
 .btn_anounce {
 	float: left;
 	margin: 0 233px 0 0;
 }
+*/
 a.btn_anounce img {
 	display: block;
 }
@@ -1057,7 +1065,7 @@ a.btn_close-7 img {
 	display: block;
 	left: 143.5px;
 	margin: 0 auto;
-	position: relative;
+	position: absolute;
 	width: 55px;
 }
 a.btn_close-8 img {
@@ -1216,15 +1224,18 @@ a.btn_done img {
 	font-weight: normal;
 }
 .home_layer {
-	left: 50%;
-	min-height: 606px;
-	padding: 34px 27px 0;
-	position: absolute;
-	top: 0;
-	width: 375px;
-	background: url(/assets/images/login_register_cover.png) no-repeat;
-	margin-left: -187.5px;
+	//left: 50%;
+	min-height: 100%;
+	//padding: 34px 27px 0;
+	//position: absolute;
+	//top: 0;
+	width: 100%;
+	background: url(/assets/images/login_register_cover.png) no-repeat fixed;
+	background-size:100% 100%;
+	
+	//margin-left: -187.5px;
 }
+
 .logo {
 	display: block;
 	margin: 0 auto;
