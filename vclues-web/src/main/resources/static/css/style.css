@@ -159,6 +159,7 @@ body {
 	position: relative;
 	width: 375px;
 }
+/*
 .game_detail_layer {
 	left: 50%;
 	min-height: 640px;
@@ -173,15 +174,14 @@ body {
 	overflow: hidden;
 	position: relative;
 }
-/*
-.btn_close {
-		display: block;
-        right: 20px;
-        margin: 0 auto;
-        position: absolute;
-        width: 55px;
-}
 */
+.btn_close {
+	display: block;
+	margin: 0 auto;
+	width: 55px;
+	float:right;
+}
+
 a.btn_close img {
 	display: block;
 }
@@ -204,7 +204,7 @@ a.left img {
 	display: block;
 }
 .right {
-	float: left;
+	float: right;
 }
 a.right img {
 	display: block;
@@ -214,11 +214,14 @@ a.right img {
 	margin: -278px auto 0;
 	position: relative;
 }
+/*
 .wrapper {
 	height: 266px;
 	position: relative;
 	width: 233px;
 }
+*/
+/*
 .tag {
 	left: 50%;
 	margin: 0 0 0 -63.5px;
@@ -231,12 +234,15 @@ a.right img {
 	font-family: Deneane, serif;
 	text-align: center;
 }
+*/
+/*
 .curtain_plate {
 	left: 50%;
 	position: absolute;
 	top: 0;
 	margin-left: -99.5px;
 }
+*/
 .text {
 	left: 50%;
 	position: absolute;
@@ -249,18 +255,21 @@ a.right img {
 	font-weight: normal;
 	text-align: center;
 }
+
 .subtitle {
 	margin: 8px 0 0;
 	font-family: Deneane, serif;
 	font-weight: normal;
 	text-align: center;
 }
+/*
 .game_description {
 	margin: 56px 0 0;
 	font-family: Deneane, serif;
 	font-size: 10.66667px;
 	text-align: center;
 }
+*/
 .game_description-2 {
 	margin: 3px 0 0;
 	font-family: Deneane, serif;
@@ -281,6 +290,7 @@ a.right img {
 	font-size: 38.75742px;
 	margin-left: -55.5px;
 }
+
 .player_glow {
 	left: 50%;
 	position: absolute;
@@ -307,16 +317,19 @@ a.right img {
 .li-email_text-2 {
 	margin: 1px 0 0;
 }
+
 .select {
-	margin: 105px auto 0;
-	min-height: 30px;
-	padding: 5px 5px 15px 0;
-	width: 215px;
-	background: url(/assets/images/select_plate.png) no-repeat;
-	font-family: Deneane, serif;
-	font-size: 27px;
-	text-align: center;
+    padding: 0px;
+    margin: 0px;
+    min-height: 60px;
+    width: 100%;
+    background: url(/assets/images/select_plate.png) no-repeat;
+    background-position: center;
+    font-family: Deneane, serif;
+    font-size: 27px;
+    text-align: center;
 }
+
 .clue_layer {
 	left: 50%;
 	min-height: 528px;
@@ -369,8 +382,8 @@ a.right-2 img {
 	margin: -170px auto 0;
 	position: relative;
 	width: 233px;
-	color: #fafaf8;
-	font-size: 12px;
+	color: #000000;
+	font-size: 14px;
 	line-height: 1.2;
 }
 .announcement_layer {
@@ -454,8 +467,8 @@ a.right-3 img {
 	margin: -10px 0 0;
 	position: relative;
 	z-index: 50;
-	color: #fafaf8;
-	font-size: 12px;
+	color: #000000;
+	font-size: 14px;
 	line-height: 1.2;
 }
 .story_layer {
@@ -514,7 +527,7 @@ a.right-4 img {
 	z-index: 0;
 }
 .wrapper-inner {
-	height: 334px;
+	height: 234px;
 	left: 7px;
 	margin: 0 auto;
 	position: relative;
@@ -526,10 +539,10 @@ a.right-4 img {
 	position: absolute;
 	top: 112px;
 	width: 239px;
-	color: #fafaf8;
+	color: #000000;
 	line-height: 1.2;
 	margin-left: -119.5px;
-	font-size:12px;
+	font-size:14px;
 }
 .curtain_plate-2 {
 	left: 50%;
@@ -551,7 +564,7 @@ a.right-4 img {
 }
 .btn_show {
 	display: block;
-	margin: 16px 0 0;
+	margin: -10px 70px 0;
 	position: relative;
 	z-index: 78;
 }
@@ -768,6 +781,7 @@ a.fb_post img {
 	display: block;
 }
 .invite-2 {
+/*
 	display: block;
 	height: 112px;
 	padding: 2px;
@@ -775,6 +789,10 @@ a.fb_post img {
 	width: 250px;
 	z-index: 128;
 	border: none;	border: 0 none;
+*/
+	width:250px;
+	height: 120px;
+	padding:20px;
 	background: url(/assets/images/invite.png) no-repeat;
 }
 .button-2 {
@@ -808,6 +826,7 @@ a.fb_post img {
 	width: 375px;
 	margin-left: -187.5px;
 }
+/*
 .col-2 {
 	min-height: 566px;
 	padding: 66px 16px 8px;
@@ -816,6 +835,7 @@ a.fb_post img {
 	z-index: 0;
 	background: url(/assets/images/curtain.png) no-repeat;
 }
+*/
 .btn_close-6 {
 	display: block;
 	left: 144px;
@@ -890,12 +910,14 @@ a.btn_show-2 img {
 	position: relative;
 }
 */
-/*
+.row {
+     margin-right: 0px; 
+     margin-left: 0px; 
+}
 .btn_anounce {
 	float: left;
 	margin: 0 233px 0 0;
 }
-*/
 a.btn_anounce img {
 	display: block;
 }
@@ -1065,7 +1087,7 @@ a.btn_close-7 img {
 	display: block;
 	left: 143.5px;
 	margin: 0 auto;
-	position: absolute;
+	position: relative;
 	width: 55px;
 }
 a.btn_close-8 img {
@@ -1105,18 +1127,21 @@ a.right-5 img {
 .btn_done {
 	left: 50%;
 	position: absolute;
-	top: 346px;
+	bottom: 10px;
 	margin-left: 95px;
+	z-index:1000;
 }
 a.btn_done img {
 	display: block;
 }
+/*
 .character {
 	left: 50%;
 	position: absolute;
 	top: 134px;
 	margin-left: -150px;
 }
+*/
 .character_murderer_layer {
 	height: 305px;
 	left: 50%;
@@ -1147,18 +1172,22 @@ a.btn_done img {
 	font-size: 27px;
 	text-align: center;
 }
+/*
 .icon_murder {
 	left: 50%;
 	position: absolute;
 	top: 226px;
 	margin-left: 73.5px;
 }
+*/
+/*
 .dagger {
 	left: 50%;
 	position: absolute;
 	top: 0;
 	margin-left: -129.5px;
 }
+*/
 .character_select_layer {
 	left: 50%;
 	position: absolute;
@@ -1510,6 +1539,7 @@ a.fb_link img {
 	width: 305px;
 	background: url(/assets/images/description_paper.png) no-repeat 0 bottom;
 	margin-left: -158px;
+	color:#000000;
 }
 .btn_close-11 {
 	display: block;
@@ -1526,8 +1556,9 @@ a.btn_close-11 img {
 	position: relative;
 	right: 4px;
 	width: 263px;
-	font-size: 12px;
+	font-size: 14px;
 	line-height: 1.2;
+	color:#000000;
 }
 .font-myriadpro {
 	font-family: MyriadPro, serif;
@@ -1562,9 +1593,12 @@ a:hover !important, a:link !important, a:active !important {
     left:50px;
     width: 305px;
     background: url(/assets/images/description_paper.png) no-repeat 0 bottom;
+    color:#000000;
+    font-size:14px;
 }
 
 .descrpition_popup_altered ul {	
 	padding-left:10px;
 	padding-right:10px;
+ 	font-size:14px;
 }
