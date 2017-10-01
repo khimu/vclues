@@ -69,77 +69,7 @@
 <script>
 
 $( document ).ready(function() {
-    console.log( "ready!" );
-
-    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-    console.log(w);
-    console.log(h);
-
-    $('body').css({ 'height': h });   
-    $('body').css({ 'width': w });  
-    //$('.curtain_plate').css({ 'width': (w * .45) + "px"});  
-    $('.curtain_plate').css({ 'height': (h * .25) + "px" });
-    $('.pre-scrollable').css({ 'height': (h * .3) + "px" });
-    
-    console.log(parseInt(h));
-    
-    /* Default Values */
-	console.log(h + ' default ');
-    
-	var menu = h * .35;
-	var menumargin = menu * .30;
-	var closebtn = h * .1;   
-
-    if(w /*<![CDATA[*/ > /*]]>*/ 1000) {
-    	console.log(h + ' ipad landscape');
-    	var menu = h * .17;
-    	var menumargin = menu * .29;
-    	var closebtn = h * .12;
-    	$('.pre-scrollable').css({ 'height': (h * .28) + "px" });
-    }else if(h /*<![CDATA[*/ > /*]]>*/ 1000) {
-        	console.log(h + ' ipad portrait');
-        	var menu = h * .19;
-        	var menumargin = menu * .55;
-        	var closebtn = h * .12;    	
-        	$('.pre-scrollable').css({ 'height': (h * .6) + "px" });
-	} else if(h /*<![CDATA[*/< /*]]>*/ 325) {
-    	console.log(h + ' iphone 5 landscape');
-    	var menu = h * .19;
-    	var menumargin = menu * .30;
-    	var closebtn = h * .2;
-    	 $('.pre-scrollable').css({ 'height': (h * .5) + "px" });
-    } else if(h /*<![CDATA[*/< /*]]>*/ 380) {
-    	console.log(h + ' iphone 6 landscape');
-    	var menu = h * .15;
-    	var menumargin = menu * .30;
-    	var closebtn = h * .2;
-    	 $('.pre-scrollable').css({ 'height': (h * .45) + "px" });
-    } else if(h /*<![CDATA[*/< /*]]>*/ 450) {
-    	console.log(h + ' iphone 6+ landscape');
-    	var menu = h * .14;
-    	var menumargin = menu * .33;
-    	var closebtn = h * .2;
-    	 $('.pre-scrollable').css({ 'height': (h * .4) + "px" });
-    } else if(h /*<![CDATA[*/< /*]]>*/ 700) {
-    	console.log(h + ' iphone 6');
-    	var menu = h * .10;
-    	var menumargin = menu * .45;
-    	var closebtn = h * .1;    	
-    	 $('.pre-scrollable').css({ 'height': (h * .2) + "px" });
-	} else if(h /*<![CDATA[*/< /*]]>*/ 800) {
-    	console.log(h + ' iphone 6+');
-    	var menu = h * .12;
-    	var menumargin = menu * .50;
-    	var closebtn = h * .1;
-	}
-
-	$('.home-logo').css({'height': menu + 'px'});
-	$('.h1').css({'margin-top': menumargin + 'px'});
-	$('.btn_close').css({'top' : closebtn + 'px'});
-      
-    console.log(menu);
+	scriptview();
 });
 
 </script>

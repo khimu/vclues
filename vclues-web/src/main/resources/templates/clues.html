@@ -142,57 +142,7 @@ and (-webkit-min-device-pixel-ratio: 1){
 <script>
 
 $( document ).ready(function() {
-    console.log( "ready!" );
-    
-    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-    console.log(w);
-    console.log(h);
-
-    $('body').css({ 'height': h });   
-    $('body').css({ 'width': w });  
-    
-    console.log(parseInt(h));
-
-  console.log(h + ' default ');
-  var menu = h * .35;
-  var menumargin = menu * .30;  
-  var buttons = h * .2;
-
-    if(h /*<![CDATA[*/ > /*]]>*/ 1000) {
-      console.log(h + ' is ipad portrait');
-      var menu = h * .30;
-      var menumargin = menu * .15;
-      var buttons = h * .01;
-  }else if(w /*<![CDATA[*/ > /*]]>*/ 1000) {
-      console.log(h + ' is ipad landscape');
-      var menu = h * .25;
-      var menumargin = menu * .14;
-      var buttons = h * -.05;  
-  } else if(h /*<![CDATA[*/< /*]]>*/ 450) {
-      console.log(h + ' is device landscape');
-      var menu = h * .24;
-      var menumargin = menu * .04;
-      var buttons = h * -.08; 
-  } else if(h /*<![CDATA[*/< /*]]>*/ 700) {
-      console.log(h + ' is iphone 6');
-      var menu = h * .2;
-      var menumargin = menu * .15;
-      var buttons = h * -.07; 
-  } else if(h /*<![CDATA[*/< /*]]>*/ 800) {
-      console.log(h + ' is iphone 6+');
-      var menu = h * .25;
-      var menumargin = menu * .15;
-      var buttons = h * -.05;
-  }
-
-    
-  $('.home-logo').css({'height': menu + 'px'});
-  $('.h1').css({'margin-top': menumargin + 'px'});   
-  $('.buttons').css({'margin-top': buttons + 'px'});  
-
-    console.log(menu);
+cluesview();
 
 });
 

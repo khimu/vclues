@@ -78,48 +78,7 @@
 
     
 $( document ).ready(function() {
-    console.log( "ready!" );
-
-    
-    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-    console.log(w);
-    console.log(h);
-
-    $('body').css({ 'height': h });   
-    $('body').css({ 'width': w });  
-    
-    console.log(parseInt(h));
-
-	console.log(h + ' default ');
-	var menu = h * .35;
-	var menumargin = menu * .30;    
-    
-    if(w /*<![CDATA[*/ > /*]]>*/ 1000) {
-    	console.log(h + ' is ipad portrait');
-    	var menu = h * .7;
-    	var menumargin = menu * .35;
-	} else if(h /*<![CDATA[*/< /*]]>*/ 450) {
-    	console.log(h + ' is less than 600');
-    	var menu = h * .6;
-    	var menumargin = menu * .30;
-	} else if(h /*<![CDATA[*/< /*]]>*/ 700) {
-    	console.log(h + ' is less than 600');
-    	var menu = h * .25;
-    	var menumargin = menu * .15;   	
-	} else if(h /*<![CDATA[*/< /*]]>*/ 800) {
-    	console.log(h + ' is less than 800');
-    	var menu = h * .25;
-    	var menumargin = menu * .25;
-	}
-
-    
-	$('.home-logo').css({'height': menu + 'px'});
-	$('.h1').css({'margin-top': menumargin + 'px'});    
-    
-    console.log(menu);
-
+  menuview();
 });
 
 
