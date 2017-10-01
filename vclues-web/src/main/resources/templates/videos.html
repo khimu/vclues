@@ -17,19 +17,19 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />      
       
-      <link rel='shortcut icon' type='image/x-icon' href='http://vclues.com/images/favicon.ico' />
+      <link rel='shortcut icon' type='image/x-icon' href='/images/favicon.ico' />
     
     <!-- Opera Speed Dial Favicon -->
-      <link rel="icon" type="image/png" href="http://vclues.com/images/android-chrome-512x512.png" />
+      <link rel="icon" type="image/png" href="/images/android-chrome-512x512.png" />
     
     <!-- For iPhone 4 Retina display: -->
-      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://vclues.com/images/apple-touch-icon-114x114.png"/>
+      <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114.png"/>
     
     <!-- For iPad: -->
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://vclues.com/images/apple-touch-icon-72x72.png"/>
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72.png"/>
     
     <!-- For iPhone: -->
-      <link rel="apple-touch-icon-precomposed" href="http://vclues.com/images/apple-touch-icon-57x57.png"/>     
+      <link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-57x57.png"/>     
                 
         <link rel="stylesheet" type="text/css" href="http://vclues.com/css/style.css" />  
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -87,7 +87,7 @@ a, a:hover, a:link, a:active {
     position: relative;
     width: 100%;
     height:100%;
-    background: url(/assets/images/curtain.png) no-repeat;
+    background: url(/images/curtain.png) no-repeat;
     background-size: 100% 100%;
 }
 
@@ -127,7 +127,7 @@ a, a:hover, a:link, a:active {
 	} 
 
 	.curtain_plate {
-		background: url(/assets/images/curtain_plate.png) no-repeat;
+		background: url(/images/curtain_plate.png) no-repeat;
 		background-size: 204px 124px;
 		background-position: center; 
 		margin: 0px; 
@@ -157,7 +157,7 @@ and (-webkit-min-device-pixel-ratio: 1){
 	}
 
 	.curtain_plate {
-		background: url(/assets/images/curtain_plate.png) no-repeat;
+		background: url(/images/curtain_plate.png) no-repeat;
 		background-size: 504px 224px;
 		background-position: center;
 		margin: 0px; 
@@ -192,16 +192,16 @@ $( document ).ready(function() {
 <div class="wrapper">
   <div class="container-fluid" style="text-align:center;">
   
-     	<a href="javascript: prev();" style="position:absolute;top:50%;left:0px;"><img src="/assets/images/left.png" alt="" width="44" height="63"/></a>
-     	<a href="javascript: next();" style="position:absolute;top:50%;right:0px;"><img src="/assets/images/right.png" alt="" width="44" height="63"/></a>
+     	<a href="javascript: prev();" style="position:absolute;top:50%;left:0px;"><img src="/images/left.png" alt="" width="44" height="63"/></a>
+     	<a href="javascript: next();" style="position:absolute;top:50%;right:0px;"><img src="/images/right.png" alt="" width="44" height="63"/></a>
  
   
     <div class="buttons row justify-content-md-center">
       <div class="col-2">
-        <a href="#" class="btn_anounce"><img src="/assets/images/space.png" alt="" width="55" height="54" /></a>
+        <a href="#" class="btn_anounce"><img src="/images/space.png" alt="" width="55" height="54" /></a>
       </div>
       <div class="col-2">
-        <a href="/" class="btn_close" style="left: 0px;"><img src="/assets/images/btn_close.png" alt="" width="54" height="54"/></a>
+        <a href="/" class="btn_close" style="left: 0px;"><img src="/images/btn_close.png" alt="" width="54" height="54"/></a>
       </div>
     </div>
     
@@ -231,7 +231,7 @@ $( document ).ready(function() {
 			 			<div class="modal-dialog">
 			   				<!-- Modal content-->
 			   				<div class="modal-body">
-			     				<a href="#" data-dismiss="modal" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="55"/></a>
+			     				<a href="#" data-dismiss="modal" class="btn_close"><img src="/images/btn_close.png" alt="" width="55" height="55"/></a>
 			                   <iframe id="trailer-player" th:src="${story.video}" width="100%" height="100%" frameborder="0" allowfullscreen=""></iframe>
 			               </div>
 			   			</div>
@@ -239,7 +239,7 @@ $( document ).ready(function() {
 					<!-- End Modal -->	
 
 
-						<!-- <a style="z-index:0;" href="javascript: return false;" data-toggle="modal" th:attr="data-target='#modal_description_'+${story.id}" ><img src="/assets/images/btn_show.png" alt="" width="46" height="42"/></a> -->
+						<!-- <a style="z-index:0;" href="javascript: return false;" data-toggle="modal" th:attr="data-target='#modal_description_'+${story.id}" ><img src="/images/btn_show.png" alt="" width="46" height="42"/></a> -->
 					  <div class="row" style="position:relative;">
 					    <div class="col">	
 						    <div class="select"  th:switch="${isPaid == 2}"> 

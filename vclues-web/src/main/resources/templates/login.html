@@ -10,19 +10,19 @@
     	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
     	<meta name="viewport" content="width=device-width, initial-scale=1" />    	
     	
-    	<link rel='shortcut icon' type='image/x-icon' href='http://vclues.com/images/favicon.ico' />
+    	<link rel='shortcut icon' type='image/x-icon' href='/images/favicon.ico' />
 		
 		<!-- Opera Speed Dial Favicon -->
-		  <link rel="icon" type="image/png" href="http://vclues.com/images/android-chrome-512x512.png" />
+		  <link rel="icon" type="image/png" href="/images/android-chrome-512x512.png" />
 		
 		<!-- For iPhone 4 Retina display: -->
-		  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://vclues.com/images/apple-touch-icon-114x114.png"/>
+		  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114.png"/>
 		
 		<!-- For iPad: -->
-		  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://vclues.com/images/apple-touch-icon-72x72.png"/>
+		  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72.png"/>
 		
 		<!-- For iPhone: -->
-		  <link rel="apple-touch-icon-precomposed" href="http://vclues.com/images/apple-touch-icon-57x57.png"/>    	
+		  <link rel="apple-touch-icon-precomposed" href="/images/apple-touch-icon-57x57.png"/>    	
         	    	
         <link rel="stylesheet" type="text/css" href="http://vclues.com/css/style.css" />	
         <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
@@ -220,7 +220,7 @@ and (orientation : portrait) {
   
   <div class="row login-logo">
     <div class="col">
-      <img src="/assets/images/logo.png" alt="" width="253" height="118"/>
+      <img src="/images/logo.png" alt="" width="253" height="118"/>
     </div>
   </div>
 
@@ -246,7 +246,7 @@ and (orientation : portrait) {
   
   <div class="row">
     <div class="col" style="padding-top:5%;">
-      <img src="/assets/images/magnifying_glass.png" alt="" width="179" height="105"/>
+      <img src="/images/magnifying_glass.png" alt="" width="179" height="105"/>
     </div>
   </div>  
 </div>
@@ -262,7 +262,7 @@ and (orientation : portrait) {
 			    			<div class="modal-body">
 		    					<div class="descrpition_popup_altered">
 		    					
-				      				<a href="#" data-dismiss="modal" class="btn_close-11"><img src="/assets/images/btn_close_11.png" alt="" width="55" height="55"/></a>
+				      				<a href="#" data-dismiss="modal" class="btn_close-11"><img src="/images/btn_close_11.png" alt="" width="55" height="55"/></a>
 	                            	<p class="description_popup_text pre-scrollable" style="text-align:center;">
 <table style="border-collapse: separate; border-spacing: 2px;padding-left:15px;">
     <tr>
@@ -328,7 +328,7 @@ and (orientation : portrait) {
 				<form class="login_form_layer-form" th:action="@{/login}" method="post" id="user_login_form">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
 					<div class="login_form_layer">
-	     				<a href="#" class="btn_close-9" data-dismiss="modal"><img src="/assets/images/btn_close_9.png" alt="" width="52" height="53" /></a>
+	     				<a href="#" class="btn_close-9" data-dismiss="modal"><img src="/images/btn_close_9.png" alt="" width="52" height="53" /></a>
 	    	 			<h1 class="form_title">Login</h1>
 	     				<div class="wrapper-12">
 	      					<!-- <input type="password" class="password" id="lg_password" name="password" placeholder="password"  required="required"/>-->
@@ -337,7 +337,7 @@ and (orientation : portrait) {
 	      					<input class="password-2 form-fields" type="password" id="lg_password" name="password" placeholder="password"  required="required"/>
 	     				</div>
 	      				<div class="row-2 group">
-	       					<a href="#" class="fb_btn" onclick="fb_login();"><img src="/assets/images/fb_btn.png" alt="" width="105" height="35"/></a>
+	       					<a href="#" class="fb_btn" onclick="fb_login();"><img src="/images/fb_btn.png" alt="" width="105" height="35"/></a>
 	       					<button type="submit" class="btn btn-primary btn-sm" style="opacity: 0.7;height:37px;">Done</button>
 	       				</div>
 	    			</div>
@@ -354,7 +354,7 @@ and (orientation : portrait) {
 	    			<form id="new_user_form" class="register_form_layer-form" th:action="@{/signup}" th:object="${userForm}" method="post">
 	    				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
 						<div class="register_form_layer">
-		      				<a href="#" class="btn_close-10" data-dismiss="modal"><img src="/assets/images/btn_close_10.png" alt="" width="48" height="48"/></a>
+		      				<a href="#" class="btn_close-10" data-dismiss="modal"><img src="/images/btn_close_10.png" alt="" width="48" height="48"/></a>
 		      				<h1 class="form_title">Register</h1>
 		      				<div class="wrapper-17">
 		       					<input type="text" required="true" minlength="8" maxlength="32" class="username-2 form-fields" id="reg_email" name="email" placeholder="email" th:errorclass="fieldError"/>
@@ -375,7 +375,7 @@ and (orientation : portrait) {
 							<p id="reg_agree_error" class="error"></p>
 							
 		      				<div class="row-3 group">
-		       					<a href="#" class="fb_link"  onclick="fb_login();"><img src="/assets/images/fb_link.png" alt="" width="105" height="35"/></a>
+		       					<a href="#" class="fb_link"  onclick="fb_login();"><img src="/images/fb_link.png" alt="" width="105" height="35"/></a>
 		       					<button type="submit" class="btn btn-primary btn-sm" style="opacity: 0.7;height:37px;">Done</button>
 		      				</div> 
 		      				
