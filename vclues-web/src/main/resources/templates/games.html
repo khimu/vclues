@@ -267,7 +267,7 @@ $( document ).ready(function() {
 				<span th:id="${iterStat.count}" th:style="${iterStat.count} > 1 ? 'display: none;' : ''" th:class="${iterStat.count} == 1 ? 'active' : ''">
 						<div class="center-block curtain_plate">
      						<span class="title" th:text="${game.name}"></span>
-     						<div class="subtitle">Requires <span th:text="${#lists.size(game.count)}"></span> Player</div>
+     						<div class="subtitle">Requires <span th:text="${game.count}"></span> Player</div>
      						
      						<p class="game_description" th:switch="${game.done == true}"> 
 								<span th:case="false">Game Started On <span th:text="${#dates.format(game.started, 'MM-dd-yyyy')}"></span></span>
