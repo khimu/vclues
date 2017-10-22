@@ -305,6 +305,8 @@ public class GameController extends BaseController {
 
 		Story story = storyService.getStory(Long.parseLong(storyId));
 		
+		//logger.info("Game Size: " + story.getSize());
+		
 		Game game = new Game();
 		game.setCount(story.getSize());
 		game.setName(story.getTitle());
@@ -335,6 +337,13 @@ public class GameController extends BaseController {
 		if(!UserType.PAID.isEnabled(user.getType())) {
 			return "redirect:/";
 		}
+		
+		Story story = storyService.getStory(Long.parseLong(storyId));
+		
+        if (game.getCount() != story.getSize()) {
+            model.addAttribute("error", "This game requres " + story.getSize() + " players");
+            return showForm(storyId, model);
+        }		
 
 		// go back to the game cast view
 		return "redirect:/game/cast/" + gameService.saveGame(game, storyId, user.getId(), user.getEmail()).getId();

@@ -221,6 +221,7 @@ $( document ).ready(function() {
 					  <div class="row">
 					    <div class="col">
 											<div class="pre-scrollable center-block">
+												<h3 th:text="Players + ' ' + ${story.size}"></h3>
 												<p th:utext="${story.synapsis == null ? '' : story.synapsis}"></p>
 											</div>
 					    </div>

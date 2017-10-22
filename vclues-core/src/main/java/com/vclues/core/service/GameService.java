@@ -361,8 +361,6 @@ public class GameService implements IGameService {
 		for(String em : tmp) {
 			final String invitee = em.trim();
 			results.add(invitee);
-			// create a user with password
-			String activationKey = RandomStringUtils.randomAlphabetic(20);
 			
 			String password = RandomStringUtils.randomAlphabetic(5);
 			
@@ -393,16 +391,15 @@ public class GameService implements IGameService {
 			        final Email invite = DefaultEmail.builder()
 			                .from(new InternetAddress(myEmail, "VClues"))
 			                .to(Lists.newArrayList(new InternetAddress(invitee)))
-			                .subject("VClues Registration")
+			                .subject("Vega Clues Invite")
 			                .body("")//Empty body
 			                .encoding(Charset.forName("UTF-8").name()).build();
 			            
 			        final Map<String, Object> modelObject = new HashMap<>();
-			            
-			        modelObject.put("url", baseUrl + "/confirm/" + finalUser.getEmail() + activationKey);
+
 			        modelObject.put("email", email);
-			        
-			        
+			        modelObject.put("url", baseUrl);
+
 			        if(finalnewuser) {
 			        	modelObject.put("password", password);
 			        }
@@ -411,7 +408,7 @@ public class GameService implements IGameService {
 			        }
 			        emailService.send(invite, "emails/invite.ftl", modelObject);  
 				}catch(Exception e) {
-					logger.error("Unable to email invite registration confirmation link for /confirm/" +e + "/" + activationKey);
+					logger.error("Unable to email invite user " + finalUser.getEmail());
 					e.printStackTrace();
 				}		
 			});

@@ -265,6 +265,12 @@ $( document ).ready(function() {
 						</div>
 					</div>
 				</div>
+				
+				<div class="row" style="position: relative;">
+					<div class="col">
+						<span class="alert alert-danger" th:if="${error != null}" th:text="${error}"></span>
+					</div>
+				</div>
 			</form>
 		</div>
 
