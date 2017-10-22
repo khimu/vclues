@@ -25,8 +25,10 @@ public interface GameRepository extends MongoRepository<Game, String> {
     public List<Game> findGamesByEmailAndDone(String email, Boolean done);
         
     //@ReadThroughSingleCache(namespace = "GamesByEmail")
+    //@Query("{$and: [ { 'categoryId': { $eq: ?0 } }, { 'isDeleted': { $eq: ?1 } } ]}")
+
     @Query(value = "{ 'emails' : { $all: [?0] }}")
-    public List<Game> findGamesByEmail(@ParameterValueKeyProvider String email);
+    public List<Game> findGamesByEmail(@ParameterValueKeyProvider String email, org.springframework.data.domain.Sort sor);
     
     //@ReadThroughSingleCache(namespace = "CountByEmail")
     public Long countByEmails(@ParameterValueKeyProvider String email);

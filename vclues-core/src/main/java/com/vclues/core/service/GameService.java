@@ -24,6 +24,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
@@ -489,7 +491,8 @@ public class GameService implements IGameService {
 	
 	@Override
 	public List<Game> findGamesByEmail(String email) {
-		List<Game> games = gameRepository.findGamesByEmail(email);
+		Sort sort = new Sort(Direction.DESC, "order");
+		List<Game> games = gameRepository.findGamesByEmail(email, sort);
 		
 		for(Game g : games) {
 			List<Player> players = playerRepository.findAllPlayersByGame(g);
