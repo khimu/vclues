@@ -268,7 +268,11 @@ $( document ).ready(function() {
 						<div class="center-block curtain_plate">
      						<span class="title" th:text="${game.name}"></span>
      						<div class="subtitle">Requires <span th:text="${#lists.size(game.count)}"></span> Player</div>
-     						<p class="game_description"><span th:if="${game.started != null}">Game Started On <span th:text="${#dates.format(game.started, 'MM-dd-yyyy')}"></span></span></p>
+     						
+     						<p class="game_description" th:switch="${game.done == true}"> 
+								<span th:case="false">Game Started On <span th:text="${#dates.format(game.started, 'MM-dd-yyyy')}"></span></span>
+					       		<span th:case="true">Game Over</span>
+     						</p>
     					</div>	
     					
     					<div class="row" style="position:relative;">
