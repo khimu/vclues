@@ -66,7 +66,7 @@
 						              </thead>
 						              <tbody>
 											<tr th:each="s,iterStat : ${story?.scenes}" th:class="${iterStat.odd}? 'odd'">
-											    <td th:text="${s.position}"></td>
+											    <td th:text="${s.position}" />
 											    <td th:text="${s.text}" />
 											    <td th:text="${s.image}" />
 												<!-- <td><a th:href="@{/admin/scene/edit/{id}(id=${s.id})}" class="btn btn-default">Edit</a></td> -->
@@ -89,32 +89,19 @@
 									        <th>Description</th>
 									      </tr>
 						              </thead>
-						              <tbody>
-											<tr th:each="c,iterStat : ${story?.casts}" th:class="${iterStat.odd}? 'odd'">
-											    <td th:text="${c.name}"></td>
+						              <tbody th:each="c,iterStat : ${story?.casts}" th:class="${iterStat.odd}? 'odd'">
+											<tr>
+											    <td th:text="${c.name}"/>
 											    <td th:text="${c.role}" />
 											    <td th:text="${c.gender}" />
 											    <td th:text="${c.description}" />
-												<form class="text-left" th:action="@{/admin/assets}" method="POST" enctype="multipart/form-data">
-													<!-- 
-													<input type="hidden" name="domain" value="story"/>
-													<input type="hidden" name="id" value="${story.id}"/>
-													 -->
-													 <input type="hidden" name="castId" value="${c.id}"/>
-													 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-													<table>
-														<tr>
-															<td>Character Image</td>
-															<td><input type="file"  name="file" /></td>
-														</tr>
-														<tr>
-															<td></td>
-															<td><button type="submit" class="btn btn-info">Submit</button></td>
-														</tr>
-													</table>
-												</form>												    
 												<!-- <td><a th:href="@{/admin/cast/edit/{id}(id=${c.id})}" class="btn btn-default">Edit</a></td> -->
-											</tr>    
+											</tr> 
+											<tr>
+												<td colspan="4">
+												 	<img th:src="${c.image}"/>
+												</td>
+											</tr>   
 						              </tbody>
 						            </table>          	
                             	</div>

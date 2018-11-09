@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -21,6 +22,10 @@ public abstract class BaseController {
      
 	// A special header sent with each AJAX request
 	protected static final String IS_AJAX_HEADER = "X-Requested-With=XMLHttpRequest";
+	
+	@Value("${web.url}")
+	protected String webUrl;
+	
 
 	// example usage
 	protected HttpSession session() {

@@ -338,12 +338,19 @@ public class GameController extends BaseController {
 			return "redirect:/";
 		}
 		
+		logger.info("story id is " + Long.parseLong(storyId));
+		
 		Story story = storyService.getStory(Long.parseLong(storyId));
 		
-        if (game.getCount() != story.getSize()) {
-            model.addAttribute("error", "This game requres " + story.getSize() + " players");
-            return showForm(storyId, model);
-        }		
+		if(game == null) {
+			logger.info("game is null");
+		}
+		
+		
+        //if (game.getCount() != story.getSize()) {
+        //    model.addAttribute("error", "This game requres " + story.getSize() + " players");
+        //    return showForm(storyId, model);
+        //}		
 
 		// go back to the game cast view
 		return "redirect:/game/cast/" + gameService.saveGame(game, storyId, user.getId(), user.getEmail()).getId();
@@ -368,6 +375,46 @@ public class GameController extends BaseController {
 		model.addAttribute("player", player);
         
         return "scripts";
+    } 
+    
+    /*
+     * from games.html
+     * 
+     * only if has other's games displayed will a join be available
+     * 
+     * feature not implemented yet
+     */
+    @GetMapping("/join/{gameId}")
+    public String join(@PathVariable("gameId") String gameId, Model model) {
+    	logger.info("In join game");
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+		
+		gameService.joinGame(gameId, user.getEmail());
+
+		return "redirect:/game/cast/" + gameId;
+    } 
+    
+    /*
+     * From games.html
+     * 
+     * feature not implemented yet
+     */
+    @GetMapping("/inviteMore/{gameId}")
+    public String inviteMore(@PathVariable("gameId") String gameId, @PathVariable("emails") String emails, Model model) {
+    	logger.info("In join game");
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+		
+		gameService.inviteMore(gameId, user.getEmail(), emails);
+
+		return "redirect:/game/cast/" + gameId;
     } 
     
     /*
@@ -538,8 +585,10 @@ public class GameController extends BaseController {
 		}
 		
 		List<Game> games = gameService.findGamesByEmail(user.getEmail()); 
-    		
+
 		model.addAttribute("games", games);
+		
+		//model.addAttribute("othersGames", gameService.findOthersGamesByDone());
 
 		return "games";
     	

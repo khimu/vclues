@@ -24,7 +24,13 @@ public interface IGameService {
 
 	public Game saveGame(Game game, String storyId, Long userId, String username);
 	
+	public Game inviteMore(String gameId, String invitor, String invites);
+
+	public Game joinGame(String gameId, String member);
+	
 	public Game findOne(String id);
+	
+	public List<Game> findOthersGamesByDone();
 	
 	public void saveCastForGame(String gameId, String castId, Long userId, String castName, String name);
 	

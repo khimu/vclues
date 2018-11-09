@@ -200,7 +200,7 @@ public class GameService implements IGameService {
 		
 		// Add the current host player
 		savedGame.getEmails().add(username);
-		savedGame.setCount(savedGame.getEmails().size());
+		//savedGame.setCount(savedGame.getEmails().size());
 
 		player.setGame(savedGame);
 		playerRepository.save(player);
@@ -210,6 +210,50 @@ public class GameService implements IGameService {
 		gameRepository.save(savedGame);
 
 		return savedGame;
+	}
+	
+	@Override
+	public Game inviteMore(String gameId, String invitor, String invites) {
+		Game game = gameRepository.findOne(gameId);
+		
+		List<String> newInvites = sendInviteEmail(invitor, invites.toLowerCase(), game.getId());
+		
+		game.getEmails().addAll(newInvites);
+		
+		gameRepository.save(game);
+
+		return game;
+	}
+	
+	@Override
+	public Game joinGame(String gameId, String member) {
+		Game game = gameRepository.findOne(gameId);
+		
+		String password = RandomStringUtils.randomAlphabetic(5);
+		
+		User user = userService.findByEmail(member);
+		boolean newuser = false;
+		if(user == null) {
+			user = new User();
+			user.setEmail(member);
+			user.setPassword(password);
+		    user = userService.registerNewUser(user);
+		    newuser = true;
+		}
+
+		Player player = new Player();
+		player.setUserId(user.getId());
+		player.setName(member);
+		player.setGame(game);
+		
+		playerRepository.save(player);
+		game.getPlayers().add(player);
+		
+		game.getEmails().add(member);
+		
+		gameRepository.save(game);
+
+		return game;
 	}
 	
 	@Override
@@ -353,10 +397,15 @@ public class GameService implements IGameService {
 	
 	private final static ExecutorService executor = Executors.newCachedThreadPool();
 	
-	@Override
 	public List<String> sendInviteEmail(String email, String emails, String gameId) {
 		List<String> results = new ArrayList<String>();
-		String[] tmp = emails.split(",");
+		
+		String[] tmp = new String[]{};
+		if(emails.contains(",")) {
+			tmp = emails.split(",");
+		}else {
+			tmp = emails.split(" ");
+		}
 		
 		Game game = gameRepository.findOne(gameId);
 		
@@ -421,6 +470,7 @@ public class GameService implements IGameService {
 		
 		return results;
 	}
+	
 
 	@Override
 	public Game getGameWithGameCast(String gameId) {
@@ -515,6 +565,13 @@ public class GameService implements IGameService {
 		return games;
 	}
 	
+	@Override
+	public List<Game> findOthersGamesByDone() {
+		Sort sort = new Sort(Direction.DESC, "order");
+		List<Game> games = gameRepository.findOthersGamesByDone(sort);
+		return games;
+	}
+	
 	public List<Player> getGuesses(String gameId) {
 		Game game = gameRepository.findOne(gameId);
 		List<Player> players = playerRepository.findAllPlayersByGame(game);
@@ -552,11 +609,14 @@ public class GameService implements IGameService {
 
 		Long count = playerRepository.countByGameIdAndDone(gameId, true);
 		
+		Scene currentScene = sceneRepository.findOne(game.getSceneId());
+		List<Script> currentScripts = scriptRepository.getAllScriptsBySceneId(currentScene.getId());
+		
 		/*
 		 * all players are done with scene
 		 */
-		if(game.getGameCast().size() == count.intValue()) {
-			Scene currentScene = sceneRepository.findOne(game.getSceneId());
+		if(currentScripts.size() == count.intValue()) {
+			
 			Scene nextScene = sceneRepository.getNextSceneByStoryIdAndPosition(game.getStoryId(), currentScene.getPosition() + 1);
 			
 			/*
@@ -576,7 +636,11 @@ public class GameService implements IGameService {
 				
 				for(Player p : players) {
 					//p.setHintId(hint.getId());
-					p.setScriptId(castToScript.get(p.getCastId()).getId());
+					Long scriptId = castToScript.get(p.getCastId()).getId();
+					if(scriptId != null) {
+						p.setScriptId(castToScript.get(p.getCastId()).getId());
+					}
+					
 					p.setDone(false);
 					playerRepository.save(p);
 				}

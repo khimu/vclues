@@ -2,6 +2,7 @@ package com.vclues.core.mongo.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
@@ -23,6 +24,9 @@ public interface GameRepository extends MongoRepository<Game, String> {
     
     @Query(value = "{ 'emails' : { $all: [?0] }, 'done' : false }")
     public List<Game> findGamesByEmailAndDone(String email, Boolean done);
+    
+    @Query(value = "{ 'done' : false }")
+    public List<Game> findOthersGamesByDone(Sort sort);
         
     //@ReadThroughSingleCache(namespace = "GamesByEmail")
     //@Query("{$and: [ { 'categoryId': { $eq: ?0 } }, { 'isDeleted': { $eq: ?1 } } ]}")

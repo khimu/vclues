@@ -6,6 +6,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +32,9 @@ public class StoryController extends BaseController {
 
 	private final static Logger logger = LoggerFactory.getLogger(StoryController.class);
 
+	@Value("${web.url}")
+	protected String webUrl;
+	
 	@Autowired
 	private IUserService userService;
 	
@@ -58,6 +62,8 @@ public class StoryController extends BaseController {
 		model.addAttribute("content", "listStory"); 
 		model.addAttribute("title", "Stories");
 		
+		model.addAttribute("webUrl", webUrl);
+		
         return "admin";
     }
 
@@ -84,6 +90,8 @@ public class StoryController extends BaseController {
 		//model.addAttribute("scenes", storyService.getAllSceneByStoryId(Long.parseLong(storyId)));	
 		model.addAttribute("content", "storyDetail"); 
 		model.addAttribute("title", "Story Detail");
+		
+		model.addAttribute("webUrl", webUrl);
         
 		return "admin";
     }
@@ -103,6 +111,8 @@ public class StoryController extends BaseController {
 		
 		model.addAttribute("content", "editStory"); 
 		model.addAttribute("title", "Edit Story Detail");
+		
+		model.addAttribute("webUrl", webUrl);
         
 		return "admin";
     }
@@ -119,6 +129,8 @@ public class StoryController extends BaseController {
 		model.addAttribute("story", new Story());
         model.addAttribute("content", "addStory");
         model.addAttribute("title", "Add Story");
+        
+        model.addAttribute("webUrl", webUrl);
         
         return "admin";
     }
