@@ -1,0 +1,429 @@
+
+<!doctype html>
+<!-- login -->
+<html lang="en">
+    <head>
+    	<title>Vega Clues LLC</title>
+    	
+    	<meta charset="utf-8" />
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1" />    	
+    	
+    	<link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon/favicon.ico" />
+		
+	<!-- Opera Speed Dial Favicon -->
+	<link rel="icon" type="image/png" href="/assets/images/favicon/android-chrome-512x512.png" />
+		
+	<!-- For iPhone 4 Retina display: -->
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/favicon/apple-touch-icon-114x114-precomposed.png" />
+		
+	<!-- For iPad: -->
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/favicon/apple-touch-icon-72x72-precomposed.png" />
+		
+	<!-- For iPhone: -->
+	<link rel="apple-touch-icon-precomposed" href="/assets/images/favicon/apple-touch-icon-57x57-precomposed.png" />    	
+
+        <link href="/assets/css/responsive/main.css" rel="stylesheet" type="text/css" />
+        
+        <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css" />
+ 
+	<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+
+	<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+
+        <script src="/assets/js/typed.js" type="text/javascript"></script>
+        
+        <script src="/assets/js/jquery-ui.js" type="text/javascript"></script>
+
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		
+		  ga('create', 'UA-101505063-1', 'auto');
+		  ga('send', 'pageview');
+		
+		</script>
+		
+
+	<script src="/assets/js/social.js" type="text/javascript"></script>
+	
+		
+		<script>
+		
+			console.log('javascript working');
+		
+			//var bgImg = "/assets/images/LANDING/LANDING_828x628.png";
+			var bgLeft= "/assets/images/stories/story1/cast/SUSPECT-008.gif";
+			var bgRight= "/assets/images/stories/story1/cast/SUSPECT-011.gif";
+			
+			//console.log('variable good');
+		
+		      function content_type_short()
+		      {
+		    	  console.log('short typed string content_type_short');
+		    	  
+		        Typed.new(".typed", 
+		        {
+		            stringsElement: document.getElementById('describe_site_short_typed_strings'),
+		            typeSpeed: 30,
+		            backDelay: 2000,
+		            loop: false,
+		            contentType: 'html', // or text
+		            // defaults to null for infinite loop
+		            loopCount: null
+		        });
+		      }
+		      function story_phrase()
+		      {
+		    	  console.log('short typed string story_phrase');
+		    	  
+		        Typed.new(".typed_phrase", 
+		        {
+		            stringsElement: document.getElementById('describe_site_phrase_typed_strings'),
+		            typeSpeed: 70,
+		            backDelay: 2000,
+		            loop: false,
+		            contentType: 'html', // or text
+		            // defaults to null for infinite loop
+		            loopCount: null,
+		            callback: function(){ foo(); }
+		            //resetCallback: function() { newTyped(); }
+		        });
+		    }
+		      
+		    function foo()
+		    {
+		    	//console.log('foo is called');
+		        jQuery("#describe_about_site_startup").css("top",'550%');
+		        jQuery("#describe_about_site_startup").css("left","-100%");
+		        
+		        //console.log(jQuery("#describe_about_site-left").html());
+		        jQuery(".login_register_button_outer-left").fadeIn(1000);
+		        jQuery(".login_register_button_outer-right").fadeIn(1000);
+		        
+		        jQuery("#describe_about_site-left").fadeIn(1000);
+		        //jQuery("#describe_about_site-right").fadeIn(1000);
+		    }
+		    
+		    jQuery(document).ready(function()
+		    {
+		    	
+		    	//console.log('document ready');
+		    	
+	    	    $(".prev").click(function() {
+	    			$('.container-left').show();
+	    			$('.container-right').hide();
+	    	    });
+
+	    	    $(".next").click(function() {
+	    			$('.container-left').hide();
+	    			$('.container-right').show();
+	    	    });
+
+		    	
+		        //Code for align div at center of the screen
+		    	jQuery.fn.center = function(parent) 
+		    	{
+		    		if (parent) 
+		    		{
+		    			parent = this.parent();
+		    		} 
+		    		else 
+		    		{
+		    			parent = window;
+		    		}
+		    		this.css({
+		    			"position": "fixed",
+		    			"display": "block",
+		    			"top": (((jQuery(parent).height() - this.outerHeight()) / 2) + jQuery(parent).scrollTop() + "px"),
+		    			"left": (((jQuery(parent).width() - this.outerWidth()) / 2) + jQuery(parent).scrollLeft() + "px")
+		    		});
+		    		left=((jQuery(parent).width() - this.outerWidth()) / 2) + jQuery(parent).scrollLeft() + "px";
+		    		//return this;
+		    		return left;
+		    	}
+		        
+		    	
+		    	
+		        //jQuery('<img />').attr('src', bgImg).on('load', function() 
+		        //{
+		        	//console.log('image loaded ' + bgImg);
+		        	
+		            //load bg images of login and register
+		            jQuery('<img />').attr('src', '/assets/images/bubbles_login.png').on('load', function() 
+		            {
+		            	//console.log('login loaded');
+		                jQuery(this).remove();
+		                
+		                imageUrl='/assets/images/bubbles_login.png';
+		                jQuery(".login_register_button_outer-left li:nth-child(1) .describe_site").css('background-image', 'url(' + imageUrl + ')');
+		            });
+		            
+		            jQuery('<img />').attr('src', '/assets/images/bubbles_register.png').on('load', function() 
+		            {
+		            	//console.log('register loaded');
+		                jQuery(this).remove();
+		                imageUrl='/assets/images/bubbles_register.png';
+		                jQuery(".login_register_button_outer-right li:nth-child(1) .describe_site").css('background-image', 'url(' + imageUrl + ')');
+		            });
+		            
+		            jQuery('<img />').attr('src', '/assets/images/posty_note_bg.png').on('load', function() 
+		            {
+		            	console.log('posty loaded');
+		                jQuery(this).remove();
+		                imageUrl='/assets/images/posty_note_bg.png';
+		                
+		                jQuery("#register_outer .model-content").css('background-image', 'url(' + imageUrl + ')');
+		                
+		                jQuery("#login_outer .model-content").css('background-image', 'url(' + imageUrl + ')');
+		                
+		                jQuery('<img />').attr('src', '/assets/images/VEGA-DONE-KNIFE--RED-200-X-39.gif').on('load', function() 
+		                {
+		                	console.log('knife submitted');
+		                    jQuery(this).remove();
+		                    imageUrl='/assets/images/VEGA-DONE-KNIFE--RED-200-X-39.gif';
+		                    jQuery("#register_outer button").css('background-image', 'url(' + imageUrl + ')');
+		                    
+		                    jQuery('<img />').attr('src', '/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif').on('load', function() 
+		                    {
+		                    	console.log('knife submitted');
+		                        jQuery(this).remove();
+		                        imageUrl='/assets/images/VEGA-CLUES-JULY-5-2017-VER-4.gif';
+		                        jQuery("#logo_outer .logo").css('background-image', 'url(' + imageUrl + ')');
+		                        jQuery("#register_outer .logo").css('background-image', 'url(' + imageUrl + ')');
+		                        
+		                        	console.log('phrase bg submitted');
+		                        	
+		                            jQuery(this).remove();
+		                            
+		                            imageUrl='/assets/images/phrase_bg.png';
+
+		                            /* girl */
+		                            jQuery('<img />').attr('src', bgLeft).on('load', function() 
+		                            {
+		                            	console.log('bg left');
+		                            	
+		                            	/* other girl */
+		                                jQuery('<img />').attr('src', bgRight).on('load', function() 
+		                                {
+		                                	console.log('bg right');
+		                                	
+		                                    jQuery(this).remove();
+		                                    jQuery("#bg_left_character img").attr('src', bgLeft);
+		                                    jQuery("#bg_right_character img").attr('src', bgRight);
+		                                    jQuery("#bg_left_character").addClass('bg_left_character_after_load');
+		                                    jQuery("#bg_right_character").addClass('bg_right_character_after_load');
+		                                    
+		                                    
+		                                    jQuery("#loader").hide();
+		                                    
+		                                    setTimeout(
+		                                    function() 
+		                                    {
+		                                        cal_left=jQuery("#describe_about_site_startup").center(true);
+		                                        jQuery("#describe_about_site_startup").css("top",'70%');
+		                                        jQuery("#describe_about_site_startup").css("left",cal_left); 
+		                                        story_phrase(); 
+		                                      }, 400);
+		                                });
+		                            });
+
+		                    });
+		                });
+		            });
+		        //});
+		        
+		        console.log('login stuff');
+		        
+		        jQuery(".login_register_button_outer-left li:nth-child(1)").hover(function () 
+		        {
+		        	console.log('login child 1');
+		        	
+		            jQuery(this).find(".describe_site").fadeIn(2000);
+		            jQuery(this).find(".describe_site").addClass('left_bubble_hover');
+		            content_type_short();
+		            
+		            jQuery(this).rotate({ animateTo:30});
+		            
+		            jQuery(this).find(".describe_site").rotate({ animateTo:-30});
+		        },function () 
+		        {
+		            jQuery(this).find(".describe_site").hide();
+		            jQuery(this).find(".describe_site").css("left",'30%');
+		            jQuery(this).rotate({ animateTo:0});
+		            jQuery(this).find(".describe_site").rotate({ animateTo:-30});
+		        });
+
+		        
+        		jQuery(".login_register_button_outer-right li:nth-child(1)").hover(function () 
+		        {
+		        	console.log('login child 1');
+		        	
+		            jQuery(this).find(".describe_site").fadeIn(2000);
+		            jQuery(this).find(".describe_site").addClass('right_bubble_hover');
+		            content_type_short();
+		            
+		            jQuery(this).rotate({ animateTo:30});
+		            
+		            jQuery(this).find(".describe_site").rotate({ animateTo:-30});
+		        },function () 
+		        {
+		            jQuery(this).find(".describe_site").hide();
+		            jQuery(this).find(".describe_site").css("right",'30%');
+		            jQuery(this).rotate({ animateTo:0});
+		            jQuery(this).find(".describe_site").rotate({ animateTo:-30});
+		        });
+        		
+        		
+            	$("#register-form-account").on('submit', function() {
+            		if($('#reg_agree').is(':checked')) {
+            			return true;
+            		}
+            		
+            		$('#reg_agree_error').html('Please agree to our terms');
+            		return false;
+            	});        		
+        		
+		      });
+		   
+
+			(function() {
+			    function log(info) {
+			        console.log(info);
+			        // alert(info);
+			    }
+			    function forceSafariPlayAudio() {
+			        audioEl.load(); // iOS 9   还需要额外的 load 一下, 否则直接 play 无效
+			        audioEl.play(); // iOS 7/8 仅需要 play 一下
+			    }
+			    var audioEl = document.getElementById('bgmusic');
+			    audioEl.addEventListener('loadstart', function() {
+			        log('loadstart');
+			    }, false);
+			    audioEl.addEventListener('loadeddata', function() {
+			        log('loadeddata');
+			    }, false);
+			    audioEl.addEventListener('loadedmetadata', function() {
+			        log('loadedmetadata');
+			    }, false);
+			    audioEl.addEventListener('canplay', function() {
+			        log('canplay');
+			    }, false);
+			    audioEl.addEventListener('play', function() {
+			        log('play');
+			        // 当 audio 能够播放后, 移除这个事件
+			        window.removeEventListener('touchstart', forceSafariPlayAudio, false);
+			    }, false);
+			    audioEl.addEventListener('playing', function() {
+			        log('playing');
+			    }, false);
+			    audioEl.addEventListener('pause', function() {
+			        log('pause');
+			    }, false);
+			    window.addEventListener('touchstart', forceSafariPlayAudio, false);
+			    audioEl.src = 'http://vclues.com/sounds/Audiobinger_-_Night_Riders_AB.mp3';
+			})();
+		  </script>
+		  
+	  
+	</head>
+	
+    <body class="lang-en page_image">
+    <!-- 
+		<div style="display: none">
+			<audio id="bgmusic" autoplay="true" preload="true" loop="true">
+			  <source src="/sounds/Audiobinger_-_Night_Riders_AB.mp3" type="audio/mpeg" />
+			Your browser does not support the audio element.
+			</audio>
+		</div>
+	 -->
+        <div id="loader">
+            <img src="/assets/images/loader.gif" class="page_image" />
+        </div>    
+	        
+		<div class="container">
+			<div class="container-left">
+
+	        <div id="bg_left_character"><img src="" /><div class="content"></div></div>
+	        <a href="javascript: return false;" class="next"><img src="/assets/images/to-the-right.gif" /></a>
+	        
+	        <div style="display:none;" id="describe_site_short_typed_strings"><span>Our app will boost your revenue</span></div>
+	        
+	        <ul class="login_register_button_outer-left">
+	            <li class="working page_image">
+	                <div data-toggle="modal" data-target="#login_outer" class="title">About</div>
+	                <div class="describe_site page_image">
+	                    <span class="typed"></span>
+	                </div>
+	            </li>
+	        </ul>
+	        <div class="clear"></div>
+	        <div id="describe_about_site_startup" class="">
+	            <div style="display:none;" id="describe_site_phrase_typed_strings"><span><p>Welcome to the game where you are the character</p></span></div>
+	           <ul>
+	               <li>
+	                   <span class="typed_phrase"></span>
+	               </li>
+	           </ul> 
+	        </div>
+	        <div id="describe_about_site-left" class="">
+	           <ul>
+	               <li>
+	                   <span><p>On Demand Murder Mystery Role Playing Game</p></span>
+	               </li>
+	           </ul> 
+	        </div>
+
+		</div>
+		<div class="container-right">
+	        
+	        <div id="bg_right_character"><img src="" /><div class="content"></div></div>
+	        <a href="javascript: return false;" class="prev"><img src="/assets/images/to-the-left.gif" /></a>
+
+	        <ul class="login_register_button_outer-right">
+	            <li class="working page_image">
+	                <div data-toggle="modal" data-target="#register_outer" class="title">Email-Us</span></div>
+	                <div class="describe_site page_image">
+	                    <span class="typed"></span>
+	                </div>
+	            </li>
+	        </ul>
+	        <div class="clear"></div>
+		</div>
+	</div>
+
+	        <div id="login_outer" class="modal fade" role="dialog">
+	            <div class="modal-dialog">
+	                <!-- Modal content-->
+	                <div class="modal-content">	
+	                	<div style="position: absolute; top:10px;right:5px;"><a href="#" data-dismiss="modal"><img src="/assets/images/close_icon_copy.png" /></a></div>
+	                    <div class="logo"></div>
+	                    <div class="login-block">
+	                        <h1>About</h1>
+				<p>On demand murder mystery role playing game is an online app that ficilitates the conventional murder mystery dinner party game, removing the hassle from the enjoyment of the game.  With this app, the game is a no brainer.  Just sign up, pick a story to role play, invite your friend to your role playing game, and start enjoying your game right away.  Each player will pick a character to role play and throughout the game, pay attention to other players and narrow down which character is the killer.</p>
+				<p>This app is intended for restaurants, event hosts, and similar businesses to provide a form of entertainment that boost your existing business.</p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+
+
+	        <div id="register_outer" class="modal fade" role="dialog">
+	            <div class="modal-dialog">
+	                <!-- Modal content-->
+	                <div class="modal-content">
+	                	<div style="position: absolute; top:10px;right:5px;"><a href="#" data-dismiss="modal"><img src="/assets/images/close_icon_copy.png" /></a></div>
+	                    <div class="logo"></div>
+	                    <div class="login-block">
+	                        <h1>Contact Form</h1>
+				<p>We wouldl love to hear from you.  Tell us how we can help you increase your revenue with our app.</p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+    </body>
+  </html>
+  
+ 
