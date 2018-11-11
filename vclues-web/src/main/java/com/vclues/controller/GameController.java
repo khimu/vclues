@@ -1,6 +1,7 @@
 package com.vclues.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vclues.core.data.Announcement;
 import com.vclues.core.data.Game;
@@ -147,10 +149,14 @@ public class GameController extends BaseController {
 		Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
 		
 		model.addAttribute("player", player);
+		model.addAttribute("gameId", gameId);
         
 		if(player.getCastId() == null) {
 			return "cast";
 		}
+		
+		model.addAttribute("castId", player.getCastId());
+		model.addAttribute("castName", player.getCastName());
 		
 		if(player.getMurdererId() == null) {
 			logger.info("player id = " + player.getId());
@@ -187,6 +193,7 @@ public class GameController extends BaseController {
 		logger.info("murderer saved with " + castId);
 
 		model.addAttribute("player", player);
+		model.addAttribute("gameId", gameId);
 		
 		logger.info("murderer id " + player.getMurdererId());
         
@@ -272,6 +279,7 @@ public class GameController extends BaseController {
 		List<Player> players = gameService.getGuesses(gameId);
 
 		model.addAttribute("players", players);
+		model.addAttribute("gameId", gameId);
         
 		return "guesses";
     }        
@@ -373,6 +381,9 @@ public class GameController extends BaseController {
 		Player player = gameService.findPlayerByUserIdAndGameId(user.getId(), gameId);
 
 		model.addAttribute("player", player);
+		model.addAttribute("gameId", gameId);
+		model.addAttribute("castId", player.getCastId());
+		model.addAttribute("castName", player.getCastName());
         
         return "scripts";
     } 
@@ -398,20 +409,36 @@ public class GameController extends BaseController {
 		return "redirect:/game/cast/" + gameId;
     } 
     
-    /*
-     * From games.html
-     * 
-     * feature not implemented yet
-     */
     @GetMapping("/inviteMore/{gameId}")
-    public String inviteMore(@PathVariable("gameId") String gameId, @PathVariable("emails") String emails, Model model) {
-    	logger.info("In join game");
+    public String showInviteMore(@PathVariable("gameId") String gameId, Model model) {
+    	logger.info("showInviteMore");
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
 			return "redirect:/login";
 		}
 		
+		model.addAttribute("game", gameService.findOne(gameId));
+		model.addAttribute("gameId", gameId);
+
+		return "inviteToGame";
+    }
+    
+    /*
+     * From games.html
+     * 
+     * feature not implemented yet
+     */
+    @PostMapping("/inviteMore/{gameId}")
+    public String inviteMore(@PathVariable("gameId") String gameId, @RequestParam("invite") String emails) {
+    	logger.info("In join game");
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+
+		logger.info("inviting players " + emails);
 		gameService.inviteMore(gameId, user.getEmail(), emails);
 
 		return "redirect:/game/cast/" + gameId;
@@ -424,8 +451,8 @@ public class GameController extends BaseController {
      * 
      * Show the clue for the player
      */
-    @GetMapping("/clue/{sceneId}")
-    public String clue(@PathVariable("sceneId") Long sceneId, Model model) {
+    @GetMapping("/clue/{sceneId}/{gameId}")
+    public String clue(@PathVariable("sceneId") Long sceneId, @PathVariable("gameId") String gameId, Model model) {
     	logger.info("User view clue");
 		User user = getLoggedInUser();
 		if(user == null) {
@@ -436,6 +463,7 @@ public class GameController extends BaseController {
 		List<Hint> hints = gameService.findHintBySceneId(sceneId);
 
 		model.addAttribute("hints", hints);
+		model.addAttribute("gameId", gameId);
         
         return "clues";
     }     
@@ -457,6 +485,7 @@ public class GameController extends BaseController {
 		Player player = gameService.done(user.getId(), gameId);
 		
 		model.addAttribute("player", player);
+		model.addAttribute("gameId", gameId);
         
         return "scripts";
     }     
@@ -585,6 +614,10 @@ public class GameController extends BaseController {
 		}
 		
 		List<Game> games = gameService.findGamesByEmail(user.getEmail()); 
+		if(games.size() > 0) {			
+			Game game = games.get(0);
+			model.addAttribute("gameId", game.getId());
+		}
 
 		model.addAttribute("games", games);
 		

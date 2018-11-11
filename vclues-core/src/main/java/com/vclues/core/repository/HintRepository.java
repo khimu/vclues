@@ -7,11 +7,11 @@ import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.google.code.ssm.api.InvalidateSingleCache;
 import com.google.code.ssm.api.ParameterValueKeyProvider;
 import com.google.code.ssm.api.ReadThroughSingleCache;
-import com.vclues.core.entity.Cast;
 import com.vclues.core.entity.Hint;
 
 @Transactional
@@ -27,6 +27,9 @@ public interface HintRepository extends JpaRepository<Hint, Long> {
 
 	@ReadThroughSingleCache(namespace = "findHintBySceneId")
 	public List<Hint> findHintBySceneId(@ParameterValueKeyProvider Long sceneId);
+	
+	@Query("select r from Hint r where r.position <= :position")
+	public List<Hint> getAllHintsByPosition(@Param("position") Integer position);
 	
 	@Override
 	@InvalidateSingleCache(namespace = "findHintBySceneId")

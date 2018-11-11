@@ -8,7 +8,7 @@
         	Password: ${password} <br/>
 
 
-            <img src="http://vclues.com/assets/images/logo.png" />
+            <img src="https://vclues.com/assets/images/Icon-512x512.png" />
         </p>
     </body>
 </html>

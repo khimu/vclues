@@ -211,19 +211,13 @@ public class UserService implements IUserService {
         return userRepository.save(user);
     }    
     
-    public void resetPassword(final String email) {
+    public void resetPassword(final String email, String newpassword) {
     	User user = userRepository.findByEmail(email);
     	
     	if(user != null) {
-    		String resetPasswordKey = RandomStringUtils.randomAlphabetic(20);
-    		user.setResetPasswordKey(resetPasswordKey);
-    		
-    		userRepository.save(user);
-    		
-    		// send email    		
+    		user.setResetPasswordKey(bCryptPasswordEncoder.encode(newpassword));
+    		userRepository.save(user);  		
     	}
-    	
-    	// otherwise do not send email
     }
     
     public void confirmEmail(final String email, String activationKey) {

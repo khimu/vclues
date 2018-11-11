@@ -22,7 +22,7 @@ public interface PlayerRepository extends MongoRepository<Player, String> {
 	 */
 	public Player findPlayerByCastIdAndGameId(Long castId, String gameId);
 	
-	public Long countByGameIdAndDone(String gameId, boolean done);
+	public Long countByGameAndDone(Game game, boolean done);
 	
 	/*
 	 * The person who initiated the game

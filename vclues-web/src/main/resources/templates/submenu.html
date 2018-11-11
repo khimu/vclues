@@ -203,7 +203,7 @@ $( document ).ready(function() {
           <ul>
            <li><p class="menu_item"><a th:href="@{'/game/cast/' + ${game.id}}" style="text-shadow: 0 0 6px #FFD700;text-decoration:none;">Character</a></p></li>
            <li class="menu_item"><p class="menu_select"><a th:href="@{'/game/script/' + ${game.id}}" style="text-shadow: 0 0 6px #FFD700;text-decoration:none;">Script</a></p></li>
-           <li class="menu_item"><p class="menu_select"><a th:href="@{'/game/clue/' + ${game.sceneId}}" style="text-shadow: 0 0 6px #FFD700;text-decoration:none;">Clue</a></p></li>
+           <li class="menu_item"><p class="menu_select"><a th:href="@{'/game/clue/' + ${game.sceneId} + '/' + ${game.id}}" style="text-shadow: 0 0 6px #FFD700;text-decoration:none;">Clue</a></p></li>
            <li class="menu_item">
             <p class="menu_select">
             <span th:switch="${game.done}"> 

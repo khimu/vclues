@@ -33,7 +33,7 @@ public interface IUserService {
     
     public void toggleUserActivation(Long userId);
 
-	public void resetPassword(final String email);
+    public void resetPassword(final String email, String newpassword);
     
     public void confirmEmail(final String email, String activationKey);
     

@@ -3,6 +3,7 @@ package com.vclues.core.data;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -90,7 +91,7 @@ public class Game extends Base {
 	private List<Hint> hints;
 
 	@Field(value = "emails")
-	private List<String> emails;
+	private Set<String> emails;
 
 	@Transient
 	private String invites;
@@ -231,11 +232,11 @@ public class Game extends Base {
 		this.announcements = announcements;
 	}
 
-	public List<String> getEmails() {
+	public Set<String> getEmails() {
 		return emails;
 	}
 
-	public void setEmails(List<String> emails) {
+	public void setEmails(Set<String> emails) {
 		this.emails = emails;
 	}
 

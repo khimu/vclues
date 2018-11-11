@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -95,7 +97,10 @@ public class GameService implements IGameService {
     private String baseUrl;
     
     public List<Hint> findHintBySceneId(Long sceneId) {
-    	return hintRepository.findHintBySceneId(sceneId);
+    	Scene scene = sceneRepository.findOne(sceneId);
+    	int position = scene.getPosition();
+    	//return hintRepository.findHintBySceneId(sceneId);
+    	return hintRepository.getAllHintsByPosition(position);
     }
     
 	@Override
@@ -216,7 +221,7 @@ public class GameService implements IGameService {
 	public Game inviteMore(String gameId, String invitor, String invites) {
 		Game game = gameRepository.findOne(gameId);
 		
-		List<String> newInvites = sendInviteEmail(invitor, invites.toLowerCase(), game.getId());
+		Set<String> newInvites = sendInviteEmail(invitor, invites.toLowerCase(), game.getId());
 		
 		game.getEmails().addAll(newInvites);
 		
@@ -397,8 +402,8 @@ public class GameService implements IGameService {
 	
 	private final static ExecutorService executor = Executors.newCachedThreadPool();
 	
-	public List<String> sendInviteEmail(String email, String emails, String gameId) {
-		List<String> results = new ArrayList<String>();
+	public Set<String> sendInviteEmail(String email, String emails, String gameId) {
+		Set<String> results = new HashSet<String>();
 		
 		String[] tmp = new String[]{};
 		if(emails.contains(",")) {
@@ -457,6 +462,9 @@ public class GameService implements IGameService {
 			        else {
 			        	modelObject.put("password", "(Your Current Login Password and Username " + finalUser.getEmail() + ")");
 			        }
+			        
+			        modelObject.put("updatePassword", "You can update your password after login at " + baseUrl + "/updatepassword");
+			        
 			        emailService.send(invite, "emails/invite.ftl", modelObject);  
 				}catch(Exception e) {
 					logger.error("Unable to email invite user " + finalUser.getEmail());
@@ -541,7 +549,7 @@ public class GameService implements IGameService {
 	
 	@Override
 	public List<Game> findGamesByEmail(String email) {
-		Sort sort = new Sort(Direction.DESC, "order");
+		Sort sort = new Sort(Direction.DESC, "started");
 		List<Game> games = gameRepository.findGamesByEmail(email, sort);
 		
 		for(Game g : games) {
@@ -587,6 +595,8 @@ public class GameService implements IGameService {
 	}
 	
 	public Player findPlayerByUserIdAndGameId(Long userId, String gameId) {
+		//Game game = gameRepository.findOne(gameId);
+		
 		Player player = playerRepository.findPlayerByUserIdAndGameId(userId, gameId);
 		
 		if(player == null) {
@@ -594,6 +604,7 @@ public class GameService implements IGameService {
 		}
 		
 		if(player.getScriptId() != null) {
+			//List<Scene> scenes = scriptRepository.findScriptBySceneIdAndCastId(game.getSceneId(), player.getCastId());
 			player.setScript(scriptRepository.findOne(player.getScriptId()));
 		}
 		
@@ -606,16 +617,23 @@ public class GameService implements IGameService {
 	
 	public Player done(Long userId, String gameId) {
 		Game game = gameRepository.findOne(gameId);
-
-		Long count = playerRepository.countByGameIdAndDone(gameId, true);
+		
+		Player player = playerRepository.findPlayerByUserIdAndGameId(userId, gameId);
+		//player.setDone(true);
+		//playerRepository.save(player);
+		
+		Long currentCount = playerRepository.countByGameAndDone(game, true);
+		
+		logger.info("done count for game " + game.getName() + " is " + currentCount);
 		
 		Scene currentScene = sceneRepository.findOne(game.getSceneId());
-		List<Script> currentScripts = scriptRepository.getAllScriptsBySceneId(currentScene.getId());
 		
+		Cast cast = castRepository.getOne(player.getCastId());
+
 		/*
 		 * all players are done with scene
 		 */
-		if(currentScripts.size() == count.intValue()) {
+		if(cast.getRole().equals("host")) {
 			
 			Scene nextScene = sceneRepository.getNextSceneByStoryIdAndPosition(game.getStoryId(), currentScene.getPosition() + 1);
 			
@@ -626,44 +644,76 @@ public class GameService implements IGameService {
 				//List<Hint> hint = hintRepository.findHintBySceneId(nextScene.getId());
 				List<Script> scripts = scriptRepository.getAllScriptsBySceneId(nextScene.getId());
 				
+				logger.info("There are blah scripts " + scripts.size());
+				
+				/*
+				 * helper logic
+				 */
 				Map<Long, Script> castToScript = new HashMap<Long, Script>();
 				
 				for(Script s : scripts) {
 					castToScript.put(s.getCast().getId(), s);
+					logger.info("script is " + s.getText());
 				}
 				
 				List<Player> players = playerRepository.findAllPlayersByGame(game);
 				
+				logger.info("There are players " + players.size());
+				
+				/*
+				 * Update to next scripts
+				 */
 				for(Player p : players) {
 					//p.setHintId(hint.getId());
 					Long scriptId = castToScript.get(p.getCastId()).getId();
 					if(scriptId != null) {
+						logger.info("Before updating script ID " + p.getScriptId());
 						p.setScriptId(castToScript.get(p.getCastId()).getId());
+						logger.info("Updating script ID " + p.getScriptId());
 					}
 					
 					p.setDone(false);
 					playerRepository.save(p);
 				}
 				
+				/*
+				 * Update to next scene
+				 */
 				game.setSceneId(nextScene.getId());
 				
 			}
 			else {
+				/*
+				 * No more scene left in the game
+				 */
+				List<Player> players = playerRepository.findAllPlayersByGame(game);
+				
+				logger.info("There are players " + players.size());
+				
+				/*
+				 * Update to next scripts
+				 */
+				for(Player p : players) {
+					p.setDone(false);
+					playerRepository.save(p);
+				}
+				
+				logger.info("No more scene for " + (currentScene.getPosition() + 1));
 				game.setDone(true);
 			}
 			
 			gameRepository.save(game);
+		
 			
+			/*
+			 * All players are done
+			 */
 			return this.findPlayerByUserIdAndGameId(userId, gameId);
 		}
 
 		/*
 		 * not all players are done
 		 */
-		Player player = playerRepository.findPlayerByUserIdAndGameId(userId, gameId);
-		player.setDone(true);
-		playerRepository.save(player);
-		
 		return this.findPlayerByUserIdAndGameId(userId, gameId);
 	}
 	

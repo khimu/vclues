@@ -152,10 +152,32 @@ public class RegistrationController extends BaseController {
         return "login";
     }
     
-    @GetMapping("/forgotpassword")
+    @GetMapping("/updatepassword")
     public String forgotpassword(Model model) {
-        model.addAttribute("content", "forgotpassword"); 
-        return "index";
+        //model.addAttribute("content", "forgotpassword"); 
+    	logger.info("Show all games");
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+
+        return "updatepassword";
+    }
+    
+    @PostMapping("/updatepassword")
+    public String saveForgotpassword(@RequestParam(value="newpassword", required = false) String newpassword, Model model) {
+        //model.addAttribute("content", "forgotpassword"); 
+    	logger.info("Show all games");
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+		
+		userService.resetPassword(user.getEmail(), newpassword);
+		
+        return "redirect:/";
     }
 
 }

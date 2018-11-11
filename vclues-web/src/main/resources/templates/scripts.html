@@ -216,7 +216,7 @@ and (-webkit-min-device-pixel-ratio: 1){
 	<div id="fb-root"></div>
 
 <div class="wrapper">
-<a href="/game/all" class="btn_close"><img src="/assets/images/btn_close.png" alt="" width="55" height="54"/></a>
+<a th:href="@{/game/gamemenu/{gameId}(gameId=${player.game.id})}" class="btn_close" style="left: 0px;"><img src="/assets/images/btn_close.png" alt="" width="55" height="54"/></a>
 <div class="container-fluid">
        
   <div class="row home-logo">

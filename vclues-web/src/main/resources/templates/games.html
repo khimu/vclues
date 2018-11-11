@@ -220,7 +220,12 @@ and (-webkit-min-device-pixel-ratio: 1){
 
 <script>
 
+function updateinviteToLink() {
+	  console.log($('#link-to-invite-more').attr('href'));
 
+	  $('#link-to-invite-more').attr('href', '/game/inviteMore/' + $('#game-select-button').attr('alt'));
+	  console.log($('#link-to-invite-more').attr('href'));
+}
     
 $( document ).ready(function() {
 
@@ -243,13 +248,13 @@ $( document ).ready(function() {
 <div class="wrapper">
   <div class="container-fluid" style="text-align:center;">
   
-     	<a href="javascript: prev();" style="position:absolute;top:57%;left:0px;z-index:1001;"><img src="/assets/images/left.png" alt="" width="44" height="63"/></a>
-     	<a href="javascript: next();" style="position:absolute;top:57%;right:0px;z-index:1001;"><img src="/assets/images/right.png" alt="" width="44" height="63"/></a>
+     	<a href="javascript: prev(); updateinviteToLink();" style="position:absolute;top:57%;left:0px;z-index:1001;"><img src="/assets/images/left.png" alt="" width="44" height="63"/></a>
+     	<a href="javascript: next(); updateinviteToLink();" style="position:absolute;top:57%;right:0px;z-index:1001;"><img src="/assets/images/right.png" alt="" width="44" height="63"/></a>
  
   
     <div class="buttons row justify-content-md-center">
       <div class="col-2">
-        <a href="#" class="btn_anounce"><img src="/assets/images/space.png" alt="" width="55" height="54" /></a>
+        <a th:href="@{/game/inviteMore/{gameId}(gameId=${gameId})}" id="link-to-invite-more" class="btn_anounce"><img src="/assets/images/inviteIcon2.png" width="55" height="54" /></a>
       </div>
       <div class="col-2">
         <a href="/" class="btn_close" style="left: 0px;"><img src="/assets/images/btn_close.png" alt="" width="54" height="54"/></a>
@@ -303,7 +308,7 @@ $( document ).ready(function() {
 					<div class="row justify-content-md-center center-block" style="position:relative;">
 					    <div class="col">	
 						    <div class="select">
-				     			<a th:href="@{/game/gamemenu/{gameId}(gameId=${game.id})}">Select</a>
+				     			<a th:href="@{/game/gamemenu/{gameId}(gameId=${game.id})}" id="game-select-button" th:alt="${game.id}" >Select</a>
 				    		</div>
 						</div>
 					  </div> 	

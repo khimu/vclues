@@ -2,6 +2,7 @@ package com.vclues.core.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.vclues.core.data.Announcement;
 import com.vclues.core.data.Game;
@@ -73,7 +74,7 @@ public interface IGameService {
 	 */
 	public Game getGameWithGameCast(String gameId);
 	
-	public List<String> sendInviteEmail(String email, String emails, String gameId);
+	public Set<String> sendInviteEmail(String email, String emails, String gameId);
 	
 	public void savePlayer(Player player);
 	

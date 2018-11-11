@@ -46,6 +46,8 @@ public class Story extends AbstractEntity {
 	private String answer;
 
 	private int size;
+	
+	private Boolean active;
 
 	public List<Cast> getCasts() {
 		return casts;

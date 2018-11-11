@@ -25,6 +25,9 @@ public class Player extends Base {
 	private String id;
 
 	private String name;
+	
+	@Field(value = "role")
+	private String role;
 
 	@Indexed(unique = false)
 	@Field(value = "cast_id")
@@ -204,6 +207,13 @@ public class Player extends Base {
 	public void setGuess(Cast guess) {
 		this.guess = guess;
 	}
-	
-	
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 }

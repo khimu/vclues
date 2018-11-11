@@ -3,7 +3,7 @@
 <html>
     <body>
         <p>
-        	You are invited to play Vega Clues Online Murder Mystery Dinner Party Game by ${email}.  Come join your friends. 
+        	You are invited to play Vega Clues On Demand Murder Mystery Role Playing Game by ${email}.  Come join your friends. 
         	You can sign in with your email and password "${password}" after confirming your email.
 			<br/>
 			<br/>
@@ -11,8 +11,10 @@
         	
         	<br/>
 			<br/>
+			
+			${updatePassword}
 
-            <img src="http://vclues.com/assets/images/logo.png" />
+            <img src="https://vclues.com/assets/images/Icon-512x512.png" />
         </p>
     </body>
 </html>
