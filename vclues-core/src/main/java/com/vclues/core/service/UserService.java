@@ -159,8 +159,11 @@ public class UserService implements IUserService {
 		user.getAuthorities().add(authorityRepository.findByName("ROLE_USER"));		  
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));        
         user.setActivationKey(activationKey);
+        
         user.setType(Constant.USER_TYPE.PAID);
+        
         user.setActive(true);
+        
         user.setParentUser(user);
 
         return userRepository.save(user);

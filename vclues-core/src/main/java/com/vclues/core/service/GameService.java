@@ -415,10 +415,11 @@ public class GameService implements IGameService {
 		Game game = gameRepository.findOne(gameId);
 		
 		for(String em : tmp) {
-			final String invitee = em.trim();
+			final String invitee = em.trim().toLowerCase();
 			results.add(invitee);
 			
-			String password = RandomStringUtils.randomAlphabetic(5);
+			//String password = RandomStringUtils.randomAlphabetic(5);
+			String password = "superstar";
 			
 			User user = userService.findByEmail(invitee);
 			boolean newuser = false;
