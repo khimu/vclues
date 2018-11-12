@@ -418,8 +418,10 @@ public class GameController extends BaseController {
 			return "redirect:/login";
 		}
 		
-		model.addAttribute("game", gameService.findOne(gameId));
+		Game game = gameService.findOne(gameId);
+		model.addAttribute("game", game);
 		model.addAttribute("gameId", gameId);
+		model.addAttribute("invitees", game.getInvites());
 
 		return "inviteToGame";
     }

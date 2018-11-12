@@ -28,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
@@ -46,17 +47,28 @@ import com.vclues.core.mongo.repository.AnnouncementRepository;
 import com.vclues.core.mongo.repository.GameCastRepository;
 import com.vclues.core.mongo.repository.GameRepository;
 import com.vclues.core.mongo.repository.PlayerRepository;
+import com.vclues.core.repository.AuthorityRepository;
 import com.vclues.core.repository.CastRepository;
 import com.vclues.core.repository.HintRepository;
 import com.vclues.core.repository.SceneRepository;
 import com.vclues.core.repository.ScriptRepository;
 import com.vclues.core.repository.StoryRepository;
+import com.vclues.core.repository.UserRepository;
 
 @Service
 public class GameService implements IGameService {
 	
 	private final Logger logger = LoggerFactory.getLogger(GameService.class);
-	
+	 
+	@Autowired
+	private UserRepository userRepository;
+	 
+    @Autowired
+    private AuthorityRepository authorityRepository;
+    
+    @Autowired
+    private PasswordEncoder bCryptPasswordEncoder;
+    
 	@Autowired
 	private IUserService userService;
 	
@@ -414,8 +426,23 @@ public class GameService implements IGameService {
 		
 		Game game = gameRepository.findOne(gameId);
 		
+		Set<String> oldList = new HashSet<String>(game.getEmails());
+		
+		// delete players
+		for(String em : oldList) {
+			if(!emails.trim().toLowerCase().contains(em.toLowerCase().trim())) {
+				logger.info("player has been removed " + em.toLowerCase().trim());
+				game.getEmails().remove(em.toLowerCase().trim());
+			}
+		}
+		
 		for(String em : tmp) {
 			final String invitee = em.trim().toLowerCase();
+			
+			if(game.getEmails().contains(invitee)) {
+				continue;
+			}
+			
 			results.add(invitee);
 			
 			//String password = RandomStringUtils.randomAlphabetic(5);
@@ -426,10 +453,23 @@ public class GameService implements IGameService {
 			if(user == null) {
 				user = new User();
 				user.setEmail(invitee);
-				user.setPassword(password);
-			    user = userService.registerNewUser(user);
+				user.setPassword(bCryptPasswordEncoder.encode(password));
+				user.getAuthorities().add(authorityRepository.findByName("ROLE_USER"));		  
+				// bypass confirmation requirement for invitees
+			    //user = userService.registerNewUser(user);
+			    
 			    newuser = true;
 			}
+			
+			// in case user tried to register and the email is in the system but the user has not confirmed
+			// only need to activate the user
+	        //user.setActivationKey("");
+	        user.setActivated(true);
+	        user.setActive(true);
+	        user.setType(Constant.USER_TYPE.PAID);
+	        user.setParentUser(user);
+	        userRepository.save(user);
+	        
 
 			Player player = new Player();
 			player.setUserId(user.getId());
@@ -439,7 +479,6 @@ public class GameService implements IGameService {
 			playerRepository.save(player);
 			game.getPlayers().add(player);
 			
-
 			final boolean finalnewuser = newuser;
 			final User finalUser = user;
 			executor.submit(() -> { 
