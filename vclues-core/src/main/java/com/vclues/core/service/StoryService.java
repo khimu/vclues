@@ -8,16 +8,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.code.ssm.api.InvalidateMultiCache;
-import com.google.code.ssm.api.InvalidateSingleCache;
 import com.google.code.ssm.api.ParameterValueKeyProvider;
-import com.google.code.ssm.api.ReadThroughMultiCache;
-import com.google.code.ssm.api.ReadThroughSingleCache;
 import com.vclues.core.entity.Cast;
 import com.vclues.core.entity.Hint;
 import com.vclues.core.entity.Scene;
 import com.vclues.core.entity.Script;
 import com.vclues.core.entity.Story;
+import com.vclues.core.entity.User;
 import com.vclues.core.mongo.repository.AnnouncementRepository;
 import com.vclues.core.mongo.repository.GameRepository;
 import com.vclues.core.repository.CastRepository;
@@ -56,20 +53,34 @@ public class StoryService implements IStoryService {
     @Autowired
     private ScriptRepository scriptRepository;
     
-    public void deleteStory(Long storyId) {
-    	storyRepository.deleteStory(storyId);
+    public List<Story> findAllStoryByUser(User user) {
+    	return storyRepository.findAllStoryByUserId(user.getId());
     }
+    
+    public void deleteStory(Long storyId) {
+    	List<Scene> scenes = sceneRepository.getAllSceneByStoryId(storyId);
+    	for(Scene scene : scenes) {
+    		hintRepository.deleteByScene(scene);
+    		scriptRepository.deleteByScene(scene);
+    	}
+    	
+    	castRepository.deleteByStoryId(storyId);
+    	sceneRepository.deleteByStoryId(storyId);
+    	storyRepository.delete(storyId);
+    	//storyRepository.deleteStory(storyId);
+    }
+    
     /*
     * Somehow not getting a new object from DB and causing stale state exeception on 
     * second edit request
     */
     //@InvalidateMultiCache(namespace = "stories")
-    public Story saveStory(@ParameterValueKeyProvider Story story) {
+    public Story saveStory(Story story) {
     	return saveSingleCacheStory(story);
     }
     
     //@InvalidateSingleCache(namespace = "story")
-    public Story saveSingleCacheStory(@ParameterValueKeyProvider Story story) {
+    public Story saveSingleCacheStory(Story story) {
     	return storyRepository.save(story);
     }
     
@@ -103,7 +114,8 @@ public class StoryService implements IStoryService {
 	}
 	
 	public void deleteScene(Long sceneId) {
-		sceneRepository.deleteScene(sceneId);
+		sceneRepository.delete(sceneId);
+		//sceneRepository.deleteScene(sceneId);
 	}
 	
 	public List<Hint> getAllHintBySceneId(Long sceneId) {
@@ -113,11 +125,13 @@ public class StoryService implements IStoryService {
 	}
 	
 	public void deleteHint(Long hintId) {
-		hintRepository.deleteHint(hintId);
+		hintRepository.delete(hintId);
+		//hintRepository.deleteHint(hintId);
 	}
 	
 	public void deleteCast(Long castId) {
-		castRepository.deleteCast(castId);
+		castRepository.delete(castId);
+		//castRepository.deleteCast(castId);
 	}
 	
 	public List<Cast> getAllCastByStoryId(Long storyId) {

@@ -13,6 +13,7 @@
 					<!-- <input type="hidden" th:field="*{accountId}"/>  -->
 					<input type="hidden" th:field="*{id}"/>
 					<input type="hidden" th:field="*{story}"/>
+					<input type="hidden" th:with="cast.version=${cast.version + 1}" th:field="*{version}"/>
 
 					<div class="login-form-main-message"></div>
 					<div class="main-login-form">

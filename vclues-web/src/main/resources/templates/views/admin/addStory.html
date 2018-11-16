@@ -6,7 +6,8 @@
 			<!-- Main Form -->
 			<div class="login-form-1">		
 				<form class="text-left" th:action="@{/admin/story}" th:object="${story}" th:method="POST">
-
+					<input type="hidden" th:field="*{userId}"/>
+					
 					<ul>
 					    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
 					</ul>					

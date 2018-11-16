@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -22,6 +23,9 @@ public abstract class BaseController {
 	// A special header sent with each AJAX request
 	protected static final String IS_AJAX_HEADER = "X-Requested-With=XMLHttpRequest";
 
+	
+    @Value("${server.base.url}")
+    protected String baseUrl;
 
 	// example usage
 	public HttpSession session() {
@@ -41,6 +45,8 @@ public abstract class BaseController {
 			String au = auth.getAuthorities().iterator().next().getAuthority();
 			
 			logger.info("logged in user name " + name  + " authority " + au);
+			
+			logger.info("logged in user name " + name);
 			
 			if(name != null) {
 	    		user = userService.findByEmail(name);

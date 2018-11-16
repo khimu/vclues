@@ -77,6 +77,7 @@ public class UserService implements IUserService {
 			user.setEmail(email);
 			user.setPassword(password);
 		    user = this.registerNewUser(user, password);
+		    
 		    return userRepository.save(user);
 		}
 		
@@ -136,6 +137,18 @@ public class UserService implements IUserService {
     public User registerNewUser(final User user) {
     	String activationKey = RandomStringUtils.randomAlphabetic(20);
 
+		user.getAuthorities().add(authorityRepository.findByName("ROLE_USER"));		  
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));        
+        user.setActivationKey(activationKey);
+        
+        user.setType(Constant.USER_TYPE.PAID);
+        
+        user.setActive(true);
+        
+        user.setParentUser(user);
+        
+        User savedUser = userRepository.save(user);
+        
     	executor.submit(() -> { 
 			try {
 			// This needs to be asynchronous
@@ -156,17 +169,7 @@ public class UserService implements IUserService {
 			}
     	});
 
-		user.getAuthorities().add(authorityRepository.findByName("ROLE_USER"));		  
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));        
-        user.setActivationKey(activationKey);
-        
-        user.setType(Constant.USER_TYPE.PAID);
-        
-        user.setActive(true);
-        
-        user.setParentUser(user);
-
-        return userRepository.save(user);
+        return savedUser;
     }
     
     private final static ExecutorService executor = Executors.newCachedThreadPool();
@@ -182,6 +185,16 @@ public class UserService implements IUserService {
     public User registerNewUser(final User user, String password) {
     	String activationKey = RandomStringUtils.randomAlphabetic(20);
 
+    	user.getAuthorities().add(authorityRepository.findByName("ROLE_USER"));		  
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));        
+        user.setActivationKey(activationKey);
+        user.setActivated(true);
+        user.setActive(true);
+        user.setType(Constant.USER_TYPE.PAID);
+        user.setParentUser(user);
+
+        User savedUser = userRepository.save(user);
+        
     	executor.submit(() -> { 
 			try {
 			// This needs to be asynchronous
@@ -203,15 +216,7 @@ public class UserService implements IUserService {
 			}
     	});
 
-		user.getAuthorities().add(authorityRepository.findByName("ROLE_USER"));		  
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));        
-        user.setActivationKey(activationKey);
-        user.setActivated(true);
-        user.setActive(true);
-        user.setType(Constant.USER_TYPE.PAID);
-        user.setParentUser(user);
-
-        return userRepository.save(user);
+		return savedUser;
     }    
     
     public void resetPassword(final String email, String newpassword) {

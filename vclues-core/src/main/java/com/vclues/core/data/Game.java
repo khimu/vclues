@@ -2,11 +2,13 @@ package com.vclues.core.data;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -233,6 +235,15 @@ public class Game extends Base {
 	}
 
 	public Set<String> getEmails() {
+		if(this.emails == null) {
+			this.emails = new HashSet<String>();
+			if(StringUtils.trimToNull(this.invites) != null) {
+				String[] tmp = this.invites.split(",");
+				for(String t : tmp) {
+					this.emails.add(t.trim().toLowerCase());
+				}
+			}
+		}
 		return emails;
 	}
 

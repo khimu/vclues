@@ -289,7 +289,13 @@ public class GameService implements IGameService {
 		
 		if(taken != null && !taken.getUserId().equals(userId)) {
 			logger.info("No Update due to character already taken by " + taken.getUserId());
-			return;
+			player.setCastId(null);
+			player.setName(null);
+			player.setCastName(null);
+			player.setScript(null);
+			player.setScriptId(null);
+			playerRepository.save(player);
+			//return;
 		}
 		
 		if(player != null && player.getCastId() != null && !player.getCastId().equals(Long.parseLong(castId))) {
@@ -446,7 +452,7 @@ public class GameService implements IGameService {
 			results.add(invitee);
 			
 			//String password = RandomStringUtils.randomAlphabetic(5);
-			String password = "superstar";
+			String password = "star";
 			
 			User user = userService.findByEmail(invitee);
 			boolean newuser = false;
@@ -659,8 +665,8 @@ public class GameService implements IGameService {
 		Game game = gameRepository.findOne(gameId);
 		
 		Player player = playerRepository.findPlayerByUserIdAndGameId(userId, gameId);
-		//player.setDone(true);
-		//playerRepository.save(player);
+		player.setDone(true);
+		playerRepository.save(player);
 		
 		Long currentCount = playerRepository.countByGameAndDone(game, true);
 		
@@ -668,7 +674,7 @@ public class GameService implements IGameService {
 		
 		Scene currentScene = sceneRepository.findOne(game.getSceneId());
 		
-		Cast cast = castRepository.getOne(player.getCastId());
+		Cast cast = castRepository.findOne(player.getCastId());
 
 		/*
 		 * all players are done with scene
@@ -705,11 +711,18 @@ public class GameService implements IGameService {
 				 */
 				for(Player p : players) {
 					//p.setHintId(hint.getId());
-					Long scriptId = castToScript.get(p.getCastId()).getId();
-					if(scriptId != null) {
-						logger.info("Before updating script ID " + p.getScriptId());
-						p.setScriptId(castToScript.get(p.getCastId()).getId());
-						logger.info("Updating script ID " + p.getScriptId());
+					if(p.getCastId() == null) {
+						continue;
+					}
+					
+					Script script =  castToScript.get(p.getCastId());
+					if(script != null) {
+						Long scriptId = castToScript.get(p.getCastId()).getId();
+						if(scriptId != null) {
+							logger.info("Before updating script ID " + p.getScriptId());
+							p.setScriptId(castToScript.get(p.getCastId()).getId());
+							logger.info("Updating script ID " + p.getScriptId());
+						}
 					}
 					
 					p.setDone(false);

@@ -22,15 +22,16 @@ public interface StoryRepository extends JpaRepository<Story, Long> {
 	public void deleteStory(Long storyId);
 
 	@Override
-	@ReadThroughSingleCache(namespace = "StoryById")
-	public Story findOne(@ParameterValueKeyProvider Long storyId);
+	//@ReadThroughSingleCache(namespace = "StoryById")
+	public Story findOne(Long storyId);
 	
 	@Override
-	@CacheEvict(value = "StoryById", key = "#p0.story.id")
-	public Story save(@ParameterValueKeyProvider Story story);
+	//@CacheEvict(value = "StoryById", key = "#p0.story.id")
+	public Story save(Story story);
 	
 	
-	public List<Story> findAllStoryByUser(User user);
+	public List<Story> findAllStoryByUserId(Long userId);
 	
-	public List<Story> findAllActive(boolean active);
+	public List<Story> findAllStoryByActive(boolean active);
+	
 }

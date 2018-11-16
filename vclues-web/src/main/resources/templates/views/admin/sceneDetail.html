@@ -1,5 +1,26 @@
 
             <div th:fragment="sceneDetail" class="container-fluid">
+		
+				<script th:inline="javascript">
+				/*<![CDATA[*/
+				
+				    var baseUrl = /*[[${baseUrl}]]*/ 'http://localhost:9191/';
+				    console.log(baseUrl);
+				    
+	          		function confirmDelete(msg, link) {
+	          			if(confirm(msg)) {
+	          				console.log(link);
+	          				window.location= baseUrl + link;
+	          			}
+	          			else {
+	          				return false;
+	          			}
+	          		}		    
+				
+				/*]]>*/
+				
+	          	</script>            
+            
                 <div class="row">
 					<div class="col-md-8 col-md-offset-2">
                         <div class="card">
@@ -28,6 +49,7 @@
 														<th>Dialog</th>
 												        <th>Secret</th>
 												        <th></th>
+												        <th></th>
 												      </tr>
 									              </thead>
 									              <tbody>
@@ -35,7 +57,8 @@
 														    <td th:text="${script.cast.id}"></td>
 														    <td th:text="${script.text}" />
 														    <td th:text="${script.secret}" />
-															<!-- <td><a th:href="@{/admin/script/edit/{id}/{storyId}(id=${script.id}, storyId=${scene.story.id})}" class="btn btn-default">Edit</a></td> -->															
+														    <td><a th:href="'javascript:confirmDelete(\'Are you sure ?\',\'/admin/script/delete/' + ${script.id} + '/' + ${scene.id} + '\')'" class="btn btn-default">Delete</a></td>
+															<td><a th:href="@{/admin/script/edit/{id}/{storyId}(id=${script.id}, storyId=${storyId})}" class="btn btn-default">Edit</a></td>															
 														</tr>  
 									              </tbody>
 									            </table>
@@ -50,7 +73,8 @@
 															<td th:text="${iterStat.count}"></td>
 															<td th:text="${hint.image}"></td>
 														    <td th:text="${hint.text}"></td>
-															<!-- <td><a th:href="@{/admin/hint/edit/{id}/{storyId}(id=${hint.id}, storyId=${hint.story.id})}" class="btn btn-default">Edit</a></td> -->
+															<td><a th:href="'javascript:confirmDelete(\'Are you sure ?\',\'/admin/hint/delete/' + ${hint.id} + '/' + ${scene.id} + '\')'" class="btn btn-default">Delete</a></td>
+															<td><a th:href="@{/admin/hint/edit/{id}/{storyId}(id=${hint.id}, storyId=${storyId})}" class="btn btn-default">Edit</a></td>
 															<img th:src="${hint.image}"/>
 														</tr>  
 									              </tbody>

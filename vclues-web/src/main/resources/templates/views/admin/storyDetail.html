@@ -1,15 +1,37 @@
 
             <div th:fragment="storyDetail" class="container-fluid">
+
+		
+				<script th:inline="javascript">
+				/*<![CDATA[*/
+
+	          		function confirmDelete(msg, link) {
+	          			if(confirm(msg)) {
+	          				console.log(link);
+	          				window.location= link;
+	          			}
+	          			else {
+	          				return false;
+	          			}
+	          		}		    
+				
+				/*]]>*/
+				
+	          	</script>
+
                 <div class="row">
 					<div class="col-md-8 col-md-offset-2">
                         <div class="card">
                             <div class="header text-center">
-                                <h4 class="title" th:text="${story.title}"> <span style="font-size:12px;"><a href="/story/edit/{id}" class="btn btn-default">Edit</a></span></h4>
+                                <h4 class="title" th:text="${story.title}"> <span style="font-size:12px;"></span></h4>
                                 <p class="category"></p>
 								<br/>
                             </div>
                             <div>
+
                             	<a href="/admin/welcome" class="btn btn-default">Back</a>
+                            	<a th:href="'javascript:confirmDelete(\'Are you sure ?\',\'/admin/story/delete/' + ${story.id} + '\')'" class="btn btn-default">Delete Story</a>
+                            	<a th:href="@{/admin/story/edit/{id}(id=${story.id})}" class="btn btn-default">Edit</a>
                             	<a th:href="@{/admin/cast/{id}(id=${story.id})}" class="btn btn-default">Add Cast</a>
                             	<a th:href="@{/admin/scene/add/{id}(id=${story.id})}" class="btn btn-default">Add Scene</a>	
 															<form class="text-left" th:action="@{/admin/assets}" method="POST" enctype="multipart/form-data">
@@ -33,10 +55,12 @@
                             </div>
                              <div><hr/></div>                            
                             <div class="content table-responsive table-full-width table-upgrade">
-                            	<div th:if="${story.image != null}"><img th:src="${story.image}"/></div>
+                            	<div th:if="${story.image != null}"><img width="20%" height="20%" th:src="${story.image}"/></div>
+<!-- 
                             	<div th:if="${story.video != null}">
                             		<iframe width="360" height="215" th:src="@{{url}(url=${story.video}}" frameborder="1" alt="no video attached" allowfullscreen="0"></iframe>
                             	</div>
+ -->
                             	<div style="padding:10px;">
 	                            	<div>
 		                            	<h5>Synapsis</h5>
@@ -62,6 +86,8 @@
 											<th>Synapsis</th>
 									        <th>image</th>
 									        <th></th>
+									        <th></th>
+									        <th></th>
 									      </tr>
 						              </thead>
 						              <tbody>
@@ -69,7 +95,8 @@
 											    <td th:text="${s.position}" />
 											    <td th:text="${s.text}" />
 											    <td th:text="${s.image}" />
-												<!-- <td><a th:href="@{/admin/scene/edit/{id}(id=${s.id})}" class="btn btn-default">Edit</a></td> -->
+												<td><a th:href="@{/admin/scene/edit/{id}(id=${s.id})}" class="btn btn-default">Edit</a></td>
+												<td><a th:href="'javascript:confirmDelete(\'Are you sure ?\',\'/admin/scene/delete/' + ${s.id}  + '/' + ${storyId} + '\')'" class="btn btn-default">Delete</a></td>
 												<td><a th:href="@{/admin/scene/{id}/{storyId}(id=${s.id},storyId=${story.id})}" class="btn btn-default">More</a></td>
 											</tr>  	
 											<tr><td colspan="5"><hr/></td></tr>									
@@ -87,6 +114,8 @@
 											<th>Character</th>
 									        <th>Gender</th>
 									        <th>Description</th>
+									        <th></th>
+									        <th></th>
 									      </tr>
 						              </thead>
 						              <tbody th:each="c,iterStat : ${story?.casts}" th:class="${iterStat.odd}? 'odd'">
@@ -95,11 +124,12 @@
 											    <td th:text="${c.role}" />
 											    <td th:text="${c.gender}" />
 											    <td th:text="${c.description}" />
-												<!-- <td><a th:href="@{/admin/cast/edit/{id}(id=${c.id})}" class="btn btn-default">Edit</a></td> -->
+											    <td><a th:href="'javascript:confirmDelete(\'Are you sure ?\',\'/admin/cast/delete/' + ${c.id}  + '/' + ${storyId} + '\')'" class="btn btn-default">Delete</a></td>
+												<td><a th:href="@{/admin/cast/edit/{id}(id=${c.id})}" class="btn btn-default">Edit</a></td>
 											</tr> 
 											<tr>
 												<td colspan="4">
-												 	<img th:src="${c.image}"/>
+												 	<img width="20%" height="20%" th:src="${c.image}"/>
 												</td>
 											</tr>   
 						              </tbody>

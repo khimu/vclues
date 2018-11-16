@@ -131,7 +131,7 @@ public class HintController extends BaseController {
      * Edit descriptor detail
      */
     @PutMapping
-    public String put(@ModelAttribute("hint") Hint hint, BindingResult bindingResult, Model model) {
+    public String put(@RequestParam("storyId") String storyId, @ModelAttribute("hint") Hint hint, BindingResult bindingResult, Model model) {
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
@@ -141,7 +141,16 @@ public class HintController extends BaseController {
 		// need to make sure user has access to the descriptor
 		storyService.saveHint(hint);
 		
-        return "redirect:/admin/hint/all";
+		model.addAttribute("hint", hint);
+		//model.addAttribute("scenes", storyService.getAllSceneByStoryId(Long.parseLong(storyId)));
+		model.addAttribute("sceneId", hint.getScene().getId());
+		model.addAttribute("storyId", storyId);
+        model.addAttribute("content", "editHint");
+        model.addAttribute("title", "Edit Hint");
+        
+		return "admin";
+		//return "redirect:/admin/scene/" + hint.getScene().getId();
+        //return "redirect:/admin/hint/all";
     }
 
 
@@ -149,21 +158,24 @@ public class HintController extends BaseController {
      * Ajax call
      * Edit descriptor detail
      */
-    @DeleteMapping(headers = IS_AJAX_HEADER)
-    public void delete(@RequestHeader("id") String hintId) {
+    //@DeleteMapping(headers = IS_AJAX_HEADER)
+    @GetMapping("/delete/{id}/{sceneId}")
+    public String delete(@PathVariable("id") String hintId, @PathVariable("sceneId") String sceneId) {
     	logger.info("In delete hint " + hintId);
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
-			return;
+			return "redirect:/login";
 		}
 
 		if(hintId == null || !StringUtils.isNumeric(hintId)) {
 			logger.info("hintId is null");
-			return;
+			return "redirect:/admin/scene/all";
 		}
 		
 		storyService.deleteHint(Long.parseLong(hintId));
+		
+		return "redirect:/admin/scene/" + sceneId;
     }
 	    
     /**

@@ -48,10 +48,10 @@ public class DashboardController extends BaseController {
     	//model.addAttribute("current", games.get(Constant.CURRENT));
     	//model.addAttribute("past", games.get(Constant.PAST));
     	
-    	model.addAttribute("stories", storyService.getAllStories());
-    	model.addAttribute("content", "welcome"); 
-    	model.addAttribute("title", "Dashboard");
-    	return "admin";
+    	//model.addAttribute("stories", storyService.getAllStories());
+    	//model.addAttribute("content", "welcome"); 
+    	//model.addAttribute("title", "Dashboard");
+    	return "redirect:/admin/story/all";
     }
     
 }

@@ -3,15 +3,14 @@ package com.vclues.core.entity;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
-import org.springframework.cache.annotation.Cacheable;
 
 @Entity
 @Table(name = "story")
@@ -48,6 +47,9 @@ public class Story extends AbstractEntity {
 	private int size;
 	
 	private Boolean active;
+
+	@Column(name="user_id")
+	private Long userId;
 
 	public List<Cast> getCasts() {
 		return casts;
@@ -119,6 +121,22 @@ public class Story extends AbstractEntity {
 
 	public void setAudio(String audio) {
 		this.audio = audio;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 }

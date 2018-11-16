@@ -348,7 +348,7 @@ public class GameController extends BaseController {
 		
 		logger.info("story id is " + Long.parseLong(storyId));
 		
-		Story story = storyService.getStory(Long.parseLong(storyId));
+		//Story story = storyService.getStory(Long.parseLong(storyId));
 		
 		if(game == null) {
 			logger.info("game is null");
@@ -360,6 +360,7 @@ public class GameController extends BaseController {
         //    return showForm(storyId, model);
         //}		
 
+		game.setInvites(game.getInvites().toLowerCase());
 		// go back to the game cast view
 		return "redirect:/game/cast/" + gameService.saveGame(game, storyId, user.getId(), user.getEmail()).getId();
     } 
@@ -441,7 +442,7 @@ public class GameController extends BaseController {
 		}
 
 		logger.info("inviting players " + emails);
-		gameService.inviteMore(gameId, user.getEmail(), emails);
+		gameService.inviteMore(gameId, user.getEmail(), emails.toLowerCase());
 
 		return "redirect:/game/cast/" + gameId;
     } 

@@ -135,7 +135,14 @@ public class CastController extends BaseController {
 		// need to make sure user has access to the descriptor
 		storyService.saveCast(cast);
 		
-        return "redirect:/admin/cast/all";
+        //return "redirect:/admin/cast/all";
+		
+		model.addAttribute("cast", cast);
+		model.addAttribute("storyId", cast.getStory().getId());
+        model.addAttribute("content", "editCast");
+        model.addAttribute("title", "Edit Cast");
+        
+		return "admin";
     }
 
 
@@ -143,21 +150,24 @@ public class CastController extends BaseController {
      * Ajax call
      * Edit descriptor detail
      */
-    @DeleteMapping(headers = IS_AJAX_HEADER)
-    public void delete(@RequestHeader("id") String castId) {
+    //@DeleteMapping(headers = IS_AJAX_HEADER)
+    @GetMapping("/delete/{id}/{storyId}")
+    public String delete(@PathVariable("id") String castId, @PathVariable("storyId") String storyId) {
     	logger.info("In delete story " + castId);
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
-			return;
+			return "redirect:/login";
 		}
 
 		if(castId == null || !StringUtils.isNumeric(castId)) {
 			logger.info("castId is null");
-			return;
+			return "redirect:/admin/story/" + storyId;
 		}
 		
 		storyService.deleteCast(Long.parseLong(castId));
+		
+		return "redirect:/admin/story/" + storyId;
     }
 	    
     /**

@@ -5,12 +5,15 @@
 			<!-- Main Form -->
 			<div class="login-form-1">
 	
-				<form class="text-left" th:action="@{/admin/story}" th:object="${story}" th:method="PUT">
+				<form class="text-left" th:action="@{/admin/story}" th:object="${story}" th:method="POST">
+					<input type="hidden" th:field="*{id}"/>
+					<input type="hidden" th:field="*{userId}"/>
+					<input type="hidden" th:with="story.version=${story.version + 1}" th:field="*{version}"/>
+					
 					<ul>
 					    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
 					</ul>					
-					<input type="hidden" th:field="*{id}"/>
-					
+
 					<div class="login-form-main-message"></div>
 					<div class="main-login-form">
 						<div class="login-group">

@@ -86,11 +86,13 @@ public class RegistrationController extends BaseController {
         	return "login";
         }
 
+        userForm.setEmail(userForm.getEmail().toLowerCase().trim());
         userService.registerNewUser(userForm);
         
         model.addAttribute("content", "signup"); 
         model.addAttribute("message", "Thank you for registering.  Please check your email for the confirmation link.");
 
+        /*
         if(getLoggedInUser() != null) {
     		
     		//model.addAttribute("games", gameService.findGamesByEmail(getLoggedInUser().getEmail()));
@@ -99,6 +101,7 @@ public class RegistrationController extends BaseController {
 	
 	        return "menu";
         }
+        */
         
         return "login";
     }

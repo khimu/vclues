@@ -9,8 +9,9 @@
 					<ul>
 					    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
 					</ul>					
-					<input class="form-control" type="hidden" th:value="${storyId}" id="storyId" name="storyId" />
-					<input class="form-control" type="hidden" th:value="${sceneId}" id="sceneId" name="scene.id" />
+					
+					<input type="hidden" th:value="${storyId}" id="storyId" name="storyId" /> 
+					<input type="hidden" id="sceneId" th:field="*{scene}" />
 					
 					<div class="login-form-main-message"></div>
 					<div class="main-login-form">

@@ -131,7 +131,7 @@ public class ScriptController extends BaseController {
      * Edit descriptor detail
      */
     @PutMapping
-    public String put(@ModelAttribute("script") Script script, BindingResult bindingResult, Model model) {
+    public String put(@RequestParam("storyId") String storyId, @ModelAttribute("script") Script script, BindingResult bindingResult, Model model) {
 		User user = getLoggedInUser();
 		if(user == null) {
 			logger.info("Not able to retrieve user in session");
@@ -141,7 +141,16 @@ public class ScriptController extends BaseController {
 		// need to make sure user has access to the descriptor
 		storyService.saveScript(script);
 		
-        return "redirect:/admin/script/all";
+		model.addAttribute("casts", storyService.getAllCastByStoryId(Long.parseLong(storyId)));	
+		//model.addAttribute("scenes", storyService.getAllSceneByStoryId(Long.parseLong(storyId)));	
+		model.addAttribute("sceneId", script.getScene().getId());
+		model.addAttribute("storyId", storyId);
+		model.addAttribute("script", script);
+        model.addAttribute("content", "editScript");
+        model.addAttribute("title", "Edit Script");
+        
+		return "admin";
+        //return "redirect:/admin/script/all";
     }
 
 
@@ -150,7 +159,7 @@ public class ScriptController extends BaseController {
      * Edit descriptor detail
      */
     @DeleteMapping(headers = IS_AJAX_HEADER)
-    public void delete(@RequestHeader("id") String scriptId) {
+    public void ajaxDelete(@RequestHeader("id") String scriptId) {
     	logger.info("In delete script " + scriptId);
 		User user = getLoggedInUser();
 		if(user == null) {
@@ -164,6 +173,25 @@ public class ScriptController extends BaseController {
 		}
 		
 		storyService.deleteScript(Long.parseLong(scriptId));
+    }
+    
+    @GetMapping("/delete/{id}/{sceneId}")
+    public String delete(@PathVariable("id") String scriptId, @PathVariable("sceneId") String sceneId) {
+    	logger.info("In delete script " + scriptId);
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+
+		if(scriptId == null || !StringUtils.isNumeric(scriptId)) {
+			logger.info("scriptId is null");
+			return "redirect:/admin/scene/" + sceneId;
+		}
+		
+		storyService.deleteScript(Long.parseLong(scriptId));
+		
+		return "redirect:/admin/scene/" + sceneId;
     }
 	    
     /**

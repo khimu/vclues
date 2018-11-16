@@ -1,5 +1,6 @@
 package com.vclues.admin.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.vclues.core.entity.Authority;
 import com.vclues.core.entity.Story;
 import com.vclues.core.entity.User;
 import com.vclues.core.mongo.repository.AnnouncementRepository;
@@ -55,16 +57,32 @@ public class StoryController extends BaseController {
 			return "redirect:/login";
 		}
 		
-		List<Story> stories = storyService.getAllStories();
+		List<Story> stories = new ArrayList<Story>();
+
+		for(Authority auth : user.getAuthorities()) {
+			if(auth.getName().equals("ROLE_ADMIN")) {
+				stories = storyService.getAllStories();
+				break;
+			}
+		}
+
+		if(stories.isEmpty()) {
+			stories = storyService.findAllStoryByUser(user);
+		}
 		
-		model.addAttribute("stories", stories);
-		
-		model.addAttribute("content", "listStory"); 
+		model.addAttribute("stories", stories);		
+		//model.addAttribute("content", "listStory"); 
+		model.addAttribute("content", "welcome");
 		model.addAttribute("title", "Stories");
+		model.addAttribute("userId", user.getId());
+		
+		
 		
 		model.addAttribute("webUrl", webUrl);
 		
-        return "admin";
+		model.addAttribute("baseUrl", baseUrl);
+		
+		return "admin";
     }
 
     @GetMapping("{id}")
@@ -79,7 +97,7 @@ public class StoryController extends BaseController {
 		
 		if(storyId == null || !StringUtils.isNumeric(storyId)) {
 			logger.info("Not able to retrieve user in session");
-			return "redirect:/welcome";
+			return "redirect:/admin/welcome";
 		}
 		
 		Story story = storyService.getStory(Long.parseLong(storyId));
@@ -90,6 +108,7 @@ public class StoryController extends BaseController {
 		//model.addAttribute("scenes", storyService.getAllSceneByStoryId(Long.parseLong(storyId)));	
 		model.addAttribute("content", "storyDetail"); 
 		model.addAttribute("title", "Story Detail");
+		model.addAttribute("userId", user.getId());
 		
 		model.addAttribute("webUrl", webUrl);
         
@@ -111,6 +130,7 @@ public class StoryController extends BaseController {
 		
 		model.addAttribute("content", "editStory"); 
 		model.addAttribute("title", "Edit Story Detail");
+		model.addAttribute("userId", user.getId());
 		
 		model.addAttribute("webUrl", webUrl);
         
@@ -126,9 +146,13 @@ public class StoryController extends BaseController {
 			return "redirect:/login";
 		}
 
-		model.addAttribute("story", new Story());
+		Story story = new Story();
+		story.setUserId(user.getId());
+		model.addAttribute("story", story);
+		
         model.addAttribute("content", "addStory");
         model.addAttribute("title", "Add Story");
+        model.addAttribute("userId", user.getId());
         
         model.addAttribute("webUrl", webUrl);
         
@@ -138,6 +162,7 @@ public class StoryController extends BaseController {
     /*
      * Edit descriptor detail
      */
+    /*
     @PutMapping
     public String put(@ModelAttribute("story") Story story, BindingResult bindingResult, Model model) {
 		User user = getLoggedInUser();
@@ -145,19 +170,29 @@ public class StoryController extends BaseController {
 			logger.info("Not able to retrieve user in session");
 			return "redirect:/login";
 		}
-
-		// need to make sure user has access to the descriptor
-		storyService.saveStory(story);
 		
+		logger.info("In edit of story " + story.getId());
+
+		Story s = storyService.getStory(story.getId());
+		
+		if(s.getUser().getId().equals(story.getUser().getId())) {
+			// need to make sure user has access to the descriptor
+			storyService.saveStory(story);
+		}
+		else {
+			logger.warn("User " + user.getEmail() + " trying to update story " + story.getId()  + " " + story.getTitle());
+		}
+
         return "redirect:/admin/story/all";
     }
+    */
 
     /*
      * Ajax call
      * Edit descriptor detail
      */
     @DeleteMapping(headers = IS_AJAX_HEADER)
-    public void delete(@RequestHeader("id") String storyId) {
+    public void ajaxDelete(@RequestHeader("id") String storyId) {
     	logger.info("In delete story " + storyId);
 		User user = getLoggedInUser();
 		if(user == null) {
@@ -170,7 +205,42 @@ public class StoryController extends BaseController {
 			return;
 		}
 		
-		storyService.deleteStory(Long.parseLong(storyId));
+		Story s = storyService.getStory(Long.parseLong(storyId));
+		
+		if(user.getId().equals(s.getUserId())) {
+			storyService.deleteStory(Long.parseLong(storyId));
+		}
+		
+		else {
+			logger.warn("User " + user.getEmail() + " trying to delete " + s.getTitle() );
+		}
+    }
+    
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") String storyId) {
+    	logger.info("In delete story " + storyId);
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+
+		if(storyId == null || !StringUtils.isNumeric(storyId)) {
+			logger.info("storyId is null");
+			 return "redirect:/admin/story/all";
+		}
+		
+		Story s = storyService.getStory(Long.parseLong(storyId));
+		
+		if(user.getId().equals(s.getUserId())) {
+			storyService.deleteStory(Long.parseLong(storyId));
+		}
+		
+		else {
+			logger.warn("User " + user.getEmail() + " trying to delete " + s.getTitle() );
+		}
+		
+		 return "redirect:/admin/story/all";
     }
 	    
     /**
@@ -203,8 +273,27 @@ public class StoryController extends BaseController {
         //}
                        
         //logger.info("Saving descriptor " + descriptor.toString());
-        
-        storyService.saveStory(story);
+		
+		logger.info("In edit of story " + story.getId());
+
+		Story s = storyService.getStory(story.getId());
+		
+		if(s == null) {
+			story.setUserId(user.getId());
+	        storyService.saveStory(story);
+		}else {
+			if(s.getUserId().equals(story.getUserId())) {
+				// need to make sure user has access to the descriptor
+				storyService.saveStory(story);
+			}
+			else {
+				logger.warn("User " + user.getEmail() + " trying to update story " + story.getId()  + " " + story.getTitle());
+				story.setUserId(user.getId());
+		        storyService.saveStory(story);
+			}
+		}
+		
+
          
         return "redirect:/admin/story/all";
     }    

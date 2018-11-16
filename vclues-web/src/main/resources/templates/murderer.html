@@ -327,7 +327,8 @@ $( document ).ready(function() {
                 <div class="modal-body">
                   <div class="descrpition_popup_altered">
                       <a href="#" data-dismiss="modal" class="btn_close-11"><img src="/assets/images/btn_close_11.png" alt="" width="55" height="55"/></a>
-                                <p class="description_popup_text pre-scrollable" th:utext="${c.cast.description}"></p>
+                                <p th:text="${c.cast.role}" />
+                                <p class="description_popup_text pre-scrollable" th:utext="${c.cast.description}"/>
                               </div>
                         </div>
               </div>

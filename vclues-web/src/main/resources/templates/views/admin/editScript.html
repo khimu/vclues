@@ -13,6 +13,8 @@
 					<input type="hidden" th:field="*{id}"/>
 					<input type="hidden" th:field="*{scene}"/>
 					<input type="hidden" th:field="*{cast}"/>
+					<input type="hidden" th:with="script.version=${script.version + 1}" th:field="*{version}"/>
+					<input type="hidden" name="storyId" th:value="${storyId}" />
 
 					<div class="login-form-main-message"></div>
 					<div class="main-login-form">

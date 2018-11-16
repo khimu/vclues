@@ -13,6 +13,7 @@ import com.google.code.ssm.api.InvalidateSingleCache;
 import com.google.code.ssm.api.ParameterValueKeyProvider;
 import com.google.code.ssm.api.ReadThroughSingleCache;
 import com.vclues.core.entity.Hint;
+import com.vclues.core.entity.Scene;
 
 @Transactional
 public interface HintRepository extends JpaRepository<Hint, Long> {
@@ -21,17 +22,19 @@ public interface HintRepository extends JpaRepository<Hint, Long> {
 	@Query("update Hint u set u.active = 0 where id = ?1")
 	public void deleteHint(Long hintId);
 	
+	public void deleteByScene(Scene scene);
+	
 	public Hint getAllHintBySceneId(Long sceneId);
 	
 	public List<Hint> getAllHintBySceneIdAndPositionLessThan(Long sceneId, Integer position);
 
-	@ReadThroughSingleCache(namespace = "findHintBySceneId")
-	public List<Hint> findHintBySceneId(@ParameterValueKeyProvider Long sceneId);
+	//@ReadThroughSingleCache(namespace = "findHintBySceneId")
+	public List<Hint> findHintBySceneId(Long sceneId);
 	
 	@Query("select r from Hint r where r.position <= :position")
 	public List<Hint> getAllHintsByPosition(@Param("position") Integer position);
 	
 	@Override
-	@InvalidateSingleCache(namespace = "findHintBySceneId")
-	public Hint save(@ParameterValueKeyProvider Hint hint);
+	//@InvalidateSingleCache(namespace = "findHintBySceneId")
+	public Hint save(Hint hint);
 }

@@ -10,8 +10,11 @@ import com.vclues.core.entity.Hint;
 import com.vclues.core.entity.Scene;
 import com.vclues.core.entity.Script;
 import com.vclues.core.entity.Story;
+import com.vclues.core.entity.User;
 
 public interface IStoryService {
+	
+	public List<Story> findAllStoryByUser(User user);
 	
 	public List<Story> getAllStories();
 

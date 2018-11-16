@@ -78,6 +78,8 @@ public class SceneController extends BaseController {
 		model.addAttribute("storyId", storyId);
 		model.addAttribute("content", "sceneDetail"); 
 		model.addAttribute("title", "Scene Detail");
+		
+		model.addAttribute("baseUrl", baseUrl);
         
 		return "admin";
     }
@@ -139,7 +141,15 @@ public class SceneController extends BaseController {
 		// need to make sure user has access to the descriptor
 		storyService.saveScene(scene);
 		
-        return "redirect:/admin/scene/all";
+		model.addAttribute("scene", scene);
+		model.addAttribute("storyId", scene.getStory().getId());
+        model.addAttribute("content", "editScene");
+        model.addAttribute("title", "Edit Scene");
+		
+        //return "redirect:/admin/scene/all";
+        //return "redirect:/admin/story/" + scene.getStory().getId();
+        
+        return "admin";
     }
 
 
@@ -147,6 +157,7 @@ public class SceneController extends BaseController {
      * Ajax call
      * Edit descriptor detail
      */
+    /*
     @DeleteMapping(headers = IS_AJAX_HEADER)
     public void delete(@RequestHeader("id") String sceneId) {
     	logger.info("In delete scene " + sceneId);
@@ -162,6 +173,28 @@ public class SceneController extends BaseController {
 		}
 		
 		storyService.deleteScene(Long.parseLong(sceneId));
+    }
+    */
+    
+    @GetMapping("/delete/{id}/{storyId}")
+    public String delete(@PathVariable("id") String sceneId, @PathVariable("storyId") String storyId) {
+    	logger.info("In delete scene " + sceneId);
+		User user = getLoggedInUser();
+		if(user == null) {
+			logger.info("Not able to retrieve user in session");
+			return "redirect:/login";
+		}
+
+		if(sceneId == null || !StringUtils.isNumeric(sceneId)) {
+			logger.info("scene is null");
+			return "redirect:/admin/story/" + storyId;
+			//return "redirect:/admin/scene/all";
+		}
+		
+		storyService.deleteScene(Long.parseLong(sceneId));
+		
+		return "redirect:/admin/story/" + storyId;
+		//return "redirect:/admin/scene/all";
     }
 	    
     /**

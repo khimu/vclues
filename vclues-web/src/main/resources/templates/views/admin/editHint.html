@@ -5,7 +5,7 @@
 
 			<!-- Main Form -->
 			<div class="login-form-1">		
-				<form class="text-left" th:action="@{/admin/hint}" th:object="${hint}" th:method="POST">
+				<form class="text-left" th:action="@{/admin/hint/{storyId}(storyId=${storyId})}" th:object="${hint}" th:method="POST">
 
 					<ul>
 					    <li th:each="err : ${#fields.errors('all')}" th:text="${err}" />
@@ -13,16 +13,20 @@
 				
 					<input type="hidden" th:field="*{id}"/>
 					<input type="hidden" th:field="*{scene}"/>
+					<input type="hidden" name="storyId" th:value="${storyId}" />
+					<input type="hidden" th:with="hint.version=${hint.version + 1}" th:field="*{version}"/>
 					
 					<div class="login-form-main-message"></div>
 					<div class="main-login-form">
 						<div class="login-group">
+							<!-- 
 							<div class="form-group">
 								<label for="scenes" class="sr-only" required="true">Scenes</label>
 								<select th:field="*{scene.id}" th:remove="all-but-first">
-				                	<option th:each="s : ${scenes}" th:value="${s.id}" th:text="Scene ${s.position}"></option>
+				                	<option th:each="s : ${scenes}" th:value="${s.id}" th:text="${'Scene' + s.position}"></option>
 								</select>							
 							</div>
+							 -->
 							<div class="form-group">
 								<label for="text" class="sr-only" required="true">Text</label>
 								<input type="text" class="form-control" id="text" th:field="*{text}" placeholder="text" th:errorclass="fieldError"/>
