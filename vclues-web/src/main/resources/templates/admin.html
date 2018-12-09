@@ -50,6 +50,8 @@
 		  gtag('config', 'UA-129295499-1');
 		</script>
 
+        <script async="async" custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
+        
 
 </head>
 <body>
@@ -65,6 +67,8 @@
 		<div lang="en" th:replace="views/admin/common/header :: header"></div>
 
 		<div class="content"><div th:replace="@{'views/admin/' + ${content}} :: ${content}"></div></div>
+		
+		<amp-auto-ads type="adsense" data-ad-client="ca-pub-2178827339426285"></amp-auto-ads>
 		
 		<div lang="en" th:replace="views/admin/common/footer :: footer"></div>
 

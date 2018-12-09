@@ -38,6 +38,7 @@
         
         <script src="/assets/js/vclues.js" type="text/javascript"></script>
 
+
 		<script async="async" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 		<script>
 		     (adsbygoogle = window.adsbygoogle || []).push({
@@ -246,7 +247,7 @@ and (orientation : portrait) {
       <span class="alert alert-danger" th:if="${error != null}" th:text="${error}"></span>
 		<p class="home_link describe_site"><a href="javascript: return false;" style="text-shadow: 0 0 20px #FFD700;" data-toggle="modal" data-target="#login_outer">Login</a></p>
 		<p class="home_link-2"><a href="javascript: return false;" style="text-shadow: 0 0 20px #FFD700;" data-toggle="modal" data-target="#register_outer">Register</a></p>
-		<a href="javascript: return false;" data-toggle="modal" data-target="#social-share" style="color:white !important;">Social Login</a>
+		<!-- <a href="javascript: return false;" data-toggle="modal" data-target="#social-share" style="color:white !important;">Social Login</a> -->
     </div>
   </div>
   
@@ -270,50 +271,50 @@ and (orientation : portrait) {
 		    					
 				      				<a href="#" data-dismiss="modal" class="btn_close-11"><img src="/assets/images/btn_close_11.png" alt="" width="55" height="55"/></a>
 	                            	<p class="description_popup_text pre-scrollable" style="text-align:center;">
-<table style="border-collapse: separate; border-spacing: 2px;padding-left:15px;">
-    <tr>
-        <td><g:plusone href="' + linkUrl + '" size="medium" style="float:right"></g:plusone></td>
-        <td>
-	                            				<div class="fb-like" 
-											    data-href="http://vclues.com" 
-											    data-layout="standard" 
-											    data-action="like" 
-											    data-show-faces="true">
-											   </div></td>
-        <td> <a href="http://twitter.com/share" data-url="http://www.vclues.com" class="twitter-share-button" data-count="none" data-via="test">Tweet</a></td>
-    </tr>
-    
-</table>	                            		
+										<table style="border-collapse: separate; border-spacing: 2px;padding-left:15px;">
+										    <tr>
+										        <td><g:plusone href="' + linkUrl + '" size="medium" style="float:right"></g:plusone></td>
+										        <td>
+											                            				<div class="fb-like" 
+																					    data-href="http://vclues.com" 
+																					    data-layout="standard" 
+																					    data-action="like" 
+																					    data-show-faces="true">
+																					   </div></td>
+										        <td> <a href="http://twitter.com/share" data-url="http://www.vclues.com" class="twitter-share-button" data-count="none" data-via="test">Tweet</a></td>
+										    </tr>
+										    
+										</table>	                            		
 	                            		
 	                            		<hr style="width: 80%;height:1px;"/>
 
-<table style="border-collapse: separate; border-spacing: 2px">
-    <tr>
-        <td><a th:href="@{/auth/linkedin}" class="btn"><i class="btn"></i>LinkedIn Login</a></td>
-        <td><a th:href="@{/auth/facebook}" class="btn"><i class="btn"></i>Facebook Login</a></td>
-    </tr>
-    <!-- 
-    <tr>
-    	<td colspan="2">
-    			<form action="/fb/connect/facebook" method="POST">
-			<input type="hidden" name="scope" value="user_posts" />
-			<div class="formInfo">
-				<p>You aren't connected to Facebook yet. Click the button to connect this application with your Facebook account.</p>
-			</div>
-			<p><button type="submit">Connect to Facebook</button></p>
-		</form>
-    	</td>
-    </tr>
-    -->
-    <tr>
-        <td><a th:href="@{/auth/twitter}" class="btn"><i class="btn"></i>Twitter Login</a></td>
-        <td><a th:href="@{/auth/live(scope='wl.signin,wl.basic')}" class="btn"><i class="btn"></i>Microsoft Login</a></td>
-    </tr>
-    <tr>
-        <td><a th:href="@{/auth/github}" class="btn"><i class="btn"></i>Github Login</a></td>
-        <td><a th:href="@{/auth/google(scope='profile')}" class="btn"><i class="btn"></i>Google+ Login</a></td>
-    </tr>
-</table>
+											<table style="border-collapse: separate; border-spacing: 2px">
+											    <tr>
+											        <td><a th:href="@{/auth/linkedin}" class="btn"><i class="btn"></i>LinkedIn Login</a></td>
+											        <td><a th:href="@{/auth/facebook}" class="btn"><i class="btn"></i>Facebook Login</a></td>
+											    </tr>
+											    <!-- 
+											    <tr>
+											    	<td colspan="2">
+											    			<form action="/fb/connect/facebook" method="POST">
+														<input type="hidden" name="scope" value="user_posts" />
+														<div class="formInfo">
+															<p>You aren't connected to Facebook yet. Click the button to connect this application with your Facebook account.</p>
+														</div>
+														<p><button type="submit">Connect to Facebook</button></p>
+													</form>
+											    	</td>
+											    </tr>
+											    -->
+											    <tr>
+											        <td><a th:href="@{/auth/twitter}" class="btn"><i class="btn"></i>Twitter Login</a></td>
+											        <td><a th:href="@{/auth/live(scope='wl.signin,wl.basic')}" class="btn"><i class="btn"></i>Microsoft Login</a></td>
+											    </tr>
+											    <tr>
+											        <td><a th:href="@{/auth/github}" class="btn"><i class="btn"></i>Github Login</a></td>
+											        <td><a th:href="@{/auth/google(scope='profile')}" class="btn"><i class="btn"></i>Google+ Login</a></td>
+											    </tr>
+											</table>
 	                      		
 	                            		<hr style="width: 80%"/>
        
@@ -343,7 +344,7 @@ and (orientation : portrait) {
 	      					<input class="password-2 form-fields" type="password" id="lg_password" name="password" placeholder="password"  required="required"/>
 	     				</div>
 	      				<div class="row-2 group">
-	       					<a href="#" class="fb_btn" onclick="fb_login();"><img src="/assets/images/fb_btn.png" alt="" width="105" height="35"/></a>
+	       					<!-- <a href="#" class="fb_btn" onclick="fb_login();"><img src="/assets/images/fb_btn.png" alt="" width="105" height="35"/></a> -->
 	       					<button type="submit" class="btn btn-primary btn-sm" style="opacity: 0.7;height:37px;">Done</button>
 	       				</div>
 	    			</div>
